@@ -2,15 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Shield, Building2, Wrench, FileText, ArrowDown } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, CheckCircle2, Shield, Building2, Wrench, FileText } from "lucide-react";
 
 export default function SectorsPage() {
   const [activeSection, setActiveSection] = useState<string>("architects");
 
-  /* 
-   * SCROLL SPY FOR STICKY NAVIGATION
-   * Highlights the active sector pill as the buyer scrolls down the page.
-   */
+  // Scroll Spy: Automatically updates active tab as buyer scrolls down
   useEffect(() => {
     const handleScroll = () => {
       const sections = ["architects", "developers", "facilities", "public-sector"];
@@ -47,11 +45,7 @@ export default function SectorsPage() {
     }
   };
 
-  /* 
-   * 12TH-GRADE PLAIN ENGLISH SECTOR DICTIONARY
-   * Strict structure: Buyer's Problem -> Drievu Solution -> Verifiable Proof Point.
-   * Maximum font weight applied: font-medium (500).
-   */
+  // 12th-Grade Plain English Sector Dictionary (Zero technical jargon)
   const sectorsData = [
     {
       id: "architects",
@@ -100,14 +94,11 @@ export default function SectorsPage() {
   ];
 
   return (
-    <div className="w-full pb-24 bg-brand-paper min-h-screen">
-      {/* 
-        * HERO HEADER SECTION
-        * Strict Weight-500 Ceiling: Uses font-medium with optical tracking [-0.02em].
-        */}
+    <div className="w-full pb-24 bg-brand-paper min-h-screen select-none">
+      {/* HERO HEADER SECTION */}
       <section className="bg-brand-slate text-brand-paper py-16 md:py-24 px-6 border-b border-brand-grey/20">
         <div className="max-w-[1200px] mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-teal/20 text-brand-teal text-xs font-display font-medium uppercase tracking-widest mb-6 select-none">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-teal/20 text-brand-teal text-xs font-display font-medium uppercase tracking-widest mb-6">
             <span className="w-2 h-2 rounded-full bg-brand-teal animate-pulse" />
             Tailored Engineering Engagement
           </div>
@@ -119,7 +110,6 @@ export default function SectorsPage() {
             We do not force a single boxed product onto every building. Whether you specify new developments, manage day-to-day facilities, or oversee public housing, here is how our consulting-to-maintenance discipline solves your exact problems in plain English.
           </p>
 
-          {/* Mandatory Legal & Due Diligence Banner */}
           <div className="bg-brand-mist/10 border-l-4 border-brand-teal p-5 rounded-r-xl max-w-4xl font-body text-xs text-brand-grey leading-relaxed font-mono">
             <strong>PROCUREMENT DUE DILIGENCE:</strong> National-infrastructure track records referenced below were delivered by members of Drievu’s leadership team over the past two decades in prior executive roles. Drievu Limited was incorporated in the UK in 2024 (Company No. 15479482).
           </div>
@@ -127,34 +117,41 @@ export default function SectorsPage() {
       </section>
 
       {/* 
-        * STICKY SECTOR JUMP NAVIGATION (SC-4)
-        * Allows decision-makers to bypass scrolling and jump straight to their section.
+        * STICKY SECTOR JUMP NAVIGATION (Emil Kowalski Spring Glider)
+        * Uses Framer Motion layoutId="activeSectorTab" for buttery macOS tab transitions.
         */}
-      <section className="bg-brand-mist py-4 px-6 border-b border-brand-grey/15 sticky top-[60px] z-40 backdrop-blur-md shadow-soft">
+      <section className="bg-brand-mist/90 py-4 px-6 border-b border-brand-grey/15 sticky top-[60px] z-40 backdrop-blur-md shadow-soft">
         <div className="max-w-[1200px] mx-auto flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
-          <span className="font-display font-medium text-xs text-brand-grey uppercase tracking-widest mr-2 hidden sm:inline select-none">
+          <span className="font-display font-medium text-xs text-brand-grey uppercase tracking-widest mr-2 hidden sm:inline shrink-0">
             Jump To:
           </span>
-          {sectorsData.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => scrollToSection(tab.id)}
-              className={`px-5 py-2.5 rounded-full font-display font-medium text-xs whitespace-nowrap transition-all duration-200 active:scale-[0.97] cursor-pointer select-none ${
-                activeSection === tab.id
-                  ? "bg-brand-teal text-white shadow-soft"
-                  : "bg-white text-brand-slate border border-brand-grey/20 hover:border-brand-teal hover:text-brand-teal"
-              }`}
-            >
-              {tab.title}
-            </button>
-          ))}
+          {sectorsData.map((tab) => {
+            const isActive = activeSection === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => scrollToSection(tab.id)}
+                className={`relative px-5 py-2.5 rounded-full font-display font-medium text-xs whitespace-nowrap z-10 transition-colors duration-150 active:scale-[0.97] cursor-pointer ${
+                  isActive
+                    ? "text-white"
+                    : "bg-white text-brand-slate border border-brand-grey/20 hover:border-brand-teal hover:text-brand-teal"
+                }`}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="activeSectorTab"
+                    transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                    className="absolute inset-0 bg-brand-teal rounded-full shadow-soft -z-10"
+                  />
+                )}
+                {tab.title}
+              </button>
+            );
+          })}
         </div>
       </section>
 
-      {/* 
-        * 4 ANCHORED SECTOR SECTIONS (SC-1, SC-2, SC-3)
-        * Strict Rule: Every section terminates at the exact same scoping CTA.
-        */}
+      {/* 4 ANCHORED SECTOR SECTIONS */}
       <div className="max-w-[1200px] mx-auto px-6 divide-y divide-brand-grey/15">
         {sectorsData.map((sec, idx) => {
           const IconComp = sec.icon;
@@ -168,7 +165,7 @@ export default function SectorsPage() {
             >
               <div className={`grid grid-cols-1 lg:grid-cols-12 gap-12 items-center ${isEven ? "lg:grid-flow-dense" : ""}`}>
                 
-                {/* Text & Value Proposition (7 Columns) */}
+                {/* Text & Value Proposition */}
                 <div className={`lg:col-span-7 space-y-8 ${isEven ? "lg:col-start-6" : ""}`}>
                   <div>
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-brand-mist border border-brand-grey/20 text-brand-slate text-xs font-display font-medium uppercase tracking-widest mb-4">
@@ -183,7 +180,7 @@ export default function SectorsPage() {
                     </p>
                   </div>
 
-                  {/* Problem vs Solution Comparison Box */}
+                  {/* Problem vs Solution Boxes */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
                     <div className="bg-brand-mist p-6 rounded-2xl border border-brand-grey/20 space-y-2">
                       <span className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block">
@@ -204,7 +201,7 @@ export default function SectorsPage() {
                     </div>
                   </div>
 
-                  {/* Verifiable Proof Point */}
+                  {/* Proof Point */}
                   <div className="border-l-2 border-brand-slate pl-5 py-1 space-y-1">
                     <span className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block">
                       Proof Point: {sec.proofTitle}
@@ -214,7 +211,7 @@ export default function SectorsPage() {
                     </p>
                   </div>
 
-                  {/* UNIFIED CONVERSION GOAL (SC-3): Routes strictly to Scoping Wizard */}
+                  {/* Conversion Goal */}
                   <div className="pt-2">
                     <Link
                       href="/consultation"
@@ -226,18 +223,16 @@ export default function SectorsPage() {
                   </div>
                 </div>
 
-                {/* DB Longbow Image Curtain Reveal (5 Columns) */}
+                {/* Technical Asset Placeholder */}
                 <div className={`lg:col-span-5 ${isEven ? "lg:col-start-1" : ""}`}>
-                  <div className="w-full h-[380px] md:h-[440px] bg-brand-slate/10 rounded-2xl relative overflow-hidden border border-brand-grey/20 shadow-soft flex items-center justify-center" data-reveal="curtain">
+                  <div className="w-full h-[380px] md:h-[440px] bg-brand-slate/10 rounded-2xl relative overflow-hidden border border-brand-grey/20 shadow-soft flex items-center justify-center">
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-slate/40 via-transparent to-transparent z-10" />
-                    
-                    {/* Image Asset Placeholder */}
-                    <div className="text-center font-mono text-xs text-brand-grey p-8 max-w-sm relative z-20 select-none">
+                    <div className="text-center font-mono text-xs text-brand-grey p-8 max-w-sm relative z-20">
                       <span className="font-medium text-brand-slate block text-sm mb-2">
                         [Sector Asset: {sec.title}]
                       </span>
                       <span className="opacity-80 block leading-relaxed text-[11px]">
-                        Asset pending final approval.
+                        Antigravity Prompt: {sec.imagePrompt}
                       </span>
                     </div>
                   </div>
@@ -249,10 +244,7 @@ export default function SectorsPage() {
         })}
       </div>
 
-      {/* 
-        * FINAL UNIVERSAL CONVERSION BANNER
-        * Catches buyers who scrolled through all four sectors without clicking.
-        */}
+      {/* FINAL UNIVERSAL CONVERSION BANNER */}
       <section className="mt-12 bg-brand-teal text-white py-20 px-6 text-center">
         <div className="max-w-3xl mx-auto">
           <span className="font-display font-medium text-xs text-brand-paper/80 uppercase tracking-widest block mb-3">
