@@ -6,7 +6,7 @@ import { ArrowLeft, ArrowRight, ShieldCheck, CheckCircle2, Lock, FileText, Netwo
 
 export default function CompliancePage() {
   return (
-    <div className="w-full pb-24 bg-brand-paper min-h-screen select-none">
+    <div className="w-full pb-24 bg-brand-paper min-h-screen">
       {/* 
         * HERO HEADER SECTION
         * Strict Weight-500 Ceiling: Uses font-medium with optical tracking [-0.03em].
@@ -55,10 +55,10 @@ export default function CompliancePage() {
                 </h2>
               </div>
               <p className="font-body font-normal text-brand-slate/85 text-sm md:text-base leading-relaxed">
-                We do not install ad-hoc hardware. Our systems are engineered in strict alignment with the design methodologies outlined in British Standards, specifically <span className="font-mono text-xs bg-brand-mist px-1.5 py-0.5 rounded border border-brand-grey/20">BS EN 50131</span> for intrusion systems and <span className="font-mono text-xs bg-brand-mist px-1.5 py-0.5 rounded border border-brand-grey/20">BS EN 62676</span> for video surveillance systems. 
+                We do not install ad-hoc hardware. Our systems are designed with reference to applicable, scope-specific standards—such as <span className="font-mono text-xs bg-brand-mist px-1.5 py-0.5 rounded border border-brand-grey/20">BS EN 50131</span> for intrusion systems and <span className="font-mono text-xs bg-brand-mist px-1.5 py-0.5 rounded border border-brand-grey/20">BS EN 62676</span> for video surveillance systems—where relevant to the project brief.
               </p>
               <p className="font-body font-normal text-brand-slate/85 text-sm md:text-base leading-relaxed">
-                By designing to these verified architectural standards, we ensure your building's safety systems meet the rigorous operational, environmental, and mechanical thresholds expected by commercial insurers and M&E consultants.
+                By referencing these established architectural methodologies, we support the robust operational, environmental, and mechanical thresholds typically required for insurer review and M&E consultant evaluation.
               </p>
             </div>
           </div>
@@ -78,7 +78,7 @@ export default function CompliancePage() {
                 </h2>
               </div>
               <p className="font-body font-normal text-brand-slate/85 text-sm md:text-base leading-relaxed">
-                In compliance with the UK Product Security and Telecommunications Infrastructure (PSTI) Act, Drievu guarantees that all internet-connected devices (including IP cameras, access controllers, and NVRs) supplied to your property are sourced from manufacturers maintaining strict cybersecurity protocols.
+                In alignment with the UK Product Security and Telecommunications Infrastructure (PSTI) Act, where applicable, Drievu sources internet-connected devices (such as IP cameras and NVRs) from manufacturers, importers, or distributors that provide relevant product-specific Statements of Compliance.
               </p>
               <ul className="space-y-2 mt-2">
                 <li className="flex items-start gap-2">
@@ -112,10 +112,10 @@ export default function CompliancePage() {
                 </h2>
               </div>
               <p className="font-body font-normal text-brand-slate/85 text-sm md:text-base leading-relaxed">
-                Video surveillance and access control systems inherently process personal data. Drievu engineers your physical network to assist you—the Data Controller—in maintaining absolute UK GDPR compliance.
+                Video surveillance and access control systems inherently process personal data. Drievu engineers your physical network with documented, risk-based controls to support you—the Data Controller—in meeting your UK GDPR responsibilities.
               </p>
               <p className="font-body font-normal text-brand-slate/85 text-sm md:text-base leading-relaxed">
-                We specify dedicated, secure on-site storage solutions over vulnerable third-party cloud hosting. Our designs incorporate physical network isolation, encrypted credential formats, and dynamic privacy-masking features that redact neighboring public spaces from your camera feeds, ensuring data collection remains strictly necessary and proportionate.
+                Our designs incorporate physical network isolation, configurable privacy-masking features, and support for Data Protection Impact Assessments (DPIAs). We define secure credential storage, access, and rotation controls—ensuring data collection, retention, and processing remain aligned with your specific organizational policies.
               </p>
             </div>
           </div>
@@ -138,7 +138,10 @@ export default function CompliancePage() {
                 Our internal compliance law is simple: <em className="text-brand-slate font-medium">If it isn't documented, it isn't done.</em> 
               </p>
               <p className="font-body font-normal text-brand-slate/85 text-sm md:text-base leading-relaxed">
-                Every Drievu deployment concludes with a structured handover pack. This mandatory file includes your as-installed equipment schedules, logical network topology maps, administrator credential records, user training sign-offs, and UK GDPR data-processing guidance. This pack secures your insurance compliance and guarantees your system is ready for SLA-backed maintenance.
+                Every Drievu deployment concludes with a structured handover pack. This mandatory file includes your as-installed equipment schedules, logical network topology maps, an administrator account inventory, user training sign-offs, and UK GDPR data-processing guidance.
+              </p>
+              <p className="font-body font-normal text-brand-slate/85 text-sm md:text-base leading-relaxed">
+                Secrets are transferred exclusively via secure out-of-band processes—never as plaintext—and all temporary deployment credentials must be rotated upon handover. This documented baseline supports insurer review and streamlines onboarding for future maintenance contracts.
               </p>
             </div>
           </div>
