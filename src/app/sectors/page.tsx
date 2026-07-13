@@ -231,13 +231,13 @@ export default function SectorsPage() {
                   <div className="w-full h-[380px] md:h-[440px] bg-brand-slate/10 rounded-2xl relative overflow-hidden border border-brand-grey/20 shadow-soft flex items-center justify-center" data-reveal="curtain">
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-slate/40 via-transparent to-transparent z-10" />
                     
-                    {/* Embedded Antigravity AI Image Prompt Reference */}
+                    {/* Image Asset Placeholder */}
                     <div className="text-center font-mono text-xs text-brand-grey p-8 max-w-sm relative z-20 select-none">
                       <span className="font-medium text-brand-slate block text-sm mb-2">
                         [Sector Asset: {sec.title}]
                       </span>
                       <span className="opacity-80 block leading-relaxed text-[11px]">
-                        Antigravity Prompt: {sec.imagePrompt}
+                        Asset pending final approval.
                       </span>
                     </div>
                   </div>

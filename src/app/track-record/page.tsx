@@ -106,7 +106,7 @@ export default function TrackRecordPage() {
   );
 
   const filterTabs: { id: SectorFilter; label: string }[] = [
-    { id: "ALL", label: "All Projects (18+)" },
+    { id: "ALL", label: "All Projects (9+)" },
     { id: "UK_LIVE", label: "UK Deployed Range" },
     { id: "INFRASTRUCTURE", label: "Infrastructure & Transport" },
     { id: "COMMERCIAL", label: "Commercial & Real Estate" },
@@ -213,11 +213,11 @@ export default function TrackRecordPage() {
                       </span>
                     </div>
 
-                    {/* ANTIGRAVITY AI PROMPT INSTRUCTION BANNER */}
+                    {/* Image Asset Placeholder */}
                     <div className="w-full h-full flex items-center justify-center text-xs font-mono text-brand-grey p-6 text-center select-none">
                       <div>
                         <span className="font-medium text-brand-slate block mb-1">[Asset: {project.name}]</span>
-                        <span className="text-[10px] opacity-75 block line-clamp-2">Prompt: {project.imagePrompt}</span>
+                        <span className="text-[10px] opacity-75 block line-clamp-2">Asset pending final approval.</span>
                       </div>
                     </div>
                   </div>
