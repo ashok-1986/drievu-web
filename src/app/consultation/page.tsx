@@ -38,9 +38,9 @@ export default function ConsultationPage() {
   });
 
   /* 
-   * AUTOMATIC BLUEPRINT INGESTION (CN-2) [source: 2]
+   * AUTOMATIC BLUEPRINT INGESTION (CN-2)
    * Reads sessionStorage on mount. If the client used the System Builder, 
-   * their calculated HDD storage, camera counts, and wiring schedule attach instantly [source: 2].
+   * their calculated HDD storage, camera counts, and wiring schedule attach instantly.
    */
   useEffect(() => {
     const savedBlueprint = sessionStorage.getItem("drievu_scoping_blueprint");
@@ -76,7 +76,7 @@ export default function ConsultationPage() {
 
     setIsSubmitting(true);
     
-    // Simulate clean server-side action / email dispatch (CN-3) [source: 2]
+    // Simulate clean server-side action / email dispatch (CN-3)
     await new Promise((resolve) => setTimeout(resolve, 1200));
     
     setIsSubmitting(false);
@@ -122,7 +122,7 @@ export default function ConsultationPage() {
       {/* 
         * HEADER SECTION
         * Enforces Weight-500 Ceiling: Uses font-medium with optical tracking [-0.02em].
-        * 100% Human-readable, 12th-grade plain English [source: 2].
+        * 100% Human-readable, 12th-grade plain English.
         */}
       <section className="bg-brand-slate text-brand-paper py-16 md:py-20 px-6 border-b border-brand-grey/20">
         <div className="max-w-[1200px] mx-auto">
@@ -134,13 +134,13 @@ export default function ConsultationPage() {
           </Link>
 
           <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-2">
-            Structured Scoping Workflow [source: 2]
+            Structured Scoping Workflow
           </span>
           <h1 className="font-display font-medium text-3xl md:text-5xl text-white tracking-tighter uppercase mb-4">
             Request an Engineering Scoping Review.
           </h1>
           <p className="font-body font-normal text-brand-grey text-base md:text-lg max-w-2xl leading-relaxed">
-            Tell us about your property and security needs [source: 2]. An engineering principal will review your requirements and provide an honest, structured assessment without sales pressure [source: 2, 3].
+            Tell us about your property and security needs. An engineering principal will review your requirements and provide an honest, structured assessment without sales pressure.
           </p>
         </div>
       </section>
@@ -149,11 +149,11 @@ export default function ConsultationPage() {
       <section className="py-12 px-6 max-w-[1200px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* LEFT COLUMN: 3-Step Wizard Form (7 Columns) [source: 2] */}
+          {/* LEFT COLUMN: 3-Step Wizard Form (7 Columns) */}
           <div className="lg:col-span-7 bg-white p-8 md:p-12 rounded-2xl border border-brand-grey/20 shadow-soft">
             
             {isSubmitted ? (
-              /* SUCCESS STATE: Animated SVG Check & Honest Follow-Up Promise (CN-3, CN-4) [source: 2] */
+              /* SUCCESS STATE: Animated SVG Check & Honest Follow-Up Promise (CN-3, CN-4) */
               <div className="py-12 text-center space-y-6 animate-fade-in">
                 <div className="w-16 h-16 rounded-full bg-brand-teal/10 text-brand-teal mx-auto flex items-center justify-center">
                   <CheckCircle2 className="w-10 h-10 animate-bounce" />
@@ -163,10 +163,10 @@ export default function ConsultationPage() {
                 </h2>
                 <div className="bg-brand-mist p-6 rounded-xl border border-brand-grey/20 max-w-md mx-auto text-left space-y-2">
                   <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block">
-                    Our Operational Commitment (CN-4) [source: 2]
+                    Our Operational Commitment (CN-4)
                   </span>
                   <p className="font-body font-normal text-sm text-brand-slate leading-relaxed">
-                    <strong>We respond within one working day [source: 2].</strong> Your dedicated regional engineering contact will review your site details and reach out to schedule your site survey at booking [source: 2].
+                    <strong>We respond within one working day.</strong> Your dedicated regional engineering contact will review your site details and reach out to schedule your site survey at booking.
                   </p>
                 </div>
                 <div className="pt-4">
@@ -181,11 +181,11 @@ export default function ConsultationPage() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-8">
                 
-                {/* STEP INDICATOR BAR (CN-1) [source: 2] */}
+                {/* STEP INDICATOR BAR (CN-1) */}
                 <div className="flex items-center justify-between border-b border-brand-grey/15 pb-6">
                   <div className="flex items-center gap-2">
                     <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest">
-                      Step {step} of 3 [source: 2]
+                      Step {step} of 3
                     </span>
                     <span className="font-body text-xs text-brand-grey">
                       — {step === 1 ? "Your Role & Building" : step === 2 ? "Systems & Scale" : "Contact Details"}
@@ -203,27 +203,27 @@ export default function ConsultationPage() {
                   </div>
                 </div>
 
-                {/* ATTACHED BLUEPRINT NOTIFICATION BANNER [source: 2] */}
+                {/* ATTACHED BLUEPRINT NOTIFICATION BANNER */}
                 {formData.attachedBlueprint && step === 1 && (
                   <div className="bg-brand-teal/5 border border-brand-teal/30 p-4 rounded-xl flex items-start gap-3">
                     <FileText className="w-5 h-5 text-brand-teal shrink-0 mt-0.5" />
                     <div>
                       <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block">
-                        System Estimator Attached [source: 2]
+                        System Estimator Attached
                       </span>
                       <p className="font-body font-normal text-xs text-brand-slate mt-0.5">
-                        We have automatically attached your calculated storage ({formData.attachedBlueprint.totalStorageTb}TB) and camera schedule to this review [source: 2].
+                        We have automatically attached your calculated storage ({formData.attachedBlueprint.totalStorageTb}TB) and camera schedule to this review.
                       </p>
                     </div>
                   </div>
                 )}
 
-                {/* STEP 1: ROLE & PROPERTY TYPOLOGY [source: 2] */}
+                {/* STEP 1: ROLE & PROPERTY TYPOLOGY */}
                 {step === 1 && (
                   <div className="space-y-6 animate-fade-in">
                     <div>
                       <label className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-3">
-                        What is your role on this project? [source: 2]
+                        What is your role on this project?
                       </label>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {roles.map((r) => (
@@ -245,7 +245,7 @@ export default function ConsultationPage() {
 
                     <div>
                       <label className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-3">
-                        What type of property is this? [source: 2]
+                        What type of property is this?
                       </label>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {propertyTypes.map((pt) => (
@@ -267,12 +267,12 @@ export default function ConsultationPage() {
                   </div>
                 )}
 
-                {/* STEP 2: SYSTEMS OF INTEREST & SCALE [source: 2] */}
+                {/* STEP 2: SYSTEMS OF INTEREST & SCALE */}
                 {step === 2 && (
                   <div className="space-y-6 animate-fade-in">
                     <div>
                       <label className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-3">
-                        Which systems require engineering review? (Select all that apply) [source: 2]
+                        Which systems require engineering review? (Select all that apply)
                       </label>
                       <div className="grid grid-cols-1 gap-3">
                         {availableSystems.map((sys) => {
@@ -308,7 +308,7 @@ export default function ConsultationPage() {
 
                     <div>
                       <label className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-3">
-                        What is the approximate scale of the site? [source: 2]
+                        What is the approximate scale of the site?
                       </label>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {scaleOptions.map((sc) => (
@@ -330,7 +330,7 @@ export default function ConsultationPage() {
                   </div>
                 )}
 
-                {/* STEP 3: CONTACT DETAILS & UK GDPR CONSENT [source: 2] */}
+                {/* STEP 3: CONTACT DETAILS & UK GDPR CONSENT */}
                 {step === 3 && (
                   <div className="space-y-5 animate-fade-in">
                     <div>
@@ -390,7 +390,7 @@ export default function ConsultationPage() {
                       />
                     </div>
 
-                    {/* MANDATORY UK GDPR PRIVACY CONSENT (CN-5) [source: 2, 3] */}
+                    {/* MANDATORY UK GDPR PRIVACY CONSENT (CN-5) */}
                     <div className="pt-2 border-t border-brand-grey/15">
                       <label className="flex items-start gap-3 text-xs font-body text-brand-slate cursor-pointer select-none">
                         <input
@@ -401,11 +401,10 @@ export default function ConsultationPage() {
                           className="rounded text-brand-teal focus:ring-brand-teal accent-brand-teal w-4 h-4 mt-0.5 shrink-0 cursor-pointer"
                         />
                         <span className="text-brand-grey leading-relaxed">
-                          I consent to Drievu Limited processing my contact data to arrange this engineering review in accordance with the UK General Data Protection Regulation (UK GDPR) [source: 2, 3]. View our{" "}
+                          I consent to Drievu Limited processing my contact data to arrange this engineering review in accordance with the UK General Data Protection Regulation (UK GDPR). View our{" "}
                           <Link href="/privacy" className="text-brand-teal underline hover:text-brand-slate">
                             Privacy Policy
-                          </Link>{" "}
-                          [source: 2].
+                          </Link>{" "}.
                         </span>
                       </label>
                     </div>
@@ -432,7 +431,7 @@ export default function ConsultationPage() {
                       onClick={() => setStep((prev) => (prev + 1) as Step)}
                       className="bg-brand-teal text-white font-display font-medium text-xs uppercase tracking-widest px-8 py-3.5 rounded-xl shadow-soft hover:bg-[#006666] transition-all duration-200 active:scale-[0.97] inline-flex items-center gap-2 cursor-pointer"
                     >
-                      <span>Next Step [source: 2]</span>
+                      <span>Next Step</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   ) : (
@@ -445,7 +444,7 @@ export default function ConsultationPage() {
                         <span>Submitting Request...</span>
                       ) : (
                         <>
-                          <span>Submit Scoping Request [source: 2]</span>
+                          <span>Submit Scoping Request</span>
                           <ArrowRight className="w-3.5 h-3.5" />
                         </>
                       )}
@@ -458,10 +457,10 @@ export default function ConsultationPage() {
 
           </div>
 
-          {/* RIGHT COLUMN: Verifiable Due Diligence & Canonical Contact Data (5 Columns) [source: 3] */}
+          {/* RIGHT COLUMN: Verifiable Due Diligence & Canonical Contact Data (5 Columns) */}
           <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
             
-            {/* CANONICAL IDENTITY BOX (Zero conflicting addresses or placeholder phone numbers) [source: 2, 3] */}
+            {/* CANONICAL IDENTITY BOX (Zero conflicting addresses or placeholder phone numbers) */}
             <div className="bg-brand-mist p-8 rounded-2xl border border-brand-grey/20 space-y-6 shadow-soft">
               <div>
                 <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-2">
@@ -471,7 +470,7 @@ export default function ConsultationPage() {
                   No Call Centers. No Salesmen.
                 </h3>
                 <p className="font-body font-normal text-xs text-brand-grey mt-2 leading-relaxed">
-                  When you book a scoping review, your site details are routed directly to an engineering principal with national-infrastructure delivery discipline [source: 1, 3].
+                  When you book a scoping review, your site details are routed directly to an engineering principal with national-infrastructure delivery discipline.
                 </p>
               </div>
 
@@ -479,9 +478,9 @@ export default function ConsultationPage() {
                 <div className="flex items-start gap-3">
                   <MapPin className="w-4 h-4 text-brand-teal shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-display font-medium block text-brand-slate">Registered Canonical Office [source: 2]</span>
+                    <span className="font-display font-medium block text-brand-slate">Registered Canonical Office</span>
                     <span className="text-brand-grey leading-relaxed block mt-0.5">
-                      Apartment 3, Minotaur House, 3 Thunderer Walk, London SE18 6LH [source: 3]
+                      Apartment 3, Minotaur House, 3 Thunderer Walk, London SE18 6LH
                     </span>
                   </div>
                 </div>
@@ -489,40 +488,40 @@ export default function ConsultationPage() {
                 <div className="flex items-center gap-3">
                   <Phone className="w-4 h-4 text-brand-teal shrink-0" />
                   <div>
-                    <span className="font-display font-medium block text-brand-slate">Direct Engineering Line [source: 3]</span>
-                    <span className="text-brand-grey font-mono block mt-0.5">+44 7442 605205 [source: 3]</span>
+                    <span className="font-display font-medium block text-brand-slate">Direct Engineering Line</span>
+                    <span className="text-brand-grey font-mono block mt-0.5">+44 7442 605205</span>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
                   <Mail className="w-4 h-4 text-brand-teal shrink-0" />
                   <div>
-                    <span className="font-display font-medium block text-brand-slate">Monitored Corporate Email [source: 2]</span>
-                    <span className="text-brand-grey font-mono block mt-0.5">enquiries@drievu.com [source: 3]</span>
+                    <span className="font-display font-medium block text-brand-slate">Monitored Corporate Email</span>
+                    <span className="text-brand-grey font-mono block mt-0.5">enquiries@drievu.com</span>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
                   <Building2 className="w-4 h-4 text-brand-teal shrink-0" />
                   <div>
-                    <span className="font-display font-medium block text-brand-slate">UK Companies House [source: 2, 3]</span>
-                    <span className="text-brand-grey font-mono block mt-0.5">Registration No. 15479482 [source: 3]</span>
+                    <span className="font-display font-medium block text-brand-slate">UK Companies House</span>
+                    <span className="text-brand-grey font-mono block mt-0.5">Registration No. 15479482</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* HONEST SLA COMMITMENT BOX (Strict enforcement of CN-4) [source: 2] */}
+            {/* HONEST SLA COMMITMENT BOX (Strict enforcement of CN-4) */}
             <div className="bg-brand-slate text-brand-paper p-8 rounded-2xl border border-brand-grey/20 space-y-3 shadow-elevated">
               <span className="font-display font-medium text-xs text-brand-green uppercase tracking-widest block flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-brand-green animate-pulse" />
-                Procurement-Safe Assurance [source: 1]
+                Procurement-Safe Assurance
               </span>
               <h4 className="font-display font-medium text-lg text-white">
-                Our Response Commitment [source: 2]
+                Our Response Commitment
               </h4>
               <p className="font-body font-normal text-xs text-brand-grey leading-relaxed">
-                We do not promise unrealistic emergency mobilization times before assessing your site [source: 2]. We guarantee an engineering response within <strong>one working day</strong> of your submission, with site survey dates agreed collaboratively during your initial consultation call [source: 2].
+                We do not promise unrealistic emergency mobilization times before assessing your site. We guarantee an engineering response within <strong>one working day</strong> of your submission, with site survey dates agreed collaboratively during your initial consultation call.
               </p>
             </div>
 

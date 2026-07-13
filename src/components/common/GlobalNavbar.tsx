@@ -11,7 +11,7 @@ export function GlobalNavbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 80); // Compresses after 80px scroll[cite: 1]
+      setIsScrolled(window.scrollY > 80); // Compresses after 80px scroll
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -35,7 +35,7 @@ export function GlobalNavbar() {
     >
       <div className="max-w-[1200px] mx-auto px-6 h-full flex items-center justify-between">
         
-        {/* Brand Logo - Strict Weight-500 Ceiling with Optical Tracking[cite: 5] */}
+        {/* Brand Logo - Strict Weight-500 Ceiling with Optical Tracking */}
         <Link href="/" className="flex items-center gap-2.5 group cursor-pointer select-none">
           <div className="w-8 h-8 rounded-xl bg-brand-teal flex items-center justify-center text-white font-display font-medium text-lg shadow-sm group-hover:bg-brand-slate transition-colors duration-200 active:scale-[0.95]">
             D
@@ -45,7 +45,7 @@ export function GlobalNavbar() {
           </span>
         </Link>
 
-        {/* Desktop Navigation with Underline Draw[cite: 1] */}
+        {/* Desktop Navigation with Underline Draw */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
@@ -58,7 +58,7 @@ export function GlobalNavbar() {
                 }`}
               >
                 {link.name}
-                {/* Underline draw signature animation[cite: 1] */}
+                {/* Underline draw signature animation */}
                 <span
                   className={`absolute bottom-0 left-0 w-full h-[1.5px] bg-brand-teal transform origin-left transition-transform duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                     isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
@@ -69,13 +69,13 @@ export function GlobalNavbar() {
           })}
         </nav>
 
-        {/* Primary Lead Capture CTA - Directs to Requirement Form[cite: 1, 2] */}
+        {/* Primary Lead Capture CTA - Directs to Requirement Form */}
         <div className="flex items-center gap-4">
           <Link
             href="/consultation"
             className="bg-brand-teal text-white font-display font-medium text-xs uppercase tracking-wider px-5 py-2.5 rounded-xl shadow-soft hover:bg-[#006666] hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97] inline-flex items-center gap-1.5 group cursor-pointer"
           >
-            <span>Book Scoping Review[cite: 1]</span>
+            <span>Book Scoping Review</span>
             <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" />
           </Link>
         </div>

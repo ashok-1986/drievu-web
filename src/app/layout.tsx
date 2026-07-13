@@ -8,7 +8,7 @@ import { GlobalFooter } from "@/components/common/GlobalFooter";
 
 /* 
  * STRICT GOVERNANCE: Only weights 400 (Normal) and 500 (Medium) are loaded.
- * All visual weight is achieved via optical scale and letter tracking[cite: 5].
+ * All visual weight is achieved via optical scale and letter tracking.
  */
 const hanken = Hanken_Grotesk({
   subsets: ["latin"],
@@ -27,7 +27,7 @@ const ibmPlex = IBM_Plex_Sans({
 export const metadata: Metadata = {
   title: "Drievu | Security & Smart Building Systems",
   description:
-    "Independent security, life safety, and building automation systems. We design, install, and maintain reliable systems for UK properties without the jargon[cite: 7].",
+    "Independent security, life safety, and building automation systems. We design, install, and maintain reliable systems for UK properties without the jargon.",
 };
 
 export default function RootLayout({

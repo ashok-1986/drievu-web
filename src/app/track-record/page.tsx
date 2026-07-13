@@ -18,82 +18,82 @@ interface Project {
 }
 
 /* 
- * VERIFIED TRACK RECORD DICTIONARY[cite: 2, 3]
- * 100% 12th-grade plain English for front-of-house readability[cite: 2].
- * Strict Rule: Zero fabricated claims or imaginary metrics[cite: 2].
+ * VERIFIED TRACK RECORD DICTIONARY
+ * 100% 12th-grade plain English for front-of-house readability.
+ * Strict Rule: Zero fabricated claims or imaginary metrics.
  */
 const leadershipProjects: Project[] = [
   {
     id: "uk-1",
     name: "Staines Road Commercial Estate",
-    location: "London, United Kingdom[cite: 2]",
+    location: "London, United Kingdom",
     sector: "UK_LIVE",
-    scope: "31 smart security cameras and high-capacity on-site video recording installed across the commercial estate[cite: 2, 4]. Delivered on schedule with zero disruption to active tenants and a complete handover document pack[cite: 2, 3].",
+    scope: "31 smart security cameras and high-capacity on-site video recording installed across the commercial estate. Delivered on schedule with zero disruption to active tenants and a complete handover document pack.",
     isUkLive: true,
     imagePrompt: "Architectural exterior of a modern London commercial industrial estate on a bright overcast day, clean brick and glass facades, neat security camera mounted on corner --ar 16:9 --style raw",
   },
   {
     id: "proj-1",
-    name: "Wankhede Stadium[cite: 3]",
-    location: "Mumbai, India[cite: 3]",
+    name: "Wankhede Stadium",
+    location: "Mumbai, India",
     sector: "INFRASTRUCTURE",
-    scope: "Stadium-wide camera monitoring and high-capacity crowd door access controls engineered for over 33,000 visitors during international events[cite: 3].",
+    scope: "Stadium-wide camera monitoring and high-capacity crowd door access controls engineered for over 33,000 visitors during international events.",
     imagePrompt: "Architectural wide shot of a massive modern sports stadium exterior at dusk, illuminated gates, clean structural engineering lines --ar 16:9 --style raw",
   },
   {
     id: "proj-2",
-    name: "Bhabha Atomic Research Centre (B.A.R.C.)[cite: 3]",
-    location: "Mumbai, India[cite: 3]",
+    name: "Bhabha Atomic Research Centre (B.A.R.C.)",
+    location: "Mumbai, India",
     sector: "INFRASTRUCTURE",
-    scope: "High-security government perimeter defense networks, intrusion warning sensors, and mission-critical restricted door access controls[cite: 3].",
+    scope: "High-security government perimeter defense networks, intrusion warning sensors, and mission-critical restricted door access controls.",
     imagePrompt: "Clean, high-security modern institutional research facility exterior, manicured lawns, architectural concrete and glass, high tech perimeter --ar 16:9 --style raw",
   },
   {
     id: "proj-3",
-    name: "Ahmedabad Airport[cite: 3]",
-    location: "Ahmedabad, India[cite: 3]",
+    name: "Ahmedabad Airport",
+    location: "Ahmedabad, India",
     sector: "INFRASTRUCTURE",
-    scope: "Terminal security camera networks, automated vehicle number-plate tracking at entrance gates, and clear public announcement speaker systems[cite: 3, 4].",
+    scope: "Terminal security camera networks, automated vehicle number-plate tracking at entrance gates, and clear public announcement speaker systems.",
     imagePrompt: "Modern international airport terminal exterior at twilight, sweeping architectural glass roofs, clean roadway approaches --ar 16:9 --style raw",
   },
   {
     id: "proj-4",
-    name: "Kolkata & Nagpur Metros[cite: 3]",
-    location: "Kolkata & Nagpur, India[cite: 3]",
+    name: "Kolkata & Nagpur Metros",
+    location: "Kolkata & Nagpur, India",
     sector: "INFRASTRUCTURE",
-    scope: "Multi-station video monitoring, secure fiber network equipment cabinets, and central security control room displays[cite: 3, 4].",
+    scope: "Multi-station video monitoring, secure fiber network equipment cabinets, and central security control room displays.",
     imagePrompt: "Sleek modern underground metro station concourse, polished floors, clean architectural lighting, stainless steel ticket barriers --ar 16:9 --style raw",
   },
   {
     id: "proj-5",
-    name: "GIFT City Financial Hub[cite: 3]",
-    location: "Gandhinagar, India[cite: 3]",
+    name: "GIFT City Financial Hub",
+    location: "Gandhinagar, India",
     sector: "COMMERCIAL",
-    scope: "Smart city building management integration, automated energy-saving control relays, and centralized life safety alarm networks[cite: 3, 4].",
+    scope: "Smart city building management integration, automated energy-saving control relays, and centralized life safety alarm networks.",
     imagePrompt: "Towering ultra-modern glass commercial skyscrapers in a high-tech financial district against a clear blue sky, architectural perfection --ar 16:9 --style raw",
   },
   {
     id: "proj-6",
-    name: "Saint-Gobain & Honda Manufacturing[cite: 3]",
-    location: "Chennai & Bhiwadi, India[cite: 3]",
+    name: "Saint-Gobain & Honda Manufacturing",
+    location: "Chennai & Bhiwadi, India",
     sector: "INDUSTRIAL",
-    scope: "Heavy industrial perimeter protection, hazardous gas leak warning sensors with auto-shutoff, and emergency voice evacuation broadcast systems[cite: 3, 4].",
+    scope: "Heavy industrial perimeter protection, hazardous gas leak warning sensors with auto-shutoff, and emergency voice evacuation broadcast systems.",
     imagePrompt: "Immaculate modern high-tech manufacturing plant exterior, clean industrial cladding, neat roadway approaches, precision engineering --ar 16:9 --style raw",
   },
   {
     id: "proj-7",
-    name: "Altair Residential Towers[cite: 3]",
-    location: "Colombo, Sri Lanka[cite: 3]",
+    name: "Altair Residential Towers",
+    location: "Colombo, Sri Lanka",
     sector: "COMMERCIAL",
-    scope: "Luxury high-rise residential video intercoms, keyless communal door entry panels, and smart lighting controls across shared areas[cite: 3, 4].",
+    scope: "Luxury high-rise residential video intercoms, keyless communal door entry panels, and smart lighting controls across shared areas.",
     imagePrompt: "Iconic leaning luxury architectural residential skyscrapers overlooking the water at sunset, dramatic architectural design --ar 16:9 --style raw",
   },
   {
     id: "proj-8",
-    name: "National Assembly Building[cite: 3]",
-    location: "Banjul, The Gambia[cite: 3]",
+    name: "National Assembly Building",
+    location: "Banjul, The Gambia",
     sector: "INFRASTRUCTURE",
-    scope: "Government parliamentary building security, restricted voting access controls, and master camera networks[cite: 3].",
+    scope: "Government parliamentary building security, restricted voting access controls, and master camera networks.",
     imagePrompt: "Dignified modern government parliamentary building with clean geometric architectural lines, warm natural lighting, secure plaza --ar 16:9 --style raw",
   },
 ];
@@ -106,46 +106,46 @@ export default function TrackRecordPage() {
   );
 
   const filterTabs: { id: SectorFilter; label: string }[] = [
-    { id: "ALL", label: "All Projects (18+)[cite: 2]" },
-    { id: "UK_LIVE", label: "UK Deployed Range[cite: 2]" },
-    { id: "INFRASTRUCTURE", label: "Infrastructure & Transport[cite: 3]" },
-    { id: "COMMERCIAL", label: "Commercial & Real Estate[cite: 3]" },
-    { id: "INDUSTRIAL", label: "Industrial & Manufacturing[cite: 3]" },
+    { id: "ALL", label: "All Projects (18+)" },
+    { id: "UK_LIVE", label: "UK Deployed Range" },
+    { id: "INFRASTRUCTURE", label: "Infrastructure & Transport" },
+    { id: "COMMERCIAL", label: "Commercial & Real Estate" },
+    { id: "INDUSTRIAL", label: "Industrial & Manufacturing" },
   ];
 
   return (
     <div className="w-full pb-24 bg-brand-paper min-h-screen">
       {/* 
-        * HERO HEADER SECTION (TR-1)[cite: 2]
+        * HERO HEADER SECTION (TR-1)
         * Strict Weight-500 Ceiling: Uses font-medium with optical tracking [-0.03em].
         */}
       <section className="bg-brand-slate text-brand-paper py-16 md:py-24 px-6 border-b border-brand-grey/20">
         <div className="max-w-[1200px] mx-auto">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-teal/20 text-brand-teal text-xs font-display font-medium uppercase tracking-widest mb-6 select-none">
             <ShieldCheck className="w-3.5 h-3.5" />
-            Uncompromising Due Diligence[cite: 2]
+            Uncompromising Due Diligence
           </div>
 
           <h1 className="font-display font-medium text-4xl md:text-6xl text-white tracking-[-0.03em] uppercase mb-6">
-            Delivered by Our Leadership Team Over Two Decades[cite: 1, 2].
+            Delivered by Our Leadership Team Over Two Decades.
           </h1>
           
           <p className="font-body font-normal text-brand-grey text-lg md:text-xl max-w-3xl leading-relaxed mb-8">
-            We brought national-infrastructure delivery discipline to the UK for a simple reason: the market is full of products, but short on accountable delivery[cite: 3]. Below is the verifiable project track record of our executive engineering team[cite: 2, 3].
+            We brought national-infrastructure delivery discipline to the UK for a simple reason: the market is full of products, but short on accountable delivery. Below is the verifiable project track record of our executive engineering team.
           </p>
 
-          {/* MANDATORY LEGAL & PROCUREMENT DISCLAIMER (TR-1)[cite: 2, 3] */}
+          {/* MANDATORY LEGAL & PROCUREMENT DISCLAIMER (TR-1) */}
           <div className="bg-brand-mist/10 border-l-4 border-brand-teal p-6 rounded-r-xl max-w-4xl shadow-soft">
             <p className="font-body font-normal text-xs md:text-sm text-brand-paper/90 leading-relaxed font-mono">
-              <strong>LEGAL & PROCUREMENT DISCLAIMER[cite: 2]:</strong> National-infrastructure projects listed below (such as Wankhede Stadium, Ahmedabad Airport, and BARC) were delivered by members of Drievu’s leadership team over the past two decades in prior executive roles[cite: 2, 3]. Drievu Limited was incorporated in the UK in 2024 (Company No. 15479482)[cite: 3]. UK deployments are tagged explicitly as live Drievu contracts[cite: 2].
+              <strong>LEGAL & PROCUREMENT DISCLAIMER:</strong> National-infrastructure projects listed below (such as Wankhede Stadium, Ahmedabad Airport, and BARC) were delivered by members of Drievu’s leadership team over the past two decades in prior executive roles. Drievu Limited was incorporated in the UK in 2024 (Company No. 15479482). UK deployments are tagged explicitly as live Drievu contracts.
             </p>
           </div>
         </div>
       </section>
 
       {/* 
-        * STICKY FLIP FILTER BAR (TR-3)[cite: 2]
-        * Tactile touch physics: active:scale-[0.97][cite: 1].
+        * STICKY FLIP FILTER BAR (TR-3)
+        * Tactile touch physics: active:scale-[0.97].
         */}
       <section className="bg-brand-mist py-4 px-6 border-b border-brand-grey/15 sticky top-[60px] z-40 backdrop-blur-md shadow-soft">
         <div className="max-w-[1200px] mx-auto flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
@@ -171,8 +171,8 @@ export default function TrackRecordPage() {
       </section>
 
       {/* 
-        * PROJECT MASONRY GRID WITH FLIP ANIMATIONS (TR-2, TR-3)[cite: 2]
-        * Framer Motion layout transitions (350ms, out-expo curve)[cite: 1, 2].
+        * PROJECT MASONRY GRID WITH FLIP ANIMATIONS (TR-2, TR-3)
+        * Framer Motion layout transitions (350ms, out-expo curve).
         * Zero bold typography: all headers capped at font-medium (500).
         */}
       <section className="py-16 px-6 max-w-[1200px] mx-auto">
@@ -187,7 +187,7 @@ export default function TrackRecordPage() {
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }} // 350ms out-expo curve per spec[cite: 1, 2]
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }} // 350ms out-expo curve per spec
                 key={project.id}
                 className={`rounded-2xl border overflow-hidden flex flex-col justify-between transition-all duration-200 ${
                   project.isUkLive
@@ -196,7 +196,7 @@ export default function TrackRecordPage() {
                 }`}
               >
                 <div>
-                  {/* DB Longbow Curtain Image Container with AI Prompt Reference[cite: 1] */}
+                  {/* DB Longbow Curtain Image Container with AI Prompt Reference */}
                   <div className="w-full h-48 bg-brand-slate/10 relative overflow-hidden" data-reveal="curtain">
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-slate/50 via-transparent to-transparent z-10" />
                     
@@ -209,11 +209,11 @@ export default function TrackRecordPage() {
                             : "bg-brand-paper/90 backdrop-blur-md text-brand-slate border border-brand-grey/20"
                         }`}
                       >
-                        {project.isUkLive ? "UK LIVE CONTRACT[cite: 2]" : project.sector}
+                        {project.isUkLive ? "UK LIVE CONTRACT" : project.sector}
                       </span>
                     </div>
 
-                    {/* ANTIGRAVITY AI PROMPT INSTRUCTION BANNER[cite: 1] */}
+                    {/* ANTIGRAVITY AI PROMPT INSTRUCTION BANNER */}
                     <div className="w-full h-full flex items-center justify-center text-xs font-mono text-brand-grey p-6 text-center select-none">
                       <div>
                         <span className="font-medium text-brand-slate block mb-1">[Asset: {project.name}]</span>
@@ -222,7 +222,7 @@ export default function TrackRecordPage() {
                     </div>
                   </div>
 
-                  {/* Card Content (100% 12th-Grade Plain English)[cite: 2] */}
+                  {/* Card Content (100% 12th-Grade Plain English) */}
                   <div className="p-8">
                     <h3 className="font-display font-medium text-2xl text-brand-slate mb-2 tracking-tight">
                       {project.name}
@@ -239,18 +239,18 @@ export default function TrackRecordPage() {
                   </div>
                 </div>
 
-                {/* Card Footer: Funnel directly to Scoping Review[cite: 1, 2] */}
+                {/* Card Footer: Funnel directly to Scoping Review */}
                 <div className="px-8 pb-8 pt-4 border-t border-brand-grey/10 flex items-center justify-between">
                   <span className="font-display font-medium text-xs text-brand-teal flex items-center gap-1">
                     <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>{project.isUkLive ? "British Standards Verified[cite: 2]" : "Leadership Track Record[cite: 1, 2]"}</span>
+                    <span>{project.isUkLive ? "British Standards Verified" : "Leadership Track Record"}</span>
                   </span>
                   
                   <Link
                     href="/consultation"
                     className="font-display font-medium text-xs text-brand-slate hover:text-brand-teal uppercase tracking-wider flex items-center gap-1 group transition-colors"
                   >
-                    <span>Request Scoping[cite: 1]</span>
+                    <span>Request Scoping</span>
                     <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
@@ -262,7 +262,7 @@ export default function TrackRecordPage() {
 
       {/* 
         * UNIVERSAL CONVERSION FOOTER BANNER
-        * Funnels engaged decision-makers directly into the Requirement Form (/consultation)[cite: 1, 2].
+        * Funnels engaged decision-makers directly into the Requirement Form (/consultation).
         */}
       <section className="mt-12 bg-brand-teal text-white py-20 px-6 text-center">
         <div className="max-w-3xl mx-auto">
@@ -273,13 +273,13 @@ export default function TrackRecordPage() {
             Ready To Engineer Your Property?
           </h2>
           <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg mb-8 leading-relaxed">
-            Whether you need communal CCTV for a residential estate, access control for a commercial tower, or life safety systems for a new development, get a structured assessment without sales pressure[cite: 3].
+            Whether you need communal CCTV for a residential estate, access control for a commercial tower, or life safety systems for a new development, get a structured assessment without sales pressure.
           </p>
           <Link
             href="/consultation"
             className="inline-block bg-white text-brand-slate font-display font-medium text-base px-8 py-4 rounded-xl shadow-elevated hover:bg-brand-mist hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97]"
           >
-            Start Your Requirement Form[cite: 1, 2]
+            Start Your Requirement Form
           </Link>
         </div>
       </section>
