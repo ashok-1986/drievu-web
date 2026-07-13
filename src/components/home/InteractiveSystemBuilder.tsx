@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Shield, HardDrive, Wrench, Check, Copy, ArrowRight, Lock, Battery } from "lucide-react";
@@ -17,6 +17,7 @@ export function InteractiveSystemBuilder() {
   const [includeUps, setIncludeUps] = useState<boolean>(true);
   const [includeAccess, setIncludeAccess] = useState<boolean>(true);
   const [copied, setCopied] = useState<boolean>(false);
+  const copyTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Deterministic Math Engine (Strictly 12th-grade plain English outputs)
   const calculations = useMemo(() => {
@@ -48,10 +49,17 @@ export function InteractiveSystemBuilder() {
     return { requiredTb, totalStorageTb, hddCount, switchModel, nvrModel, executiveSummary };
   }, [propertyType, cameraCount, retentionDays, resolution, includeUps, includeAccess]);
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(calculations.executiveSummary);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(calculations.executiveSummary);
+      setCopied(true);
+      if (copyTimeoutRef.current) {
+        clearTimeout(copyTimeoutRef.current);
+      }
+      copyTimeoutRef.current = setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy text:", err);
+    }
   };
 
   const handleAttachAndProceed = () => {
