@@ -4,6 +4,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, ShieldCheck, CheckCircle2, HelpCircle, ChevronDown, HardDrive, Lock, Wrench } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { InteractiveSystemBuilder } from "@/components/home/InteractiveSystemBuilder";
 
 interface FaqItem {
@@ -169,13 +170,13 @@ export default function SystemBuilderPage() {
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           {faqData.map((faq, index) => {
             const isOpen = openFaq === index;
             return (
               <div
                 key={index}
-                className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
+                className={`rounded-2xl border transition-colors duration-200 overflow-hidden ${
                   isOpen
                     ? "bg-white border-brand-teal shadow-soft ring-1 ring-brand-teal/20"
                     : "bg-brand-mist/50 border-brand-grey/20 hover:border-brand-teal/50"
@@ -184,23 +185,35 @@ export default function SystemBuilderPage() {
                 <button
                   type="button"
                   onClick={() => toggleFaq(index)}
-                  className="w-full p-6 text-left font-display font-medium text-base md:text-lg text-brand-slate flex items-center justify-between gap-4 cursor-pointer active:scale-[0.99] transition-transform"
+                  className="w-full p-6 text-left font-display font-medium text-base md:text-lg text-brand-slate flex items-center justify-between gap-4 cursor-pointer active:scale-[0.99] transition-transform select-none"
                 >
                   <span className="tracking-tight">{faq.question}</span>
-                  <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-200 ${
-                      isOpen ? "bg-brand-teal text-white rotate-180" : "bg-brand-paper text-brand-slate border border-brand-grey/20"
-                    }`}
+                  <motion.div
+                    animate={{ rotate: isOpen ? 180 : 0, backgroundColor: isOpen ? "#008080" : "#FFFFFF", color: isOpen ? "#FFFFFF" : "#1F2A2E" }}
+                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 border border-brand-grey/20 shadow-sm"
                   >
                     <ChevronDown className="w-4 h-4" />
-                  </div>
+                  </motion.div>
                 </button>
 
-                {isOpen && (
-                  <div className="px-6 pb-6 pt-2 font-body font-normal text-sm md:text-base text-brand-grey leading-relaxed border-t border-brand-grey/10 animate-fade-in">
-                    {faq.answer}
-                  </div>
-                )}
+                {/* EMIL KOWALSKI ORIGIN-AWARE DRAWER UNROLL */}
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      key="content"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }} // Asymmetric out-expo curve
+                      className="overflow-hidden origin-top"
+                    >
+                      <div className="px-6 pb-6 pt-2 font-body font-normal text-sm md:text-base text-brand-grey leading-relaxed border-t border-brand-grey/10">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             );
           })}

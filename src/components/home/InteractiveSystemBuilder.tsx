@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 import { Shield, HardDrive, Wrench, Check, Copy, ArrowRight, Lock, Battery } from "lucide-react";
 
 type PropertyType = "commercial_office" | "residential_block" | "industrial_warehouse";
@@ -17,34 +18,24 @@ export function InteractiveSystemBuilder() {
   const [includeAccess, setIncludeAccess] = useState<boolean>(true);
   const [copied, setCopied] = useState<boolean>(false);
 
-  /* 
-   * THE SILENT MATH ENGINE
-   * Executes deterministic storage and network sizing based on Drievu's H.265+ hardware schedule.
-   * Bitrates: 3K (5MP EXIR) = ~3.5 Mbps | 4K (8MP Ultra HD) = ~6.0 Mbps.
-   * Formula: (Bitrate * 3600 * 24 * Days * Cameras) / (8 * 1024 * 1024) = TB.
-   */
+  // Deterministic Math Engine (Strictly 12th-grade plain English outputs)
   const calculations = useMemo(() => {
     const bitrateMbps = resolution === "4k" ? 6.0 : 3.5;
     const rawTb = (bitrateMbps * 3600 * 24 * retentionDays * cameraCount) / (8 * 1024 * 1024);
-    const requiredTb = Math.ceil(rawTb * 1.15); // 15% formatting and safety buffer
-
-    // Map against Drievu 24TB Surveillance HDD range
+    const requiredTb = Math.ceil(rawTb * 1.15);
     const hddCount = Math.ceil(requiredTb / 24);
     const totalStorageTb = hddCount * 24;
 
-    // Map against PoE Switch Range (8, 16, or 24 port)
     let switchModel = "1x 24-Port High-Speed Network Switch";
     if (cameraCount <= 8) switchModel = "1x 8-Port High-Speed Network Switch";
     else if (cameraCount <= 16) switchModel = "1x 16-Port High-Speed Network Switch";
     else if (cameraCount > 24) switchModel = `${Math.ceil(cameraCount / 24)}x 24-Port High-Speed Network Switches`;
 
-    // NVR Hardware Mapping
     const nvrModel =
       cameraCount <= 32
         ? "32-Channel Dedicated Video Recorder"
         : "64-Channel Commercial Video Recorder";
 
-    // Plain-English Procurement Summary for Clipboard & Handover
     const executiveSummary = `DRIEVU PROJECT REQUIREMENT ESTIMATE:
 - Property Type: ${propertyType.replace("_", " ").toUpperCase()}
 - Security Cameras: ${cameraCount}x Weather-Proof Smart Cameras (${resolution.toUpperCase()} Resolution with Human/Vehicle Detection)
@@ -60,15 +51,10 @@ export function InteractiveSystemBuilder() {
   const handleCopy = () => {
     navigator.clipboard.writeText(calculations.executiveSummary);
     setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   const handleAttachAndProceed = () => {
-    /* 
-     * SEAMLESS CONSULTATION HANDOFF
-     * Serializes the plain-English blueprint into sessionStorage so the 3-step wizard 
-     * at /consultation can instantly pre-fill the customer's technical scope.
-     */
     sessionStorage.setItem(
       "drievu_scoping_blueprint",
       JSON.stringify({
@@ -83,12 +69,15 @@ export function InteractiveSystemBuilder() {
     router.push("/consultation");
   };
 
+  const propertyTabs = [
+    { id: "commercial_office", label: "Office / Retail" },
+    { id: "residential_block", label: "Residential Block" },
+    { id: "industrial_warehouse", label: "Warehouse / Site" },
+  ];
+
   return (
-    <div className="bg-brand-paper rounded-2xl border border-brand-grey/20 shadow-xl overflow-hidden max-w-[1150px] mx-auto">
-      {/* 
-        * ESTIMATOR HEADER
-        * Strict Weight-500 Ceiling: Uses font-medium with optical tracking-[-0.02em].
-        */}
+    <div className="bg-brand-paper rounded-2xl border border-brand-grey/20 shadow-xl overflow-hidden max-w-[1150px] mx-auto select-none">
+      {/* HEADER: Enforcing maximum weight-500 ceiling */}
       <div className="bg-brand-slate text-white p-8 md:p-12 border-b border-brand-grey/20">
         <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-2">
           Plain-English System Estimator
@@ -102,32 +91,36 @@ export function InteractiveSystemBuilder() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12">
-        {/* LEFT PANE: Interactive Sliders & Toggles (7 Columns) */}
+        {/* LEFT PANE: Interactive Controls */}
         <div className="lg:col-span-7 p-8 md:p-12 space-y-8 border-b lg:border-b-0 lg:border-r border-brand-grey/15">
           
-          {/* 1. Property Sector Selector */}
+          {/* 1. Property Sector Selector with Emil Kowalski Layout Glider */}
           <div>
             <label className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-3">
               1. What type of property is this?
             </label>
-            <div className="grid grid-cols-3 gap-3">
-              {[
-                { id: "commercial_office", label: "Office / Retail" },
-                { id: "residential_block", label: "Residential Block" },
-                { id: "industrial_warehouse", label: "Warehouse / Site" },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setPropertyType(tab.id as PropertyType)}
-                  className={`py-3 px-4 rounded-xl font-display font-medium text-xs border text-center transition-all duration-200 active:scale-[0.97] cursor-pointer ${
-                    propertyType === tab.id
-                      ? "bg-brand-teal text-white border-brand-teal shadow-sm"
-                      : "bg-brand-mist text-brand-slate border-brand-grey/20 hover:border-brand-teal"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
+            <div className="grid grid-cols-3 gap-2 bg-brand-mist p-1.5 rounded-xl border border-brand-grey/15 relative">
+              {propertyTabs.map((tab) => {
+                const isActive = propertyType === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setPropertyType(tab.id as PropertyType)}
+                    className={`relative py-3 px-3 rounded-lg font-display font-medium text-xs text-center z-10 transition-colors duration-150 active:scale-[0.98] cursor-pointer ${
+                      isActive ? "text-white" : "text-brand-slate hover:text-brand-teal"
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="activePropertyTab"
+                        transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                        className="absolute inset-0 bg-brand-teal rounded-lg shadow-sm -z-10"
+                      />
+                    )}
+                    {tab.label}
+                  </button>
+                );
+              })}
             </div>
           </div>
 
@@ -137,9 +130,14 @@ export function InteractiveSystemBuilder() {
               <label className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider">
                 2. How many cameras do you need?
               </label>
-              <span className="font-display font-medium text-lg text-brand-teal font-mono">
+              <motion.span
+                key={cameraCount}
+                initial={{ scale: 1.1, color: "#008080" }}
+                animate={{ scale: 1, color: "#008080" }}
+                className="font-display font-medium text-lg font-mono inline-block"
+              >
                 {cameraCount} Cameras
-              </span>
+              </motion.span>
             </div>
             <input
               type="range"
@@ -148,7 +146,7 @@ export function InteractiveSystemBuilder() {
               step="4"
               value={cameraCount}
               onChange={(e) => setCameraCount(Number(e.target.value))}
-              className="w-full h-2.5 bg-brand-mist rounded-lg appearance-none cursor-pointer accent-brand-teal"
+              className="w-full h-2 bg-brand-mist rounded-lg appearance-none cursor-pointer accent-brand-teal active:scale-[0.99] transition-transform"
             />
             <div className="flex justify-between text-[11px] text-brand-grey font-mono mt-1">
               <span>4 (Small Site)</span>
@@ -163,9 +161,14 @@ export function InteractiveSystemBuilder() {
               <label className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider">
                 3. How long should video be saved?
               </label>
-              <span className="font-display font-medium text-lg text-brand-teal font-mono">
+              <motion.span
+                key={retentionDays}
+                initial={{ scale: 1.1, color: "#008080" }}
+                animate={{ scale: 1, color: "#008080" }}
+                className="font-display font-medium text-lg font-mono inline-block"
+              >
                 {retentionDays} Days
-              </span>
+              </motion.span>
             </div>
             <input
               type="range"
@@ -174,7 +177,7 @@ export function InteractiveSystemBuilder() {
               step="7"
               value={retentionDays}
               onChange={(e) => setRetentionDays(Number(e.target.value))}
-              className="w-full h-2.5 bg-brand-mist rounded-lg appearance-none cursor-pointer accent-brand-teal"
+              className="w-full h-2 bg-brand-mist rounded-lg appearance-none cursor-pointer accent-brand-teal active:scale-[0.99] transition-transform"
             />
             <div className="flex justify-between text-[11px] text-brand-grey font-mono mt-1">
               <span>14 Days</span>
@@ -183,33 +186,34 @@ export function InteractiveSystemBuilder() {
             </div>
           </div>
 
-          {/* 4. Resolution & Resilience Toggles (100% Human Language) */}
+          {/* 4. Resolution & Resilience Toggles */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 border-t border-brand-grey/15">
             <div>
               <span className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
                 Video Clarity
               </span>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setResolution("3k")}
-                  className={`flex-1 py-2.5 rounded-lg font-display font-medium text-xs border transition-all active:scale-[0.97] cursor-pointer ${
-                    resolution === "3k"
-                      ? "bg-brand-slate text-white border-brand-slate shadow-sm"
-                      : "bg-brand-mist text-brand-slate border-brand-grey/20 hover:border-brand-teal"
-                  }`}
-                >
-                  3K Crisp HD
-                </button>
-                <button
-                  onClick={() => setResolution("4k")}
-                  className={`flex-1 py-2.5 rounded-lg font-display font-medium text-xs border transition-all active:scale-[0.97] cursor-pointer ${
-                    resolution === "4k"
-                      ? "bg-brand-slate text-white border-brand-slate shadow-sm"
-                      : "bg-brand-mist text-brand-slate border-brand-grey/20 hover:border-brand-teal"
-                  }`}
-                >
-                  4K Ultra HD
-                </button>
+              <div className="flex gap-1.5 bg-brand-mist p-1 rounded-xl border border-brand-grey/15 relative">
+                {(["3k", "4k"] as Resolution[]).map((res) => {
+                  const isActive = resolution === res;
+                  return (
+                    <button
+                      key={res}
+                      onClick={() => setResolution(res)}
+                      className={`relative flex-1 py-2 rounded-lg font-display font-medium text-xs z-10 transition-colors active:scale-[0.97] cursor-pointer ${
+                        isActive ? "text-white" : "text-brand-slate hover:text-brand-teal"
+                      }`}
+                    >
+                      {isActive && (
+                        <motion.div
+                          layoutId="activeResolutionTab"
+                          transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                          className="absolute inset-0 bg-brand-slate rounded-lg shadow-sm -z-10"
+                        />
+                      )}
+                      {res === "3k" ? "3K Crisp HD" : "4K Ultra HD"}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
@@ -217,15 +221,15 @@ export function InteractiveSystemBuilder() {
               <span className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
                 Essential Add-Ons
               </span>
-              <label className="flex items-start gap-2.5 text-xs font-body text-brand-slate cursor-pointer select-none">
+              <label className="flex items-start gap-2.5 text-xs font-body text-brand-slate cursor-pointer select-none group">
                 <input
                   type="checkbox"
                   checked={includeUps}
                   onChange={(e) => setIncludeUps(e.target.checked)}
-                  className="rounded text-brand-teal focus:ring-brand-teal accent-brand-teal w-4 h-4 mt-0.5 shrink-0 cursor-pointer"
+                  className="rounded text-brand-teal focus:ring-brand-teal accent-brand-teal w-4 h-4 mt-0.5 shrink-0 cursor-pointer transition-transform group-active:scale-90"
                 />
                 <div>
-                  <span className="font-medium text-brand-slate block flex items-center gap-1">
+                  <span className="font-medium text-brand-slate flex items-center gap-1">
                     <Battery className="w-3.5 h-3.5 text-brand-teal" /> Emergency Battery Backup
                   </span>
                   <span className="text-[11px] text-brand-grey leading-tight block mt-0.5">
@@ -234,15 +238,15 @@ export function InteractiveSystemBuilder() {
                 </div>
               </label>
 
-              <label className="flex items-start gap-2.5 text-xs font-body text-brand-slate cursor-pointer select-none">
+              <label className="flex items-start gap-2.5 text-xs font-body text-brand-slate cursor-pointer select-none group">
                 <input
                   type="checkbox"
                   checked={includeAccess}
                   onChange={(e) => setIncludeAccess(e.target.checked)}
-                  className="rounded text-brand-teal focus:ring-brand-teal accent-brand-teal w-4 h-4 mt-0.5 shrink-0 cursor-pointer"
+                  className="rounded text-brand-teal focus:ring-brand-teal accent-brand-teal w-4 h-4 mt-0.5 shrink-0 cursor-pointer transition-transform group-active:scale-90"
                 />
                 <div>
-                  <span className="font-medium text-brand-slate block flex items-center gap-1">
+                  <span className="font-medium text-brand-slate flex items-center gap-1">
                     <Lock className="w-3.5 h-3.5 text-brand-teal" /> Keyless Door Entry
                   </span>
                   <span className="text-[11px] text-brand-grey leading-tight block mt-0.5">
@@ -254,17 +258,20 @@ export function InteractiveSystemBuilder() {
           </div>
         </div>
 
-        {/* RIGHT PANE: Human-Language Output & Conversion Goal (5 Columns) */}
+        {/* RIGHT PANE: Plain-English Output */}
         <div className="lg:col-span-5 bg-brand-mist p-8 md:p-12 flex flex-col justify-between">
           <div>
             <span className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-6 border-b border-brand-grey/20 pb-3">
               What Your System Includes
             </span>
 
-            {/* Benefit-Driven Output Cards (Zero Techy Jargon) */}
+            {/* Tactile Benefit Cards with Subtle Spring Hover */}
             <div className="space-y-4 mb-8">
-              
-              <div className="bg-white p-5 rounded-xl border border-brand-grey/15 shadow-sm flex items-start gap-4">
+              <motion.div 
+                whileHover={{ x: 4 }}
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                className="bg-white p-5 rounded-xl border border-brand-grey/15 shadow-sm flex items-start gap-4"
+              >
                 <div className="p-3 rounded-lg bg-brand-teal/10 text-brand-teal shrink-0">
                   <HardDrive className="w-5 h-5" />
                 </div>
@@ -276,9 +283,13 @@ export function InteractiveSystemBuilder() {
                     Stores {retentionDays} days of crisp video safely inside your building ({calculations.hddCount}x high-capacity drives). You own 100% of the footage—zero cloud subscriptions.
                   </span>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="bg-white p-5 rounded-xl border border-brand-grey/15 shadow-sm flex items-start gap-4">
+              <motion.div 
+                whileHover={{ x: 4 }}
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                className="bg-white p-5 rounded-xl border border-brand-grey/15 shadow-sm flex items-start gap-4"
+              >
                 <div className="p-3 rounded-lg bg-brand-teal/10 text-brand-teal shrink-0">
                   <Wrench className="w-5 h-5" />
                 </div>
@@ -290,9 +301,13 @@ export function InteractiveSystemBuilder() {
                     Our engineers run neat, high-speed wiring, connect all {cameraCount} weather-proof cameras, and configure your mobile viewing app so it works instantly.
                   </span>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="bg-white p-5 rounded-xl border border-brand-grey/15 shadow-sm flex items-start gap-4">
+              <motion.div 
+                whileHover={{ x: 4 }}
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                className="bg-white p-5 rounded-xl border border-brand-grey/15 shadow-sm flex items-start gap-4"
+              >
                 <div className="p-3 rounded-lg bg-brand-green/10 text-brand-green shrink-0">
                   <Shield className="w-5 h-5" />
                 </div>
@@ -304,31 +319,47 @@ export function InteractiveSystemBuilder() {
                     Engineered to strict UK safety guidelines with documented handover packs and privacy protection for tenants and staff.
                   </span>
                 </div>
-              </div>
-
+              </motion.div>
             </div>
 
-            {/* Copyable Specification Brief for Procurement Records */}
+            {/* Copyable Specification Brief */}
             <div className="bg-brand-slate text-brand-paper p-4 rounded-xl font-mono text-[11px] leading-relaxed mb-8 shadow-inner">
               <div className="flex justify-between items-center mb-2 pb-2 border-b border-brand-grey/20 text-brand-grey">
                 <span>YOUR REQUIREMENT SUMMARY</span>
                 <button
                   onClick={handleCopy}
-                  className="flex items-center gap-1.5 text-brand-teal hover:text-white transition-colors cursor-pointer"
+                  className="flex items-center gap-1.5 text-brand-teal hover:text-white transition-colors cursor-pointer active:scale-95"
                 >
-                  {copied ? <Check className="w-3.5 h-3.5 text-brand-green" /> : <Copy className="w-3.5 h-3.5" />}
-                  <span>{copied ? "Copied to Clipboard!" : "Copy Details"}</span>
+                  <AnimatePresence mode="wait">
+                    {copied ? (
+                      <motion.span
+                        key="check"
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.8, opacity: 0 }}
+                        className="flex items-center gap-1 text-brand-green"
+                      >
+                        <Check className="w-3.5 h-3.5" /> Copied!
+                      </motion.span>
+                    ) : (
+                      <motion.span
+                        key="copy"
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.8, opacity: 0 }}
+                        className="flex items-center gap-1"
+                      >
+                        <Copy className="w-3.5 h-3.5" /> Copy Details
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
                 </button>
               </div>
               <p className="line-clamp-4 text-brand-paper/80">{calculations.executiveSummary}</p>
             </div>
           </div>
 
-          {/* 
-            * PRIMARY LEAD GENERATION GOAL
-            * Funnels the customized estimate directly into /consultation (Requirement Form).
-            * Incorporates UI/UX Pro Max tactile physics: active:scale-[0.98].
-            */}
+          {/* PRIMARY CTA: Emil Kowalski Tactile Button Physics */}
           <button
             onClick={handleAttachAndProceed}
             className="w-full bg-brand-teal text-white font-display font-medium text-base py-4 rounded-xl shadow-elevated hover:bg-[#006666] transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-2 group cursor-pointer"
