@@ -1,4 +1,4 @@
-// File: D:\STARTUP PROJECTS\Drievu\Main Website\drievu-web\src\app\consultation\page.tsx
+// File: D:\STARTUP PROJECTS\Drievu\drievu-web\src\app\consultation\page.tsx
 import * as entry from '../../../../src/app/consultation/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
