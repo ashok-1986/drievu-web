@@ -46,6 +46,10 @@ export function CanvasHero() {
     imgDusk.onload = checkLoaded;
     imgNight.onload = checkLoaded;
 
+    imgDay.onerror = checkLoaded;
+    imgDusk.onerror = checkLoaded;
+    imgNight.onerror = checkLoaded;
+
     const drawCoverImage = (img: HTMLImageElement) => {
       const canvasRatio = canvas.width / canvas.height;
       const imgRatio = img.width / img.height;
