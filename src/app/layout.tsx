@@ -40,8 +40,8 @@ export default function RootLayout({
       <body className="bg-brand-paper text-brand-slate font-body min-h-screen flex flex-col">
         <ParallaxEngine />
         <GlobalNavbar />
-        {/* Safe-area top padding prevents header overlap with H1 text */}
-        <main className="flex-grow flex flex-col pt-28 md:pt-36">{children}</main>
+        {/* Safe-area top padding is now handled by individual pages to allow edge-to-edge heroes */}
+        <main className="flex-grow flex flex-col">{children}</main>
         <GlobalFooter />
       </body>
     </html>

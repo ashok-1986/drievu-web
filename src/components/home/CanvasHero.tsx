@@ -138,7 +138,7 @@ export function CanvasHero() {
         />
         
         {/* Subtle cinematic gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-slate/60 via-transparent to-brand-slate/30 z-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-slate/85 via-brand-slate/40 to-transparent z-10 pointer-events-none" />
       </div>
 
       {/* FOREGROUND CONTENT LAYER: Content fades and shifts past naturally */}
@@ -146,17 +146,17 @@ export function CanvasHero() {
         {/* Section 1: Hero Text (Top of Track) */}
         <section className="h-screen w-full max-w-[1200px] mx-auto px-6 flex flex-col justify-center pointer-events-auto">
           <div className="max-w-3xl space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-paper/90 backdrop-blur-md border border-brand-grey/20 text-brand-slate text-xs font-display font-medium uppercase tracking-widest">
+            <div className="inline-flex items-center gap-2 text-brand-paper/90 text-xs font-display font-medium uppercase tracking-widest drop-shadow-sm">
               <span className="w-2 h-2 rounded-full bg-brand-teal" />
               Independent UK Engineering · London Based
             </div>
 
-            <h1 className="font-display font-medium text-[clamp(2.5rem,6vw,6rem)] leading-[0.95] tracking-tightest text-brand-slate uppercase bg-white/90 backdrop-blur-sm p-6 rounded-2xl border border-brand-grey/15 shadow-xl inline-block">
+            <h1 className="text-white font-display font-medium text-[clamp(2.75rem,7vw,6.5rem)] leading-[0.95] tracking-tightest uppercase drop-shadow-sm">
               Security Systems,<br />
               <span className="text-brand-teal">Delivered Properly.</span>
             </h1>
 
-            <p className="font-body font-normal text-brand-slate text-base md:text-lg max-w-xl leading-relaxed bg-white/95 backdrop-blur-sm p-6 rounded-2xl border border-brand-grey/15 shadow-md">
+            <p className="text-brand-paper/90 font-body font-normal text-base md:text-lg max-w-xl leading-relaxed drop-shadow-sm">
               Most properties buy good hardware but end up with poor results—late installations, messy wiring, and systems nobody maintains. We design, install, and look after your security from start to finish.
             </p>
 
@@ -180,14 +180,14 @@ export function CanvasHero() {
 
         {/* Section 2: Informational Interstitial (Middle of Track) */}
         <section className="h-screen w-full max-w-[1200px] mx-auto px-6 flex items-center justify-end pointer-events-auto">
-          <div className="bg-brand-slate/90 backdrop-blur-md text-white p-8 md:p-10 rounded-2xl border border-brand-grey/20 max-w-md shadow-xl space-y-4">
+          <div className="text-white max-w-md space-y-4 drop-shadow-sm">
             <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block">
               Continuous Protection
             </span>
             <h2 className="font-display font-medium text-xl md:text-2xl tracking-tight uppercase">
               Impeccable Transitions from Day to Night.
             </h2>
-            <p className="font-body font-normal text-xs md:text-sm text-brand-grey leading-relaxed">
+            <p className="font-body font-normal text-xs md:text-sm text-brand-paper/80 leading-relaxed">
               Scroll down to watch our engineered design adapt. As day light turns into nautical twilight, our architectural integrations seamlessly activate interior zones, keyless checkpoints, and exterior security paths automatically.
             </p>
           </div>
@@ -195,22 +195,22 @@ export function CanvasHero() {
 
         {/* Section 3: Value Summary Footer (End of Track) */}
         <section className="h-screen w-full max-w-[1200px] mx-auto px-6 flex flex-col justify-center pointer-events-auto">
-          <div className="bg-white/95 backdrop-blur-sm border border-brand-grey/15 rounded-2xl p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 font-body text-xs text-brand-grey w-full shadow-xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 font-body text-xs text-brand-paper/90 w-full drop-shadow-sm">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-brand-teal shrink-0" />
-              <span className="font-medium text-brand-slate">Full Handover Documents</span>
+              <span className="font-medium text-white">Full Handover Documents</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-brand-teal shrink-0" />
-              <span className="font-medium text-brand-slate">20+ Years Track Record</span>
+              <span className="font-medium text-white">20+ Years Track Record</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-brand-teal shrink-0" />
-              <span className="font-medium text-brand-slate">Strict Privacy Protected</span>
+              <span className="font-medium text-white">Strict Privacy Protected</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-brand-teal shrink-0" />
-              <span className="font-medium text-brand-slate">British Safety Standards</span>
+              <span className="font-medium text-white">British Safety Standards</span>
             </div>
           </div>
         </section>
