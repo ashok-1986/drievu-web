@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { ArrowRight, CheckCircle2, Shield, Building2, Wrench, FileText } from "lucide-react";
 import { ScrollReveal, TactileLink, GliderTab } from "@/components/motion/MotionPrimitives";
 
@@ -99,48 +100,81 @@ export default function SectorsPage() {
   }));
 
   return (
-    <div className="w-full pt-28 md:pt-36 pb-24 bg-brand-paper min-h-screen select-none">
-      {/* HERO HEADER SECTION */}
-      <section className="bg-brand-slate text-brand-paper py-16 md:py-24 px-6 border-b border-brand-grey/20">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-teal/20 text-brand-teal text-xs font-display font-medium uppercase tracking-widest mb-6">
-            <span className="w-2 h-2 rounded-full bg-brand-teal animate-pulse" />
-            Tailored Engineering Engagement
-          </div>
+    <div className="w-full bg-brand-paper min-h-screen select-none">
+      {/* HERO IMAGE — 100vh, 100% width, fixed cover */}
+      <section className="relative w-full h-screen max-h-[100vh] overflow-hidden">
+        <Image
+          src="/hero/hero_sector.jpeg"
+          alt="Drievu sector engineering — UK architectural security systems"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+        {/* Dark gradient overlay for text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-slate/90 via-brand-slate/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-slate/80 via-brand-slate/40 to-transparent" />
+        
+        {/* Hero Content Overlay */}
+        <div className="absolute inset-0 flex items-center justify-center z-10">
+          <div className="max-w-[1200px] mx-auto px-6 text-center">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-teal/20 text-brand-teal text-xs font-display font-medium uppercase tracking-widest mb-6">
+              <span className="w-2 h-2 rounded-full bg-brand-teal animate-pulse" />
+              Tailored Engineering Engagement
+            </div>
 
-          <h1 className="font-display font-medium text-4xl md:text-6xl text-white tracking-[-0.03em] uppercase mb-6">
-            How We Protect Your Sector.
-          </h1>
-          <p className="font-body font-normal text-brand-grey text-lg md:text-xl max-w-3xl leading-relaxed mb-8">
-            We do not force a single boxed product onto every building. Whether you specify new developments, manage day-to-day facilities, or oversee public housing, here is how our consulting-to-maintenance discipline solves your exact problems in plain English.
-          </p>
+            <h1 className="font-display font-medium text-4xl md:text-6xl lg:text-7xl text-white tracking-[-0.03em] uppercase mb-6">
+              How We Protect Your Sector.
+            </h1>
+            <p className="font-body font-normal text-brand-grey text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed mb-8">
+              We do not force a single boxed product onto every building. Whether you specify new developments, manage day-to-day facilities, or oversee public housing, here is how our consulting-to-maintenance discipline solves your exact problems in plain English.
+            </p>
 
-          <div className="bg-brand-mist/10 border-l-4 border-brand-teal p-5 rounded-r-xl max-w-4xl font-body text-xs text-brand-grey leading-relaxed font-mono">
-            <strong>PROCUREMENT DUE DILIGENCE:</strong> National-infrastructure track records referenced below were delivered by members of Drievu&rsquo;s leadership team over the past two decades in prior executive roles. Drievu Limited was incorporated in the UK in 2024 (Company No. 15479482).
+            <div className="bg-brand-mist/10 border-l-4 border-brand-teal p-5 rounded-r-xl max-w-4xl mx-auto font-body text-xs text-brand-grey leading-relaxed font-mono">
+              <strong>PROCUREMENT DUE DILIGENCE:</strong> National-infrastructure track records referenced below were delivered by members of Drievu&rsquo;s leadership team over the past two decades in prior executive roles. Drievu Limited was incorporated in the UK in 2024 (Company No. 15479482).
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 
-        * STICKY SECTOR JUMP NAVIGATION (Emil Kowalski Spring Glider)
-        * Uses Framer Motion layoutId="activeSectorTab" for buttery macOS tab transitions.
-        */}
-      <section className="bg-brand-mist/90 py-4 px-6 border-b border-brand-grey/15 sticky top-[60px] z-40 backdrop-blur-md shadow-soft">
-        <div className="max-w-[1200px] mx-auto flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
-          <span className="font-display font-medium text-xs text-brand-grey uppercase tracking-widest mr-2 hidden sm:inline shrink-0">
-            Jump To:
-          </span>
-          <GliderTab
-            tabs={sectorTabs}
-            activeTab={activeSection}
-            onChange={scrollToSection}
-            gliderId="sector-jump-bar"
-          />
+      {/* STICKY SECTOR JUMP NAVIGATION — Horizontal scroll on mobile, tabs on desktop */}
+      <section className="bg-brand-mist/90 py-4 px-6 border-b border-brand-grey/15 sticky top-0 z-40 backdrop-blur-md shadow-soft">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-6 px-6">
+            <span className="font-display font-medium text-xs text-brand-grey uppercase tracking-widest mr-3 hidden sm:inline shrink-0 whitespace-nowrap">
+              Jump To:
+            </span>
+            <div className="flex gap-2 flex-nowrap">
+              {sectorTabs.map((tab) => {
+                const isActive = activeSection === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => scrollToSection(tab.id)}
+                    className={`relative px-5 py-2.5 rounded-full font-display font-medium text-xs whitespace-nowrap z-10 transition-colors duration-150 active:scale-[0.97] cursor-pointer shrink-0 ${
+                      isActive
+                        ? "text-white"
+                        : "bg-white text-brand-slate border border-brand-grey/20 hover:border-brand-teal hover:text-brand-teal"
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeSectorTab"
+                        transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                        className="absolute inset-0 bg-brand-teal rounded-full shadow-soft -z-10"
+                      />
+                    )}
+                    {tab.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
 
       {/* 4 ANCHORED SECTOR SECTIONS */}
-      <div className="max-w-[1200px] mx-auto px-6 divide-y divide-brand-grey/15">
+      <div className="max-w-[1200px] mx-auto px-6 divide-y divide-brand-grey/15 pb-24">
         {sectorsData.map((sec, idx) => {
           const IconComp = sec.icon;
           const isEven = idx % 2 === 1;
