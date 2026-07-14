@@ -11,7 +11,7 @@ export function GlobalNavbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50); // Compresses after 50px scroll
+      setIsScrolled(window.scrollY >= 50); // Compresses after 50px scroll
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
