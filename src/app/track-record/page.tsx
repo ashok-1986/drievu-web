@@ -114,7 +114,7 @@ export default function TrackRecordPage() {
   ];
 
   return (
-    <div className="w-full pb-24 bg-brand-paper min-h-screen">
+    <div className="w-full pt-28 md:pt-36 pb-24 bg-brand-paper min-h-screen">
       {/* 
         * HERO HEADER SECTION (TR-1)
         * Strict Weight-500 Ceiling: Uses font-medium with optical tracking [-0.03em].

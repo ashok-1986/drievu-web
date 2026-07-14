@@ -10,7 +10,7 @@ export function CanvasHero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
-  // Cindy Zhu Memory Buffer: Preloads 8K UK residence assets into system RAM
+  // Preloads high-resolution architectural assets into memory
   const imagesRef = useRef<{
     day: HTMLImageElement | null;
     dusk: HTMLImageElement | null;
@@ -225,11 +225,11 @@ export function CanvasHero() {
 
             <div className="pt-2 border-t border-white/10 flex items-center justify-between font-display font-medium text-xs text-brand-teal">
               <span className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-brand-green" /> British Standards Compliant
+                <ShieldCheck className="w-4 h-4 text-brand-teal" /> British Standards Compliant
               </span>
-              <span className="underline cursor-pointer hover:text-white transition-colors">
+              <Link href="/terms" className="underline cursor-pointer hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal rounded">
                 View SLA Terms
-              </span>
+              </Link>
             </div>
           </div>
         </section>

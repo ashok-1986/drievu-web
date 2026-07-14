@@ -118,7 +118,7 @@ export default function ConsultationPage() {
   ];
 
   return (
-    <div className="w-full pb-24 bg-brand-paper min-h-[85vh]">
+    <div className="w-full pt-28 md:pt-36 pb-24 bg-brand-paper min-h-[85vh]">
       {/* 
         * HEADER SECTION
         * Enforces Weight-500 Ceiling: Uses font-medium with optical tracking [-0.02em].

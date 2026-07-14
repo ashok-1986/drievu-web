@@ -94,7 +94,7 @@ export default function SectorsPage() {
   ];
 
   return (
-    <div className="w-full pb-24 bg-brand-paper min-h-screen select-none">
+    <div className="w-full pt-28 md:pt-36 pb-24 bg-brand-paper min-h-screen select-none">
       {/* HERO HEADER SECTION */}
       <section className="bg-brand-slate text-brand-paper py-16 md:py-24 px-6 border-b border-brand-grey/20">
         <div className="max-w-[1200px] mx-auto">

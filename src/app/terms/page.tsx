@@ -5,7 +5,7 @@ export default function TermsOfServicePage() {
   const lastUpdated = "July 2026";
 
   return (
-    <div className="w-full pb-24 bg-brand-paper min-h-screen">
+    <div className="w-full pt-28 md:pt-36 pb-24 bg-brand-paper min-h-screen">
       {/* 
         * LEGAL HEADER SECTION
         * Strict Weight-500 Ceiling: Uses font-medium with optical tracking [-0.02em].
