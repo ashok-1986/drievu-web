@@ -103,11 +103,7 @@ export function CanvasHero() {
       if (!containerRef.current) return;
       
       const rect = containerRef.current.getBoundingClientRect();
-      const totalHeight = containerRef.current.scrollHeight - window.innerHeight;
-      const scrolled = -rect.top;
-      
-      // Calculate normalized progress clamped between 0 and 1
-      const progress = Math.min(Math.max(scrolled / totalHeight, 0), 1);
+      const progress = Math.min(Math.max(-rect.top / (containerRef.current.scrollHeight - window.innerHeight), 0), 1);
       
       requestAnimationFrame(() => renderCanvas(progress));
     };

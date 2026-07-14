@@ -11,7 +11,7 @@ export function GlobalNavbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 80); // Compresses after 80px scroll
+      setIsScrolled(window.scrollY > 50); // Compresses after 50px scroll
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -27,10 +27,10 @@ export function GlobalNavbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? "h-[60px] bg-brand-paper/90 backdrop-blur-md shadow-soft border-b border-brand-grey/15"
-          : "h-[80px] bg-transparent"
+          ? "h-[60px] bg-brand-slate/85 backdrop-blur-md border-b border-brand-grey/20 text-white shadow-soft"
+          : "h-[80px] bg-transparent border-b border-white/10 text-white"
       }`}
     >
       <div className="max-w-[1200px] mx-auto px-6 h-full flex items-center justify-between">
@@ -40,7 +40,7 @@ export function GlobalNavbar() {
           <div className="w-8 h-8 rounded-xl bg-brand-teal flex items-center justify-center text-white font-display font-medium text-lg shadow-sm group-hover:bg-brand-slate transition-colors duration-200 active:scale-[0.95]">
             D
           </div>
-          <span className="font-display font-medium text-xl tracking-tight text-brand-slate">
+          <span className="font-display font-medium text-xl tracking-tight text-white">
             DRIEVU<span className="text-brand-teal">.</span>
           </span>
         </Link>
@@ -54,7 +54,7 @@ export function GlobalNavbar() {
                 key={link.name}
                 href={link.href}
                 className={`relative font-display font-medium text-[15px] tracking-tight transition-colors duration-150 py-1 cursor-pointer select-none ${
-                  isActive ? "text-brand-teal" : "text-brand-slate/85 hover:text-brand-teal"
+                  isActive ? "text-brand-teal" : "text-white/85 hover:text-white"
                 }`}
               >
                 {link.name}

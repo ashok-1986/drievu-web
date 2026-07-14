@@ -46,7 +46,7 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="flex flex-col w-full overflow-hidden">
+    <div className="flex flex-col w-full">
       {/* 1. HIGH-PERFORMANCE APPLE 5K SCROLL CANVAS HERO */}
       <CanvasHero />
 
