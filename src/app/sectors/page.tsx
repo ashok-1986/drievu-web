@@ -146,7 +146,7 @@ export default function SectorsPage() {
           const isEven = idx % 2 === 1;
 
           return (
-            <ScrollReveal key={sec.id} direction="up">
+            <ScrollReveal key={sec.id} direction="up" delay={idx * 0.15} stagger={0.08}>
               <section
                 id={sec.id}
                 className="py-20 md:py-28 scroll-mt-32"

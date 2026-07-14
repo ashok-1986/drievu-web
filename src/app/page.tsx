@@ -74,7 +74,7 @@ export default function HomePage() {
             {systemsGrid.map((sys, index) => {
               const IconComponent = sys.icon;
               return (
-                <ScrollReveal key={sys.title} delay={index * 0.1} direction="up">
+                <ScrollReveal key={sys.title} delay={index * 0.1} direction="up" stagger={0.1}>
                   <TactileLink
                     href={sys.href}
                     variant="ghost"

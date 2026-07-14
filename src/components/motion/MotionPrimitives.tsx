@@ -2,6 +2,8 @@
 
 import * as React from "react";
 import { motion, type HTMLMotionProps } from "framer-motion";
+import { gsap } from "@/lib/gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SPRING_TACTILE, SPRING_GLIDER, EASING_OUT_EXPO, EASING_REVEAL } from "@/lib/physics";
 
 /**
@@ -329,7 +331,7 @@ function AccordionItem({ item, defaultOpen }: { item: AccordionItem; defaultOpen
 }
 
 /**
- * ScrollReveal - Viewport reveal wrapper using whileInView
+ * ScrollReveal - Viewport reveal wrapper using GSAP ScrollTrigger
  * Used for section scrolling entrances with staggered delays
  */
 export interface ScrollRevealProps {
@@ -337,6 +339,7 @@ export interface ScrollRevealProps {
   className?: string;
   delay?: number;
   direction?: "up" | "down" | "left" | "right" | "none";
+  stagger?: number;
 }
 
 export function ScrollReveal({
@@ -344,30 +347,71 @@ export function ScrollReveal({
   className = "",
   delay = 0,
   direction = "up",
+  stagger = 0,
 }: ScrollRevealProps) {
-  const getInitialOffsets = () => {
-    switch (direction) {
-      case "up": return { opacity: 0, y: 24 };
-      case "down": return { opacity: 0, y: -24 };
-      case "left": return { opacity: 0, x: 24 };
-      case "right": return { opacity: 0, x: -24 };
-      case "none": return { opacity: 0 };
-    }
-  };
+  const ref = React.useRef<HTMLDivElement>(null);
 
-  return (
-    <motion.div
-      initial={getInitialOffsets()}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{
-        duration: 0.6,
-        delay: delay,
-        ease: EASING_REVEAL,
-      }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) return;
+
+    const getOffsets = () => {
+      switch (direction) {
+        case "up": return { y: 40, opacity: 0 };
+        case "down": return { y: -40, opacity: 0 };
+        case "left": return { x: 40, opacity: 0 };
+        case "right": return { x: -40, opacity: 0 };
+        default: return { opacity: 0 };
+      }
+    };
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        el,
+        getOffsets(),
+        {
+          ...getOffsets(),
+          y: 0,
+          x: 0,
+          opacity: 1,
+          duration: 0.8,
+          delay,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse",
+            once: false,
+          },
+        }
+      );
+
+      if (stagger > 0) {
+        gsap.fromTo(
+          el.children,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            delay: delay + 0.1,
+            stagger,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 85%",
+            },
+          }
+        );
+      }
+    }, el);
+
+    return () => ctx.revert();
+  }, [delay, direction, stagger]);
+
+  return <div ref={ref} className={className}>{children}</div>;
 }
