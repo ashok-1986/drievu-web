@@ -1,0 +1,212 @@
+{
+  "source": {
+    "url": "https://navbardigital.com/",
+    "extractedAt": "2026-07-14T22:11:02.313Z",
+    "extractor": "dembrandt"
+  },
+  "colors": {
+    "palette": [
+      {
+        "color": "rgb(243, 244, 236)",
+        "normalized": "#f3f4ec",
+        "count": 364,
+        "confidence": "high",
+        "sources": [
+          "fixed"
+        ],
+        "lch": "lch(95.92% 4.11 114.83)",
+        "oklch": "oklch(96.42% 0.011 112.37)"
+      },
+      {
+        "color": "rgb(10, 11, 10)",
+        "normalized": "#0a0b0a",
+        "count": 117,
+        "confidence": "high",
+        "sources": [
+          "rounded-full"
+        ],
+        "lch": "lch(2.94% 0.5 144.44)",
+        "oklch": "oklch(14.79% 0.003 145.44)"
+      },
+      {
+        "color": "rgb(200, 240, 45)",
+        "normalized": "#c8f02d",
+        "count": 86,
+        "confidence": "high",
+        "sources": [
+          "rounded-full"
+        ],
+        "lch": "lch(89.29% 88.3 114.1)",
+        "oklch": "oklch(89.55% 0.205 121.48)"
+      },
+      {
+        "color": "rgb(138, 143, 134)",
+        "normalized": "#8a8f86",
+        "count": 26,
+        "confidence": "high",
+        "sources": [],
+        "lch": "lch(58.76% 5.48 130.73)",
+        "oklch": "oklch(64.32% 0.014 130.86)"
+      },
+      {
+        "color": "rgb(223, 224, 217)",
+        "normalized": "#dfe0d9",
+        "count": 1,
+        "confidence": "medium",
+        "sources": [
+          "hover/focus"
+        ]
+      },
+      {
+        "color": "rgba(243, 244, 236, 0.086)",
+        "normalized": "#f3f4ec",
+        "count": 1,
+        "confidence": "medium",
+        "sources": [
+          "hover/focus"
+        ]
+      },
+      {
+        "color": "rgb(237, 238, 230)",
+        "normalized": "#edeee6",
+        "count": 1,
+        "confidence": "medium",
+        "sources": [
+          "hover/focus"
+        ]
+      },
+      {
+        "color": "rgba(243, 244, 236, 0.027)",
+        "normalized": "#f3f4ec",
+        "count": 1,
+        "confidence": "medium",
+        "sources": [
+          "hover/focus"
+        ]
+      },
+      {
+        "color": "rgba(243, 244, 236, 0.05)",
+        "normalized": "#f3f4ec",
+        "count": 1,
+        "confidence": "medium",
+        "sources": [
+          "hover/focus"
+        ]
+      },
+      {
+        "color": "rgb(231, 232, 225)",
+        "normalized": "#e7e8e1",
+        "count": 1,
+        "confidence": "medium",
+        "sources": [
+          "hover/focus"
+        ]
+      }
+    ],
+    "cssVariables": {
+      "--color-white": {
+        "value": "#fff",
+        "lch": "lch(100% 0 158.2)",
+        "oklch": "oklch(100% 0 89.88)"
+      },
+      "--color-fog-dim": {
+        "value": "#5f655d",
+        "lch": "lch(42.05% 5.47 136.97)",
+        "oklch": "oklch(49.89% 0.015 137.81)"
+      }
+    }
+  },
+  "typography": {
+    "headingFont": "Bricolage Grotesque",
+    "bodyFont": "Hanken Grotesk"
+  },
+  "spacing": {
+    "scale": [
+      "2.88px",
+      "4px",
+      "4.32px",
+      "6px",
+      "6.72px",
+      "8px",
+      "10px",
+      "12px",
+      "15.36px",
+      "16px",
+      "20px",
+      "23.04px",
+      "24px",
+      "28px",
+      "32px",
+      "36px",
+      "40px",
+      "64px",
+      "112px",
+      "128px"
+    ]
+  },
+  "radius": {
+    "scale": [
+      {
+        "value": "1px",
+        "count": 8,
+        "elements": [
+          "span"
+        ],
+        "confidence": "medium",
+        "numericValue": 1
+      },
+      {
+        "value": "8.8px",
+        "count": 2,
+        "elements": [
+          "span"
+        ],
+        "confidence": "low",
+        "numericValue": 8.8
+      },
+      {
+        "value": "16px",
+        "count": 1,
+        "elements": [
+          "div"
+        ],
+        "confidence": "low",
+        "numericValue": 16
+      },
+      {
+        "value": "24px",
+        "count": 7,
+        "elements": [
+          "card"
+        ],
+        "confidence": "medium",
+        "numericValue": 24
+      },
+      {
+        "value": "9999px",
+        "count": 2,
+        "elements": [
+          "div"
+        ],
+        "confidence": "low",
+        "numericValue": 9999
+      },
+      {
+        "value": "33554400px",
+        "count": 55,
+        "elements": [
+          "nav",
+          "a",
+          "span",
+          "Toggle menu",
+          "div"
+        ],
+        "confidence": "high",
+        "numericValue": 33554400
+      }
+    ]
+  },
+  "shadows": {
+    "scale": []
+  }
+}

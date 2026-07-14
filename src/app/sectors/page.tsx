@@ -113,9 +113,8 @@ export default function SectorsPage() {
             sizes="100vw"
           />
         </div>
-        {/* Dark gradient overlay for text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-slate/90 via-brand-slate/50 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-slate/80 via-brand-slate/40 to-transparent" />
+        {/* Single dark gradient overlay for text legibility — no conflicting radial gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-slate/90 via-brand-slate/50 to-transparent" />
         
         {/* Hero Content Overlay */}
         <div className="absolute inset-0 flex items-center justify-center z-10">
@@ -128,19 +127,19 @@ export default function SectorsPage() {
             <h1 className="font-display font-medium text-4xl md:text-6xl lg:text-7xl text-white tracking-[-0.03em] uppercase mb-6">
               How We Protect Your Sector.
             </h1>
-            <p className="font-body font-normal text-brand-grey text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed mb-8">
+            <p className="font-body font-normal text-brand-paper/90 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed mb-8 drop-shadow">
               We do not force a single boxed product onto every building. Whether you specify new developments, manage day-to-day facilities, or oversee public housing, here is how our consulting-to-maintenance discipline solves your exact problems in plain English.
             </p>
 
-            <div className="bg-brand-mist/10 border-l-4 border-brand-teal p-5 rounded-r-xl max-w-4xl mx-auto font-body text-xs text-brand-grey leading-relaxed font-mono">
+            <div className="max-w-3xl mx-auto p-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 text-white/85 font-mono text-xs leading-relaxed">
               <strong>PROCUREMENT DUE DILIGENCE:</strong> National-infrastructure track records referenced below were delivered by members of Drievu&rsquo;s leadership team over the past two decades in prior executive roles. Drievu Limited was incorporated in the UK in 2024 (Company No. 15479482).
             </div>
           </div>
         </div>
       </section>
 
-      {/* STICKY SECTOR JUMP NAVIGATION — Single shared glider */}
-      <section className="bg-brand-mist/90 py-4 px-6 border-b border-brand-grey/15 sticky top-0 z-40 backdrop-blur-md shadow-soft">
+      {/* STICKY SECTOR JUMP NAVIGATION — Single shared glider, offset below 60px header */}
+      <section className="bg-brand-mist/90 py-4 px-6 border-b border-brand-grey/15 sticky top-[60px] z-40 backdrop-blur-md shadow-soft">
         <div className="max-w-[1200px] mx-auto">
           <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-6 px-6">
             <span className="font-display font-medium text-xs text-brand-grey uppercase tracking-widest mr-3 hidden sm:inline shrink-0 whitespace-nowrap">
