@@ -9,14 +9,17 @@
 
 @layer base {
   :root {
-    /* Core Brand Palette (OKLCH-derived Hex) */
+    /* Core Brand Palette — WCAG AA+ Contrast (≥5:1 for normal text, ≥7:1 for body) */
     --color-slate: #1F2A2E;        /* Deep Architectural Slate — Primary Dark BG */
     --color-paper: #FAFAF9;        /* Warm Industrial Paper — Primary Light BG */
     --color-mist: #EBF0F2;         /* Soft Mist — Secondary Component BG */
-    --color-teal: #008080;         /* Drievu Teal — Primary Interactive Accent */
-    --color-teal-deep: #006666;    /* Pressed/Hover Teal */
-    --color-grey: #708088;         /* Warm Grey — Secondary Prose & Subtitles */
-    --color-green: #2E9960;        /* Verified/Success State */
+    --color-teal: #006E6E;         /* Drievu Teal — Primary Interactive Accent (text on light ≥5:1) */
+    --color-teal-text: #005A5A;    /* Teal for text on light backgrounds (≥7:1) */
+    --color-teal-deep: #005555;    /* Pressed/Hover Teal — Buttons (white text ≥7:1) */
+    --color-grey: #4A5A5A;         /* Warm Grey — Secondary Prose (≥5:1 on paper/mist) */
+    --color-grey-light: #6B7A7A;   /* Muted Grey — Subtle captions, placeholders */
+    --color-green: #1A7A45;        /* Success/Verified — Text on light (≥5:1) */
+    --color-green-text: #156035;   /* Success text on light (≥7:1) */
     --color-border-dark: rgba(255, 255, 255, 0.12);  /* 1px Luminescence on Dark */
     --color-border-light: rgba(31, 42, 46, 0.15);    /* 1px Luminescence on Light */
 
@@ -164,17 +167,23 @@
   /* Color Utilities */
   .text-brand-slate { color: var(--color-slate); }
   .text-brand-teal { color: var(--color-teal); }
+  .text-brand-teal-text { color: var(--color-teal-text); }
   .text-brand-teal-deep { color: var(--color-teal-deep); }
   .text-brand-grey { color: var(--color-grey); }
+  .text-brand-grey-light { color: var(--color-grey-light); }
   .text-brand-green { color: var(--color-green); }
+  .text-brand-green-text { color: var(--color-green-text); }
   .text-brand-paper { color: var(--color-paper); }
   .text-brand-mist { color: var(--color-mist); }
 
   .bg-brand-slate { background-color: var(--color-slate); }
   .bg-brand-teal { background-color: var(--color-teal); }
+  .bg-brand-teal-text { background-color: var(--color-teal-text); }
   .bg-brand-teal-deep { background-color: var(--color-teal-deep); }
   .bg-brand-grey { background-color: var(--color-grey); }
+  .bg-brand-grey-light { background-color: var(--color-grey-light); }
   .bg-brand-green { background-color: var(--color-green); }
+  .bg-brand-green-text { background-color: var(--color-green-text); }
   .bg-brand-paper { background-color: var(--color-paper); }
   .bg-brand-mist { background-color: var(--color-mist); }
 

@@ -99,7 +99,7 @@ export function GlobalNavbar() {
               size="sm"
               icon={<ArrowRight className="w-3.5 h-3.5" />}
               iconPosition="right"
-              className="shadow-soft hover:bg-[#006666] hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97]"
+              className="shadow-soft hover:bg-brand-teal-deep hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97]"
             >
               Book Scoping Review
             </TactileLink>
@@ -183,7 +183,7 @@ export function GlobalNavbar() {
                 size="lg"
                 icon={<ArrowRight className="w-4 h-4" />}
                 iconPosition="right"
-                className="w-full justify-center shadow-elevated hover:bg-[#006666]"
+                className="w-full justify-center shadow-elevated hover:bg-brand-teal-deep"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Book Scoping Review
@@ -193,21 +193,21 @@ export function GlobalNavbar() {
               <div className="mt-8 pt-8 border-t border-brand-grey/20 space-y-3">
                 <Link
                   href="/privacy"
-                  className="font-body font-normal text-sm text-brand-grey hover:text-brand-paper transition-colors"
+                  className="font-body font-normal text-sm text-brand-grey-light hover:text-brand-paper transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Privacy Policy
                 </Link>
                 <Link
                   href="/terms"
-                  className="font-body font-normal text-sm text-brand-grey hover:text-brand-paper transition-colors"
+                  className="font-body font-normal text-sm text-brand-grey-light hover:text-brand-paper transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Terms of Service
                 </Link>
                 <Link
                   href="/compliance"
-                  className="font-body font-normal text-sm text-brand-grey hover:text-brand-paper transition-colors"
+                  className="font-body font-normal text-sm text-brand-grey-light hover:text-brand-paper transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Compliance & SLA

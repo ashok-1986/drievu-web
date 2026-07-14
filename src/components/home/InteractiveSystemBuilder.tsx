@@ -99,7 +99,7 @@ export function InteractiveSystemBuilder() {
         <h2 className="font-display font-medium text-3xl md:text-5xl tracking-[-0.02em] mb-4">
           Estimate Your Building&rsquo;s Needs.
         </h2>
-        <p className="font-body font-normal text-brand-grey text-sm md:text-base max-w-2xl leading-relaxed">
+        <p className="font-body font-normal text-brand-grey-light text-sm md:text-base max-w-2xl leading-relaxed">
           Use the sliders below to match your property size. We calculate the exact equipment, storage drives, and wiring required automatically&mdash;no technical jargon, no monthly cloud fees, and zero guesswork.
         </p>
       </div>
@@ -129,8 +129,8 @@ export function InteractiveSystemBuilder() {
               </label>
               <motion.span
                 key={cameraCount}
-                initial={{ scale: 1.1, color: "#008080" }}
-                animate={{ scale: 1, color: "#008080" }}
+                initial={{ scale: 1.1, color: "var(--color-teal-text)" }}
+                animate={{ scale: 1, color: "var(--color-teal-text)" }}
                 className="font-display font-medium text-lg font-mono inline-block"
               >
                 {cameraCount} Cameras
@@ -160,8 +160,8 @@ export function InteractiveSystemBuilder() {
               </label>
               <motion.span
                 key={retentionDays}
-                initial={{ scale: 1.1, color: "#008080" }}
-                animate={{ scale: 1, color: "#008080" }}
+                initial={{ scale: 1.1, color: "var(--color-teal-text)" }}
+                animate={{ scale: 1, color: "var(--color-teal-text)" }}
                 className="font-display font-medium text-lg font-mono inline-block"
               >
                 {retentionDays} Days
@@ -210,7 +210,7 @@ export function InteractiveSystemBuilder() {
                 />
                 <div>
                   <span className="font-medium text-brand-slate flex items-center gap-1">
-                    <Battery className="w-3.5 h-3.5 text-brand-teal" /> Emergency Battery Backup
+                    <Battery className="w-3.5 h-3.5 text-brand-teal-text" /> Emergency Battery Backup
                   </span>
                   <span className="text-[11px] text-brand-grey leading-tight block mt-0.5">
                     Keeps cameras recording even during building power cuts.
@@ -227,7 +227,7 @@ export function InteractiveSystemBuilder() {
                 />
                 <div>
                   <span className="font-medium text-brand-slate flex items-center gap-1">
-                    <Lock className="w-3.5 h-3.5 text-brand-teal" /> Keyless Door Entry
+                    <Lock className="w-3.5 h-3.5 text-brand-teal-text" /> Keyless Door Entry
                   </span>
                   <span className="text-[11px] text-brand-grey leading-tight block mt-0.5">
                     Add intercom entry panels and smart fobs for doors/gates.
@@ -253,7 +253,7 @@ export function InteractiveSystemBuilder() {
                 className="w-full justify-start p-5 rounded-xl border border-brand-grey/15 bg-white hover:bg-brand-paper"
                 onClick={(e) => e.preventDefault()}
               >
-                <div className="p-3 rounded-lg bg-brand-teal/10 text-brand-teal shrink-0">
+                <div className="p-3 rounded-lg bg-brand-teal/10 text-brand-teal-text shrink-0">
                   <HardDrive className="w-5 h-5" />
                 </div>
                 <div className="flex-1">
@@ -272,7 +272,7 @@ export function InteractiveSystemBuilder() {
                 className="w-full justify-start p-5 rounded-xl border border-brand-grey/15 bg-white hover:bg-brand-paper"
                 onClick={(e) => e.preventDefault()}
               >
-                <div className="p-3 rounded-lg bg-brand-teal/10 text-brand-teal shrink-0">
+                <div className="p-3 rounded-lg bg-brand-teal/10 text-brand-teal-text shrink-0">
                   <Wrench className="w-5 h-5" />
                 </div>
                 <div className="flex-1">
@@ -291,7 +291,7 @@ export function InteractiveSystemBuilder() {
                 className="w-full justify-start p-5 rounded-xl border border-brand-grey/15 bg-white hover:bg-brand-paper"
                 onClick={(e) => e.preventDefault()}
               >
-                <div className="p-3 rounded-lg bg-brand-green/10 text-brand-green shrink-0">
+                <div className="p-3 rounded-lg bg-brand-green/10 text-brand-green-text shrink-0">
                   <Shield className="w-5 h-5" />
                 </div>
                 <div className="flex-1">
@@ -307,7 +307,7 @@ export function InteractiveSystemBuilder() {
 
             {/* Copyable Specification Brief */}
             <div className="bg-brand-slate text-brand-paper p-4 rounded-xl font-mono text-[11px] leading-relaxed mb-8 shadow-inner">
-              <div className="flex justify-between items-center mb-2 pb-2 border-b border-brand-grey/20 text-brand-grey">
+              <div className="flex justify-between items-center mb-2 pb-2 border-b border-brand-grey/20 text-brand-grey-light">
                 <span>YOUR REQUIREMENT SUMMARY</span>
                 <button
                   onClick={handleCopy}
