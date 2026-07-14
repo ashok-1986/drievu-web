@@ -6,8 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Menu, X } from "lucide-react";
-import { TactileLink, Tactile, GliderTab } from "@/components/motion/MotionPrimitives";
-import { SPRING_TACTILE, EASING_OUT_EXPO } from "@/lib/physics";
+import { TactileLink, Tactile } from "@/components/motion/MotionPrimitives";
 
 export function GlobalNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -59,7 +58,7 @@ export function GlobalNavbar() {
             </span>
           </Link>
 
-          {/* Desktop Navigation - Horizontal links with underline glider */}
+          {/* Desktop Navigation with Underline Draw */}
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
@@ -82,12 +81,12 @@ export function GlobalNavbar() {
                   <motion.span
                     layoutId={isActive ? "nav-glider" : undefined}
                     transition={{ type: "spring", stiffness: 500, damping: 35 }}
-                    className={`absolute bottom-0 left-0 w-full h-[1.5px] bg-brand-teal transform origin-left ${
-                      isActive ? "scale-x-100" : "scale-x-0"
+                    className={`absolute bottom-0 left-0 w-full h-[1.5px] bg-brand-teal transform origin-left transition-transform duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                      isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                     }`}
                   />
                 </TactileLink>
-              );
+            );
             })}
           </nav>
 
@@ -99,9 +98,10 @@ export function GlobalNavbar() {
               size="sm"
               icon={<ArrowRight className="w-3.5 h-3.5" />}
               iconPosition="right"
-              className="shadow-soft hover:bg-brand-teal-deep hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97]"
+              className="shadow-soft hover:bg-brand-teal-deep hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97] inline-flex items-center gap-1.5 group cursor-pointer"
             >
-              Book Scoping Review
+              <span>Book Scoping Review</span>
+              <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" />
             </TactileLink>
           </div>
 
@@ -163,17 +163,51 @@ export function GlobalNavbar() {
 
               {/* Navigation Links */}
               <nav className="flex-1">
-                <GliderTab
-                  tabs={navLinks.map((l) => ({ id: l.href, label: l.name }))}
-                  activeTab={pathname}
-                  onChange={(href) => {
-                    window.location.href = href;
-                    setIsMobileMenuOpen(false);
-                  }}
-                  gliderId="mobile-nav-glider"
-                  columns={1}
-                  className="bg-brand-mist/50 border-brand-grey/20 grid-cols-1 gap-1.5 p-1.5 mb-8"
-                />
+                <TactileLink
+                  href="/"
+                  variant={pathname === "/" ? "primary" : "ghost"}
+                  size="sm"
+                  className="w-full justify-start text-left"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Home
+                </TactileLink>
+                <TactileLink
+                  href="/sectors"
+                  variant={pathname === "/sectors" ? "primary" : "ghost"}
+                  size="sm"
+                  className="w-full justify-start text-left"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Sectors
+                </TactileLink>
+                <TactileLink
+                  href="/track-record"
+                  variant={pathname === "/track-record" ? "primary" : "ghost"}
+                  size="sm"
+                  className="w-full justify-start text-left"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Track Record
+                </TactileLink>
+                <TactileLink
+                  href="/system-builder"
+                  variant={pathname === "/system-builder" ? "primary" : "ghost"}
+                  size="sm"
+                  className="w-full justify-start text-left"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  System Builder
+                </TactileLink>
+                <TactileLink
+                  href="/compliance"
+                  variant={pathname === "/compliance" ? "primary" : "ghost"}
+                  size="sm"
+                  className="w-full justify-start text-left"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Compliance
+                </TactileLink>
               </nav>
 
               {/* Mobile CTA */}

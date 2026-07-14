@@ -139,7 +139,7 @@ export default function SectorsPage() {
         </div>
       </section>
 
-      {/* STICKY SECTOR JUMP NAVIGATION — Single shared glider pill */}
+      {/* STICKY SECTOR JUMP NAVIGATION — Single shared glider */}
       <section className="bg-brand-mist/90 py-4 px-6 border-b border-brand-grey/15 sticky top-0 z-40 backdrop-blur-md shadow-soft">
         <div className="max-w-[1200px] mx-auto">
           <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-6 px-6">
