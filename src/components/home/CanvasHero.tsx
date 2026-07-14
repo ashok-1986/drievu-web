@@ -26,12 +26,12 @@ export function CanvasHero() {
     const imgDusk = new Image();
     const imgNight = new Image();
 
-    imgDay.src = "/hero/house-day.webp";
-    imgDusk.src = "/hero/house-dusk.webp";
-    imgNight.src = "/hero/house-night.webp";
+    imgDay.src = "/hero/house-day.jpeg";
+    imgDusk.src = "/hero/house-dusk.jpeg";
+    imgNight.src = "/hero/house-night.jpeg";
 
     let loadedCount = 0;
-    const checkLoaded = () => {
+    const handleLoadComplete = () => {
       loadedCount++;
       if (loadedCount === 3) {
         imagesRef.current = { day: imgDay, dusk: imgDusk, night: imgNight };
@@ -41,11 +41,34 @@ export function CanvasHero() {
       }
     };
 
-    imgDay.onload = checkLoaded;
-    imgDusk.onload = checkLoaded;
-    imgNight.onload = checkLoaded;
+    imgDay.onload = handleLoadComplete;
+    imgDusk.onload = handleLoadComplete;
+    imgNight.onload = handleLoadComplete;
+    
+    imgDay.onerror = handleLoadComplete;
+    imgDusk.onerror = handleLoadComplete;
+    imgNight.onerror = handleLoadComplete;
 
     // 2. Multi-Pass Alpha Blending Logic
+    const drawImageCover = (context: CanvasRenderingContext2D, img: HTMLImageElement, canvasWidth: number, canvasHeight: number) => {
+      if (!img.complete || img.naturalWidth === 0) return;
+      const imgRatio = img.naturalWidth / img.naturalHeight;
+      const canvasRatio = canvasWidth / canvasHeight;
+      let renderWidth = canvasWidth;
+      let renderHeight = canvasHeight;
+      let offsetX = 0;
+      let offsetY = 0;
+
+      if (imgRatio < canvasRatio) {
+        renderHeight = canvasWidth / imgRatio;
+        offsetY = (canvasHeight - renderHeight) / 2;
+      } else {
+        renderWidth = canvasHeight * imgRatio;
+        offsetX = (canvasWidth - renderWidth) / 2;
+      }
+      context.drawImage(img, offsetX, offsetY, renderWidth, renderHeight);
+    };
+
     const renderCanvas = (progress: number) => {
       const { day, dusk, night } = imagesRef.current;
       if (!day || !dusk || !night) return;
@@ -54,24 +77,24 @@ export function CanvasHero() {
 
       // Draw Base Layer: Day image is always painted first
       ctx.globalAlpha = 1.0;
-      ctx.drawImage(day, 0, 0, canvas.width, canvas.height);
+      drawImageCover(ctx, day, canvas.width, canvas.height);
 
       // Phase 1: Transition from Day to Dusk (Progress 0.0 to 0.5)
       if (progress <= 0.5) {
         const duskAlpha = progress / 0.5;
         ctx.globalAlpha = duskAlpha;
-        ctx.drawImage(dusk, 0, 0, canvas.width, canvas.height);
+        drawImageCover(ctx, dusk, canvas.width, canvas.height);
       } 
       // Phase 2: Transition from Dusk to Full Night (Progress 0.5 to 1.0)
       else {
         // Keep Dusk fully visible as intermediate base
         ctx.globalAlpha = 1.0;
-        ctx.drawImage(dusk, 0, 0, canvas.width, canvas.height);
+        drawImageCover(ctx, dusk, canvas.width, canvas.height);
 
         // Blend Night emission layer over it
         const nightAlpha = (progress - 0.5) / 0.5;
         ctx.globalAlpha = nightAlpha;
-        ctx.drawImage(night, 0, 0, canvas.width, canvas.height);
+        drawImageCover(ctx, night, canvas.width, canvas.height);
       }
     };
 
