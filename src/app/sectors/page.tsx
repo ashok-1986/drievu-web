@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight, CheckCircle2, Shield, Building2, Wrench, FileText } from "lucide-react";
-import { ScrollReveal, TactileLink, GliderTab } from "@/components/motion/MotionPrimitives";
+import { ScrollReveal, TactileLink } from "@/components/motion/MotionPrimitives";
 
 export default function SectorsPage() {
   const [activeSection, setActiveSection] = useState<string>("architects");
@@ -103,14 +103,16 @@ export default function SectorsPage() {
     <div className="w-full bg-brand-paper min-h-screen select-none">
       {/* HERO IMAGE — 100vh, 100% width, fixed cover */}
       <section className="relative w-full h-screen max-h-[100vh] overflow-hidden">
-        <Image
-          src="/hero/hero_sector.jpeg"
-          alt="Drievu sector engineering — UK architectural security systems"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
+        <div className="absolute inset-0">
+          <Image
+            src="/hero/hero_sector.jpeg"
+            alt="Drievu sector engineering — UK architectural security systems"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
         {/* Dark gradient overlay for text legibility */}
         <div className="absolute inset-0 bg-gradient-to-t from-brand-slate/90 via-brand-slate/50 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-brand-slate/80 via-brand-slate/40 to-transparent" />
@@ -137,14 +139,20 @@ export default function SectorsPage() {
         </div>
       </section>
 
-      {/* STICKY SECTOR JUMP NAVIGATION — Horizontal scroll on mobile, tabs on desktop */}
+      {/* STICKY SECTOR JUMP NAVIGATION — Single shared glider pill */}
       <section className="bg-brand-mist/90 py-4 px-6 border-b border-brand-grey/15 sticky top-0 z-40 backdrop-blur-md shadow-soft">
         <div className="max-w-[1200px] mx-auto">
           <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-6 px-6">
             <span className="font-display font-medium text-xs text-brand-grey uppercase tracking-widest mr-3 hidden sm:inline shrink-0 whitespace-nowrap">
               Jump To:
             </span>
-            <div className="flex gap-2 flex-nowrap">
+            <div className="relative flex gap-2 flex-nowrap">
+              {/* Single shared glider — moves between active tabs */}
+              <motion.div
+                layoutId="activeSectorTab"
+                transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                className="absolute inset-0 bg-brand-teal rounded-full shadow-soft -z-10"
+              />
               {sectorTabs.map((tab) => {
                 const isActive = activeSection === tab.id;
                 return (
@@ -157,13 +165,6 @@ export default function SectorsPage() {
                         : "bg-white text-brand-slate border border-brand-grey/20 hover:border-brand-teal hover:text-brand-teal"
                     }`}
                   >
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeSectorTab"
-                        transition={{ type: "spring", stiffness: 500, damping: 35 }}
-                        className="absolute inset-0 bg-brand-teal rounded-full shadow-soft -z-10"
-                      />
-                    )}
                     {tab.label}
                   </button>
                 );
