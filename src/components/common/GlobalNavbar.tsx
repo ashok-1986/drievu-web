@@ -2,20 +2,25 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 
 export function GlobalNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY >= 50); // Compresses after 50px scroll
+      setIsScrolled(window.scrollY >= 50);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // On home page: transparent until scroll. On other pages: always dark (scrolled state).
+  const shouldBeDark = !isHome || isScrolled;
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -28,8 +33,8 @@ export function GlobalNavbar() {
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? "h-[60px] bg-brand-slate/85 backdrop-blur-md border-b border-brand-grey/20 text-white shadow-soft"
+        shouldBeDark
+          ? "h-[60px] bg-brand-slate/95 backdrop-blur-md border-b border-brand-grey/20 text-white shadow-soft"
           : "h-[80px] bg-transparent border-b border-white/10 text-white"
       }`}
     >
@@ -37,9 +42,13 @@ export function GlobalNavbar() {
         
         {/* Brand Logo - Strict Weight-500 Ceiling with Optical Tracking */}
         <Link href="/" className="flex items-center gap-2.5 group cursor-pointer select-none">
-          <div className="w-8 h-8 rounded-xl bg-brand-teal flex items-center justify-center text-white font-display font-medium text-lg shadow-sm group-hover:bg-brand-slate transition-colors duration-200 active:scale-[0.95]">
-            D
-          </div>
+          <Image
+            src="/logo.png"
+            alt="Drievu"
+            width={40}
+            height={40}
+            className="group-hover:opacity-80 transition-opacity duration-200"
+          />
           <span className="font-display font-medium text-xl tracking-tight text-white">
             DRIEVU<span className="text-brand-teal">.</span>
           </span>
@@ -54,7 +63,11 @@ export function GlobalNavbar() {
                 key={link.name}
                 href={link.href}
                 className={`relative font-display font-medium text-[15px] tracking-tight transition-colors duration-150 py-1 cursor-pointer select-none ${
-                  isActive ? "text-brand-teal" : "text-white/85 hover:text-white"
+                  isActive
+                    ? "text-brand-teal"
+                    : shouldBeDark
+                      ? "text-brand-paper/85 hover:text-brand-paper"
+                      : "text-white/85 hover:text-white"
                 }`}
               >
                 {link.name}
