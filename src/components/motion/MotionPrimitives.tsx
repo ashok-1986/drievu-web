@@ -143,6 +143,50 @@ export function TactileLink({
 }
 
 /**
+ * Tactile - Generic wrapper for any element needing spring tap/hover physics
+ * Use for cards, divs, or any interactive surface that isn't a button/link
+ */
+export interface TactileProps {
+  children: React.ReactNode;
+  className?: string;
+  tapScale?: number;
+  hoverLift?: number;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+  role?: string;
+  tabIndex?: number;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLElement>) => void;
+  "aria-label"?: string;
+}
+
+export function Tactile({
+  children,
+  className = "",
+  tapScale = 0.98,
+  hoverLift = -2,
+  onClick,
+  role = "button",
+  tabIndex = 0,
+  onKeyDown,
+  "aria-label": ariaLabel,
+}: TactileProps) {
+  return (
+    <motion.div
+      whileTap={{ scale: tapScale }}
+      whileHover={{ y: hoverLift }}
+      transition={SPRING_TACTILE}
+      className={`cursor-pointer select-none ${className}`}
+      role={role}
+      tabIndex={tabIndex}
+      onClick={onClick}
+      onKeyDown={onKeyDown}
+      aria-label={ariaLabel}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/**
  * GliderTab - Segmented control with layoutId spring glider
  * Used for property type, resolution, sector navigation tabs
  */
@@ -152,11 +196,13 @@ export interface GliderTabProps {
   onChange: (id: string) => void;
   className?: string;
   gliderId?: string;
+  columns?: number; // override grid columns (default: tabs.length)
 }
 
-export function GliderTab({ tabs, activeTab, onChange, className = "", gliderId = "activeTabGlider" }: GliderTabProps) {
+export function GliderTab({ tabs, activeTab, onChange, className = "", gliderId = "activeTabGlider", columns }: GliderTabProps) {
+  const gridCols = columns || tabs.length;
   return (
-    <div className={`relative grid grid-cols-${tabs.length} gap-1.5 p-1.5 bg-brand-mist rounded-xl border border-brand-grey/15 ${className}`}>
+    <div className={`relative grid grid-cols-${gridCols} gap-1.5 p-1.5 bg-brand-mist rounded-xl border border-brand-grey/15 ${className}`}>
       <motion.div
         layoutId={gliderId}
         transition={SPRING_GLIDER}
