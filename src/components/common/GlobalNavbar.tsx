@@ -5,8 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Menu, X, ChevronDown } from "lucide-react";
-import { TactileLink, GliderTab, ScrollReveal } from "@/components/motion/MotionPrimitives";
+import { ArrowRight, Menu, X } from "lucide-react";
+import { TactileLink, Tactile, GliderTab } from "@/components/motion/MotionPrimitives";
 import { SPRING_TACTILE, EASING_OUT_EXPO } from "@/lib/physics";
 
 export function GlobalNavbar() {
@@ -45,29 +45,50 @@ export function GlobalNavbar() {
       >
         <div className="max-w-[1200px] mx-auto px-6 h-full flex items-center justify-between">
           
-          {/* Brand Logo - Strict Weight-500 Ceiling with Optical Tracking */}
+          {/* Brand Logo - Force white/bright for visibility on all backgrounds */}
           <Link href="/" className="flex items-center gap-2.5 group cursor-pointer select-none">
             <Image
               src="/logo.png"
               alt="Drievu"
               width={40}
               height={40}
-              className="group-hover:opacity-80 transition-opacity duration-200"
+              className="group-hover:opacity-80 transition-opacity duration-200 brightness-0 invert"
             />
             <span className="font-display font-medium text-xl tracking-tight text-white">
               DRIEVU<span className="text-brand-teal">.</span>
             </span>
           </Link>
 
-          {/* Desktop Navigation with Glider */}
-          <nav className="hidden lg:flex items-center gap-6">
-            <GliderTab
-              tabs={navLinks.map((l) => ({ id: l.href, label: l.name }))}
-              activeTab={pathname}
-              onChange={(href) => window.location.href = href}
-              gliderId="main-nav-glider"
-              className="bg-brand-mist/50 border-brand-grey/20"
-            />
+          {/* Desktop Navigation - Horizontal links with underline glider */}
+          <nav className="hidden lg:flex items-center gap-8">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <TactileLink
+                  key={link.name}
+                  href={link.href}
+                  variant="ghost"
+                  size="sm"
+                  className={`relative py-1 font-display font-medium text-sm tracking-tight transition-colors duration-150 ${
+                    isActive
+                      ? "text-brand-teal"
+                      : shouldBeDark
+                        ? "text-brand-paper/85 hover:text-brand-paper"
+                        : "text-white/85 hover:text-white"
+                  }`}
+                >
+                  {link.name}
+                  {/* Underline draw signature animation */}
+                  <motion.span
+                    layoutId={isActive ? "nav-glider" : undefined}
+                    transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                    className={`absolute bottom-0 left-0 w-full h-[1.5px] bg-brand-teal transform origin-left ${
+                      isActive ? "scale-x-100" : "scale-x-0"
+                    }`}
+                  />
+                </TactileLink>
+              );
+            })}
           </nav>
 
           {/* Primary Lead Capture CTA - Directs to Requirement Form */}
@@ -126,7 +147,7 @@ export function GlobalNavbar() {
               {/* Header */}
               <div className="flex items-center justify-between mb-8">
                 <Link href="/" className="flex items-center gap-2.5" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Image src="/logo.png" alt="Drievu" width={32} height={32} />
+                  <Image src="/logo.png" alt="Drievu" width={32} height={32} className="brightness-0 invert" />
                   <span className="font-display font-medium text-lg tracking-tight text-white">
                     DRIEVU<span className="text-brand-teal">.</span>
                   </span>
@@ -150,6 +171,7 @@ export function GlobalNavbar() {
                     setIsMobileMenuOpen(false);
                   }}
                   gliderId="mobile-nav-glider"
+                  columns={1}
                   className="bg-brand-mist/50 border-brand-grey/20 grid-cols-1 gap-1.5 p-1.5 mb-8"
                 />
               </nav>
