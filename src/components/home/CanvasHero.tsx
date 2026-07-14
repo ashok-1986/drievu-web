@@ -1,14 +1,16 @@
+// src/components/home/CanvasHero.tsx
 "use client";
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, ShieldCheck, HardDrive, Cpu } from "lucide-react";
 
 export function CanvasHero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
+  // Cindy Zhu Memory Buffer: Preloads 8K UK residence assets into system RAM
   const imagesRef = useRef<{
     day: HTMLImageElement | null;
     dusk: HTMLImageElement | null;
@@ -21,100 +23,88 @@ export function CanvasHero() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // 1. Asset Pipeline Preloading
     const imgDay = new Image();
     const imgDusk = new Image();
     const imgNight = new Image();
 
-    imgDay.src = "/hero/house-day.jpeg";
-    imgDusk.src = "/hero/house-dusk.jpeg";
-    imgNight.src = "/hero/house-night.jpeg";
+    imgDay.src = "/hero/house-day.webp";
+    imgDusk.src = "/hero/house-dusk.webp";
+    imgNight.src = "/hero/house-night.webp";
 
     let loadedCount = 0;
-    const handleLoadComplete = () => {
+    const checkLoaded = () => {
       loadedCount++;
       if (loadedCount === 3) {
         imagesRef.current = { day: imgDay, dusk: imgDusk, night: imgNight };
         setImagesLoaded(true);
         handleResize();
-        renderCanvas(0); // Initial frame paint
+        renderCanvas(0);
       }
     };
 
-    imgDay.onload = handleLoadComplete;
-    imgDusk.onload = handleLoadComplete;
-    imgNight.onload = handleLoadComplete;
-    
-    imgDay.onerror = handleLoadComplete;
-    imgDusk.onerror = handleLoadComplete;
-    imgNight.onerror = handleLoadComplete;
+    imgDay.onload = checkLoaded;
+    imgDusk.onload = checkLoaded;
+    imgNight.onload = checkLoaded;
 
-    // 2. Multi-Pass Alpha Blending Logic
-    const drawImageCover = (context: CanvasRenderingContext2D, img: HTMLImageElement, canvasWidth: number, canvasHeight: number) => {
-      if (!img.complete || img.naturalWidth === 0) return;
-      const imgRatio = img.naturalWidth / img.naturalHeight;
-      const canvasRatio = canvasWidth / canvasHeight;
-      let renderWidth = canvasWidth;
-      let renderHeight = canvasHeight;
+    const drawCoverImage = (img: HTMLImageElement) => {
+      const canvasRatio = canvas.width / canvas.height;
+      const imgRatio = img.width / img.height;
+      let renderWidth = canvas.width;
+      let renderHeight = canvas.height;
       let offsetX = 0;
       let offsetY = 0;
 
-      if (imgRatio < canvasRatio) {
-        renderHeight = canvasWidth / imgRatio;
-        offsetY = (canvasHeight - renderHeight) / 2;
+      if (canvasRatio > imgRatio) {
+        renderHeight = canvas.width / imgRatio;
+        offsetY = (canvas.height - renderHeight) / 2;
       } else {
-        renderWidth = canvasHeight * imgRatio;
-        offsetX = (canvasWidth - renderWidth) / 2;
+        renderWidth = canvas.height * imgRatio;
+        offsetX = (canvas.width - renderWidth) / 2;
       }
-      context.drawImage(img, offsetX, offsetY, renderWidth, renderHeight);
+      ctx.drawImage(img, offsetX, offsetY, renderWidth, renderHeight);
     };
 
+    // Multi-Pass GPU Alpha Blending across the 300vh runway
     const renderCanvas = (progress: number) => {
       const { day, dusk, night } = imagesRef.current;
       if (!day || !dusk || !night) return;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw Base Layer: Day image is always painted first
+      // Base Layer: Day image is always painted first
       ctx.globalAlpha = 1.0;
-      drawImageCover(ctx, day, canvas.width, canvas.height);
+      drawCoverImage(day);
 
-      // Phase 1: Transition from Day to Dusk (Progress 0.0 to 0.5)
+      // Phase 1 (0.0 to 0.5): Crossfade Day to Dusk
       if (progress <= 0.5) {
         const duskAlpha = progress / 0.5;
         ctx.globalAlpha = duskAlpha;
-        drawImageCover(ctx, dusk, canvas.width, canvas.height);
+        drawCoverImage(dusk);
       } 
-      // Phase 2: Transition from Dusk to Full Night (Progress 0.5 to 1.0)
+      // Phase 2 (0.5 to 1.0): Crossfade Dusk to Night Emission
       else {
-        // Keep Dusk fully visible as intermediate base
         ctx.globalAlpha = 1.0;
-        drawImageCover(ctx, dusk, canvas.width, canvas.height);
+        drawCoverImage(dusk);
 
-        // Blend Night emission layer over it
         const nightAlpha = (progress - 0.5) / 0.5;
         ctx.globalAlpha = nightAlpha;
-        drawImageCover(ctx, night, canvas.width, canvas.height);
+        drawCoverImage(night);
       }
     };
 
-    // 3. Scroll Management Listener
     const handleScroll = () => {
       if (!containerRef.current) return;
-      
       const rect = containerRef.current.getBoundingClientRect();
-      const progress = Math.min(Math.max(-rect.top / (containerRef.current.scrollHeight - window.innerHeight), 0), 1);
-      
+      const totalScrollable = containerRef.current.scrollHeight - window.innerHeight;
+      const scrolled = -rect.top;
+      const progress = Math.min(Math.max(scrolled / totalScrollable, 0), 1);
       requestAnimationFrame(() => renderCanvas(progress));
     };
 
-    // 4. Responsive Aspect-Ratio Scaling
     const handleResize = () => {
       if (!canvas) return;
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      
-      // Re-trigger scroll paint to prevent blank canvas stretching
       handleScroll();
     };
 
@@ -128,49 +118,59 @@ export function CanvasHero() {
   }, []);
 
   return (
+    /* 
+     * RESTORED TO 300VH RUNWAY:
+     * Provides generous, uncompressed physical pacing for the day-to-night transition.
+     */
     <div ref={containerRef} className="relative w-full h-[300vh] bg-brand-slate select-none">
-      {/* STICKY WINDOW: Locks view to screen height while scrolling the track */}
+      
+      {/* STICKY CANVAS TRACK */}
       <div className="sticky top-0 left-0 w-full h-screen overflow-hidden z-0">
         <canvas 
           ref={canvasRef} 
-          className="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500"
+          className="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-700"
           style={{ opacity: imagesLoaded ? 1 : 0 }}
         />
         
-        {/* Subtle cinematic gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-slate/85 via-brand-slate/40 to-transparent z-10 pointer-events-none" />
+        {/* Left-to-Right Scrim guarantees text legibility without clunky white card boxes */}
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-slate/90 via-brand-slate/50 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-slate via-transparent to-transparent opacity-80 z-10 pointer-events-none" />
       </div>
 
-      {/* FOREGROUND CONTENT LAYER: Content fades and shifts past naturally */}
+      {/* 
+       * 3-STAGE NARRATIVE CONTENT OVERLAY:
+       * Exactly 3 vertically stacked screens (300vh total) to eliminate all empty voids.
+       */}
       <div className="absolute inset-0 z-20 pointer-events-none flex flex-col justify-between">
-        {/* Section 1: Hero Text (Top of Track) */}
-        <section className="h-screen w-full max-w-[1200px] mx-auto px-6 flex flex-col justify-center pointer-events-auto">
-          <div className="max-w-3xl space-y-6">
-            <div className="inline-flex items-center gap-2 text-brand-paper/90 text-xs font-display font-medium uppercase tracking-widest drop-shadow-sm">
+        
+        {/* CHAPTER 1 (0–100vh): Morning Aesthetics & Planning */}
+        <section className="h-screen w-full max-w-[1200px] mx-auto px-6 md:px-12 flex flex-col justify-center pointer-events-auto">
+          <div className="max-w-2xl space-y-6 pt-12">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10 text-white text-xs font-display font-medium uppercase tracking-widest">
               <span className="w-2 h-2 rounded-full bg-brand-teal" />
               Independent UK Engineering · London Based
             </div>
 
-            <h1 className="text-white font-display font-medium text-[clamp(2.75rem,7vw,6.5rem)] leading-[0.95] tracking-tightest uppercase drop-shadow-sm">
+            <h1 className="font-display font-medium text-[clamp(2.75rem,7vw,6.5rem)] leading-[0.92] tracking-[-0.03em] text-white uppercase drop-shadow-md">
               Security Systems,<br />
               <span className="text-brand-teal">Delivered Properly.</span>
             </h1>
 
-            <p className="text-brand-paper/90 font-body font-normal text-base md:text-lg max-w-xl leading-relaxed drop-shadow-sm">
+            <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg max-w-xl leading-relaxed drop-shadow">
               Most properties buy good hardware but end up with poor results—late installations, messy wiring, and systems nobody maintains. We design, install, and look after your security from start to finish.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <Link
                 href="/consultation"
-                className="bg-brand-teal text-white font-display font-medium text-sm px-8 py-4 rounded-xl hover:bg-[#006666] transition-colors flex items-center gap-2 group shadow-lg shadow-brand-teal/20"
+                className="bg-brand-teal text-white font-display font-medium text-sm px-8 py-4 rounded-xl hover:bg-[#006666] transition-all duration-200 active:scale-[0.98] flex items-center gap-2 group shadow-elevated cursor-pointer"
               >
                 <span>Book a Scoping Review</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/system-builder"
-                className="bg-brand-paper/95 text-brand-slate border border-brand-grey/30 font-display font-medium text-sm px-8 py-4 rounded-xl hover:border-brand-teal hover:bg-white transition-colors shadow-md"
+                className="bg-brand-slate/80 text-white border border-white/20 backdrop-blur-md font-display font-medium text-sm px-8 py-4 rounded-xl hover:border-brand-teal hover:bg-brand-slate transition-all duration-200 active:scale-[0.98] cursor-pointer"
               >
                 Try Interactive Estimator
               </Link>
@@ -178,42 +178,58 @@ export function CanvasHero() {
           </div>
         </section>
 
-        {/* Section 2: Informational Interstitial (Middle of Track) */}
-        <section className="h-screen w-full max-w-[1200px] mx-auto px-6 flex items-center justify-end pointer-events-auto">
-          <div className="text-white max-w-md space-y-4 drop-shadow-sm">
-            <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block">
-              Continuous Protection
-            </span>
-            <h2 className="font-display font-medium text-xl md:text-2xl tracking-tight uppercase">
-              Impeccable Transitions from Day to Night.
+        {/* CHAPTER 2 (100–200vh): Twilight Automation & Smart Triggers (NEW MIDDLE FILL) */}
+        <section className="h-screen w-full max-w-[1200px] mx-auto px-6 md:px-12 flex items-center justify-start pointer-events-auto">
+          <div className="max-w-xl space-y-4 bg-brand-slate/75 backdrop-blur-md p-8 md:p-10 rounded-2xl border border-white/10 shadow-elevated">
+            <div className="inline-flex items-center gap-2 text-brand-teal font-display font-medium text-xs uppercase tracking-widest">
+              <Cpu className="w-4 h-4" />
+              <span>Intelligent Building Automation</span>
+            </div>
+            
+            <h2 className="font-display font-medium text-2xl md:text-4xl text-white tracking-tight uppercase leading-snug">
+              Invisible By Day.<br />
+              <span className="text-brand-teal">Vigilant At Dusk.</span>
             </h2>
-            <p className="font-body font-normal text-xs md:text-sm text-brand-paper/80 leading-relaxed">
-              Scroll down to watch our engineered design adapt. As day light turns into nautical twilight, our architectural integrations seamlessly activate interior zones, keyless checkpoints, and exterior security paths automatically.
-            </p>
+            
+            <h3 className="font-body font-normal text-sm md:text-base text-brand-paper/90 leading-relaxed">
+              As ambient UK daylight fades, our integrated control systems autonomously adapt your property. Exterior perimeter lighting softly illuminates without blinding neighbors, while smart surveillance cameras silently shift into high-contrast night vision modes.
+            </h3>
+
+            <div className="pt-2 flex items-center gap-6 border-t border-white/10 font-mono text-xs text-brand-grey">
+              <span>[01: Autonomous Lux Sensors]</span>
+              <span>[02: Zero False Alarms]</span>
+            </div>
           </div>
         </section>
 
-        {/* Section 3: Value Summary Footer (End of Track) */}
-        <section className="h-screen w-full max-w-[1200px] mx-auto px-6 flex flex-col justify-center pointer-events-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 font-body text-xs text-brand-paper/90 w-full drop-shadow-sm">
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-brand-teal shrink-0" />
-              <span className="font-medium text-white">Full Handover Documents</span>
+        {/* CHAPTER 3 (200–300vh): Active Night Defense & Local Storage */}
+        <section className="h-screen w-full max-w-[1200px] mx-auto px-6 md:px-12 flex items-center justify-end pointer-events-auto pb-12">
+          <div className="bg-brand-slate/85 backdrop-blur-md text-white p-8 md:p-10 rounded-2xl border border-white/10 max-w-md shadow-elevated space-y-4">
+            <div className="inline-flex items-center gap-2 text-brand-teal font-display font-medium text-xs uppercase tracking-widest">
+              <HardDrive className="w-4 h-4" />
+              <span>Active Nighttime Defense</span>
             </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-brand-teal shrink-0" />
-              <span className="font-medium text-white">20+ Years Track Record</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-brand-teal shrink-0" />
-              <span className="font-medium text-white">Strict Privacy Protected</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-brand-teal shrink-0" />
-              <span className="font-medium text-white">British Safety Standards</span>
+
+            <h2 className="font-display font-medium text-xl md:text-3xl tracking-tight uppercase leading-snug">
+              Total Protection.<br />
+              <span className="text-brand-teal">Zero Cloud Fees.</span>
+            </h2>
+
+            <h3 className="font-body font-normal text-xs md:text-sm text-brand-paper/85 leading-relaxed">
+              While your building sleeps, dedicated on-site video recorders capture crystal-clear 4K footage across every critical entry point. Your sensitive security data stays safely inside your property under strict UK GDPR privacy standards—never hosted on external cloud servers.
+            </h3>
+
+            <div className="pt-2 border-t border-white/10 flex items-center justify-between font-display font-medium text-xs text-brand-teal">
+              <span className="flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-brand-green" /> British Standards Compliant
+              </span>
+              <span className="underline cursor-pointer hover:text-white transition-colors">
+                View SLA Terms
+              </span>
             </div>
           </div>
         </section>
+
       </div>
     </div>
   );
