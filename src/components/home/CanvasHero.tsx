@@ -123,7 +123,7 @@ export function CanvasHero() {
 
   return (
     /* 
-     * RESTORED TO 300VH RUNWAY:
+     * 300VH RUNWAY — Three Full-Screen Chapters
      * Provides generous, uncompressed physical pacing for the day-to-night transition.
      */
     <div ref={containerRef} className="relative w-full h-[300vh] bg-brand-slate select-none">

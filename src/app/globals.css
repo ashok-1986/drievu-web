@@ -1,3 +1,253 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ============================================
+   DRIEVU DESIGN SYSTEM — CSS CUSTOM PROPERTIES
+   Strict OKLCH Color Space + Font-Weight 500 Ceiling
+   ============================================ */
+
+@layer base {
+  :root {
+    /* Core Brand Palette (OKLCH-derived Hex) */
+    --color-slate: #1F2A2E;        /* Deep Architectural Slate — Primary Dark BG */
+    --color-paper: #FAFAF9;        /* Warm Industrial Paper — Primary Light BG */
+    --color-mist: #EBF0F2;         /* Soft Mist — Secondary Component BG */
+    --color-teal: #008080;         /* Drievu Teal — Primary Interactive Accent */
+    --color-teal-deep: #006666;    /* Pressed/Hover Teal */
+    --color-grey: #708088;         /* Warm Grey — Secondary Prose & Subtitles */
+    --color-green: #2E9960;        /* Verified/Success State */
+    --color-border-dark: rgba(255, 255, 255, 0.12);  /* 1px Luminescence on Dark */
+    --color-border-light: rgba(31, 42, 46, 0.15);    /* 1px Luminescence on Light */
+
+    /* Font Families (loaded via next/font in layout.tsx) */
+    --font-hanken: var(--font-hanken-grotesk);
+    --font-ibm-plex: var(--font-ibm-plex-sans);
+    --font-ibm-plex-mono: var(--font-ibm-plex-mono);
+
+    /* Optical Typography Scale (clamp fluid) */
+    --display-hero-size: clamp(2.75rem, 7vw, 6.5rem);
+    --display-hero-leading: 0.92;
+    --display-hero-tracking: -0.035em;
+
+    --display-section-size: clamp(2rem, 4vw, 3.75rem);
+    --display-section-leading: 0.98;
+    --display-section-tracking: -0.025em;
+
+    --body-prose-size: clamp(1rem, 1.1vw, 1.125rem);
+    --body-prose-leading: 1.65;
+    --body-prose-tracking: -0.005em;
+
+    --label-technical-size: 0.75rem;
+    --label-technical-leading: 1.2;
+    --label-technical-tracking: 0.08em;
+
+    /* Spatial System */
+    --space-micro-sm: 0.75rem;   /* 12px */
+    --space-micro-md: 1rem;      /* 16px */
+    --space-micro-lg: 1.5rem;    /* 24px */
+    --space-meso-sm: 2rem;       /* 32px */
+    --space-meso-md: 3rem;       /* 48px */
+    --space-meso-lg: 4rem;       /* 64px */
+    --space-macro-sm: 5rem;      /* 80px */
+    --space-macro-md: 7rem;      /* 112px */
+    --space-macro-lg: 9rem;      /* 144px */
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -2px rgba(31, 42, 46, 0.06);
+    --shadow-elevated: 0 12px 30px -4px rgba(0, 128, 128, 0.18);
+    --shadow-inner-subtle: inset 0 2px 4px 0 rgba(31, 42, 46, 0.04);
+
+    /* Border Radius */
+    --radius-sm: 0.5rem;   /* 8px */
+    --radius-md: 0.75rem;  /* 12px */
+    --radius-lg: 1rem;     /* 16px */
+    --radius-xl: 1.5rem;   /* 24px */
+
+    /* Z-Index Layers */
+    --z-canvas-bg: 0;
+    --z-scrim: 10;
+    --z-content: 20;
+    --z-sticky-nav: 50;
+    --z-modal-overlay: 100;
+
+    /* Canvas Hero Runway (vh) */
+    --canvas-runway-vh: 200;
+  }
+
+  /* Reduced Motion — Instant crossfades, disable springs */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* ============================================
+     SEMANTIC UTILITY CLASSES — Design Token Access
+     ============================================ */
+
+  /* Display Typography — Hanken Grotesk, Weight ≤ 500 */
+  .font-display-hero {
+    font-family: var(--font-hanken), sans-serif;
+    font-weight: 500;
+    font-size: var(--display-hero-size);
+    line-height: var(--display-hero-leading);
+    letter-spacing: var(--display-hero-tracking);
+    text-transform: uppercase;
+  }
+
+  .font-display-section {
+    font-family: var(--font-hanken), sans-serif;
+    font-weight: 500;
+    font-size: var(--display-section-size);
+    line-height: var(--display-section-leading);
+    letter-spacing: var(--display-section-tracking);
+  }
+
+  .font-display-metric {
+    font-family: var(--font-hanken), sans-serif;
+    font-weight: 500;
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  /* Body Typography — IBM Plex Sans, Weight ≤ 500 */
+  .font-body-prose {
+    font-family: var(--font-ibm-plex), sans-serif;
+    font-weight: 400;
+    font-size: var(--body-prose-size);
+    line-height: var(--body-prose-leading);
+    letter-spacing: var(--body-prose-tracking);
+  }
+
+  .font-body-sm {
+    font-family: var(--font-ibm-plex), sans-serif;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    letter-spacing: -0.005em;
+  }
+
+  /* Label/Technical — Hanken Grotesk Medium, Wide Tracking */
+  .font-label-technical {
+    font-family: var(--font-hanken), sans-serif;
+    font-weight: 500;
+    font-size: var(--label-technical-size);
+    line-height: var(--label-technical-leading);
+    letter-spacing: var(--label-technical-tracking);
+    text-transform: uppercase;
+  }
+
+  .font-label-micro {
+    font-family: var(--font-hanken), sans-serif;
+    font-weight: 500;
+    font-size: 0.625rem;
+    line-height: 1.2;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Monospace — IBM Plex Mono */
+  .font-mono-technical {
+    font-family: var(--font-ibm-plex-mono), monospace;
+    font-weight: 400;
+  }
+
+  /* Color Utilities */
+  .text-brand-slate { color: var(--color-slate); }
+  .text-brand-teal { color: var(--color-teal); }
+  .text-brand-teal-deep { color: var(--color-teal-deep); }
+  .text-brand-grey { color: var(--color-grey); }
+  .text-brand-green { color: var(--color-green); }
+  .text-brand-paper { color: var(--color-paper); }
+  .text-brand-mist { color: var(--color-mist); }
+
+  .bg-brand-slate { background-color: var(--color-slate); }
+  .bg-brand-teal { background-color: var(--color-teal); }
+  .bg-brand-teal-deep { background-color: var(--color-teal-deep); }
+  .bg-brand-grey { background-color: var(--color-grey); }
+  .bg-brand-green { background-color: var(--color-green); }
+  .bg-brand-paper { background-color: var(--color-paper); }
+  .bg-brand-mist { background-color: var(--color-mist); }
+
+  /* Luminescence Borders */
+  .border-luminescence-dark {
+    border: 1px solid var(--color-border-dark);
+  }
+  .border-luminescence-light {
+    border: 1px solid var(--color-border-light);
+  }
+
+  /* Shadow Utilities */
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-elevated { box-shadow: var(--shadow-elevated); }
+  .shadow-inner-subtle { box-shadow: var(--shadow-inner-subtle); }
+
+  /* Focus Ring — Accessible, No Default Outline */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-brand-paper;
+  }
+
+  /* Tactile Press — Instant Scale Down */
+  .tactile-press {
+    @apply active:scale-[0.98] transition-transform duration-75;
+  }
+
+  .tactile-hover-lift {
+    @apply hover:-translate-y-0.5 transition-transform duration-150;
+  }
+
+  /* Scrollbar Hide */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Glassmorphism Overlay */
+  .glass-overlay {
+    @apply backdrop-blur-md bg-white/10 border border-white/10;
+  }
+
+  .glass-card {
+    @apply backdrop-blur-md bg-brand-mist/80 border border-brand-grey/20;
+  }
+}
+
+@layer utilities {
+  /* Fluid Spacing Utilities */
+  .py-micro-sm { padding-top: var(--space-micro-sm); padding-bottom: var(--space-micro-sm); }
+  .py-micro-md { padding-top: var(--space-micro-md); padding-bottom: var(--space-micro-md); }
+  .py-micro-lg { padding-top: var(--space-micro-lg); padding-bottom: var(--space-micro-lg); }
+  .py-meso-sm { padding-top: var(--space-meso-sm); padding-bottom: var(--space-meso-sm); }
+  .py-meso-md { padding-top: var(--space-meso-md); padding-bottom: var(--space-meso-md); }
+  .py-meso-lg { padding-top: var(--space-meso-lg); padding-bottom: var(--space-meso-lg); }
+  .py-macro-sm { padding-top: var(--space-macro-sm); padding-bottom: var(--space-macro-sm); }
+  .py-macro-md { padding-top: var(--space-macro-md); padding-bottom: var(--space-macro-md); }
+  .py-macro-lg { padding-top: var(--space-macro-lg); padding-bottom: var(--space-macro-lg); }
+
+  .gap-micro-sm { gap: var(--space-micro-sm); }
+  .gap-micro-md { gap: var(--space-micro-md); }
+  .gap-micro-lg { gap: var(--space-micro-lg); }
+  .gap-meso-sm { gap: var(--space-meso-sm); }
+  .gap-meso-md { gap: var(--space-meso-md); }
+  .gap-meso-lg { gap: var(--space-meso-lg); }
+  .gap-macro-sm { gap: var(--space-macro-sm); }
+  .gap-macro-md { gap: var(--space-macro-md); }
+  .gap-macro-lg { gap: var(--space-macro-lg); }
+
+  /* Canvas Hero Runway Height */
+  .h-canvas-runway {
+    height: calc(var(--canvas-runway-vh) * 1vh);
+  }
+}

@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, Shield, Building2, Wrench, FileText } from "lucide-react";
+import { ScrollReveal, TactileLink, GliderTab } from "@/components/motion/MotionPrimitives";
 
 export default function SectorsPage() {
   const [activeSection, setActiveSection] = useState<string>("architects");
@@ -93,6 +93,11 @@ export default function SectorsPage() {
     },
   ];
 
+  const sectorTabs = sectorsData.map((s) => ({
+    id: s.id,
+    label: s.title,
+  }));
+
   return (
     <div className="w-full pt-28 md:pt-36 pb-24 bg-brand-paper min-h-screen select-none">
       {/* HERO HEADER SECTION */}
@@ -111,7 +116,7 @@ export default function SectorsPage() {
           </p>
 
           <div className="bg-brand-mist/10 border-l-4 border-brand-teal p-5 rounded-r-xl max-w-4xl font-body text-xs text-brand-grey leading-relaxed font-mono">
-            <strong>PROCUREMENT DUE DILIGENCE:</strong> National-infrastructure track records referenced below were delivered by members of Drievu’s leadership team over the past two decades in prior executive roles. Drievu Limited was incorporated in the UK in 2024 (Company No. 15479482).
+            <strong>PROCUREMENT DUE DILIGENCE:</strong> National-infrastructure track records referenced below were delivered by members of Drievu&rsquo;s leadership team over the past two decades in prior executive roles. Drievu Limited was incorporated in the UK in 2024 (Company No. 15479482).
           </div>
         </div>
       </section>
@@ -125,29 +130,12 @@ export default function SectorsPage() {
           <span className="font-display font-medium text-xs text-brand-grey uppercase tracking-widest mr-2 hidden sm:inline shrink-0">
             Jump To:
           </span>
-          {sectorsData.map((tab) => {
-            const isActive = activeSection === tab.id;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => scrollToSection(tab.id)}
-                className={`relative px-5 py-2.5 rounded-full font-display font-medium text-xs whitespace-nowrap z-10 transition-colors duration-150 active:scale-[0.97] cursor-pointer ${
-                  isActive
-                    ? "text-white"
-                    : "bg-white text-brand-slate border border-brand-grey/20 hover:border-brand-teal hover:text-brand-teal"
-                }`}
-              >
-                {isActive && (
-                  <motion.div
-                    layoutId="activeSectorTab"
-                    transition={{ type: "spring", stiffness: 500, damping: 35 }}
-                    className="absolute inset-0 bg-brand-teal rounded-full shadow-soft -z-10"
-                  />
-                )}
-                {tab.title}
-              </button>
-            );
-          })}
+          <GliderTab
+            tabs={sectorTabs}
+            activeTab={activeSection}
+            onChange={scrollToSection}
+            gliderId="sector-jump-bar"
+          />
         </div>
       </section>
 
@@ -158,88 +146,90 @@ export default function SectorsPage() {
           const isEven = idx % 2 === 1;
 
           return (
-            <section
-              key={sec.id}
-              id={sec.id}
-              className="py-20 md:py-28 scroll-mt-32"
-            >
-              <div className={`grid grid-cols-1 lg:grid-cols-12 gap-12 items-center ${isEven ? "lg:grid-flow-dense" : ""}`}>
-                
-                {/* Text & Value Proposition */}
-                <div className={`lg:col-span-7 space-y-8 ${isEven ? "lg:col-start-6" : ""}`}>
-                  <div>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-brand-mist border border-brand-grey/20 text-brand-slate text-xs font-display font-medium uppercase tracking-widest mb-4">
-                      <IconComp className="w-3.5 h-3.5 text-brand-teal" />
-                      <span>Sector Profile 0{idx + 1}</span>
+            <ScrollReveal key={sec.id} direction="up">
+              <section
+                id={sec.id}
+                className="py-20 md:py-28 scroll-mt-32"
+              >
+                <div className={`grid grid-cols-1 lg:grid-cols-12 gap-12 items-center ${isEven ? "lg:grid-flow-dense" : ""}`}>
+                  
+                  {/* Text & Value Proposition */}
+                  <div className={`lg:col-span-7 space-y-8 ${isEven ? "lg:col-start-6" : ""}`}>
+                    <div>
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-brand-mist border border-brand-grey/20 text-brand-slate text-xs font-display font-medium uppercase tracking-widest mb-4">
+                        <IconComp className="w-3.5 h-3.5 text-brand-teal" />
+                        <span>Sector Profile 0{idx + 1}</span>
+                      </div>
+                      <h2 className="font-display font-medium text-3xl md:text-5xl text-brand-slate tracking-tight mb-3">
+                        {sec.title}
+                      </h2>
+                      <p className="font-display font-medium text-lg text-brand-teal">
+                        {sec.tagline}
+                      </p>
                     </div>
-                    <h2 className="font-display font-medium text-3xl md:text-5xl text-brand-slate tracking-tight mb-3">
-                      {sec.title}
-                    </h2>
-                    <p className="font-display font-medium text-lg text-brand-teal">
-                      {sec.tagline}
-                    </p>
-                  </div>
 
-                  {/* Problem vs Solution Boxes */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-                    <div className="bg-brand-mist p-6 rounded-2xl border border-brand-grey/20 space-y-2">
+                    {/* Problem vs Solution Boxes */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                      <div className="bg-brand-mist p-6 rounded-2xl border border-brand-grey/20 space-y-2">
+                        <span className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block">
+                          The Common Problem
+                        </span>
+                        <p className="font-body font-normal text-sm text-brand-grey leading-relaxed">
+                          {sec.problem}
+                        </p>
+                      </div>
+
+                      <div className="bg-white p-6 rounded-2xl border border-brand-teal/40 shadow-soft space-y-2">
+                        <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-wider block flex items-center gap-1.5">
+                          <CheckCircle2 className="w-3.5 h-3.5" /> How Drievu Solves It
+                        </span>
+                        <p className="font-body font-normal text-sm text-brand-slate/85 leading-relaxed">
+                          {sec.solution}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Proof Point */}
+                    <div className="border-l-2 border-brand-slate pl-5 py-1 space-y-1">
                       <span className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block">
-                        The Common Problem
+                        Proof Point: {sec.proofTitle}
                       </span>
-                      <p className="font-body font-normal text-sm text-brand-grey leading-relaxed">
-                        {sec.problem}
+                      <p className="font-body font-normal text-xs md:text-sm text-brand-grey leading-relaxed">
+                        {sec.proofDesc}
                       </p>
                     </div>
 
-                    <div className="bg-white p-6 rounded-2xl border border-brand-teal/40 shadow-soft space-y-2">
-                      <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-wider block flex items-center gap-1.5">
-                        <CheckCircle2 className="w-3.5 h-3.5" /> How Drievu Solves It
-                      </span>
-                      <p className="font-body font-normal text-sm text-brand-slate/85 leading-relaxed">
-                        {sec.solution}
-                      </p>
+                    {/* Conversion Goal */}
+                    <div className="pt-2">
+                      <TactileLink
+                        href="/consultation"
+                        variant="primary"
+                        icon={<ArrowRight className="w-4 h-4" />}
+                        iconPosition="right"
+                      >
+                        Book a Scoping Review for This Sector
+                      </TactileLink>
                     </div>
                   </div>
 
-                  {/* Proof Point */}
-                  <div className="border-l-2 border-brand-slate pl-5 py-1 space-y-1">
-                    <span className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block">
-                      Proof Point: {sec.proofTitle}
-                    </span>
-                    <p className="font-body font-normal text-xs md:text-sm text-brand-grey leading-relaxed">
-                      {sec.proofDesc}
-                    </p>
-                  </div>
-
-                  {/* Conversion Goal */}
-                  <div className="pt-2">
-                    <Link
-                      href="/consultation"
-                      className="inline-flex items-center gap-2 bg-brand-teal text-white font-display font-medium text-sm px-8 py-4 rounded-xl shadow-soft hover:bg-[#006666] hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97] group cursor-pointer"
-                    >
-                      <span>Book a Scoping Review for This Sector</span>
-                      <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Technical Asset Placeholder */}
-                <div className={`lg:col-span-5 ${isEven ? "lg:col-start-1" : ""}`}>
-                  <div className="w-full h-[380px] md:h-[440px] bg-brand-slate/10 rounded-2xl relative overflow-hidden border border-brand-grey/20 shadow-soft flex items-center justify-center">
-                    <div className="absolute inset-0 bg-gradient-to-t from-brand-slate/40 via-transparent to-transparent z-10" />
-                    <div className="text-center font-mono text-xs text-brand-grey p-8 max-w-sm relative z-20">
-                      <span className="font-medium text-brand-slate block text-sm mb-2">
-                        [Sector Asset: {sec.title}]
-                      </span>
-                      <span className="opacity-80 block leading-relaxed text-[11px]">
-                        Antigravity Prompt: {sec.imagePrompt}
-                      </span>
+                  {/* Technical Asset Placeholder */}
+                  <div className={`lg:col-span-5 ${isEven ? "lg:col-start-1" : ""}`}>
+                    <div className="w-full h-[380px] md:h-[440px] bg-brand-slate/10 rounded-2xl relative overflow-hidden border border-brand-grey/20 shadow-soft flex items-center justify-center">
+                      <div className="absolute inset-0 bg-gradient-to-t from-brand-slate/40 via-transparent to-transparent z-10" />
+                      <div className="text-center font-mono text-xs text-brand-grey p-8 max-w-sm relative z-20">
+                        <span className="font-medium text-brand-slate block text-sm mb-2">
+                          [Sector Asset: {sec.title}]
+                        </span>
+                        <span className="opacity-80 block leading-relaxed text-[11px]">
+                          Antigravity Prompt: {sec.imagePrompt}
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-              </div>
-            </section>
+                </div>
+              </section>
+            </ScrollReveal>
           );
         })}
       </div>
@@ -248,20 +238,22 @@ export default function SectorsPage() {
       <section className="mt-12 bg-brand-teal text-white py-20 px-6 text-center">
         <div className="max-w-3xl mx-auto">
           <span className="font-display font-medium text-xs text-brand-paper/80 uppercase tracking-widest block mb-3">
-            No Sales Pressure · Honest Engineering
+            No Sales Pressure &middot; Honest Engineering
           </span>
           <h2 className="font-display font-medium text-3xl md:text-5xl tracking-tight mb-6">
-            Ready To Discuss Your Sector’s Needs?
+            Ready To Discuss Your Sector&rsquo;s Needs?
           </h2>
           <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg mb-8 leading-relaxed">
             Submit your site details or unit counts today. An engineering principal will review your requirements and respond within one working day to arrange your structured scoping review.
           </p>
-          <Link
+          <TactileLink
             href="/consultation"
-            className="inline-block bg-white text-brand-slate font-display font-medium text-base px-8 py-4 rounded-xl shadow-elevated hover:bg-brand-mist hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97]"
+            variant="secondary"
+            size="lg"
+            className="shadow-elevated hover:bg-brand-mist hover:-translate-y-0.5 transition-all duration-200"
           >
             Start Your Requirement Form
-          </Link>
+          </TactileLink>
         </div>
       </section>
     </div>

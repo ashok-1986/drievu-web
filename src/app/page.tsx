@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight, Shield, Lock, Flame, Radio, Cpu } from "lucide-react";
 import { CanvasHero } from "@/components/home/CanvasHero";
+import { ScrollReveal, TactileLink } from "@/components/motion/MotionPrimitives";
 
 export default function HomePage() {
   const systemsGrid = [
@@ -68,35 +71,39 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {systemsGrid.map((sys) => {
+            {systemsGrid.map((sys, index) => {
               const IconComponent = sys.icon;
               return (
-                <div
-                  key={sys.title}
-                  className="group bg-brand-paper rounded-2xl border border-brand-grey/15 overflow-hidden flex flex-col justify-between hover:border-brand-teal/40 transition-colors duration-200"
-                >
-                  <div className="p-8">
-                    <div className="w-10 h-10 rounded-lg bg-brand-mist flex items-center justify-center text-brand-slate mb-6">
-                      <IconComponent className="w-5 h-5 text-brand-teal" />
+                <ScrollReveal key={sys.title} delay={index * 0.1} direction="up">
+                  <TactileLink
+                    href={sys.href}
+                    variant="ghost"
+                    className="group bg-brand-paper rounded-2xl border border-brand-grey/15 overflow-hidden flex flex-col justify-between hover:border-brand-teal/40 transition-colors duration-200"
+                  >
+                    <div className="p-8">
+                      <div className="w-10 h-10 rounded-lg bg-brand-mist flex items-center justify-center text-brand-slate mb-6">
+                        <IconComponent className="w-5 h-5 text-brand-teal" />
+                      </div>
+                      <h3 className="font-display font-medium text-xl text-brand-slate mb-3 group-hover:text-brand-teal transition-colors">
+                        {sys.title}
+                      </h3>
+                      <p className="font-body font-normal text-brand-grey text-sm leading-relaxed">
+                        {sys.desc}
+                      </p>
                     </div>
-                    <h3 className="font-display font-medium text-xl text-brand-slate mb-3 group-hover:text-brand-teal transition-colors">
-                      {sys.title}
-                    </h3>
-                    <p className="font-body font-normal text-brand-grey text-sm leading-relaxed">
-                      {sys.desc}
-                    </p>
-                  </div>
 
-                  <div className="px-8 pb-8 pt-4 border-t border-brand-grey/10 flex items-center justify-between">
-                    <Link href={sys.href} className="font-display font-medium text-xs text-brand-slate hover:text-brand-teal underline transition-colors">
-                      View Tech Specs
-                    </Link>
-                    <Link href="/consultation" className="font-display font-medium text-xs text-brand-teal uppercase tracking-wider flex items-center gap-1 group-hover:text-brand-slate transition-colors">
-                      <span>Get a Quote</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                  </div>
-                </div>
+                    <div className="px-8 pb-8 pt-4 border-t border-brand-grey/10 flex items-center justify-between">
+                      <TactileLink href={sys.href} variant="ghost" size="sm" className="text-brand-slate hover:text-brand-teal">
+                        View Tech Specs
+                        <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                      </TactileLink>
+                      <TactileLink href="/consultation" variant="outline" size="sm" className="text-brand-teal uppercase tracking-wider">
+                        <span>Get a Quote</span>
+                        <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                      </TactileLink>
+                    </div>
+                  </TactileLink>
+                </ScrollReveal>
               );
             })}
           </div>
@@ -104,50 +111,51 @@ export default function HomePage() {
       </section>
 
       {/* 3. VERIFIED INFRASTRUCTURE METRICS SECTION */}
-      <section className="py-24 px-6 max-w-[1200px] mx-auto w-full relative z-30">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-5 space-y-6">
-            <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block">
-              Leadership Track Record
-            </span>
-            <h2 className="font-display font-medium text-3xl md:text-5xl text-brand-slate tracking-tighter">
-              Delivered at Major Scale.
-            </h2>
-            <p className="font-body font-normal text-brand-slate/85 text-base leading-relaxed">
-              Drievu was founded in London by a leadership team with more than two decades of experience delivering security and building systems across some of the most demanding infrastructure sites globally.
-            </p>
-            
-            <div className="bg-brand-mist p-5 rounded-xl border-l-4 border-brand-teal font-body text-xs text-brand-grey leading-relaxed font-mono">
-              <strong>DUE DILIGENCE NOTE:</strong> National-infrastructure projects listed inside our full profile were delivered by members of Drievu’s leadership team over the past two decades in prior executive roles. Drievu Limited was incorporated in the UK in 2024 (Company No. 15479482).
+      <ScrollReveal direction="up">
+        <section className="py-24 px-6 max-w-[1200px] mx-auto w-full relative z-30">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-5 space-y-6">
+              <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block">
+                Leadership Track Record
+              </span>
+              <h2 className="font-display font-medium text-3xl md:text-5xl text-brand-slate tracking-tighter">
+                Delivered at Major Scale.
+              </h2>
+              <p className="font-body font-normal text-brand-slate/85 text-base leading-relaxed">
+                Drievu was founded in London by a leadership team with more than two decades of experience delivering security and building systems across some of the most demanding infrastructure sites globally.
+              </p>
+              
+              <div className="bg-brand-mist p-5 rounded-xl border-l-4 border-brand-teal font-body text-xs text-brand-grey leading-relaxed font-mono">
+                <strong>DUE DILIGENCE NOTE:</strong> National-infrastructure projects listed inside our full profile were delivered by members of Drievu's leadership team over the past two decades in prior executive roles. Drievu Limited was incorporated in the UK in 2024 (Company No. 15479482).
+              </div>
+
+              <TactileLink href="/track-record" variant="ghost" size="sm" icon={<ArrowRight className="w-4 h-4" />}>
+                View Verified Leadership Portfolio
+              </TactileLink>
             </div>
 
-            <Link href="/track-record" className="inline-flex items-center gap-2 font-display font-medium text-sm text-brand-teal hover:underline group">
-              <span>View Verified Leadership Portfolio</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-6">
+              <TactileLink href="/track-record" variant="ghost" className="bg-brand-mist p-8 rounded-2xl border border-brand-grey/15 flex flex-col justify-center text-center sm:text-left hover:border-brand-teal/40 transition-colors">
+                <span className="font-display font-medium text-5xl text-brand-slate mb-2 block">18+</span>
+                <span className="font-display font-medium text-sm text-brand-slate block mb-1">Landmark Projects</span>
+                <span className="font-body font-normal text-xs text-brand-grey">Stadiums, metros, airports & infrastructure.</span>
+              </TactileLink>
+              
+              <TactileLink href="/track-record" variant="ghost" className="bg-brand-mist p-8 rounded-2xl border border-brand-grey/15 flex flex-col justify-center text-center sm:text-left hover:border-brand-teal/40 transition-colors">
+                <span className="font-display font-medium text-5xl text-brand-slate mb-2 block">20+</span>
+                <span className="font-display font-medium text-sm text-brand-slate block mb-1">Years Track Record</span>
+                <span className="font-body font-normal text-xs text-brand-grey">Executive engineering leadership.</span>
+              </TactileLink>
+
+              <TactileLink href="/track-record" variant="ghost" className="bg-brand-mist p-8 rounded-2xl border border-brand-grey/15 flex flex-col justify-center text-center sm:text-left hover:border-brand-teal/40 transition-colors">
+                <span className="font-display font-medium text-5xl text-brand-teal mb-2 block">5</span>
+                <span className="font-display font-medium text-sm text-brand-slate block mb-1">Core Pillars</span>
+                <span className="font-body font-normal text-xs text-brand-grey">CCTV, Access, Fire, Audio, Automation.</span>
+              </TactileLink>
+            </div>
           </div>
-
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div className="bg-brand-mist p-8 rounded-2xl border border-brand-grey/15 flex flex-col justify-center text-center sm:text-left">
-              <span className="font-display font-medium text-5xl text-brand-slate mb-2 block">18+</span>
-              <span className="font-display font-medium text-sm text-brand-slate block mb-1">Landmark Projects</span>
-              <span className="font-body font-normal text-xs text-brand-grey">Stadiums, metros, airports & infrastructure.</span>
-            </div>
-            
-            <div className="bg-brand-mist p-8 rounded-2xl border border-brand-grey/15 flex flex-col justify-center text-center sm:text-left">
-              <span className="font-display font-medium text-5xl text-brand-slate mb-2 block">20+</span>
-              <span className="font-display font-medium text-sm text-brand-slate block mb-1">Years Track Record</span>
-              <span className="font-body font-normal text-xs text-brand-grey">Executive engineering leadership.</span>
-            </div>
-
-            <div className="bg-brand-mist p-8 rounded-2xl border border-brand-grey/15 flex flex-col justify-center text-center sm:text-left">
-              <span className="font-display font-medium text-5xl text-brand-teal mb-2 block">5</span>
-              <span className="font-display font-medium text-sm text-brand-slate block mb-1">Core Pillars</span>
-              <span className="font-body font-normal text-xs text-brand-grey">CCTV, Access, Fire, Audio, Automation.</span>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
       {/* 4. METHODOLOGY & CONVERSION SURFACE */}
       <section className="bg-brand-slate text-brand-paper py-24 px-6 relative z-30 overflow-hidden">
@@ -165,18 +173,20 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 relative z-10">
-            {workProcess.map((step) => (
-              <div key={step.name} className="flex flex-col items-start lg:items-center lg:text-center group">
-                <div className="w-14 h-14 rounded-full bg-brand-slate border-2 border-brand-teal text-white font-display font-medium text-base flex items-center justify-center mb-6">
-                  {step.step}
-                </div>
-                <h3 className="font-display font-medium text-lg text-white mb-2">
-                  {step.name}
-                </h3>
-                <p className="font-body font-normal text-xs text-brand-grey leading-relaxed">
-                  {step.desc}
-                </p>
-              </div>
+            {workProcess.map((step, index) => (
+              <ScrollReveal key={step.name} delay={index * 0.08} direction="up">
+                <TactileLink href="/consultation" variant="ghost" className="flex flex-col items-start lg:items-center lg:text-center group bg-transparent p-0">
+                  <div className="w-14 h-14 rounded-full bg-brand-slate border-2 border-brand-teal text-white font-display font-medium text-base flex items-center justify-center mb-6">
+                    {step.step}
+                  </div>
+                  <h3 className="font-display font-medium text-lg text-white mb-2">
+                    {step.name}
+                  </h3>
+                  <p className="font-body font-normal text-xs text-brand-grey leading-relaxed">
+                    {step.desc}
+                  </p>
+                </TactileLink>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -188,17 +198,19 @@ export default function HomePage() {
             Ready To Upgrade Your Property?
           </span>
           <h2 className="font-display font-medium text-3xl md:text-5xl tracking-tighter mb-6">
-            Let’s Talk About Your Building.
+            Let's Talk About Your Building.
           </h2>
           <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg mb-8 leading-relaxed">
             Whether you manage a residential block, a commercial office, or an industrial facility, get an honest engineering assessment and a clear quote without sales pressure.
           </p>
-          <Link
+          <TactileLink
             href="/consultation"
-            className="inline-block bg-white text-brand-slate font-display font-medium text-base px-8 py-4 rounded-xl hover:bg-brand-mist transition-colors"
+            variant="secondary"
+            size="lg"
+            className="shadow-elevated hover:bg-brand-mist hover:-translate-y-0.5 transition-all duration-200"
           >
             Start Your Requirement Form
-          </Link>
+          </TactileLink>
         </div>
       </section>
     </div>

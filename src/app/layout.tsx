@@ -1,6 +1,6 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
-import { Hanken_Grotesk, IBM_Plex_Sans } from "next/font/google";
+import { Hanken_Grotesk, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { ParallaxEngine } from "@/components/common/ParallaxEngine";
 import { GlobalNavbar } from "@/components/common/GlobalNavbar";
@@ -22,6 +22,13 @@ const ibmPlex = IBM_Plex_Sans({
   variable: "--font-ibm-plex",
   display: "swap",
   weight: ["400", "500"], // STRICT CEILING: 500 MAX
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  variable: "--font-ib",
+  display: "swap",
+  weight: ["400"], // STRICT CEILING: 500 MAX (mono only needs 400)
 });
 
 export const metadata: Metadata = {
