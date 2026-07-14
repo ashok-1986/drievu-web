@@ -4,6 +4,8 @@ import Link from "next/link";
 import { ArrowRight, Shield, Lock, Flame, Radio, Cpu } from "lucide-react";
 import { CanvasHero } from "@/components/home/CanvasHero";
 import { ScrollReveal, TactileLink } from "@/components/motion/MotionPrimitives";
+import { gsap } from "@/lib/gsap";
+import { useEffect, useRef } from "react";
 
 export default function HomePage() {
   const systemsGrid = [
@@ -12,30 +14,45 @@ export default function HomePage() {
       desc: "Weather-proof cameras that spot intruders instantly and send crystal-clear video straight to your phone, day or night.",
       icon: Shield,
       href: "/systems/surveillance",
+      size: "large", // 2x2 in bento
+      accent: "bg-brand-teal/10",
+      iconBg: "text-brand-teal",
     },
     {
       title: "Keyless Door Entry",
       desc: "Video doorbells and smart access panels that let you see who is at the gate and unlock doors from anywhere in the world.",
       icon: Lock,
       href: "/systems/access",
+      size: "medium", // 1x2 vertical
+      accent: "bg-brand-teal/10",
+      iconBg: "text-brand-teal",
     },
     {
       title: "Fire & Safety Alarms",
       desc: "Instant warning sensors for smoke, heat, and water leaks that alert you and emergency services before damage happens.",
       icon: Flame,
       href: "/systems/fire",
+      size: "medium", // 1x2 vertical
+      accent: "bg-brand-teal/10",
+      iconBg: "text-brand-teal",
     },
     {
       title: "Intercoms & Sound",
       desc: "Clear public announcement speakers and two-way intercoms that make communication effortless across large buildings.",
       icon: Radio,
       href: "/systems/communication",
+      size: "small", // 1x1
+      accent: "bg-brand-teal/10",
+      iconBg: "text-brand-teal",
     },
     {
       title: "Energy & Comfort Control",
       desc: "Smart sensors that quietly turn off heating and lights in empty rooms, trimming up to 30% off your energy bills automatically.",
       icon: Cpu,
       href: "/systems/smart-building",
+      size: "small", // 1x1
+      accent: "bg-brand-teal/10",
+      iconBg: "text-brand-teal",
     },
   ];
 
@@ -48,12 +65,46 @@ export default function HomePage() {
     { step: "06", name: "Support", desc: "We check your systems annually to ensure they never fail when you need them." },
   ];
 
+  const bentoRef = useRef<HTMLDivElement>(null);
+
+  // GSAP bento entrance animation
+  useEffect(() => {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) return;
+
+    const ctx = gsap.context(() => {
+      const cards = bentoRef.current?.querySelectorAll("[data-bento-card]");
+      if (!cards?.length) return;
+
+      gsap.fromTo(
+        cards,
+        { opacity: 0, y: 40, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          stagger: 0.08,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: bentoRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    }, bentoRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <div className="flex flex-col w-full">
       {/* 1. HIGH-PERFORMANCE APPLE 5K SCROLL CANVAS HERO */}
       <CanvasHero />
 
-      {/* 2. CORE CAPABILITIES DIVIDER SYSTEMS GRID */}
+      {/* 2. CORE CAPABILITIES — BENTO GRID */}
       <section className="bg-brand-mist py-24 px-6 border-y border-brand-grey/15 relative z-30">
         <div className="max-w-[1200px] mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
@@ -70,37 +121,48 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* BENTO GRID */}
+          <div ref={bentoRef} className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
             {systemsGrid.map((sys, index) => {
               const IconComponent = sys.icon;
+              const sizeClasses = {
+                large: "lg:col-span-2 lg:row-span-2",
+                medium: "lg:col-span-1 lg:row-span-2",
+                small: "lg:col-span-1 lg:row-span-1",
+              };
+
               return (
-                <ScrollReveal key={sys.title} delay={index * 0.1} direction="up" stagger={0.1}>
+                <ScrollReveal key={sys.title} delay={index * 0.05} direction="up">
                   <TactileLink
                     href={sys.href}
                     variant="ghost"
-                    className="group bg-brand-paper rounded-2xl border border-brand-grey/15 overflow-hidden flex flex-col justify-between hover:border-brand-teal/40 transition-colors duration-200"
+                    className={`group relative ${sizeClasses[sys.size]} rounded-2xl border border-brand-grey/15 overflow-hidden bg-brand-paper hover:border-brand-teal/40 transition-all duration-300 ${sys.accent} data-bento-card`}
                   >
-                    <div className="p-8">
-                      <div className="w-10 h-10 rounded-lg bg-brand-mist flex items-center justify-center text-brand-slate mb-6">
-                        <IconComponent className="w-5 h-5 text-brand-teal" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-brand-teal/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    
+                    <div className="relative p-6 lg:p-8 h-full flex flex-col justify-between">
+                      <div>
+                        <div className={`w-12 h-12 lg:w-14 lg:h-14 rounded-xl flex items-center justify-center text-brand-slate mb-4 lg:mb-6 ${sys.accent}`}>
+                          <IconComponent className={`w-6 h-6 lg:w-7 lg:h-7 ${sys.iconBg}`} />
+                        </div>
+                        <h3 className="font-display font-medium text-lg lg:text-xl text-brand-slate mb-3 lg:mb-4 group-hover:text-brand-teal transition-colors">
+                          {sys.title}
+                        </h3>
+                        <p className="font-body font-normal text-sm lg:text-base text-brand-grey leading-relaxed line-clamp-3 lg:line-clamp-none">
+                          {sys.desc}
+                        </p>
                       </div>
-                      <h3 className="font-display font-medium text-xl text-brand-slate mb-3 group-hover:text-brand-teal transition-colors">
-                        {sys.title}
-                      </h3>
-                      <p className="font-body font-normal text-brand-grey text-sm leading-relaxed">
-                        {sys.desc}
-                      </p>
-                    </div>
 
-                    <div className="px-8 pb-8 pt-4 border-t border-brand-grey/10 flex items-center justify-between">
-                      <TactileLink href={sys.href} variant="ghost" size="sm" className="text-brand-slate hover:text-brand-teal">
-                        View Tech Specs
-                        <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                      </TactileLink>
-                      <TactileLink href="/consultation" variant="outline" size="sm" className="text-brand-teal uppercase tracking-wider">
-                        <span>Get a Quote</span>
-                        <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                      </TactileLink>
+                      <div className="pt-4 lg:pt-6 border-t border-brand-grey/10 flex items-center justify-between">
+                        <TactileLink href={sys.href} variant="ghost" size="sm" className="text-brand-slate hover:text-brand-teal">
+                          View Tech Specs
+                          <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                        </TactileLink>
+                        <TactileLink href="/consultation" variant="outline" size="sm" className="text-brand-teal uppercase tracking-wider">
+                          <span>Get a Quote</span>
+                          <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                        </TactileLink>
+                      </div>
                     </div>
                   </TactileLink>
                 </ScrollReveal>
