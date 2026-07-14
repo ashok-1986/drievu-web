@@ -182,9 +182,9 @@ export function CanvasHero() {
           </div>
         </section>
 
-        {/* CHAPTER 2 (100–200vh): Twilight Automation & Smart Triggers (NEW MIDDLE FILL) */}
+        {/* CHAPTER 2 (100–200vh): Twilight Automation & Smart Triggers */}
         <section className="h-screen w-full max-w-[1200px] mx-auto px-6 md:px-12 flex items-center justify-start pointer-events-auto">
-          <div className="max-w-xl space-y-4 bg-brand-slate/75 backdrop-blur-md p-8 md:p-10 rounded-2xl border border-white/10 shadow-elevated">
+          <div className="max-w-xl space-y-4 bg-brand-slate/80 backdrop-blur-md p-8 md:p-10 rounded-2xl border border-white/10 shadow-elevated">
             <div className="inline-flex items-center gap-2 text-brand-teal font-display font-medium text-xs uppercase tracking-widest">
               <Cpu className="w-4 h-4" />
               <span>Intelligent Building Automation</span>
@@ -195,13 +195,18 @@ export function CanvasHero() {
               <span className="text-brand-teal">Vigilant At Dusk.</span>
             </h2>
             
-            <h3 className="font-body font-normal text-sm md:text-base text-brand-paper/90 leading-relaxed">
+            <p className="font-body font-normal text-sm md:text-base text-brand-paper/90 leading-relaxed">
               As ambient UK daylight fades, our integrated control systems autonomously adapt your property. Exterior perimeter lighting softly illuminates without blinding neighbors, while smart surveillance cameras silently shift into high-contrast night vision modes.
-            </h3>
+            </p>
 
-            <div className="pt-2 flex items-center gap-6 border-t border-white/10 font-mono text-xs text-brand-grey">
-              <span>[01: Autonomous Lux Sensors]</span>
-              <span>[02: Zero False Alarms]</span>
+            {/* UPGRADED: Clean, tactile UI badges without bracket artifacts */}
+            <div className="pt-3 flex flex-wrap items-center gap-3 border-t border-white/10 font-display font-medium text-xs">
+              <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-brand-paper/80">
+                01 · Autonomous Lux Sensors
+              </span>
+              <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-brand-paper/80">
+                02 · Zero False Alarms
+              </span>
             </div>
           </div>
         </section>
@@ -219,16 +224,21 @@ export function CanvasHero() {
               <span className="text-brand-teal">Zero Cloud Fees.</span>
             </h2>
 
-            <h3 className="font-body font-normal text-xs md:text-sm text-brand-paper/85 leading-relaxed">
+            <p className="font-body font-normal text-xs md:text-sm text-brand-paper/85 leading-relaxed">
               While your building sleeps, dedicated on-site video recorders capture crystal-clear 4K footage across every critical entry point. Your sensitive security data stays safely inside your property under strict UK GDPR privacy standards—never hosted on external cloud servers.
-            </h3>
+            </p>
 
-            <div className="pt-2 border-t border-white/10 flex items-center justify-between font-display font-medium text-xs text-brand-teal">
-              <span className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-brand-teal" /> British Standards Compliant
+            {/* UPGRADED: Clickable Trust CTA wired to Compliance & SLA terms */}
+            <div className="pt-3 border-t border-white/10 flex items-center justify-between font-display font-medium text-xs">
+              <span className="flex items-center gap-1.5 text-brand-paper/90">
+                <ShieldCheck className="w-4 h-4 text-brand-teal shrink-0" /> British Standards Compliant
               </span>
-              <Link href="/terms" className="underline cursor-pointer hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal rounded">
-                View SLA Terms
+              <Link 
+                href="/compliance#sla" 
+                className="inline-flex items-center gap-1 text-brand-teal hover:text-white transition-colors duration-150 active:scale-[0.98] group cursor-pointer"
+              >
+                <span className="underline underline-offset-4">View SLA Guarantee</span>
+                <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" />
               </Link>
             </div>
           </div>
