@@ -130,11 +130,7 @@ export function BentoGrid() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-2 max-w-xl">
-            <ProseReveal delay={0.05}>
-              <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-2">
-                What We Protect
-              </span>
-            </ProseReveal>
+
             <h2 className="m-0 p-0 block">
               <SplitTextReveal text="Everything Your Building Needs." className="font-display font-medium text-3xl md:text-5xl text-brand-slate tracking-tight" />
             </h2>
@@ -156,7 +152,7 @@ export function BentoGrid() {
                 href={sys.href}
                 variant="ghost"
                 data-bento-card
-                className={`group relative ${sys.spanClasses} rounded-3xl p-6 md:p-8 lg:p-8 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl active:scale-[0.99] flex flex-col justify-between overflow-hidden ${sys.bgClasses}`}
+                className={`group relative ${sys.spanClasses} rounded-3xl p-6 md:p-8 lg:p-8 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-xl active:scale-[0.97] flex flex-col justify-between overflow-hidden ${sys.bgClasses}`}
               >
                 {/* Subtle background ambient glow on hover */}
                 <div className="absolute -right-12 -bottom-12 w-48 h-48 rounded-full bg-brand-teal/10 blur-2xl group-hover:bg-brand-teal/20 transition-all duration-500 pointer-events-none" />

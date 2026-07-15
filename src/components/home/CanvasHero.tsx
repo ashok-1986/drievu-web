@@ -209,14 +209,14 @@ export function CanvasHero() {
               Independent UK Engineering · London Based
             </div>
 
-            <h1 className="font-display font-medium text-[clamp(2.75rem,7vw,8.75rem)] w-full leading-[0.92] tracking-[-0.03em] text-white uppercase drop-shadow-md">
+            <h1 className="font-display font-medium text-[clamp(2.75rem,7vw,6rem)] w-full leading-[0.92] tracking-[-0.03em] text-white uppercase drop-shadow-md">
               <SplitTextReveal text="Security Systems," />
               <br />
               <SplitTextReveal text="Delivered Properly." className="text-brand-teal" />
             </h1>
 
             <ProseReveal delay={0.3}>
-              <p className="font-body font-normal text-white/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl mx-auto block">
+              <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl mx-auto block">
                 Most properties buy good hardware but end up with poor results—late installations, messy wiring, and systems nobody maintains. We design, install, and look after your security from start to finish.
               </p>
             </ProseReveal>
@@ -245,14 +245,14 @@ export function CanvasHero() {
               <span>Intelligent Building Automation</span>
             </div>
             
-            <h2 className="font-display font-medium text-[clamp(2.75rem,7vw,8.75rem)] w-full leading-[0.92] tracking-[-0.03em] text-white uppercase drop-shadow-md">
+            <h2 className="font-display font-medium text-[clamp(2.75rem,7vw,6rem)] w-full leading-[0.92] tracking-[-0.03em] text-white uppercase drop-shadow-md">
               <SplitTextReveal text="Invisible By Day." />
               <br />
               <SplitTextReveal text="Vigilant At Dusk." className="text-brand-teal" />
             </h2>
             
             <ProseReveal delay={0.3}>
-              <p className="font-body font-normal text-white/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl mx-auto block">
+              <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl mx-auto block">
                 As ambient UK daylight fades, our integrated control systems autonomously adapt your property. Exterior perimeter lighting softly illuminates without blinding neighbors, while smart surveillance cameras silently shift into high-contrast night vision modes.
               </p>
             </ProseReveal>
@@ -274,14 +274,14 @@ export function CanvasHero() {
               <span>Active Nighttime Defense</span>
             </div>
 
-            <h2 className="font-display font-medium text-[clamp(2.75rem,7vw,8.75rem)] w-full leading-[0.92] tracking-[-0.03em] text-white uppercase drop-shadow-md">
+            <h2 className="font-display font-medium text-[clamp(2.75rem,7vw,6rem)] w-full leading-[0.92] tracking-[-0.03em] text-white uppercase drop-shadow-md">
               <SplitTextReveal text="Total Protection." />
               <br />
               <SplitTextReveal text="Zero Cloud Fees." className="text-brand-teal" />
             </h2>
 
             <ProseReveal delay={0.3}>
-              <p className="font-body font-normal text-white/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl mx-auto block">
+              <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl mx-auto block">
                 While your building sleeps, dedicated on-site video recorders capture crystal-clear 4K footage across every critical entry point. Your sensitive security data stays safely inside your property under strict UK GDPR privacy standards—never hosted on external cloud servers.
               </p>
             </ProseReveal>

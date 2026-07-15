@@ -13,6 +13,12 @@
       "skillPath": "skills/extract-design-system/SKILL.md",
       "computedHash": "c66852c6bc6e0267dbcc9651fa698701387fc11c5058104bc33e67f495936f7e"
     },
+    "impeccable": {
+      "source": "pbakaus/impeccable",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/impeccable/SKILL.md",
+      "computedHash": "a0de0cab25a37c9a1a787aa4b690b1f7cfaa6d7ac83a8424f66863b457d9d668"
+    },
     "review-animations": {
       "source": "emilkowalski/skill",
       "sourceType": "github",
