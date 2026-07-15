@@ -113,14 +113,24 @@ export function PortfolioGrid() {
           </p>
         </div>
 
-        {/* FIX: Restored our clean horizontal capsule glider tab row */}
-        <Glider
-          tabs={filterTabs}
-          activeId={activeTab}
-          onChange={setActiveTab}
-          layoutIdNamespace="portfolio-filter-bar"
-          className="self-start md:self-auto bg-brand-mist p-1.5 rounded-full border border-brand-grey/20"
-        />
+        <div className="w-full flex flex-row items-center justify-start md:justify-center gap-2 overflow-x-auto no-scrollbar py-4 border-y border-brand-grey/20 my-6">
+          {filterTabs.map((tab) => {
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`rounded-full px-5 py-2.5 border font-display font-medium text-xs uppercase tracking-wider whitespace-nowrap transition-all duration-200 active:scale-[0.97] shadow-sm ${
+                  isActive
+                    ? "bg-brand-teal text-white border-brand-teal"
+                    : "border-brand-grey/20 bg-brand-paper hover:bg-brand-mist text-brand-slate"
+                }`}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* CASE STUDIES GRID */}

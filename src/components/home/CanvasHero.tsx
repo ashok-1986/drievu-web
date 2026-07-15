@@ -216,7 +216,7 @@ export function CanvasHero() {
             </h1>
 
             <ProseReveal delay={0.3}>
-              <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg leading-relaxed drop-shadow-md">
+              <p className="font-body font-normal text-white/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl mx-auto block">
                 Most properties buy good hardware but end up with poor results—late installations, messy wiring, and systems nobody maintains. We design, install, and look after your security from start to finish.
               </p>
             </ProseReveal>

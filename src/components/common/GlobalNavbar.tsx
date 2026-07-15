@@ -40,6 +40,10 @@ export function GlobalNavbar() {
   return (
     <>
       <header className={headerClass}>
+        {/* Scrim for transparent state */}
+        {!shouldBeDark && (
+          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-brand-dark/85 via-brand-dark/50 to-transparent pointer-events-none transition-opacity duration-300" />
+        )}
         <div className="max-w-[1200px] mx-auto px-6 h-full flex items-center justify-between">
 
           {/* Brand Logo - PNG Asset */}
@@ -52,9 +56,10 @@ export function GlobalNavbar() {
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               const baseClass = "relative px-3.5 py-2 rounded-lg font-display font-medium text-sm transition-all duration-150";
+              const textStyle = !shouldBeDark ? "text-white drop-shadow-md" : (isActive ? "text-white" : "text-white/80");
               const linkClass = isActive
-                ? `${baseClass} text-white bg-white/10`
-                : `${baseClass} text-white/80 hover:text-white hover:bg-white/10`;
+                ? `${baseClass} ${textStyle} bg-white/10`
+                : `${baseClass} ${textStyle} hover:text-white hover:bg-white/10`;
               return (
                 <TactileLink
                   key={link.name}

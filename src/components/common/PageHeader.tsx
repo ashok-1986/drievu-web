@@ -52,12 +52,12 @@ export function PageHeader({
         <SplitTextReveal
           text={title}
           charStagger={0.015}
-          className="font-display font-medium text-3xl md:text-6xl text-white tracking-tight uppercase hero-text-shadow block"
+          className="font-display font-medium text-4xl md:text-6xl lg:text-7xl text-white tracking-tight uppercase hero-text-shadow block text-center mx-auto"
         />
 
         <ProseReveal delay={0.2}>
           {/* FIX: Swapped out dark text class for high-contrast white over the dark background */}
-          <p className="font-body font-normal text-white/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl mx-auto">
+          <p className="font-body font-normal text-white/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl mx-auto text-center block">
             {description}
           </p>
         </ProseReveal>
