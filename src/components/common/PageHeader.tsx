@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { ProseReveal } from "@/components/motion/ProseReveal";
 
 interface PageHeaderProps {
@@ -49,11 +48,9 @@ export function PageHeader({
           </ProseReveal>
         )}
 
-        <SplitTextReveal
-          text={title}
-          charStagger={0.015}
-          className="font-display font-medium text-4xl md:text-6xl lg:text-7xl text-white tracking-tight uppercase hero-text-shadow block text-center mx-auto"
-        />
+        <h1 className="font-display font-medium text-4xl md:text-6xl lg:text-7xl text-white tracking-tight uppercase hero-text-shadow block text-center mx-auto">
+          {title}
+        </h1>
 
         <ProseReveal delay={0.2}>
           {/* FIX: Swapped out dark text class for high-contrast white over the dark background */}

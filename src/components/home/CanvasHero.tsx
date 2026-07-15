@@ -252,7 +252,7 @@ export function CanvasHero() {
             </h2>
             
             <ProseReveal delay={0.3}>
-              <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg leading-relaxed drop-shadow-md">
+              <p className="font-body font-normal text-white/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl mx-auto block">
                 As ambient UK daylight fades, our integrated control systems autonomously adapt your property. Exterior perimeter lighting softly illuminates without blinding neighbors, while smart surveillance cameras silently shift into high-contrast night vision modes.
               </p>
             </ProseReveal>
@@ -281,7 +281,7 @@ export function CanvasHero() {
             </h2>
 
             <ProseReveal delay={0.3}>
-              <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg leading-relaxed drop-shadow-md">
+              <p className="font-body font-normal text-white/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl mx-auto block">
                 While your building sleeps, dedicated on-site video recorders capture crystal-clear 4K footage across every critical entry point. Your sensitive security data stays safely inside your property under strict UK GDPR privacy standards—never hosted on external cloud servers.
               </p>
             </ProseReveal>

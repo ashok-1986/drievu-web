@@ -48,7 +48,7 @@ export function GlobalNavbar() {
 
           {/* Brand Logo - PNG Asset */}
           <Link href="/" className="flex items-center shrink-0 cursor-pointer">
-            <Image src="/logo.png" alt="Drievu Engineering" width={130} height={58} className="h-8 md:h-[58px] w-auto object-contain" priority />
+            <Image src="/logo.png" alt="Drievu Engineering" width={130} height={48} className="h-8 md:h-[58px] w-auto object-contain" priority />
           </Link>
 
           {/* Desktop Navigation */}
