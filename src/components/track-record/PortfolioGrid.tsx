@@ -113,7 +113,7 @@ export function PortfolioGrid() {
           </p>
         </div>
 
-        <div className="w-full max-w-full flex flex-row items-center justify-start md:justify-center gap-2 overflow-x-auto no-scrollbar py-4 border-y border-brand-grey/20 my-6 touch-pan-x overscroll-x-contain select-none">
+        <div className="w-full max-w-full flex flex-row items-center justify-start gap-2 overflow-x-auto no-scrollbar py-4 border-y border-brand-grey/20 my-6 touch-pan-x overscroll-x-contain select-none">
           {filterTabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (

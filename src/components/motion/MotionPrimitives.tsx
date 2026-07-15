@@ -5,6 +5,7 @@ import { motion, type HTMLMotionProps } from "framer-motion";
 import { gsap } from "@/lib/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SPRING_TACTILE, SPRING_GLIDER, EASING_OUT_EXPO, EASING_REVEAL } from "@/lib/physics";
+import { cn } from "@/lib/utils";
 
 /**
  * TactileButton - Universal interactive primitive with Emil Kowalski spring physics
@@ -23,6 +24,7 @@ export interface TactileButtonProps {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   type?: "button" | "submit" | "reset";
   "aria-label"?: string;
+  [dataAttr: `data-${string}`]: string | boolean | undefined;
 }
 
 export function TactileButton({
@@ -37,6 +39,7 @@ export function TactileButton({
   onClick,
   type = "button",
   "aria-label": ariaLabel,
+  ...dataProps
 }: TactileButtonProps) {
   const baseStyles = "relative inline-flex items-center justify-center font-display font-medium rounded-full tracking-wide transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-brand-paper";
 
@@ -68,12 +71,13 @@ export function TactileButton({
       whileTap={{ scale: 0.98 }}
       whileHover={{ y: -1 }}
       transition={SPRING_TACTILE}
-      className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+      className={cn(baseStyles, variantStyles[variant], sizeStyles[size], className)}
       disabled={isLoading || disabled}
       aria-busy={isLoading}
       aria-label={ariaLabel}
       onClick={onClick}
       type={type}
+      {...dataProps}
     >
       {iconPosition === "left" && iconComponent}
       <span>{children}</span>
@@ -95,6 +99,7 @@ export interface TactileLinkProps {
   className?: string;
   onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   "aria-label"?: string;
+  [dataAttr: `data-${string}`]: string | boolean | undefined;
 }
 
 export function TactileLink({
@@ -107,6 +112,7 @@ export function TactileLink({
   className = "",
   onClick,
   "aria-label": ariaLabel,
+  ...dataProps
 }: TactileLinkProps) {
   const baseStyles = "relative inline-flex items-center justify-center font-display font-medium rounded-full tracking-wide transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-brand-paper";
 
@@ -132,10 +138,11 @@ export function TactileLink({
       whileTap={{ scale: 0.98 }}
       whileHover={{ y: -1 }}
       transition={SPRING_TACTILE}
-      className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+      className={cn(baseStyles, variantStyles[variant], sizeStyles[size], className)}
       href={href}
       onClick={onClick}
       aria-label={ariaLabel}
+      {...dataProps}
     >
       {iconPosition === "left" && iconComponent}
       <span>{children}</span>
@@ -176,7 +183,7 @@ export function Tactile({
       whileTap={{ scale: tapScale }}
       whileHover={{ y: hoverLift }}
       transition={SPRING_TACTILE}
-      className={`cursor-pointer select-none ${className}`}
+      className={cn("cursor-pointer select-none", className)}
       role={role}
       tabIndex={tabIndex}
       onClick={onClick}

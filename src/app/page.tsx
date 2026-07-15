@@ -92,7 +92,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 relative z-10">
             {workProcess.map((step, index) => (
               <ScrollReveal key={step.name} delay={index * 0.08} direction="up">
-                <TactileLink href="/consultation" variant="ghost" className="flex flex-col items-start lg:items-center lg:text-center group bg-transparent p-0">
+                <TactileLink href="/consultation" variant="ghost" className="flex flex-col items-start lg:items-center lg:text-center group bg-transparent hover:bg-white/5 rounded-2xl p-0">
                   <div className="w-14 h-14 rounded-full bg-brand-slate border-2 border-brand-teal text-white font-display font-medium text-base flex items-center justify-center mb-6">
                     {step.step}
                   </div>

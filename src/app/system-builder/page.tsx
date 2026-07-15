@@ -55,7 +55,7 @@ export default function SystemBuilderPage() {
         <div className="max-w-[1200px] mx-auto">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-xs font-display font-medium text-brand-teal uppercase tracking-wider mb-8 hover:underline cursor-pointer"
+            className="flex items-center gap-2 text-xs font-display font-medium text-brand-teal uppercase tracking-wider mb-8 hover:underline cursor-pointer w-fit"
           >
             <ArrowLeft className="w-3.5 h-3.5" /> Return to Front of House
           </Link>
@@ -64,7 +64,7 @@ export default function SystemBuilderPage() {
             <ShieldCheck className="w-3.5 h-3.5" /> Transparent Engineering Sizing
           </div>
 
-          <h1 className="font-display font-medium text-[clamp(2.75rem,7vw,8.75rem)] w-full text-center text-white tracking-[-0.03em] uppercase mb-6">
+          <h1 className="font-display font-medium text-[clamp(2.75rem,7vw,6rem)] w-full leading-[0.92] text-white tracking-[-0.03em] uppercase drop-shadow-md mb-6">
             <SplitTextReveal text="Interactive System Builder." />
           </h1>
           <ProseReveal>

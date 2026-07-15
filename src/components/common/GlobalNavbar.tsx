@@ -139,7 +139,7 @@ export function GlobalNavbar() {
                   href="/"
                   variant={pathname === "/" ? "primary" : "ghost"}
                   size="sm"
-                  className="w-full justify-start text-left"
+                  className={`w-full justify-start text-left ${pathname === "/" ? "" : "text-white/80 hover:text-white"}`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Home
@@ -148,7 +148,7 @@ export function GlobalNavbar() {
                   href="/sectors"
                   variant={pathname === "/sectors" ? "primary" : "ghost"}
                   size="sm"
-                  className="w-full justify-start text-left"
+                  className={`w-full justify-start text-left ${pathname === "/sectors" ? "" : "text-white/80 hover:text-white"}`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Sectors
@@ -157,7 +157,7 @@ export function GlobalNavbar() {
                   href="/track-record"
                   variant={pathname === "/track-record" ? "primary" : "ghost"}
                   size="sm"
-                  className="w-full justify-start text-left"
+                  className={`w-full justify-start text-left ${pathname === "/track-record" ? "" : "text-white/80 hover:text-white"}`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Track Record
@@ -166,7 +166,7 @@ export function GlobalNavbar() {
                   href="/system-builder"
                   variant={pathname === "/system-builder" ? "primary" : "ghost"}
                   size="sm"
-                  className="w-full justify-start text-left"
+                  className={`w-full justify-start text-left ${pathname === "/system-builder" ? "" : "text-white/80 hover:text-white"}`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   System Builder
@@ -175,7 +175,7 @@ export function GlobalNavbar() {
                   href="/compliance"
                   variant={pathname === "/compliance" ? "primary" : "ghost"}
                   size="sm"
-                  className="w-full justify-start text-left"
+                  className={`w-full justify-start text-left ${pathname === "/compliance" ? "" : "text-white/80 hover:text-white"}`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Compliance
