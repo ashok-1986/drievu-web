@@ -15,14 +15,73 @@ import {
   CheckCircle2, 
   FileText, 
   MapPin, 
-  User, 
-  Mail, 
-  Phone 
+  User,
+  Mail,
+  Phone,
+  AlertCircle
 } from "lucide-react";
 import { Tactile, GliderTab, TactileLink } from "@/components/motion/MotionPrimitives";
 import { EASING_OUT_EXPO } from "@/lib/physics";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { ProseReveal } from "@/components/motion/ProseReveal";
+import { z } from "zod";
+
+// --- Client-side validation (mirrors the Zod schema in /api/consultation) ---
+const UK_POSTCODE = /^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$/i;
+const UK_PHONE = /^[\d\s+-]{10,}$/;
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const DRAFT_KEY = "drievu_consultation_draft";
+const REQUEST_TIMEOUT_MS = 15000;
+
+const DraftSchema = z.object({
+  step: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]).optional(),
+  formState: z.object({
+    sector: z.enum(["residential_block", "commercial_office", "industrial_site", "public_sector", "private_estate"]),
+    buildingCount: z.string(),
+    selectedSystems: z.array(z.string()),
+    cameraCount: z.number(),
+    hasDrawings: z.boolean(),
+    timeline: z.enum(["immediate", "within_3_months", "budgeting_6_months"]),
+    postcode: z.string(),
+    fullName: z.string(),
+    role: z.string(),
+    email: z.string(),
+    phone: z.string(),
+    notes: z.string(),
+  }).partial().optional()
+});
+
+// Human-readable, field-level messages. Server field keys are kept identical so
+// a 400 response's `details` map can be surfaced inline without translation.
+function validateContactStep(s: {
+  fullName: string;
+  role: string;
+  email: string;
+  phone: string;
+  postcode: string;
+  buildingCount: string;
+  selectedSystems: string[];
+}): Record<string, string> {
+  const e: Record<string, string> = {};
+  if (!s.buildingCount || parseInt(s.buildingCount, 10) < 1) e.buildingCount = "Building count must be at least 1.";
+  if (!s.selectedSystems || s.selectedSystems.length === 0) e.selectedSystems = "Select at least one system.";
+  
+  if (s.fullName.trim().length < 2) e.fullName = "Please enter your full name.";
+  if (s.role.trim().length < 2) e.role = "Please enter your role or title.";
+  if (!EMAIL.test(s.email.trim())) e.email = "Enter a valid work email, e.g. name@company.co.uk.";
+  
+  const phoneDigits = s.phone.replace(/[^\d]/g, '').length;
+  if (!UK_PHONE.test(s.phone.trim()) || phoneDigits < 10) e.phone = "Enter a valid phone number — at least 10 digits.";
+  
+  if (!UK_POSTCODE.test(s.postcode.trim())) e.postcode = "Enter a valid UK postcode, e.g. SW1A 1AA.";
+  return e;
+}
+
+function getEarliestErrorStep(errors: Record<string, string>): 1 | 2 | 3 {
+  if (errors.sector || errors.buildingCount) return 1;
+  if (errors.selectedSystems || errors.cameraCount) return 2;
+  return 3;
+}
 
 // Types for our engineering intake state
 type SectorType = "residential_block" | "commercial_office" | "industrial_site" | "public_sector" | "private_estate";
@@ -46,6 +105,8 @@ interface IntakeFormState {
 export function ConsultationIntake() {
   const [currentStep, setCurrentStep] = useState<1 | 2 | 3 | 4>(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [formState, setFormState] = useState<IntakeFormState>({
     sector: "commercial_office",
     buildingCount: "1",
@@ -61,7 +122,9 @@ export function ConsultationIntake() {
     notes: "",
   });
 
-  // SSR-Safe Session Storage Hydration: Reads Homepage Estimator calculations!
+  // SSR-safe hydration. Order matters: apply the System Builder spec first, then
+  // let a saved in-progress draft override it (the draft is the user's most recent
+  // intent), so a refresh mid-form never discards entered details or step position.
   useEffect(() => {
     try {
       const savedSpec = sessionStorage.getItem("drievu_system_builder_spec");
@@ -77,10 +140,48 @@ export function ConsultationIntake() {
           ],
         }));
       }
+
+      const savedDraft = sessionStorage.getItem(DRAFT_KEY);
+      if (savedDraft) {
+        const draft = JSON.parse(savedDraft);
+        const parsed = DraftSchema.safeParse(draft);
+        if (parsed.success) {
+          if (parsed.data.formState) {
+            setFormState((prev) => ({ ...prev, ...parsed.data.formState as Partial<IntakeFormState> }));
+          }
+          if (parsed.data.step && parsed.data.step !== 4) {
+            setCurrentStep(parsed.data.step as 1 | 2 | 3);
+          }
+        }
+      }
     } catch (e) {
-      // Silently ignore if session storage is unavailable
+      // Silently ignore if session storage is unavailable (private mode, etc.)
     }
   }, []);
+
+  // Persist an in-progress draft as the user works. Cleared on successful submit.
+  useEffect(() => {
+    if (currentStep >= 4) return;
+    try {
+      sessionStorage.setItem(
+        DRAFT_KEY,
+        JSON.stringify({ formState, step: currentStep })
+      );
+    } catch (e) {
+      // Storage may be unavailable or full; drafting is best-effort, never blocking.
+    }
+  }, [formState, currentStep]);
+
+  // Update a single field and clear its inline error as the user corrects it.
+  const setField = (field: keyof IntakeFormState, value: string) => {
+    setFormState((prev) => ({ ...prev, [field]: value }));
+    setFieldErrors((prev) => {
+      if (!prev[field as string]) return prev;
+      const next = { ...prev };
+      delete next[field as string];
+      return next;
+    });
+  };
 
   const handleSystemToggle = (systemId: string) => {
     setFormState((prev) => {
@@ -96,28 +197,77 @@ export function ConsultationIntake() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return; // guard against rapid double-submit
+
+    // Validate on the client first — instant feedback, no wasted round-trip.
+    const errors = validateContactStep(formState);
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      setSubmitError("Please correct the highlighted fields before submitting.");
+      setCurrentStep(getEarliestErrorStep(errors));
+      return;
+    }
+
+    setFieldErrors({});
+    setSubmitError(null);
     setIsSubmitting(true);
-    
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
     try {
       const response = await fetch("/api/consultation", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formState),
+        signal: controller.signal,
       });
-      
+
+      const payload = await response.json().catch(() => ({} as Record<string, unknown>));
+
       if (!response.ok) {
-        throw new Error("Submission failed");
+        if (response.status === 400 && payload && (payload as any).details) {
+          const details = (payload as any).details as Record<string, string[]>;
+          const mapped: Record<string, string> = {};
+          for (const [key, messages] of Object.entries(details)) {
+            if (Array.isArray(messages) && messages[0]) mapped[key] = messages[0];
+          }
+          setFieldErrors(mapped);
+          setSubmitError("Some details need attention. Please review the highlighted fields.");
+          setCurrentStep(getEarliestErrorStep(mapped));
+        } else if (response.status === 429) {
+          setSubmitError(
+            "You've submitted a few requests already. Please wait a little while and try again — or call us directly if it's urgent."
+          );
+        } else {
+          setSubmitError(
+            "Something went wrong on our end and your request didn't send. Please try again in a moment."
+          );
+        }
+        setIsSubmitting(false);
+        return;
       }
-      
+
+      // Success — clear the carried spec and the working draft.
       setIsSubmitting(false);
       setCurrentStep(4);
       try {
         sessionStorage.removeItem("drievu_system_builder_spec");
+        sessionStorage.removeItem(DRAFT_KEY);
       } catch (e) {}
     } catch (err) {
       setIsSubmitting(false);
-      // In production: show toast notification
-      console.error("Submission error:", err);
+      if (err instanceof DOMException && err.name === "AbortError") {
+        setSubmitError(
+          "The request timed out. Please check your connection and try again — your details are still here."
+        );
+      } else {
+        setSubmitError(
+          "We couldn't reach our servers. Check your internet connection and try again — nothing has been lost."
+        );
+      }
+    } finally {
+      clearTimeout(timeout);
     }
   };
 
@@ -346,16 +496,26 @@ export function ConsultationIntake() {
                   </button>
                 </Tactile>
 
-                <Tactile tapScale={0.98}>
-                  <button
-                    type="button"
-                    onClick={() => setCurrentStep(3)}
-                    className="bg-brand-teal text-white font-display font-medium text-sm px-6 py-3.5 rounded-xl hover:bg-[#006666] transition-colors flex items-center gap-2 shadow-md cursor-pointer"
-                  >
-                    <span>Site Logistics</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </Tactile>
+                <div className="flex flex-col items-end gap-2">
+                  {formState.selectedSystems.length === 0 && (
+                    <span className="font-body font-normal text-xs text-danger-strong">
+                      Select at least one system to continue.
+                    </span>
+                  )}
+                  <Tactile tapScale={0.98}>
+                    <button
+                      type="button"
+                      disabled={formState.selectedSystems.length === 0}
+                      onClick={() => {
+                        if (formState.selectedSystems.length > 0) setCurrentStep(3);
+                      }}
+                      className="bg-brand-teal text-white font-display font-medium text-sm px-6 py-3.5 rounded-xl hover:bg-[#006666] transition-colors flex items-center gap-2 shadow-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <span>Site Logistics</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </Tactile>
+                </div>
               </div>
             </motion.div>
           )}
@@ -369,6 +529,7 @@ export function ConsultationIntake() {
               exit={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.3, ease: EASING_OUT_EXPO }}
               onSubmit={handleSubmit}
+              noValidate
               className="space-y-6"
             >
               <div>
@@ -384,87 +545,127 @@ export function ConsultationIntake() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
+                  <label htmlFor="intake-fullName" className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
                     Full Name *
                   </label>
                   <div className="relative">
                     <User className="w-4 h-4 text-brand-grey absolute left-4 top-4" />
                     <input
+                      id="intake-fullName"
                       type="text"
                       required
                       placeholder="e.g. David Harrison"
                       value={formState.fullName}
-                      onChange={(e) => setFormState({ ...formState, fullName: e.target.value })}
-                      className="w-full bg-white font-body text-sm text-brand-slate pl-11 pr-4 py-3.5 rounded-xl border border-brand-grey/30 focus:outline-none focus:border-brand-teal transition-colors"
+                      onChange={(e) => setField("fullName", e.target.value)}
+                      aria-invalid={!!fieldErrors.fullName}
+                      aria-describedby={fieldErrors.fullName ? "err-fullName" : undefined}
+                      className={`w-full bg-white font-body text-sm text-brand-slate pl-11 pr-4 py-3.5 rounded-xl border focus:outline-none transition-colors ${fieldErrors.fullName ? "border-danger focus:border-danger" : "border-brand-grey/30 focus:border-brand-teal"}`}
                     />
                   </div>
+                  {fieldErrors.fullName && (
+                    <p id="err-fullName" className="mt-1.5 font-body font-normal text-xs text-danger-strong">
+                      {fieldErrors.fullName}
+                    </p>
+                  )}
                 </div>
 
                 <div>
-                  <label className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
+                  <label htmlFor="intake-role" className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
                     Your Role / Title *
                   </label>
                   <input
+                    id="intake-role"
                     type="text"
                     required
                     placeholder="e.g. Facilities Director / Architect"
                     value={formState.role}
-                    onChange={(e) => setFormState({ ...formState, role: e.target.value })}
-                    className="w-full bg-white font-body text-sm text-brand-slate px-4 py-3.5 rounded-xl border border-brand-grey/30 focus:outline-none focus:border-brand-teal transition-colors"
+                    onChange={(e) => setField("role", e.target.value)}
+                    aria-invalid={!!fieldErrors.role}
+                    aria-describedby={fieldErrors.role ? "err-role" : undefined}
+                    className={`w-full bg-white font-body text-sm text-brand-slate px-4 py-3.5 rounded-xl border focus:outline-none transition-colors ${fieldErrors.role ? "border-danger focus:border-danger" : "border-brand-grey/30 focus:border-brand-teal"}`}
                   />
+                  {fieldErrors.role && (
+                    <p id="err-role" className="mt-1.5 font-body font-normal text-xs text-danger-strong">
+                      {fieldErrors.role}
+                    </p>
+                  )}
                 </div>
 
                 <div>
-                  <label className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
+                  <label htmlFor="intake-email" className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
                     Work Email *
                   </label>
                   <div className="relative">
                     <Mail className="w-4 h-4 text-brand-grey absolute left-4 top-4" />
                     <input
+                      id="intake-email"
                       type="email"
                       required
                       placeholder="david@harrison-estates.co.uk"
                       value={formState.email}
-                      onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                      className="w-full bg-white font-body text-sm text-brand-slate pl-11 pr-4 py-3.5 rounded-xl border border-brand-grey/30 focus:outline-none focus:border-brand-teal transition-colors"
+                      onChange={(e) => setField("email", e.target.value)}
+                      aria-invalid={!!fieldErrors.email}
+                      aria-describedby={fieldErrors.email ? "err-email" : undefined}
+                      className={`w-full bg-white font-body text-sm text-brand-slate pl-11 pr-4 py-3.5 rounded-xl border focus:outline-none transition-colors ${fieldErrors.email ? "border-danger focus:border-danger" : "border-brand-grey/30 focus:border-brand-teal"}`}
                     />
                   </div>
+                  {fieldErrors.email && (
+                    <p id="err-email" className="mt-1.5 font-body font-normal text-xs text-danger-strong">
+                      {fieldErrors.email}
+                    </p>
+                  )}
                 </div>
 
                 <div>
-                  <label className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
+                  <label htmlFor="intake-phone" className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
                     Direct Phone / Mobile *
                   </label>
                   <div className="relative">
                     <Phone className="w-4 h-4 text-brand-grey absolute left-4 top-4" />
                     <input
+                      id="intake-phone"
                       type="tel"
                       required
                       placeholder="07700 900077"
                       value={formState.phone}
-                      onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
-                      className="w-full bg-white font-body text-sm text-brand-slate pl-11 pr-4 py-3.5 rounded-xl border border-brand-grey/30 focus:outline-none focus:border-brand-teal transition-colors"
+                      onChange={(e) => setField("phone", e.target.value)}
+                      aria-invalid={!!fieldErrors.phone}
+                      aria-describedby={fieldErrors.phone ? "err-phone" : undefined}
+                      className={`w-full bg-white font-body text-sm text-brand-slate pl-11 pr-4 py-3.5 rounded-xl border focus:outline-none transition-colors ${fieldErrors.phone ? "border-danger focus:border-danger" : "border-brand-grey/30 focus:border-brand-teal"}`}
                     />
                   </div>
+                  {fieldErrors.phone && (
+                    <p id="err-phone" className="mt-1.5 font-body font-normal text-xs text-danger-strong">
+                      {fieldErrors.phone}
+                    </p>
+                  )}
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
                 <div>
-                  <label className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
+                  <label htmlFor="intake-postcode" className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
                     Site UK Postcode *
                   </label>
                   <div className="relative">
                     <MapPin className="w-4 h-4 text-brand-grey absolute left-4 top-4" />
                     <input
+                      id="intake-postcode"
                       type="text"
                       required
                       placeholder="e.g. SW1A 1AA"
                       value={formState.postcode}
-                      onChange={(e) => setFormState({ ...formState, postcode: e.target.value })}
-                      className="w-full bg-white font-body text-sm text-brand-slate pl-11 pr-4 py-3.5 rounded-xl border border-brand-grey/30 focus:outline-none focus:border-brand-teal transition-colors uppercase"
+                      onChange={(e) => setField("postcode", e.target.value)}
+                      aria-invalid={!!fieldErrors.postcode}
+                      aria-describedby={fieldErrors.postcode ? "err-postcode" : undefined}
+                      className={`w-full bg-white font-body text-sm text-brand-slate pl-11 pr-4 py-3.5 rounded-xl border focus:outline-none transition-colors uppercase ${fieldErrors.postcode ? "border-danger focus:border-danger" : "border-brand-grey/30 focus:border-brand-teal"}`}
                     />
                   </div>
+                  {fieldErrors.postcode && (
+                    <p id="err-postcode" className="mt-1.5 font-body font-normal text-xs text-danger-strong">
+                      {fieldErrors.postcode}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -503,6 +704,20 @@ export function ConsultationIntake() {
                   {formState.hasDrawings && <CheckCircle2 className="w-3.5 h-3.5" />}
                 </div>
               </div>
+
+              {/* Submission error surface — announced to assistive tech */}
+              {submitError && (
+                <div
+                  role="alert"
+                  aria-live="assertive"
+                  className="flex items-start gap-3 p-4 rounded-xl bg-danger/5 border border-danger/30"
+                >
+                  <AlertCircle className="w-5 h-5 text-danger shrink-0 mt-0.5" aria-hidden="true" />
+                  <p className="font-body font-normal text-sm text-danger-strong leading-relaxed">
+                    {submitError}
+                  </p>
+                </div>
+              )}
 
               <div className="pt-4 border-t border-brand-grey/15 flex items-center justify-between">
                 <Tactile tapScale={0.98}>

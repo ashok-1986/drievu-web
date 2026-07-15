@@ -23,6 +23,9 @@ const config: Config = {
         charcoal: "var(--color-charcoal-plate)",
         smoke: "var(--color-smoke-plate)",
         graphite: "var(--color-graphite-lift)",
+        // Danger / error semantic (AA-safe text on white at --color-crimson-pure)
+        danger: "var(--color-arterial-red)",
+        "danger-strong": "var(--color-crimson-pure)",
       },
       fontFamily: {
         display: ["var(--font-display)", "ui-sans-serif", "system-ui", "sans-serif"],
