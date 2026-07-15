@@ -124,8 +124,8 @@ export function BentoGrid() {
   ];
 
   return (
-    <section className="py-24 px-6 md:px-12 bg-slate-50 border-y border-slate-200/60">
-      <div className="max-w-[1200px] mx-auto space-y-12">
+    <section className="min-h-[100svh] py-16 px-6 md:px-12 bg-slate-50 border-y border-slate-200/60 flex flex-col justify-center">
+      <div className="max-w-[1200px] w-full mx-auto flex flex-col flex-1 space-y-8 min-h-0">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -147,7 +147,7 @@ export function BentoGrid() {
         </div>
 
         {/* Responsive 12-Column Asymmetric Bento Grid */}
-        <div ref={bentoRef} className="grid grid-cols-12 gap-6 auto-rows-[minmax(240px,auto)]">
+        <div ref={bentoRef} className="grid grid-cols-12 gap-6 flex-1 min-h-0 auto-rows-[minmax(240px,auto)] lg:auto-rows-[minmax(0,1fr)] lg:grid-rows-3 pb-8 md:pb-0">
           {services.map((sys, index) => {
             const IconComponent = sys.icon;
             return (

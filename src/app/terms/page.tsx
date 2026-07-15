@@ -25,7 +25,7 @@ export default function TermsOfServicePage() {
             <ShieldCheck className="w-3.5 h-3.5" /> Procurement Due Diligence Schedule
           </div>
 
-          <h1 className="font-display font-medium text-3xl md:text-5xl text-white tracking-[-0.02em] uppercase mb-4">
+          <h1 className="font-display font-medium text-[clamp(2.75rem,7vw,8.75rem)] w-full text-center text-white tracking-[-0.02em] uppercase mb-4">
             <SplitTextReveal text="Terms of Service & Scoping Conditions." />
           </h1>
           <ProseReveal>

@@ -147,7 +147,7 @@ export function ConsultationIntake() {
             <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-1">
               Direct Engineering Routing
             </span>
-            <h1 className="font-display font-medium text-2xl text-white tracking-tight">
+            <h1 className="font-display font-medium text-[clamp(2.75rem,7vw,8.75rem)] w-full text-center text-white tracking-tight">
               Project Scoping Review
             </h1>
           </div>

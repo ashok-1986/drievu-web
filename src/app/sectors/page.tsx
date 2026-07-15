@@ -126,7 +126,7 @@ export default function SectorsPage() {
               Tailored Engineering Engagement
             </div>
 
-            <h1 className="font-display font-medium text-4xl md:text-6xl lg:text-7xl text-white tracking-[-0.03em] uppercase mb-6">
+            <h1 className="font-display font-medium text-[clamp(2.75rem,7vw,8.75rem)] w-full text-center text-white tracking-[-0.03em] uppercase mb-6">
               <SplitTextReveal text="How We Protect Your Sector." />
             </h1>
             <ProseReveal>

@@ -41,10 +41,10 @@ export function GlobalNavbar() {
     <>
       <header className={headerClass}>
         <div className="max-w-[1200px] mx-auto px-6 h-full flex items-center justify-between">
-          
+
           {/* Brand Logo - PNG Asset */}
           <Link href="/" className="flex items-center shrink-0 cursor-pointer">
-            <Image src="/logo.png" alt="Drievu Engineering" width={130} height={38} className="h-8 md:h-9 w-auto object-contain" priority />
+            <Image src="/logo.png" alt="Drievu Engineering" width={130} height={58} className="h-8 md:h-9 w-auto object-contain" priority />
           </Link>
 
           {/* Desktop Navigation */}

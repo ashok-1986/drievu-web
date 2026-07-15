@@ -10,6 +10,9 @@ import { ProseReveal } from "@/components/motion/ProseReveal";
 export function CanvasHero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const chapter1Ref = useRef<HTMLElement>(null);
+  const chapter2Ref = useRef<HTMLElement>(null);
+  const chapter3Ref = useRef<HTMLElement>(null);
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
   // Preloads high-resolution architectural assets into memory
@@ -104,7 +107,34 @@ export function CanvasHero() {
       const totalScrollable = containerRef.current.scrollHeight - window.innerHeight;
       const scrolled = -rect.top;
       const progress = Math.min(Math.max(scrolled / totalScrollable, 0), 1);
-      requestAnimationFrame(() => renderCanvas(progress));
+      
+      requestAnimationFrame(() => {
+        renderCanvas(progress);
+
+        let o1 = 0, o2 = 0, o3 = 0;
+        if (progress <= 0.2) o1 = 1;
+        else if (progress <= 0.3) o1 = 1 - (progress - 0.2) / 0.1;
+        
+        if (progress > 0.3 && progress <= 0.4) o2 = (progress - 0.3) / 0.1;
+        else if (progress > 0.4 && progress <= 0.6) o2 = 1;
+        else if (progress > 0.6 && progress <= 0.7) o2 = 1 - (progress - 0.6) / 0.1;
+        
+        if (progress > 0.7 && progress <= 0.8) o3 = (progress - 0.7) / 0.1;
+        else if (progress > 0.8) o3 = 1;
+
+        if (chapter1Ref.current) {
+          chapter1Ref.current.style.opacity = o1.toString();
+          chapter1Ref.current.style.pointerEvents = o1 > 0 ? "auto" : "none";
+        }
+        if (chapter2Ref.current) {
+          chapter2Ref.current.style.opacity = o2.toString();
+          chapter2Ref.current.style.pointerEvents = o2 > 0 ? "auto" : "none";
+        }
+        if (chapter3Ref.current) {
+          chapter3Ref.current.style.opacity = o3.toString();
+          chapter3Ref.current.style.pointerEvents = o3 > 0 ? "auto" : "none";
+        }
+      });
     };
 
     const handleResize = () => {
@@ -141,30 +171,28 @@ export function CanvasHero() {
         {/* Left-to-Right Scrim guarantees text legibility without clunky white card boxes */}
         <div className="absolute inset-0 bg-gradient-to-r from-brand-slate/90 via-brand-slate/50 to-transparent z-10 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-slate via-transparent to-transparent opacity-80 z-10 pointer-events-none" />
-      </div>
 
-      {/* 
-       * 3-STAGE NARRATIVE CONTENT OVERLAY:
-       * Exactly 3 vertically stacked screens (300vh total) to eliminate all empty voids.
-       */}
-      <div className="absolute inset-0 z-20 pointer-events-none flex flex-col justify-between">
-        
-        {/* CHAPTER 1 (0–100vh): Morning Aesthetics & Planning */}
-        <section className="h-screen w-full max-w-[1200px] mx-auto px-6 md:px-12 flex flex-col justify-center pointer-events-auto">
-          <div className="max-w-2xl space-y-6 pt-12">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10 text-white text-xs font-display font-medium uppercase tracking-widest">
+        {/* 
+         * 3-STAGE NARRATIVE CONTENT OVERLAY:
+         * Now positioned absolutely within the sticky track and faded via scroll progress.
+         */}
+        <div className="absolute inset-0 z-20 max-w-[1200px] mx-auto px-6 md:px-12 flex flex-col justify-center pointer-events-none">
+          
+          {/* CHAPTER 1 (0–100vh): Morning Aesthetics & Planning */}
+          <section ref={chapter1Ref} className="absolute inset-x-6 md:inset-x-12 max-w-2xl flex flex-col gap-4 pointer-events-auto transition-opacity duration-150 will-change-opacity">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10 text-white text-xs font-display font-medium uppercase tracking-widest w-fit drop-shadow-md">
               <span className="w-2 h-2 rounded-full bg-brand-teal" />
               Independent UK Engineering · London Based
             </div>
 
-            <h1 className="font-display font-medium text-[clamp(2.75rem,7vw,6.5rem)] leading-[0.92] tracking-[-0.03em] text-white uppercase drop-shadow-md">
+            <h1 className="font-display font-medium text-[clamp(2.75rem,7vw,8.75rem)] w-full leading-[0.92] tracking-[-0.03em] text-white uppercase drop-shadow-md">
               <SplitTextReveal text="Security Systems," />
               <br />
               <SplitTextReveal text="Delivered Properly." className="text-brand-teal" />
             </h1>
 
             <ProseReveal delay={0.3}>
-              <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg max-w-xl leading-relaxed drop-shadow">
+              <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg leading-relaxed drop-shadow-md">
                 Most properties buy good hardware but end up with poor results—late installations, messy wiring, and systems nobody maintains. We design, install, and look after your security from start to finish.
               </p>
             </ProseReveal>
@@ -184,65 +212,59 @@ export function CanvasHero() {
                 Try Interactive Estimator
               </Link>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* CHAPTER 2 (100–200vh): Twilight Automation & Smart Triggers */}
-        <section className="h-screen w-full max-w-[1200px] mx-auto px-6 md:px-12 flex items-center justify-start pointer-events-auto">
-          <div className="max-w-xl space-y-4 bg-brand-slate/80 backdrop-blur-md p-8 md:p-10 rounded-2xl border border-white/10 shadow-elevated">
-            <div className="inline-flex items-center gap-2 text-brand-teal font-display font-medium text-xs uppercase tracking-widest">
-              <Cpu className="w-4 h-4" />
+          {/* CHAPTER 2 (100–200vh): Twilight Automation & Smart Triggers */}
+          <section ref={chapter2Ref} className="absolute inset-x-6 md:inset-x-12 max-w-2xl flex flex-col gap-4 pointer-events-none opacity-0 transition-opacity duration-150 will-change-opacity">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10 text-white text-xs font-display font-medium uppercase tracking-widest w-fit drop-shadow-md">
+              <Cpu className="w-3.5 h-3.5 text-brand-teal" />
               <span>Intelligent Building Automation</span>
             </div>
             
-            <h2 className="font-display font-medium text-2xl md:text-4xl text-white tracking-tight uppercase leading-snug">
+            <h2 className="font-display font-medium text-[clamp(2.75rem,7vw,8.75rem)] w-full leading-[0.92] tracking-[-0.03em] text-white uppercase drop-shadow-md">
               <SplitTextReveal text="Invisible By Day." />
               <br />
               <SplitTextReveal text="Vigilant At Dusk." className="text-brand-teal" />
             </h2>
             
             <ProseReveal delay={0.3}>
-              <p className="font-body font-normal text-sm md:text-base text-brand-paper/90 leading-relaxed">
+              <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg leading-relaxed drop-shadow-md">
                 As ambient UK daylight fades, our integrated control systems autonomously adapt your property. Exterior perimeter lighting softly illuminates without blinding neighbors, while smart surveillance cameras silently shift into high-contrast night vision modes.
               </p>
             </ProseReveal>
 
-            {/* UPGRADED: Clean, tactile UI badges without bracket artifacts */}
-            <div className="pt-3 flex flex-wrap items-center gap-3 border-t border-white/10 font-display font-medium text-xs">
-              <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-brand-paper/80">
+            <div className="pt-2 flex flex-wrap items-center gap-3 font-display font-medium text-xs drop-shadow-md">
+              <span className="px-3 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10 text-brand-paper/90">
                 01 · Autonomous Lux Sensors
               </span>
-              <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-brand-paper/80">
+              <span className="px-3 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10 text-brand-paper/90">
                 02 · Zero False Alarms
               </span>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* CHAPTER 3 (200–300vh): Active Night Defense & Local Storage */}
-        <section className="h-screen w-full max-w-[1200px] mx-auto px-6 md:px-12 flex items-center justify-end pointer-events-auto pb-12">
-          <div className="bg-brand-slate/85 backdrop-blur-md text-white p-8 md:p-10 rounded-2xl border border-white/10 max-w-md shadow-elevated space-y-4">
-            <div className="inline-flex items-center gap-2 text-brand-teal font-display font-medium text-xs uppercase tracking-widest">
-              <HardDrive className="w-4 h-4" />
+          {/* CHAPTER 3 (200–300vh): Active Night Defense & Local Storage */}
+          <section ref={chapter3Ref} className="absolute inset-x-6 md:inset-x-12 max-w-2xl flex flex-col gap-4 pointer-events-none opacity-0 transition-opacity duration-150 will-change-opacity">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10 text-white text-xs font-display font-medium uppercase tracking-widest w-fit drop-shadow-md">
+              <HardDrive className="w-3.5 h-3.5 text-brand-teal" />
               <span>Active Nighttime Defense</span>
             </div>
 
-            <h2 className="font-display font-medium text-xl md:text-3xl tracking-tight uppercase leading-snug">
+            <h2 className="font-display font-medium text-[clamp(2.75rem,7vw,8.75rem)] w-full leading-[0.92] tracking-[-0.03em] text-white uppercase drop-shadow-md">
               <SplitTextReveal text="Total Protection." />
               <br />
               <SplitTextReveal text="Zero Cloud Fees." className="text-brand-teal" />
             </h2>
 
             <ProseReveal delay={0.3}>
-              <p className="font-body font-normal text-xs md:text-sm text-brand-paper/85 leading-relaxed">
+              <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg leading-relaxed drop-shadow-md">
                 While your building sleeps, dedicated on-site video recorders capture crystal-clear 4K footage across every critical entry point. Your sensitive security data stays safely inside your property under strict UK GDPR privacy standards—never hosted on external cloud servers.
               </p>
             </ProseReveal>
 
-            {/* UPGRADED: Clickable Trust CTA wired to Compliance & SLA terms */}
-            <div className="pt-3 border-t border-white/10 flex items-center justify-between font-display font-medium text-xs">
-              <span className="flex items-center gap-1.5 text-brand-paper/90">
-                <ShieldCheck className="w-4 h-4 text-brand-teal shrink-0" /> British Standards Compliant
+            <div className="pt-2 flex items-center gap-6 font-display font-medium text-xs drop-shadow-md">
+              <span className="flex items-center gap-1.5 text-brand-paper/90 px-3.5 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10">
+                <ShieldCheck className="w-3.5 h-3.5 text-brand-teal shrink-0" /> British Standards Compliant
               </span>
               <Link 
                 href="/compliance#sla" 
@@ -252,9 +274,9 @@ export function CanvasHero() {
                 <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" />
               </Link>
             </div>
-          </div>
-        </section>
+          </section>
 
+        </div>
       </div>
     </div>
   );

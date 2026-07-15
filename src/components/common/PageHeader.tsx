@@ -38,7 +38,7 @@ export function PageHeader({ badgeText, title, description, imageSrc, imageAlt }
           </div>
         )}
 
-        <h1 className="font-display font-medium text-4xl md:text-5xl lg:text-6xl text-white tracking-[-0.03em] uppercase mb-6">
+        <h1 className="font-display font-medium text-[clamp(2.75rem,7vw,8.75rem)] w-full text-center text-white tracking-[-0.03em] uppercase mb-6">
           <SplitTextReveal text={title} />
         </h1>
         

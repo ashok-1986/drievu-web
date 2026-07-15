@@ -20,7 +20,7 @@ export default function ConsultationPage() {
             Zero Sales Pressure · Direct Principal Access
           </div>
 
-          <h1 className="font-display font-medium text-3xl md:text-5xl text-brand-slate tracking-tighter uppercase">
+          <h1 className="font-display font-medium text-[clamp(2.75rem,7vw,8.75rem)] w-full text-center text-brand-slate tracking-tighter uppercase">
             Start Your Engineering Scoping.
           </h1>
 
