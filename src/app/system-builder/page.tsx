@@ -46,12 +46,12 @@ export default function SystemBuilderPage() {
   ];
 
   return (
-    <div className="w-full pt-28 md:pt-36 pb-24 bg-brand-paper min-h-screen select-none">
+    <div className="w-full bg-brand-paper min-h-screen select-none">
       {/* 
         * HERO HEADER SECTION
         * Strict Weight-500 Ceiling: Uses font-medium with optical tracking [-0.03em].
         */}
-      <section className="bg-brand-slate text-brand-paper py-16 md:py-24 px-6 border-b border-brand-grey/20">
+      <section className="bg-brand-slate text-brand-paper pt-28 md:pt-36 pb-16 md:pb-24 px-6 border-b border-brand-grey/20">
         <div className="max-w-[1200px] mx-auto">
           <Link
             href="/"

@@ -13,7 +13,7 @@ export interface PageHeaderProps {
 
 export function PageHeader({ badgeText, title, description, imageSrc, imageAlt }: PageHeaderProps) {
   return (
-    <section className="relative w-full min-h-[60vh] max-h-none md:min-h-[500px] flex items-center justify-center py-24 md:py-32 overflow-hidden">
+    <section className="relative w-full min-h-[60vh] max-h-none md:min-h-[500px] flex items-center justify-center pt-28 md:pt-36 pb-24 md:pb-32 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0 opacity-30">
         <Image
@@ -30,7 +30,7 @@ export function PageHeader({ badgeText, title, description, imageSrc, imageAlt }
       <div className="absolute inset-0 bg-gradient-to-b from-brand-slate via-brand-slate/90 to-brand-slate/40 z-10" />
 
       {/* Hero Content */}
-      <div className="relative z-20 max-w-[1200px] mx-auto px-6 text-center mt-12">
+      <div className="relative z-20 max-w-[1200px] mx-auto px-6 text-center">
         {badgeText && (
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-teal/20 text-brand-teal text-xs font-display font-medium uppercase tracking-widest mb-6">
             <span className="w-2 h-2 rounded-full bg-brand-teal animate-pulse" />
