@@ -4,6 +4,8 @@ import Link from "next/link";
 import { ArrowRight, Shield, Lock, Flame, Radio, Cpu } from "lucide-react";
 import { CanvasHero } from "@/components/home/CanvasHero";
 import { ScrollReveal, TactileLink } from "@/components/motion/MotionPrimitives";
+import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { ProseReveal } from "@/components/motion/ProseReveal";
 import { BentoGrid } from "@/components/home/BentoGrid";
 
 export default function HomePage() {
@@ -33,11 +35,13 @@ export default function HomePage() {
                 Leadership Track Record
               </span>
               <h2 className="font-display font-medium text-3xl md:text-5xl text-brand-slate tracking-tighter">
-                Delivered at Major Scale.
+                <SplitTextReveal text="Delivered at Major Scale." />
               </h2>
-              <p className="font-body font-normal text-brand-slate/85 text-base leading-relaxed">
-                Drievu was founded in London by a leadership team with more than two decades of experience delivering security and building systems across some of the most demanding infrastructure sites globally.
-              </p>
+              <ProseReveal delay={0.3}>
+                <p className="font-body font-normal text-brand-slate/85 text-base leading-relaxed">
+                  Drievu was founded in London by a leadership team with more than two decades of experience delivering security and building systems across some of the most demanding infrastructure sites globally.
+                </p>
+              </ProseReveal>
               
               <div className="bg-brand-mist p-5 rounded-xl border-l-4 border-brand-teal font-body text-xs text-brand-grey leading-relaxed font-mono">
                 <strong>DUE DILIGENCE NOTE:</strong> National-infrastructure projects listed inside our full profile were delivered by members of Drievu's leadership team over the past two decades in prior executive roles. Drievu Limited was incorporated in the UK in 2024 (Company No. 15479482).
@@ -79,11 +83,13 @@ export default function HomePage() {
               Our Simple Process
             </span>
             <h2 className="font-display font-medium text-3xl md:text-5xl text-white tracking-tighter mb-4">
-              How We Deliver Without Stress.
+              <SplitTextReveal text="How We Deliver Without Stress." />
             </h2>
-            <p className="font-body font-normal text-brand-grey text-sm md:text-base">
-              We never rush into selling you equipment. We take the time to understand your building first, install everything neatly, and show you exactly how it works.
-            </p>
+            <ProseReveal delay={0.3}>
+              <p className="font-body font-normal text-brand-grey text-sm md:text-base">
+                We never rush into selling you equipment. We take the time to understand your building first, install everything neatly, and show you exactly how it works.
+              </p>
+            </ProseReveal>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 relative z-10">
@@ -112,11 +118,13 @@ export default function HomePage() {
             Ready To Upgrade Your Property?
           </span>
           <h2 className="font-display font-medium text-3xl md:text-5xl tracking-tighter mb-6">
-            Let's Talk About Your Building.
+            <SplitTextReveal text="Let's Talk About Your Building." />
           </h2>
-          <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg mb-8 leading-relaxed">
-            Whether you manage a residential block, a commercial office, or an industrial facility, get an honest engineering assessment and a clear quote without sales pressure.
-          </p>
+          <ProseReveal delay={0.3}>
+            <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg mb-8 leading-relaxed">
+              Whether you manage a residential block, a commercial office, or an industrial facility, get an honest engineering assessment and a clear quote without sales pressure.
+            </p>
+          </ProseReveal>
           <TactileLink
             href="/consultation"
             variant="secondary"

@@ -21,6 +21,8 @@ import {
 } from "lucide-react";
 import { Tactile, GliderTab, TactileLink } from "@/components/motion/MotionPrimitives";
 import { EASING_OUT_EXPO } from "@/lib/physics";
+import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { ProseReveal } from "@/components/motion/ProseReveal";
 
 // Types for our engineering intake state
 type SectorType = "residential_block" | "commercial_office" | "industrial_site" | "public_sector" | "private_estate";
@@ -181,11 +183,13 @@ export function ConsultationIntake() {
             >
               <div>
                 <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate mb-2">
-                  What type of property are we protecting?
+                  <SplitTextReveal text="What type of property are we protecting?" />
                 </h2>
-                <p className="font-body font-normal text-sm text-brand-grey">
-                  Select your environment so we can assign the correct British Standard engineering framework.
-                </p>
+                <ProseReveal delay={0.3}>
+                  <p className="font-body font-normal text-sm text-brand-grey">
+                    Select your environment so we can assign the correct British Standard engineering framework.
+                  </p>
+                </ProseReveal>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -261,11 +265,13 @@ export function ConsultationIntake() {
             >
               <div>
                 <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate mb-2">
-                  Which systems require engineering attention?
+                  <SplitTextReveal text="Which systems require engineering attention?" />
                 </h2>
-                <p className="font-body font-normal text-sm text-brand-grey">
-                  We design integrated systems that work seamlessly from one app. Select all that apply.
-                </p>
+                <ProseReveal delay={0.3}>
+                  <p className="font-body font-normal text-sm text-brand-grey">
+                    We design integrated systems that work seamlessly from one app. Select all that apply.
+                  </p>
+                </ProseReveal>
               </div>
 
               <div className="grid grid-cols-1 gap-4">
@@ -367,11 +373,13 @@ export function ConsultationIntake() {
             >
               <div>
                 <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate mb-2">
-                  Where should we send the technical review?
+                  <SplitTextReveal text="Where should we send the technical review?" />
                 </h2>
-                <p className="font-body font-normal text-sm text-brand-grey">
-                  Your details are protected under UK GDPR. You speak directly with principal engineers—never salespeople.
-                </p>
+                <ProseReveal delay={0.3}>
+                  <p className="font-body font-normal text-sm text-brand-grey">
+                    Your details are protected under UK GDPR. You speak directly with principal engineers—never salespeople.
+                  </p>
+                </ProseReveal>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -546,11 +554,13 @@ export function ConsultationIntake() {
                   Transmission Confirmed
                 </span>
                 <h2 className="font-display font-medium text-2xl md:text-3xl text-brand-slate tracking-tight">
-                  Your Scoping Blueprint is with our Principal Engineers.
+                  <SplitTextReveal text="Your Scoping Blueprint is with our Principal Engineers." />
                 </h2>
-                <p className="font-body font-normal text-sm text-brand-grey leading-relaxed">
-                  Thank you, {formState.fullName}. We have routed your property specifications for the <strong className="font-medium text-brand-slate uppercase">{formState.sector.replace("_", " ")}</strong> sector in <strong className="font-medium text-brand-slate">{formState.postcode}</strong> directly to our technical desk.
-                </p>
+                <ProseReveal delay={0.3}>
+                  <p className="font-body font-normal text-sm text-brand-grey leading-relaxed">
+                    Thank you, {formState.fullName}. We have routed your property specifications for the <strong className="font-medium text-brand-slate uppercase">{formState.sector.replace("_", " ")}</strong> sector in <strong className="font-medium text-brand-slate">{formState.postcode}</strong> directly to our technical desk.
+                  </p>
+                </ProseReveal>
               </div>
 
               <div className="bg-brand-mist p-6 rounded-xl border border-brand-grey/15 text-left space-y-2">

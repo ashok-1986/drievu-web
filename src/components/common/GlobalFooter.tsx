@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { ProseReveal } from "@/components/motion/ProseReveal";
 
 export function GlobalFooter() {
   const [currentTime, setCurrentTime] = useState<string>("00:00:00 UTC");
@@ -66,11 +68,13 @@ export function GlobalFooter() {
           {/* Brand & Canonical Due Diligence (5 Columns) */}
           <div className="md:col-span-5 space-y-4">
             <Link href="/" className="inline-block font-display font-medium text-2xl tracking-tight text-white">
-              DRIEVU<span className="text-brand-teal">.</span>
+              <SplitTextReveal text="DRIEVU" /><span className="text-brand-teal">.</span>
             </Link>
-            <p className="text-brand-grey text-sm leading-relaxed max-w-sm font-body font-normal">
-              Security, life safety, and smart building systems. Designed, installed, and maintained with consultancy discipline. We commit to outcomes, not just equipment lists.
-            </p>
+            <ProseReveal delay={0.3}>
+              <p className="text-brand-grey text-sm leading-relaxed max-w-sm font-body font-normal">
+                Security, life safety, and smart building systems. Designed, installed, and maintained with consultancy discipline. We commit to outcomes, not just equipment lists.
+              </p>
+            </ProseReveal>
             <div className="text-xs text-brand-grey/80 space-y-1 font-mono pt-2 border-t border-brand-grey/15 max-w-xs">
               <p className="text-white font-medium">Company Registration No: 15479482</p>
               <p>Apartment 3, Minotaur House, 3 Thunderer Walk, London SE18 6LH</p>

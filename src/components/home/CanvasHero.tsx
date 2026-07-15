@@ -4,6 +4,8 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ShieldCheck, HardDrive, Cpu } from "lucide-react";
+import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { ProseReveal } from "@/components/motion/ProseReveal";
 
 export function CanvasHero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -156,13 +158,16 @@ export function CanvasHero() {
             </div>
 
             <h1 className="font-display font-medium text-[clamp(2.75rem,7vw,6.5rem)] leading-[0.92] tracking-[-0.03em] text-white uppercase drop-shadow-md">
-              Security Systems,<br />
-              <span className="text-brand-teal">Delivered Properly.</span>
+              <SplitTextReveal text="Security Systems," />
+              <br />
+              <SplitTextReveal text="Delivered Properly." className="text-brand-teal" />
             </h1>
 
-            <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg max-w-xl leading-relaxed drop-shadow">
-              Most properties buy good hardware but end up with poor results—late installations, messy wiring, and systems nobody maintains. We design, install, and look after your security from start to finish.
-            </p>
+            <ProseReveal delay={0.3}>
+              <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg max-w-xl leading-relaxed drop-shadow">
+                Most properties buy good hardware but end up with poor results—late installations, messy wiring, and systems nobody maintains. We design, install, and look after your security from start to finish.
+              </p>
+            </ProseReveal>
 
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <Link
@@ -191,13 +196,16 @@ export function CanvasHero() {
             </div>
             
             <h2 className="font-display font-medium text-2xl md:text-4xl text-white tracking-tight uppercase leading-snug">
-              Invisible By Day.<br />
-              <span className="text-brand-teal">Vigilant At Dusk.</span>
+              <SplitTextReveal text="Invisible By Day." />
+              <br />
+              <SplitTextReveal text="Vigilant At Dusk." className="text-brand-teal" />
             </h2>
             
-            <p className="font-body font-normal text-sm md:text-base text-brand-paper/90 leading-relaxed">
-              As ambient UK daylight fades, our integrated control systems autonomously adapt your property. Exterior perimeter lighting softly illuminates without blinding neighbors, while smart surveillance cameras silently shift into high-contrast night vision modes.
-            </p>
+            <ProseReveal delay={0.3}>
+              <p className="font-body font-normal text-sm md:text-base text-brand-paper/90 leading-relaxed">
+                As ambient UK daylight fades, our integrated control systems autonomously adapt your property. Exterior perimeter lighting softly illuminates without blinding neighbors, while smart surveillance cameras silently shift into high-contrast night vision modes.
+              </p>
+            </ProseReveal>
 
             {/* UPGRADED: Clean, tactile UI badges without bracket artifacts */}
             <div className="pt-3 flex flex-wrap items-center gap-3 border-t border-white/10 font-display font-medium text-xs">
@@ -220,13 +228,16 @@ export function CanvasHero() {
             </div>
 
             <h2 className="font-display font-medium text-xl md:text-3xl tracking-tight uppercase leading-snug">
-              Total Protection.<br />
-              <span className="text-brand-teal">Zero Cloud Fees.</span>
+              <SplitTextReveal text="Total Protection." />
+              <br />
+              <SplitTextReveal text="Zero Cloud Fees." className="text-brand-teal" />
             </h2>
 
-            <p className="font-body font-normal text-xs md:text-sm text-brand-paper/85 leading-relaxed">
-              While your building sleeps, dedicated on-site video recorders capture crystal-clear 4K footage across every critical entry point. Your sensitive security data stays safely inside your property under strict UK GDPR privacy standards—never hosted on external cloud servers.
-            </p>
+            <ProseReveal delay={0.3}>
+              <p className="font-body font-normal text-xs md:text-sm text-brand-paper/85 leading-relaxed">
+                While your building sleeps, dedicated on-site video recorders capture crystal-clear 4K footage across every critical entry point. Your sensitive security data stays safely inside your property under strict UK GDPR privacy standards—never hosted on external cloud servers.
+              </p>
+            </ProseReveal>
 
             {/* UPGRADED: Clickable Trust CTA wired to Compliance & SLA terms */}
             <div className="pt-3 border-t border-white/10 flex items-center justify-between font-display font-medium text-xs">

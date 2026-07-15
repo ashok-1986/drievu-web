@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { TactileLink } from "@/components/motion/MotionPrimitives";
 
@@ -24,11 +25,9 @@ export function GlobalNavbar() {
   // On home page: transparent until scroll. On other pages: always dark (scrolled state).
   const shouldBeDark = !isHome || isScrolled;
 
-  const darkHeader = "fixed top-0 left-0 w-full z-[100] h-[60px] bg-brand-slate/95 backdrop-blur-md border-b border-brand-grey/20 text-white shadow-soft";
-  const lightHeader = "fixed top-0 left-0 w-full z-[100] h-[80px] bg-transparent border-none text-white";
-  const headerClass = shouldBeDark
-    ? `fixed top-0 left-0 w-full z-[100] transition-all duration-300 ${darkHeader}`
-    : `fixed top-0 left-0 w-full z-[100] transition-all duration-300 ${lightHeader}`;
+  const darkHeader = "h-[60px] bg-brand-slate/90 backdrop-blur-md border-b border-white/10 shadow-soft";
+  const lightHeader = "h-[80px] bg-transparent border-none";
+  const headerClass = `fixed top-0 left-0 w-full z-[100] transition-all duration-300 ${shouldBeDark ? darkHeader : lightHeader}`;
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -43,24 +42,19 @@ export function GlobalNavbar() {
       <header className={headerClass}>
         <div className="max-w-[1200px] mx-auto px-6 h-full flex items-center justify-between">
           
-          {/* Brand Logo - Text-only for reliability */}
-          <Link href="/" className="flex items-center gap-2.5 group cursor-pointer select-none">
-            <span className="w-8 h-8 lg:w-10 lg:h-10 rounded-xl bg-brand-teal flex items-center justify-center text-white font-display font-medium text-lg shadow-sm group-hover:bg-brand-slate transition-colors duration-200 active:scale-[0.95]" aria-hidden="true">
-              D
-            </span>
-            <span className="font-display font-medium text-xl lg:text-2xl tracking-tight text-white">
-              DRIEVU<span className="text-brand-teal">.</span>
-            </span>
+          {/* Brand Logo - PNG Asset */}
+          <Link href="/" className="flex items-center shrink-0 cursor-pointer">
+            <Image src="/logo.png" alt="Drievu Engineering" width={130} height={38} className="h-8 md:h-9 w-auto object-contain" priority />
           </Link>
 
-          {/* Desktop Navigation with Underline Draw */}
-          <nav className="hidden lg:flex items-center gap-8">
-{navLinks.map((link) => {
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-2">
+            {navLinks.map((link) => {
               const isActive = pathname === link.href;
-              const baseClass = "relative py-1 font-display font-medium text-sm tracking-tight transition-colors duration-150";
+              const baseClass = "relative px-3.5 py-2 rounded-lg font-display font-medium text-sm transition-all duration-150";
               const linkClass = isActive
-                ? `${baseClass} text-brand-teal`
-                : `${baseClass} text-brand-paper/85 hover:text-brand-paper`;
+                ? `${baseClass} text-white bg-white/10`
+                : `${baseClass} text-white/80 hover:text-white hover:bg-white/10`;
               return (
                 <TactileLink
                   key={link.name}
@@ -70,12 +64,6 @@ export function GlobalNavbar() {
                   className={linkClass}
                 >
                   {link.name}
-                  {/* Underline draw signature animation */}
-                  <motion.span
-                    layoutId={pathname === link.href ? "nav-glider" : undefined}
-                    transition={{ type: "spring", stiffness: 500, damping: 35 }}
-                    className={`absolute bottom-0 left-0 w-full h-[1.5px] bg-brand-teal transform origin-left transition-transform duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${pathname === link.href ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
-                  />
                 </TactileLink>
               );
             })}
@@ -137,13 +125,8 @@ export function GlobalNavbar() {
             <div className="flex flex-col h-full p-6">
               {/* Header */}
               <div className="flex items-center justify-between mb-8">
-                <Link href="/" className="flex items-center gap-2.5" onClick={() => setIsMobileMenuOpen(false)}>
-                  <span className="w-8 h-8 rounded-xl bg-brand-teal flex items-center justify-center text-white font-display font-medium text-lg shadow-sm">
-                    D
-                  </span>
-                  <span className="font-display font-medium text-lg tracking-tight text-white">
-                    DRIEVU<span className="text-brand-teal">.</span>
-                  </span>
+                <Link href="/" className="flex items-center shrink-0" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Image src="/logo.png" alt="Drievu Engineering" width={130} height={38} className="h-8 w-auto object-contain" priority />
                 </Link>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}

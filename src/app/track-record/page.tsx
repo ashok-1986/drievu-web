@@ -148,25 +148,27 @@ export default function TrackRecordPage() {
         * Tactile touch physics: active:scale-[0.97].
         */}
       <section className="bg-brand-mist py-4 px-6 border-b border-brand-grey/15 sticky top-[60px] z-40 backdrop-blur-md shadow-soft">
-        <div className="max-w-[1200px] mx-auto flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
-          <div className="flex items-center gap-1.5 text-xs font-display font-medium text-brand-grey uppercase tracking-widest mr-2 hidden sm:flex select-none shrink-0">
-            <Filter className="w-3.5 h-3.5 text-brand-teal" />
-            <span>Filter Sector:</span>
+        <div className="max-w-[1200px] mx-auto">
+          <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-full bg-brand-mist/80 border border-brand-grey/20 backdrop-blur-sm w-fit">
+            <div className="flex items-center gap-1.5 text-xs font-display font-medium text-brand-grey uppercase tracking-widest mx-3 hidden sm:flex select-none shrink-0">
+              <Filter className="w-3.5 h-3.5 text-brand-teal" />
+              <span>Filter Sector:</span>
+            </div>
+            
+            {filterTabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setFilter(tab.id)}
+                className={
+                  filter === tab.id
+                    ? "px-5 py-2.5 rounded-full font-display font-medium text-xs text-white bg-brand-teal border border-brand-teal shadow-md cursor-pointer select-none shrink-0"
+                    : "px-5 py-2.5 rounded-full font-display font-medium text-xs text-brand-slate bg-white/80 border border-brand-grey/15 hover:border-brand-teal transition-all cursor-pointer shadow-2xs select-none shrink-0"
+                }
+              >
+                {tab.label}
+              </button>
+            ))}
           </div>
-          
-          {filterTabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setFilter(tab.id)}
-              className={`px-5 py-2.5 rounded-full font-display font-medium text-xs whitespace-nowrap transition-all duration-200 active:scale-[0.97] cursor-pointer select-none ${
-                filter === tab.id
-                  ? "bg-brand-teal text-white shadow-soft"
-                  : "bg-white text-brand-slate border border-brand-grey/20 hover:border-brand-teal hover:text-brand-teal"
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
         </div>
       </section>
 
