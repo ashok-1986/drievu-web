@@ -30,11 +30,11 @@ export function GlobalNavbar() {
   const headerClass = `fixed top-0 left-0 w-full z-[100] transition-all duration-300 ${shouldBeDark ? darkHeader : lightHeader}`;
 
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "Sectors", href: "/sectors" },
-    { name: "Track Record", href: "/track-record" },
-    { name: "System Builder", href: "/system-builder" },
-    { name: "Compliance", href: "/compliance" },
+    { name: "HOME", href: "/" },
+    { name: "SECTORS", href: "/sectors" },
+    { name: "TRACK RECORD", href: "/track-record" },
+    { name: "SYSTEM BUILDER", href: "/system-builder" },
+    { name: "COMPLIANCE", href: "/compliance" },
   ];
 
   return (
