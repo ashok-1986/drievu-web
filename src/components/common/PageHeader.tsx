@@ -21,7 +21,7 @@ export function PageHeader({
 }: PageHeaderProps) {
   return (
     // FIX: Explicitly lock the container to our deep slate background color
-    <section className="relative w-full min-h-[60vh] pt-36 pb-20 px-6 md:px-12 flex flex-col justify-center items-center text-center overflow-hidden bg-brand-slate select-none">
+    <section className="relative w-full min-h-[60vh] pt-36 pb-20 px-6 md:px-12 flex flex-col justify-center items-start text-left overflow-hidden bg-brand-slate select-none">
       
       {/* LAYER 0: Background Architectural Asset */}
       <Image
@@ -38,7 +38,7 @@ export function PageHeader({
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgb(var(--color-brand-slate)/0.4)_60%,rgb(var(--color-brand-slate)/0.9)_100%)] z-10 pointer-events-none" />
 
       {/* LAYER 2: High-Contrast White Typography */}
-      <div className="relative z-20 max-w-3xl mx-auto space-y-6 flex flex-col items-center pointer-events-auto select-none">
+      <div className="relative z-20 max-w-[1200px] w-full mx-auto space-y-6 flex flex-col items-start pointer-events-auto select-none">
         {badgeText && (
           <ProseReveal delay={0.05}>
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white text-xs font-display font-medium uppercase tracking-widest shadow-sm">
@@ -48,13 +48,13 @@ export function PageHeader({
           </ProseReveal>
         )}
 
-        <h1 className="font-display font-medium text-4xl md:text-6xl lg:text-7xl text-white tracking-tight uppercase hero-text-shadow block text-center mx-auto">
+        <h1 className="font-display font-medium text-[clamp(2.75rem,7vw,6rem)] w-full leading-[0.92] tracking-[-0.03em] text-white uppercase drop-shadow-md">
           {title}
         </h1>
 
         <ProseReveal delay={0.2}>
           {/* FIX: Swapped out dark text class for high-contrast white over the dark background */}
-          <p className="font-body font-normal text-white/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl mx-auto text-center block">
+          <p className="font-body font-normal text-white/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl block">
             {description}
           </p>
         </ProseReveal>

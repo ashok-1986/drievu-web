@@ -239,7 +239,7 @@ export function CanvasHero() {
           </section>
 
           {/* CHAPTER 2 (100–200vh): Twilight Automation & Smart Triggers */}
-          <section ref={chapter2Ref} inert={true} aria-hidden="true" className="absolute inset-x-6 md:inset-x-12 max-w-2xl ml-auto flex flex-col items-end text-right gap-4 pointer-events-none opacity-0 transition-opacity duration-150 will-change-opacity">
+          <section ref={chapter2Ref} inert={true} aria-hidden="true" className="absolute inset-x-6 md:inset-x-12 max-w-2xl flex flex-col gap-4 pointer-events-none opacity-0 transition-opacity duration-150 will-change-opacity">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10 text-white text-xs font-display font-medium uppercase tracking-widest w-fit drop-shadow-md">
               <Cpu className="w-3.5 h-3.5 text-brand-teal" />
               <span>Intelligent Building Automation</span>
@@ -257,7 +257,7 @@ export function CanvasHero() {
               </p>
             </ProseReveal>
 
-            <div className="pt-2 flex flex-wrap justify-end items-center gap-3 font-display font-medium text-xs drop-shadow-md">
+            <div className="pt-2 flex flex-wrap items-center gap-3 font-display font-medium text-xs drop-shadow-md">
               <span className="px-3 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10 text-brand-paper/90">
                 01 · Autonomous Lux Sensors
               </span>

@@ -12,7 +12,6 @@ export function GlobalNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const isHome = pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,12 +21,9 @@ export function GlobalNavbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // On home page: transparent until scroll. On other pages: always dark (scrolled state).
-  const shouldBeDark = !isHome || isScrolled;
-
-  const darkHeader = "h-[60px] bg-brand-slate/90 backdrop-blur-md border-b border-white/10 shadow-soft";
-  const lightHeader = "h-[80px] bg-transparent border-none";
-  const headerClass = `fixed top-0 left-0 w-full z-[100] transition-all duration-300 ${shouldBeDark ? darkHeader : lightHeader}`;
+  // Use a consistent glassmorphism style across all pages
+  const baseHeader = "fixed top-0 left-0 w-full z-[100] transition-all duration-300 bg-brand-slate/80 backdrop-blur-md border-b border-white/10 shadow-soft";
+  const headerClass = `${baseHeader} ${isScrolled ? "h-[60px]" : "h-[80px]"}`;
 
   const navLinks = [
     { name: "HOME", href: "/" },
@@ -40,10 +36,6 @@ export function GlobalNavbar() {
   return (
     <>
       <header className={headerClass}>
-        {/* Scrim for transparent state */}
-        {!shouldBeDark && (
-          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-brand-dark/85 via-brand-dark/50 to-transparent pointer-events-none transition-opacity duration-300" />
-        )}
         <div className="max-w-[1200px] mx-auto px-6 h-full flex items-center justify-between">
 
           {/* Brand Logo - PNG Asset */}
@@ -56,7 +48,7 @@ export function GlobalNavbar() {
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               const baseClass = "relative px-3.5 py-2 rounded-lg font-display font-medium text-sm transition-all duration-150";
-              const textStyle = !shouldBeDark ? "text-white drop-shadow-md" : (isActive ? "text-white" : "text-white/80");
+              const textStyle = isActive ? "text-white" : "text-white/80";
               const linkClass = isActive
                 ? `${baseClass} ${textStyle} bg-white/10`
                 : `${baseClass} ${textStyle} hover:text-white hover:bg-white/10`;

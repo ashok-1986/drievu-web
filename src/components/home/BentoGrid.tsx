@@ -122,19 +122,19 @@ export function BentoGrid() {
     <section className="w-full min-h-screen bg-brand-paper py-20 lg:py-28 px-6 md:px-12 flex flex-col justify-center border-b border-brand-grey/20 overflow-hidden select-none">
       <div className="max-w-[1200px] mx-auto w-full space-y-12">
         
-        {/* Section Header */}
+        {/* Header Section */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-2 max-w-xl">
-
-            <h2 className="m-0 p-0 block">
-              <SplitTextReveal text="Everything Your Building Needs." className="font-display font-medium text-3xl md:text-5xl text-brand-slate tracking-tight" />
+            <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block">
+              What We Protect
+            </span>
+            <h2 className="font-display font-medium text-3xl md:text-5xl text-brand-slate tracking-tight">
+              Everything Your Building Needs.
             </h2>
           </div>
-          <ProseReveal delay={0.2}>
-            <p className="font-body font-normal text-brand-grey text-sm md:text-base max-w-md leading-relaxed">
-              We handle the essential engineering that keeps your property secure, compliant, and energy-efficient—all managed easily from your smartphone or desktop.
-            </p>
-          </ProseReveal>
+          <p className="font-body font-normal text-base text-brand-grey max-w-md leading-relaxed">
+            We handle the essential engineering that keeps your property secure, compliant, and energy-efficient—all managed easily from your smartphone or desktop.
+          </p>
         </div>
 
         {/* Proportional Grid Container */}
@@ -149,9 +149,6 @@ export function BentoGrid() {
                 data-bento-card
                 className={`group relative ${sys.spanClasses} rounded-3xl p-6 md:p-8 lg:p-8 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-xl active:scale-[0.97] flex flex-col justify-between overflow-hidden ${sys.bgClasses}`}
               >
-                {/* Subtle background ambient glow on hover */}
-                <div className="absolute -right-12 -bottom-12 w-48 h-48 rounded-full bg-brand-teal/10 blur-2xl group-hover:bg-brand-teal/20 transition-all duration-500 pointer-events-none" />
-                
                 {/* Top Row: Icon Badge & Arrow Indicator */}
                 <div className="flex items-start justify-between gap-4 z-10 mb-8">
                   <div className={`w-12 h-12 lg:w-14 lg:h-14 rounded-xl flex items-center justify-center text-brand-slate mb-4 lg:mb-6 ${sys.iconBg}`}>
