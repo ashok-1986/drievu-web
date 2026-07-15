@@ -38,7 +38,7 @@ export function PageHeader({
       <div className="absolute inset-0 bg-radial-at-c from-transparent via-brand-slate/40 to-brand-slate/90 z-10 pointer-events-none" />
 
       {/* LAYER 2: High-Contrast White Typography */}
-      <div className="relative z-20 max-w-3xl mx-auto space-y-6 flex flex-col items-center">
+      <div className="relative z-20 max-w-3xl mx-auto space-y-6 flex flex-col items-center pointer-events-auto select-none">
         {badgeText && (
           <ProseReveal delay={0.05}>
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white text-xs font-display font-medium uppercase tracking-widest shadow-sm">

@@ -38,11 +38,11 @@ export function TactileButton({
   type = "button",
   "aria-label": ariaLabel,
 }: TactileButtonProps) {
-  const baseStyles = "relative inline-flex items-center justify-center font-display font-medium rounded-xl transition-all duration-200 active:scale-[0.98] cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-brand-paper";
+  const baseStyles = "relative inline-flex items-center justify-center font-display font-medium rounded-full tracking-wide transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-brand-paper";
 
   const variantStyles = {
-    primary: "bg-brand-teal text-white shadow-elevated hover:bg-[#006666]",
-    secondary: "bg-brand-slate text-white hover:bg-brand-slate/90",
+    primary: "bg-brand-teal text-white border border-white/20 shadow-[0_4px_20px_rgba(0,128,128,0.35)] hover:shadow-[0_6px_24px_rgba(0,128,128,0.5)] hover:bg-[#006666]",
+    secondary: "bg-white/15 text-white hover:bg-white/25 border border-white/30 backdrop-blur-md shadow-sm",
     ghost: "bg-transparent text-brand-slate hover:bg-brand-mist",
     outline: "border-2 border-brand-teal text-brand-teal bg-transparent hover:bg-brand-teal/10",
   };
@@ -108,11 +108,11 @@ export function TactileLink({
   onClick,
   "aria-label": ariaLabel,
 }: TactileLinkProps) {
-  const baseStyles = "relative inline-flex items-center justify-center font-display font-medium rounded-xl transition-all duration-200 active:scale-[0.98] cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-brand-paper";
+  const baseStyles = "relative inline-flex items-center justify-center font-display font-medium rounded-full tracking-wide transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-brand-paper";
 
   const variantStyles = {
-    primary: "bg-brand-teal text-white shadow-elevated hover:bg-[#006666]",
-    secondary: "bg-brand-slate text-white hover:bg-brand-slate/90",
+    primary: "bg-brand-teal text-white border border-white/20 shadow-[0_4px_20px_rgba(0,128,128,0.35)] hover:shadow-[0_6px_24px_rgba(0,128,128,0.5)] hover:bg-[#006666]",
+    secondary: "bg-white/15 text-white hover:bg-white/25 border border-white/30 backdrop-blur-md shadow-sm",
     ghost: "bg-transparent text-brand-slate hover:bg-brand-mist",
     outline: "border-2 border-brand-teal text-brand-teal bg-transparent hover:bg-brand-teal/10",
   };

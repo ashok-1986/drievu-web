@@ -221,17 +221,17 @@ export function CanvasHero() {
               </p>
             </ProseReveal>
 
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            <div className="relative z-20 flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 pointer-events-auto select-none">
               <Link
                 href="/consultation"
-                className="bg-brand-teal text-white font-display font-medium text-sm px-8 py-4 rounded-xl hover:bg-[#006666] transition-all duration-200 active:scale-[0.98] flex items-center gap-2 group shadow-elevated cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-brand-teal hover:bg-[#006666] text-white font-display font-medium text-sm md:text-base tracking-wide border border-white/20 shadow-[0_4px_20px_rgba(0,128,128,0.35)] hover:shadow-[0_6px_24px_rgba(0,128,128,0.5)] transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer group"
               >
                 <span>Book a Scoping Review</span>
-                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 text-white transform group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/system-builder"
-                className="bg-brand-slate/80 text-white border border-white/20 backdrop-blur-md font-display font-medium text-sm px-8 py-4 rounded-xl hover:border-brand-teal hover:bg-brand-slate transition-all duration-200 active:scale-[0.98] cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-white/15 hover:bg-white/25 text-white font-display font-medium text-sm md:text-base tracking-wide border border-white/30 backdrop-blur-md shadow-sm transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer"
               >
                 Try Interactive Estimator
               </Link>
