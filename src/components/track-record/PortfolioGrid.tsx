@@ -113,7 +113,7 @@ export function PortfolioGrid() {
           </p>
         </div>
 
-        <div className="w-full flex flex-row items-center justify-start gap-2 overflow-x-auto no-scrollbar py-4 border-y border-brand-grey/20 my-6">
+        <div className="w-full max-w-full flex flex-row items-center justify-start md:justify-center gap-2 overflow-x-auto no-scrollbar py-4 border-y border-brand-grey/20 my-6 touch-pan-x overscroll-x-contain select-none">
           {filterTabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
@@ -121,7 +121,7 @@ export function PortfolioGrid() {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 aria-pressed={isActive}
-                className={`shrink-0 rounded-full px-5 py-2.5 border font-display font-medium text-xs uppercase tracking-wider whitespace-nowrap transition-all duration-200 active:scale-[0.97] shadow-sm ${
+                className={`shrink-0 min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-full px-5 py-2.5 border font-display font-medium text-xs uppercase tracking-wider whitespace-nowrap transition-all duration-200 active:scale-[0.97] shadow-sm ${
                   isActive
                     ? "bg-brand-teal text-white border-brand-teal"
                     : "border-brand-grey/20 bg-brand-paper hover:bg-brand-mist text-brand-slate"

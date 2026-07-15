@@ -146,7 +146,7 @@ export default function SectorsPage() {
       {/* STICKY SECTOR JUMP NAVIGATION — Capsule filter bar */}
       <section className="bg-brand-mist/90 py-4 px-6 border-b border-brand-grey/15 sticky top-[60px] z-40 backdrop-blur-md shadow-soft">
         <div className="max-w-[1200px] mx-auto">
-          <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-full bg-brand-mist/80 border border-brand-grey/20 backdrop-blur-sm w-fit">
+          <div className="w-full max-w-full flex flex-row items-center justify-start md:justify-center gap-2 overflow-x-auto no-scrollbar py-4 touch-pan-x overscroll-x-contain select-none">
             <span className="font-display font-medium text-xs text-brand-grey uppercase tracking-widest mx-3 hidden sm:inline shrink-0 whitespace-nowrap">
               Jump To:
             </span>
@@ -158,8 +158,8 @@ export default function SectorsPage() {
                   onClick={() => scrollToSection(tab.id)}
                   className={
                     isActive
-                      ? "px-5 py-2.5 rounded-full font-display font-medium text-xs text-white bg-brand-teal border border-brand-teal shadow-md cursor-pointer shrink-0"
-                      : "px-5 py-2.5 rounded-full font-display font-medium text-xs text-brand-slate bg-white/80 border border-brand-grey/15 hover:border-brand-teal transition-all cursor-pointer shadow-2xs shrink-0"
+                      ? "min-h-[44px] min-w-[44px] inline-flex items-center justify-center px-5 py-2.5 rounded-full font-display font-medium text-xs text-white bg-brand-teal border border-brand-teal shadow-md cursor-pointer shrink-0"
+                      : "min-h-[44px] min-w-[44px] inline-flex items-center justify-center px-5 py-2.5 rounded-full font-display font-medium text-xs text-brand-slate bg-white/80 border border-brand-grey/15 hover:border-brand-teal transition-all cursor-pointer shadow-2xs shrink-0"
                   }
                 >
                   {tab.label}
