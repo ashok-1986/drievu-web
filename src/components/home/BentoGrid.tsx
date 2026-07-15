@@ -124,7 +124,7 @@ export function BentoGrid() {
   ];
 
   return (
-    <section className="min-h-[100svh] py-16 px-6 md:px-12 bg-slate-50 border-y border-slate-200/60 flex flex-col justify-center">
+    <section className="min-h-screen lg:h-screen w-full bg-stone-50 py-12 lg:py-16 px-6 md:px-12 flex flex-col justify-center border-b border-slate-200/60 overflow-hidden">
       <div className="max-w-[1200px] w-full mx-auto flex flex-col flex-1 space-y-8 min-h-0">
         
         {/* Section Header */}
@@ -146,7 +146,7 @@ export function BentoGrid() {
           </ProseReveal>
         </div>
 
-        <div ref={bentoRef} className="grid grid-cols-12 gap-6 flex-1 min-h-0 auto-rows-[minmax(240px,auto)] lg:grid-rows-[repeat(3,minmax(min-content,1fr))] pb-8 md:pb-0">
+        <div ref={bentoRef} className="grid grid-cols-12 gap-6 flex-1 min-h-0 auto-rows-[minmax(240px,auto)] lg:auto-rows-[minmax(0,1fr)] lg:grid-rows-3 pb-8 md:pb-0">
           {services.map((sys, index) => {
             const IconComponent = sys.icon;
             return (
@@ -155,7 +155,7 @@ export function BentoGrid() {
                 href={sys.href}
                 variant="ghost"
                 data-bento-card
-                className={`group relative ${sys.spanClasses} rounded-3xl p-8 md:p-10 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl active:scale-[0.99] flex flex-col justify-between overflow-hidden ${sys.bgClasses}`}
+                className={`group relative ${sys.spanClasses} rounded-3xl p-6 md:p-8 lg:p-8 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl active:scale-[0.99] flex flex-col justify-between overflow-hidden ${sys.bgClasses}`}
               >
                 {/* Subtle background ambient glow on hover */}
                 <div className="absolute -right-12 -bottom-12 w-48 h-48 rounded-full bg-teal-500/10 blur-2xl group-hover:bg-teal-500/20 transition-all duration-500 pointer-events-none" />
