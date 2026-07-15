@@ -75,12 +75,11 @@ export function GlobalNavbar() {
               href="/consultation"
               variant="primary"
               size="sm"
-              icon={<ArrowRight className="w-3.5 h-3.5" />}
+              icon={<ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" />}
               iconPosition="right"
-              className="shadow-soft hover:bg-brand-teal-deep hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97] inline-flex items-center gap-1.5 group cursor-pointer"
+              className="shadow-soft hover:bg-brand-teal-deep hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97] group cursor-pointer"
             >
-              <span>Book Scoping Review</span>
-              <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" />
+              <span>BOOK SCOPING REVIEW</span>
             </TactileLink>
           </div>
 
@@ -191,12 +190,12 @@ export function GlobalNavbar() {
                 href="/consultation"
                 variant="primary"
                 size="lg"
-                icon={<ArrowRight className="w-4 h-4" />}
+                icon={<ArrowRight className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" />}
                 iconPosition="right"
-                className="w-full justify-center shadow-elevated hover:bg-brand-teal-deep"
+                className="w-full justify-center shadow-elevated hover:bg-brand-teal-deep group"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Book Scoping Review
+                BOOK SCOPING REVIEW
               </TactileLink>
 
               {/* Secondary Links */}

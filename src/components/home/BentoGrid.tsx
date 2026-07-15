@@ -155,6 +155,7 @@ export function BentoGrid() {
                 key={sys.id}
                 href={sys.href}
                 variant="ghost"
+                data-bento-card
                 className={`group relative ${sys.spanClasses} rounded-3xl p-8 md:p-10 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl active:scale-[0.99] flex flex-col justify-between overflow-hidden ${sys.bgClasses}`}
               >
                 {/* Subtle background ambient glow on hover */}
