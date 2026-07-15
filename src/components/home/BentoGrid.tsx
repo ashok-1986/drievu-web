@@ -56,7 +56,7 @@ export function BentoGrid() {
       spanClasses: "col-span-12 md:col-span-12 lg:col-span-8 lg:row-span-2",
       bgClasses: "bg-gradient-to-br from-slate-900 to-slate-800 text-white",
       accent: "bg-slate-900/50",
-      iconBg: "bg-teal-500/20 text-teal-300 border border-teal-500/30",
+      iconBg: "bg-brand-teal/20 text-brand-teal border border-brand-teal/30",
       titleColor: "text-white",
       descColor: "text-slate-300",
       isDark: true,
@@ -116,7 +116,7 @@ export function BentoGrid() {
       spanClasses: "col-span-12 md:col-span-6 lg:col-span-7",
       bgClasses: "bg-teal-950/5 border border-teal-900/15 text-slate-900",
       accent: "bg-teal-900/20",
-      iconBg: "bg-teal-600/10 text-teal-700 border border-teal-600/20",
+      iconBg: "bg-brand-teal-deep/10 text-brand-teal-deep border border-brand-teal-deep/20",
       titleColor: "text-slate-900",
       descColor: "text-slate-600",
       isDark: false,
@@ -158,14 +158,14 @@ export function BentoGrid() {
                 className={`group relative ${sys.spanClasses} rounded-3xl p-6 md:p-8 lg:p-8 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl active:scale-[0.99] flex flex-col justify-between overflow-hidden ${sys.bgClasses}`}
               >
                 {/* Subtle background ambient glow on hover */}
-                <div className="absolute -right-12 -bottom-12 w-48 h-48 rounded-full bg-teal-500/10 blur-2xl group-hover:bg-teal-500/20 transition-all duration-500 pointer-events-none" />
+                <div className="absolute -right-12 -bottom-12 w-48 h-48 rounded-full bg-brand-teal/10 blur-2xl group-hover:bg-brand-teal/20 transition-all duration-500 pointer-events-none" />
                 
                 {/* Top Row: Icon Badge & Arrow Indicator */}
                 <div className="flex items-start justify-between gap-4 z-10 mb-8">
                   <div className={`w-12 h-12 lg:w-14 lg:h-14 rounded-xl flex items-center justify-center text-brand-slate mb-4 lg:mb-6 ${sys.accent} ${sys.iconBg}`}>
                     <IconComponent className="w-6 h-6 lg:w-7 lg:h-7" />
                   </div>
-                  <div className={`w-8 h-8 lg:w-10 lg:h-10 rounded-full flex items-center justify-center transition-all duration-300 transform group-hover:translate-x-1 ${sys.isDark ? "bg-white/10 text-white group-hover:bg-teal-500" : "bg-slate-200/60 text-slate-700 group-hover:bg-teal-600 group-hover:text-white"}`}>
+                  <div className={`w-8 h-8 lg:w-10 lg:h-10 rounded-full flex items-center justify-center transition-all duration-300 transform group-hover:translate-x-1 ${sys.isDark ? "bg-white/10 text-white group-hover:bg-brand-teal" : "bg-slate-200/60 text-slate-700 group-hover:bg-brand-teal-deep group-hover:text-white"}`}>
                     <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5" />
                   </div>
                 </div>
@@ -173,7 +173,7 @@ export function BentoGrid() {
                 {/* Bottom Row: Typography & Description */}
                 <div className="space-y-3 z-10 mt-auto">
                   <h3 className="m-0 p-0 block">
-                    <SplitTextReveal text={sys.title} delay={0.15 + index * 0.06} charStagger={0.012} className={`font-display font-medium text-xl md:text-2xl tracking-tight transition-colors ${sys.titleColor} ${sys.isDark ? "group-hover:text-teal-300" : "group-hover:text-teal-700"}`} />
+                    <SplitTextReveal text={sys.title} delay={0.15 + index * 0.06} charStagger={0.012} className={`font-display font-medium text-xl md:text-2xl tracking-tight transition-colors ${sys.titleColor} ${sys.isDark ? "group-hover:text-brand-teal" : "group-hover:text-brand-teal-deep"}`} />
                   </h3>
                   <ProseReveal delay={0.25 + index * 0.06} className="w-full">
                     <p className={`font-body font-normal text-xs md:text-sm leading-relaxed max-w-xl ${sys.descColor}`}>
@@ -194,7 +194,7 @@ export function BentoGrid() {
             href="/consultation"
             variant="ghost"
             size="sm"
-            className="text-teal-700 hover:text-teal-800 flex items-center gap-1 font-medium"
+            className="text-brand-teal-deep hover:underline flex items-center gap-1 font-medium"
           >
             <span>Book a Scoping Review</span>
             <ArrowRight className="w-3.5 h-3.5" />
