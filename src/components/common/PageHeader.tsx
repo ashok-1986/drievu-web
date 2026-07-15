@@ -13,7 +13,7 @@ export interface PageHeaderProps {
 
 export function PageHeader({ badgeText, title, description, imageSrc, imageAlt }: PageHeaderProps) {
   return (
-    <section className="relative w-full h-[60vh] min-h-[500px] overflow-hidden flex items-center justify-center">
+    <section className="relative w-full min-h-[60vh] max-h-none md:min-h-[500px] flex items-center justify-center py-24 md:py-32 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0 opacity-30">
         <Image
@@ -38,7 +38,7 @@ export function PageHeader({ badgeText, title, description, imageSrc, imageAlt }
           </div>
         )}
 
-        <h1 className="font-display font-medium text-[clamp(2.75rem,7vw,8.75rem)] w-full text-center text-white tracking-[-0.03em] uppercase mb-6">
+        <h1 className="font-display font-medium text-[clamp(2.5rem,5vw,6rem)] w-full text-center text-white tracking-[-0.03em] uppercase mb-6">
           <SplitTextReveal text={title} />
         </h1>
         

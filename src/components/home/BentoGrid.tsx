@@ -146,8 +146,7 @@ export function BentoGrid() {
           </ProseReveal>
         </div>
 
-        {/* Responsive 12-Column Asymmetric Bento Grid */}
-        <div ref={bentoRef} className="grid grid-cols-12 gap-6 flex-1 min-h-0 auto-rows-[minmax(240px,auto)] lg:auto-rows-[minmax(0,1fr)] lg:grid-rows-3 pb-8 md:pb-0">
+        <div ref={bentoRef} className="grid grid-cols-12 gap-6 flex-1 min-h-0 auto-rows-[minmax(240px,auto)] lg:grid-rows-[repeat(3,minmax(min-content,1fr))] pb-8 md:pb-0">
           {services.map((sys, index) => {
             const IconComponent = sys.icon;
             return (
