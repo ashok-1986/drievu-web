@@ -2,9 +2,11 @@
 
 ## I. Procurement-Safe Color Palette
 * `--teal` (`#008080` | `bg-brand-teal`): Primary brand color. Logo accents, primary CTA buttons, active state indicators, and key numerical highlights [source: 4]. Passes WCAG AA contrast on white for normal text [source: 2, 4].
+* `--teal-deep` (`#006666` | `bg-brand-teal-deep`): Darker teal for hover/pressed states on primary CTAs, icon badges, and hover accents — the deliberate hover-darken of `--teal`.
 * `--slate` (`#1F2A2E` | `bg-brand-slate`): All body copy, structural headings, and dark section canvases [source: 4]. Serious and procurement-safe; never use pure black (`#000000`) [source: 4].
 * `--green` (`#4CAF7D` | `bg-brand-green`): ESG, telemetry, and live system status accent [source: 4]. **WCAG Warning:** Fails AA contrast on white for small text [source: 2, 4]. Use strictly for large display numerals, borders, glowing indicator dots, and icons—never for body copy [source: 2, 4].
 * `--grey` (`#6B7A7A` | `bg-brand-grey`): Secondary text, captions, metadata, borders, and table dividing lines [source: 4].
+* `--grey-light` (`#A6AFAF` | `bg-brand-grey-light`): Lightened grey for secondary/muted text on dark (`brand-slate`) surfaces only — 6.56:1 contrast against `--slate`. Never use on light backgrounds; use `--grey` there instead.
 * `--mist` (`#EEF3F2` | `bg-brand-mist`): Light background tints for cards, table rows, and alternating section bands [source: 4].
 * `--paper` (`#FFFFFF` | `bg-brand-paper`): Base website canvas [source: 4].
 

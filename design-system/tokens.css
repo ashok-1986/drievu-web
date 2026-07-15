@@ -1,24 +1,41 @@
+/*
+ * Reference mirror of src/app/globals.css:5-42 (the actual source of truth).
+ * Previously this file held tokens scraped from an unrelated site and
+ * did not match this project's brand — corrected to stay in sync.
+ * Do not hand-edit divergently; update src/app/globals.css first, then mirror here.
+ */
 :root {
-  --font-heading: Bricolage Grotesque;
-  --font-body: Bricolage Grotesque;
-  --space-1: 2.88px;
-  --space-2: 4px;
-  --space-3: 4.32px;
-  --space-4: 6px;
-  --space-5: 6.72px;
-  --space-6: 8px;
-  --space-7: 10px;
-  --space-8: 12px;
-  --space-9: 15.36px;
-  --space-10: 16px;
-  --space-11: 20px;
-  --space-12: 23.04px;
-  --space-13: 24px;
-  --space-14: 28px;
-  --space-15: 32px;
-  --space-16: 36px;
-  --space-17: 40px;
-  --space-18: 64px;
-  --space-19: 112px;
-  --space-20: 128px;
+  --font-display: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --color-brand-slate: #1F2A2E;
+  --color-brand-teal: #008080;
+  --color-brand-teal-deep: #006666;
+  --color-brand-green: #4CAF7D;
+  --color-brand-grey: #6B7A7A;
+  --color-brand-grey-light: #A6AFAF;
+  --color-brand-mist: #EEF3F2;
+  --color-brand-paper: #FFFFFF;
+  --color-brand-dark: #141C1F;
+
+  --space-1: 4px;
+  --space-2: 6px;
+  --space-3: 8px;
+  --space-4: 10px;
+  --space-5: 12px;
+  --space-6: 16px;
+  --space-7: 20px;
+  --space-8: 24px;
+  --space-9: 28px;
+  --space-10: 32px;
+  --space-11: 36px;
+  --space-12: 40px;
+  --space-13: 64px;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
 }

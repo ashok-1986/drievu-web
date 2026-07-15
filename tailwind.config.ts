@@ -9,23 +9,28 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // rgb(var(--x) / <alpha-value>) lets Tailwind apply opacity modifiers
+        // (e.g. `border-brand-grey/20`) — requires --color-* vars to hold
+        // space-separated RGB channels (see globals.css), not hex strings.
         brand: {
-          slate: "var(--color-brand-slate)",
-          teal: "var(--color-brand-teal)",
-          green: "var(--color-brand-green)",
-          grey: "var(--color-brand-grey)",
-          mist: "var(--color-brand-mist)",
-          paper: "var(--color-brand-paper)",
-          dark: "var(--color-brand-dark)",
+          slate: "rgb(var(--color-brand-slate) / <alpha-value>)",
+          teal: "rgb(var(--color-brand-teal) / <alpha-value>)",
+          "teal-deep": "rgb(var(--color-brand-teal-deep) / <alpha-value>)",
+          green: "rgb(var(--color-brand-green) / <alpha-value>)",
+          grey: "rgb(var(--color-brand-grey) / <alpha-value>)",
+          "grey-light": "rgb(var(--color-brand-grey-light) / <alpha-value>)",
+          mist: "rgb(var(--color-brand-mist) / <alpha-value>)",
+          paper: "rgb(var(--color-brand-paper) / <alpha-value>)",
+          dark: "rgb(var(--color-brand-dark) / <alpha-value>)",
         },
         // Semantic aliases mapping for components
-        void: "var(--color-void-canvas)",
-        charcoal: "var(--color-charcoal-plate)",
-        smoke: "var(--color-smoke-plate)",
-        graphite: "var(--color-graphite-lift)",
+        void: "rgb(var(--color-void-canvas) / <alpha-value>)",
+        charcoal: "rgb(var(--color-charcoal-plate) / <alpha-value>)",
+        smoke: "rgb(var(--color-smoke-plate) / <alpha-value>)",
+        graphite: "rgb(var(--color-graphite-lift) / <alpha-value>)",
         // Danger / error semantic (AA-safe text on white at --color-crimson-pure)
-        danger: "var(--color-arterial-red)",
-        "danger-strong": "var(--color-crimson-pure)",
+        danger: "rgb(var(--color-arterial-red) / <alpha-value>)",
+        "danger-strong": "rgb(var(--color-crimson-pure) / <alpha-value>)",
       },
       fontFamily: {
         display: ["var(--font-display)", "ui-sans-serif", "system-ui", "sans-serif"],

@@ -3,26 +3,34 @@
 @tailwind utilities;
 
 :root {
-  /* --- Color System: Drievu Procurement-Safe Palette --- */
-  --color-brand-slate: #1F2A2E;      /* Deep Slate: Headings, body text, dark canvases */
-  --color-brand-teal: #008080;       /* Drievu Teal: Primary brand accent, CTAs, SLAs */
-  --color-brand-green: #4CAF7D;      /* Retrofit Green: ESG telemetry, glowing indicator dots */
-  --color-brand-grey: #6B7A7A;       /* Warm Grey: Secondary text, captions, table lines */
-  --color-brand-mist: #EEF3F2;       /* Mist: Light background tints, table rows, section bands */
-  --color-brand-paper: #FFFFFF;      /* Paper: Base website canvas */
-  --color-brand-dark: #141C1F;       /* Deepest background shade behind directional scrims */
+  /*
+   * --- Color System: Drievu Procurement-Safe Palette ---
+   * Values are space-separated RGB channels (not hex) so Tailwind's
+   * `rgb(var(--x) / <alpha-value>)` wrapper in tailwind.config.ts can apply
+   * opacity modifiers (e.g. `border-brand-grey/20`). A hex string here would
+   * silently break every `/NN` opacity utility site-wide — do not revert to hex.
+   */
+  --color-brand-slate: 31 42 46;         /* #1F2A2E — Deep Slate: Headings, body text, dark canvases */
+  --color-brand-teal: 0 128 128;         /* #008080 — Drievu Teal: Primary brand accent, CTAs, SLAs */
+  --color-brand-green: 76 175 125;       /* #4CAF7D — Retrofit Green: ESG telemetry, glowing indicator dots */
+  --color-brand-grey: 107 122 122;       /* #6B7A7A — Warm Grey: Secondary text, captions, table lines */
+  --color-brand-mist: 238 243 242;       /* #EEF3F2 — Mist: Light background tints, table rows, section bands */
+  --color-brand-paper: 255 255 255;      /* #FFFFFF — Paper: Base website canvas */
+  --color-brand-dark: 20 28 31;          /* #141C1F — Deepest background shade behind directional scrims */
+  --color-brand-teal-deep: 0 102 102;    /* #006666 — Teal hover-darken: CTA hover states */
+  --color-brand-grey-light: 166 175 175; /* #A6AFAF — Lightened grey for secondary text on dark (brand-slate) surfaces */
 
   /* --- Semantic Surface Mapping --- */
   --color-void-canvas: var(--color-brand-slate);
   --color-absolute-black: var(--color-brand-dark);
-  --color-charcoal-plate: #28363B;
-  --color-smoke-plate: #32434A;
-  --color-graphite-lift: #455A64;
-  --color-bone-white: #FFFFFF;
+  --color-charcoal-plate: 40 54 59;      /* #28363B */
+  --color-smoke-plate: 50 67 74;         /* #32434A */
+  --color-graphite-lift: 69 90 100;      /* #455A64 */
+  --color-bone-white: 255 255 255;       /* #FFFFFF */
   --color-linen: var(--color-brand-paper);
   --color-ash: var(--color-brand-grey);
-  --color-arterial-red: #E11D48;
-  --color-crimson-pure: #BE123C;
+  --color-arterial-red: 225 29 72;       /* #E11D48 */
+  --color-crimson-pure: 190 18 60;       /* #BE123C */
 
   /* --- Typography: SIL Open Font License Families --- */
   --font-display: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif;

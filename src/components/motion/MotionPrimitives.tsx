@@ -214,7 +214,7 @@ export function GliderTab({ tabs, activeTab, onChange, className = "", gliderId 
         <button
           key={tab.id}
           onClick={() => onChange(tab.id)}
-          className={`relative z-10 px-3 py-2 rounded-lg font-display font-medium text-xs text-center transition-colors duration-150 active:scale-[0.97] cursor-pointer ${
+          className={`relative z-10 px-3 py-3.5 rounded-lg font-display font-medium text-xs text-center transition-colors duration-150 active:scale-[0.97] cursor-pointer ${
             activeTab === tab.id ? "text-white" : "text-brand-slate hover:text-brand-teal"
           }`}
           aria-current={activeTab === tab.id ? "true" : "false"}
@@ -252,7 +252,7 @@ export function GliderPill({ options, activeOption, onChange, className = "", gl
         <button
           key={opt.id}
           onClick={() => onChange(opt.id)}
-          className={`relative z-10 flex-1 py-2 rounded-lg font-display font-medium text-xs transition-colors active:scale-[0.97] cursor-pointer ${
+          className={`relative z-10 flex-1 py-3.5 rounded-lg font-display font-medium text-xs transition-colors active:scale-[0.97] cursor-pointer ${
             activeOption === opt.id ? "text-white" : "text-brand-slate hover:text-brand-teal"
           }`}
         >
