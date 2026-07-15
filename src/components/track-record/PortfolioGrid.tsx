@@ -105,24 +105,21 @@ export function PortfolioGrid() {
       {/* FILTER CONTROLS */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-brand-grey/20">
         <div className="space-y-1">
-          <SplitTextReveal
-            text="Proven Engineering Heritage."
-            className="font-display font-medium text-2xl md:text-3xl text-brand-slate tracking-tight"
-          />
-          <ProseReveal delay={0.15}>
-            <p className="font-body font-normal text-xs md:text-sm text-brand-grey">
-              Filter our leadership team’s historical delivery record by property environment.
-            </p>
-          </ProseReveal>
+          <h3 className="font-display font-medium text-2xl md:text-3xl text-brand-slate tracking-tight">
+            Proven Engineering Heritage.
+          </h3>
+          <p className="font-body font-normal text-xs md:text-sm text-brand-grey">
+            Filter our leadership team’s historical delivery record by property environment.
+          </p>
         </div>
 
-        {/* Standardized Capsule Glider */}
+        {/* FIX: Restored our clean horizontal capsule glider tab row */}
         <Glider
           tabs={filterTabs}
           activeId={activeTab}
           onChange={setActiveTab}
           layoutIdNamespace="portfolio-filter-bar"
-          className="self-start md:self-auto bg-brand-mist/80 p-1.5 rounded-full border border-brand-grey/20"
+          className="self-start md:self-auto bg-brand-mist p-1.5 rounded-full border border-brand-grey/20"
         />
       </div>
 

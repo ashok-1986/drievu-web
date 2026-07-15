@@ -124,29 +124,30 @@ export function BentoGrid() {
   ];
 
   return (
-    <section className="min-h-screen lg:h-screen w-full bg-stone-50 py-12 lg:py-16 px-6 md:px-12 flex flex-col justify-center border-b border-slate-200/60 overflow-hidden">
-      <div className="max-w-[1200px] w-full mx-auto flex flex-col flex-1 space-y-8 min-h-0">
+    <section className="w-full min-h-screen bg-brand-paper py-20 lg:py-28 px-6 md:px-12 flex flex-col justify-center border-b border-brand-grey/20 overflow-hidden select-none">
+      <div className="max-w-[1200px] mx-auto w-full space-y-12">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div>
+          <div className="space-y-2 max-w-xl">
             <ProseReveal delay={0.05}>
-              <span className="font-display font-medium text-xs text-teal-700 uppercase tracking-widest block mb-2">
+              <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-2">
                 What We Protect
               </span>
             </ProseReveal>
             <h2 className="m-0 p-0 block">
-              <SplitTextReveal text="Everything Your Building Needs." className="font-display font-medium text-3xl md:text-5xl text-slate-900 tracking-tight" />
+              <SplitTextReveal text="Everything Your Building Needs." className="font-display font-medium text-3xl md:text-5xl text-brand-slate tracking-tight" />
             </h2>
           </div>
           <ProseReveal delay={0.2}>
-            <p className="font-body font-normal text-slate-600 text-sm md:text-base max-w-md leading-relaxed">
+            <p className="font-body font-normal text-brand-grey text-sm md:text-base max-w-md leading-relaxed">
               We handle the essential engineering that keeps your property secure, compliant, and energy-efficient—all managed easily from your smartphone or desktop.
             </p>
           </ProseReveal>
         </div>
 
-        <div ref={bentoRef} className="grid grid-cols-12 gap-6 flex-1 min-h-0 auto-rows-[minmax(240px,auto)] lg:auto-rows-[minmax(0,1fr)] lg:grid-rows-3 pb-8 md:pb-0">
+        {/* Proportional Grid Container */}
+        <div ref={bentoRef} className="grid grid-cols-12 gap-6 auto-rows-auto pb-8 md:pb-0">
           {services.map((sys, index) => {
             const IconComponent = sys.icon;
             return (

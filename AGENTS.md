@@ -89,7 +89,7 @@ src/
 1. **Homepage** → "Book a Scoping Review" / "Try Interactive Estimator"
 2. **System Builder** (`/system-builder`) → Pre-populates form via `sessionStorage`
 3. **Sectors page** → Sector-specific CTAs
-4. **Compliance page** → SLA anchor link (`/compliance#sla`)
+4. **Compliance page** → SLA anchor link (`/compliance#sla`) & CTA to `/consultation`
 5. **Track Record** → Portfolio CTAs
 
 ---
@@ -125,7 +125,7 @@ EASING_REVEAL   = [0.25, 0.1, 0.25, 1]
 | `src/components/home/CanvasHero.tsx` | 3-layer canvas day→dusk→night scroll scrub (300vh runway) |
 | `src/components/home/BentoGrid.tsx` | Asymmetric 12-col grid with GSAP entrance |
 | `src/components/home/InteractiveSystemBuilder.tsx` | 5-input estimator with live math + sessionStorage sync |
-| `src/components/common/GlobalNavbar.tsx` | z-[100] header, Lenis disabled on `/`, GliderTab mobile nav |
+| `src/components/common/GlobalNavbar.tsx` | z-[50] sticky header, Lenis disabled on `/`, GliderTab mobile nav |
 | `src/app/compliance/page.tsx` | SLA hub + British Standards grid + 4-hr SLA matrix |
 
 ---
@@ -162,8 +162,8 @@ EASING_REVEAL   = [0.25, 0.1, 0.25, 1]
 
 ## Environment Variables
 
-No `.env` required for local dev. Production secrets injected via Vercel dashboard:
-- None currently required (static export + form submissions to `/api/consultation`)
+No `.env` required for local dev or production.
+- None currently required (Node.js runtime serving pages + mock form submissions to `/api/consultation`)
 
 ---
 
@@ -227,5 +227,5 @@ Pages:
 
 - Push to `main` → Vercel auto-deploys
 - Build command: `pnpm build`
-- Output: Static + dynamic routes (`/systems/[category]`, `/consultation`)
+- Output: Server-rendered pages + dynamic routes (`/systems/[category]`, `/consultation`)
 - No manual steps required post-merge
