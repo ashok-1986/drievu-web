@@ -35,7 +35,7 @@ export function PageHeader({
 
       {/* LAYER 1: Deepened Directional Scrim for High-Contrast Text Legibility */}
       <div className="absolute inset-0 bg-gradient-to-t from-brand-slate via-brand-slate/60 to-brand-slate/30 z-10 pointer-events-none" />
-      <div className="absolute inset-0 bg-radial-at-c from-transparent via-brand-slate/40 to-brand-slate/90 z-10 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgb(var(--color-brand-slate)/0.4)_60%,rgb(var(--color-brand-slate)/0.9)_100%)] z-10 pointer-events-none" />
 
       {/* LAYER 2: High-Contrast White Typography */}
       <div className="relative z-20 max-w-3xl mx-auto space-y-6 flex flex-col items-center pointer-events-auto select-none">

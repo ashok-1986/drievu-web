@@ -17,7 +17,7 @@ export default function TrackRecordPage() {
         badgeText="Executive Track Record · 20+ Years"
         title="Delivered At Major Scale."
         description="Before founding Drievu, our leadership team spent two decades delivering complex electronic security and building systems across national transit grids, financial centers, and commercial real estate."
-        imageSrc="/headers/track-record-hero.webp" // Place your blue-hour transport/campus image here
+        imageSrc="/images/track_record_hero.png"
         imageAlt="Modern UK transport hub and commercial real estate campus at blue hour"
       />
 

@@ -210,7 +210,7 @@ export function InteractiveSystemBuilder() {
                 />
                 <div>
                   <span className="font-medium text-brand-slate flex items-center gap-1">
-                    <Battery className="w-3.5 h-3.5 text-brand-teal-text" /> Emergency Battery Backup
+                    <Battery className="w-3.5 h-3.5 text-brand-teal" /> Emergency Battery Backup
                   </span>
                   <span className="text-[11px] text-brand-grey leading-tight block mt-0.5">
                     Keeps cameras recording even during building power cuts.
@@ -227,7 +227,7 @@ export function InteractiveSystemBuilder() {
                 />
                 <div>
                   <span className="font-medium text-brand-slate flex items-center gap-1">
-                    <Lock className="w-3.5 h-3.5 text-brand-teal-text" /> Keyless Door Entry
+                    <Lock className="w-3.5 h-3.5 text-brand-teal" /> Keyless Door Entry
                   </span>
                   <span className="text-[11px] text-brand-grey leading-tight block mt-0.5">
                     Add intercom entry panels and smart fobs for doors/gates.
@@ -253,7 +253,7 @@ export function InteractiveSystemBuilder() {
                 className="w-full justify-start p-5 rounded-xl border border-brand-grey/15 bg-white hover:bg-brand-paper"
                 onClick={(e) => e.preventDefault()}
               >
-                <div className="p-3 rounded-lg bg-brand-teal/10 text-brand-teal-text shrink-0">
+                <div className="p-3 rounded-lg bg-brand-teal/10 text-brand-teal shrink-0">
                   <HardDrive className="w-5 h-5" />
                 </div>
                 <div className="flex-1">
@@ -272,7 +272,7 @@ export function InteractiveSystemBuilder() {
                 className="w-full justify-start p-5 rounded-xl border border-brand-grey/15 bg-white hover:bg-brand-paper"
                 onClick={(e) => e.preventDefault()}
               >
-                <div className="p-3 rounded-lg bg-brand-teal/10 text-brand-teal-text shrink-0">
+                <div className="p-3 rounded-lg bg-brand-teal/10 text-brand-teal shrink-0">
                   <Wrench className="w-5 h-5" />
                 </div>
                 <div className="flex-1">
@@ -291,7 +291,7 @@ export function InteractiveSystemBuilder() {
                 className="w-full justify-start p-5 rounded-xl border border-brand-grey/15 bg-white hover:bg-brand-paper"
                 onClick={(e) => e.preventDefault()}
               >
-                <div className="p-3 rounded-lg bg-brand-green/10 text-brand-green-text shrink-0">
+                <div className="p-3 rounded-lg bg-brand-green/10 text-brand-green shrink-0">
                   <Shield className="w-5 h-5" />
                 </div>
                 <div className="flex-1">

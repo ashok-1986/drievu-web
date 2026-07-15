@@ -159,7 +159,7 @@ export default function SectorsPage() {
                   className={
                     isActive
                       ? "min-h-[44px] min-w-[44px] inline-flex items-center justify-center px-5 py-2.5 rounded-full font-display font-medium text-xs text-white bg-brand-teal border border-brand-teal shadow-md cursor-pointer shrink-0"
-                      : "min-h-[44px] min-w-[44px] inline-flex items-center justify-center px-5 py-2.5 rounded-full font-display font-medium text-xs text-brand-slate bg-white/80 border border-brand-grey/15 hover:border-brand-teal transition-all cursor-pointer shadow-2xs shrink-0"
+                      : "min-h-[44px] min-w-[44px] inline-flex items-center justify-center px-5 py-2.5 rounded-full font-display font-medium text-xs text-brand-slate bg-white/80 border border-brand-grey/15 hover:border-brand-teal transition-all cursor-pointer shadow-sm shrink-0"
                   }
                 >
                   {tab.label}
