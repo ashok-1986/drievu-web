@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft, ShieldCheck, Lock, FileText, Mail, MapPin, Phone } from "lucide-react";
+import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { ProseReveal } from "@/components/motion/ProseReveal";
 
 export default function PrivacyPolicyPage() {
   const lastUpdated = "July 2026";
@@ -24,11 +26,13 @@ export default function PrivacyPolicyPage() {
           </div>
 
           <h1 className="font-display font-medium text-3xl md:text-5xl text-white tracking-[-0.02em] uppercase mb-4">
-            Privacy Policy & Data Governance.
+            <SplitTextReveal text="Privacy Policy & Data Governance." />
           </h1>
-          <p className="font-body font-normal text-brand-grey text-base md:text-lg max-w-2xl leading-relaxed">
-            How Drievu Limited processes website lead data, client engineering specifications, and adheres to the UK General Data Protection Regulation (UK GDPR) across surveillance deployments.
-          </p>
+          <ProseReveal>
+            <p className="font-body font-normal text-brand-grey text-base md:text-lg max-w-2xl leading-relaxed">
+              How Drievu Limited processes website lead data, client engineering specifications, and adheres to the UK General Data Protection Regulation (UK GDPR) across surveillance deployments.
+            </p>
+          </ProseReveal>
           <span className="inline-block mt-6 text-xs font-mono text-brand-paper/60">
             Document Reference: DRIEVU-LEGAL-PRIVACY-V1 · Last Updated: {lastUpdated}
           </span>

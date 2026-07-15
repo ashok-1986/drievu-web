@@ -13,7 +13,7 @@ interface ProseRevealProps {
 export function ProseReveal({
   children,
   className = "",
-  delay = 0.15, // Default 150ms delay so headings reveal first
+  delay = 0.25, // Default 250ms delay so headings reveal first
 }: ProseRevealProps) {
   return (
     <motion.div

@@ -3,6 +3,8 @@
 
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, ShieldCheck, CheckCircle2, Lock, FileText, Network } from "lucide-react";
+import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { ProseReveal } from "@/components/motion/ProseReveal";
 
 export default function CompliancePage() {
   return (
@@ -25,11 +27,13 @@ export default function CompliancePage() {
           </div>
 
           <h1 className="font-display font-medium text-4xl md:text-6xl text-white tracking-[-0.03em] uppercase mb-6">
-            Compliance & Design Standards.
+            <SplitTextReveal text="Compliance & Design Standards." />
           </h1>
-          <p className="font-body font-normal text-brand-grey text-lg md:text-xl max-w-3xl leading-relaxed">
-            We operate with absolute transparency. Below are the statutory regulations, British engineering standards, and cybersecurity frameworks that govern how Drievu designs, installs, and hands over your physical building systems.
-          </p>
+          <ProseReveal>
+            <p className="font-body font-normal text-brand-grey text-lg md:text-xl max-w-3xl leading-relaxed">
+              We operate with absolute transparency. Below are the statutory regulations, British engineering standards, and cybersecurity frameworks that govern how Drievu designs, installs, and hands over your physical building systems.
+            </p>
+          </ProseReveal>
         </div>
       </section>
 
@@ -159,7 +163,7 @@ export default function CompliancePage() {
             Pass Your Procurement Audit
           </span>
           <h2 className="font-display font-medium text-3xl md:text-5xl tracking-tighter mb-6">
-            Require a Compliant System Design?
+            <SplitTextReveal text="Require a Compliant System Design?" />
           </h2>
           <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg mb-8 leading-relaxed">
             Submit your floor plans and unit counts to our engineering team today. We provide structured scoping reviews backed by transparent, standards-driven engineering.

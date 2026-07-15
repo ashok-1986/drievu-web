@@ -2,6 +2,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ShieldCheck, CheckCircle2, Cpu, HardDrive, Network, FileText } from "lucide-react";
+import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { ProseReveal } from "@/components/motion/ProseReveal";
 
 interface SpecItem {
   label: string;
@@ -165,11 +167,13 @@ export default function SystemDetailPage({ params }: { params: { category: strin
           </div>
 
           <h1 className="font-display font-medium text-4xl md:text-6xl text-white tracking-[-0.03em] mb-6 uppercase">
-            {data.title}
+            <SplitTextReveal text={data.title} />
           </h1>
-          <p className="font-body font-normal text-brand-grey text-lg md:text-xl max-w-3xl leading-relaxed">
-            {data.headline}
-          </p>
+          <ProseReveal>
+            <p className="font-body font-normal text-brand-grey text-lg md:text-xl max-w-3xl leading-relaxed">
+              {data.headline}
+            </p>
+          </ProseReveal>
         </div>
       </section>
 
@@ -287,7 +291,7 @@ export default function SystemDetailPage({ params }: { params: { category: strin
             M&E Tender Integration
           </span>
           <h3 className="font-display font-medium text-3xl md:text-4xl tracking-tight mb-4">
-            Specify This System For Your Project.
+            <SplitTextReveal text="Specify This System For Your Project." />
           </h3>
           <p className="font-body font-normal text-brand-paper/90 text-sm md:text-base mb-8 leading-relaxed">
             Ready to integrate these specifications into your mechanical and electrical tender? Submit your floor plans and channel counts to our engineering team for a structured quote without sales pressure.

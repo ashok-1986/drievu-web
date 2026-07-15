@@ -15,7 +15,7 @@ export function SplitTextReveal({
   text,
   className = "",
   delay = 0,
-  charStagger = 0.018, // Ultra-snappy 18ms stagger between letters
+  charStagger = 0.025, // Snappy 25ms stagger between letters
 }: SplitTextRevealProps) {
   // Split string into words to prevent awkward mid-word line breaking
   const words = text.split(" ");

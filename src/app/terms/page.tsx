@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft, ShieldCheck, FileText, MapPin, Phone, Mail, Building2, CheckCircle2 } from "lucide-react";
+import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { ProseReveal } from "@/components/motion/ProseReveal";
 
 export default function TermsOfServicePage() {
   const lastUpdated = "July 2026";
@@ -24,11 +26,13 @@ export default function TermsOfServicePage() {
           </div>
 
           <h1 className="font-display font-medium text-3xl md:text-5xl text-white tracking-[-0.02em] uppercase mb-4">
-            Terms of Service & Scoping Conditions.
+            <SplitTextReveal text="Terms of Service & Scoping Conditions." />
           </h1>
-          <p className="font-body font-normal text-brand-grey text-base md:text-lg max-w-2xl leading-relaxed">
-            The operational and legal conditions governing use of the Drievu Limited platform, interactive system configurators, and initial engineering scoping engagements.
-          </p>
+          <ProseReveal>
+            <p className="font-body font-normal text-brand-grey text-base md:text-lg max-w-2xl leading-relaxed">
+              The operational and legal conditions governing use of the Drievu Limited platform, interactive system configurators, and initial engineering scoping engagements.
+            </p>
+          </ProseReveal>
           <span className="inline-block mt-6 text-xs font-mono text-brand-paper/60">
             Document Reference: DRIEVU-LEGAL-TERMS-V1 · Last Updated: {lastUpdated}
           </span>

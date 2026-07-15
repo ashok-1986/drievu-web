@@ -4,6 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Building2, ShieldCheck, MapPin, ArrowRight, CheckCircle2, Filter } from "lucide-react";
+import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { ProseReveal } from "@/components/motion/ProseReveal";
 
 type SectorFilter = "ALL" | "UK_LIVE" | "INFRASTRUCTURE" | "COMMERCIAL" | "INDUSTRIAL";
 
@@ -127,12 +129,14 @@ export default function TrackRecordPage() {
           </div>
 
           <h1 className="font-display font-medium text-4xl md:text-6xl text-white tracking-[-0.03em] uppercase mb-6">
-            Delivered by Our Leadership Team Over Two Decades.
+            <SplitTextReveal text="Delivered by Our Leadership Team Over Two Decades." />
           </h1>
           
-          <p className="font-body font-normal text-brand-grey text-lg md:text-xl max-w-3xl leading-relaxed mb-8">
-            We brought national-infrastructure delivery discipline to the UK for a simple reason: the market is full of products, but short on accountable delivery. Below is the verifiable project track record of our executive engineering team.
-          </p>
+          <ProseReveal>
+            <p className="font-body font-normal text-brand-grey text-lg md:text-xl max-w-3xl leading-relaxed mb-8">
+              We brought national-infrastructure delivery discipline to the UK for a simple reason: the market is full of products, but short on accountable delivery. Below is the verifiable project track record of our executive engineering team.
+            </p>
+          </ProseReveal>
 
           {/* MANDATORY LEGAL & PROCUREMENT DISCLAIMER (TR-1) */}
           <div className="bg-brand-mist/10 border-l-4 border-brand-teal p-6 rounded-r-xl max-w-4xl shadow-soft">
@@ -272,7 +276,7 @@ export default function TrackRecordPage() {
             Bring Delivery Discipline To Your Site
           </span>
           <h2 className="font-display font-medium text-3xl md:text-5xl tracking-tighter mb-6">
-            Ready To Engineer Your Property?
+            <SplitTextReveal text="Ready To Engineer Your Property?" />
           </h2>
           <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg mb-8 leading-relaxed">
             Whether you need communal CCTV for a residential estate, access control for a commercial tower, or life safety systems for a new development, get a structured assessment without sales pressure.

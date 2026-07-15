@@ -6,6 +6,8 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, ShieldCheck, CheckCircle2, HelpCircle, ChevronDown, HardDrive, Lock, Wrench } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { InteractiveSystemBuilder } from "@/components/home/InteractiveSystemBuilder";
+import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { ProseReveal } from "@/components/motion/ProseReveal";
 
 interface FaqItem {
   question: string;
@@ -63,11 +65,13 @@ export default function SystemBuilderPage() {
           </div>
 
           <h1 className="font-display font-medium text-4xl md:text-6xl text-white tracking-[-0.03em] uppercase mb-6">
-            Interactive System Builder.
+            <SplitTextReveal text="Interactive System Builder." />
           </h1>
-          <p className="font-body font-normal text-brand-grey text-lg md:text-xl max-w-3xl leading-relaxed">
-            Most security quotes are inflated with unnecessary hardware and recurring subscription traps. Use our plain-English sizing engine below to calculate your exact equipment, video storage, and wiring requirements automatically—without sales pressure.
-          </p>
+          <ProseReveal>
+            <p className="font-body font-normal text-brand-grey text-lg md:text-xl max-w-3xl leading-relaxed">
+              Most security quotes are inflated with unnecessary hardware and recurring subscription traps. Use our plain-English sizing engine below to calculate your exact equipment, video storage, and wiring requirements automatically—without sales pressure.
+            </p>
+          </ProseReveal>
         </div>
       </section>
 
@@ -230,7 +234,7 @@ export default function SystemBuilderPage() {
             No Call Centers · No Salesmen
           </span>
           <h2 className="font-display font-medium text-3xl md:text-5xl tracking-tighter mb-6">
-            Ready For An Engineering Assessment?
+            <SplitTextReveal text="Ready For An Engineering Assessment?" />
           </h2>
           <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg mb-8 leading-relaxed">
             If you prefer to skip the calculator and speak directly with our team, submit your building details today. An engineering principal will review your property and respond within one working day.

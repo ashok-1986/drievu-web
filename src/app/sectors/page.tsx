@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight, CheckCircle2, Shield, Building2, Wrench, FileText } from "lucide-react";
 import { ScrollReveal, TactileLink } from "@/components/motion/MotionPrimitives";
+import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { ProseReveal } from "@/components/motion/ProseReveal";
 
 export default function SectorsPage() {
   const [activeSection, setActiveSection] = useState<string>("architects");
@@ -125,11 +127,13 @@ export default function SectorsPage() {
             </div>
 
             <h1 className="font-display font-medium text-4xl md:text-6xl lg:text-7xl text-white tracking-[-0.03em] uppercase mb-6">
-              How We Protect Your Sector.
+              <SplitTextReveal text="How We Protect Your Sector." />
             </h1>
-            <p className="font-body font-normal text-brand-paper/90 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed mb-8 drop-shadow">
-              We do not force a single boxed product onto every building. Whether you specify new developments, manage day-to-day facilities, or oversee public housing, here is how our consulting-to-maintenance discipline solves your exact problems in plain English.
-            </p>
+            <ProseReveal>
+              <p className="font-body font-normal text-brand-paper/90 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed mb-8 drop-shadow">
+                We do not force a single boxed product onto every building. Whether you specify new developments, manage day-to-day facilities, or oversee public housing, here is how our consulting-to-maintenance discipline solves your exact problems in plain English.
+              </p>
+            </ProseReveal>
           </div>
         </div>
 
@@ -268,7 +272,7 @@ export default function SectorsPage() {
             No Sales Pressure &middot; Honest Engineering
           </span>
           <h2 className="font-display font-medium text-3xl md:text-5xl tracking-tight mb-6">
-            Ready To Discuss Your Sector&rsquo;s Needs?
+            <SplitTextReveal text="Ready To Discuss Your Sector's Needs?" />
           </h2>
           <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg mb-8 leading-relaxed">
             Submit your site details or unit counts today. An engineering principal will review your requirements and respond within one working day to arrange your structured scoping review.
