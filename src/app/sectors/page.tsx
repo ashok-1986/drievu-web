@@ -98,7 +98,7 @@ export default function SectorsPage() {
 
   const sectorTabs = sectorsData.map((s) => ({
     id: s.id,
-    label: s.title,
+    label: s.title.toUpperCase(),
   }));
 
   return (

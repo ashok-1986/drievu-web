@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { EASING_OUT_EXPO } from "@/lib/physics";
 
 interface SplitTextRevealProps {
@@ -17,6 +17,12 @@ export function SplitTextReveal({
   delay = 0,
   charStagger = 0.025, // Snappy 25ms stagger between letters
 }: SplitTextRevealProps) {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return <span className={`inline-block ${className}`}>{text}</span>;
+  }
+
   // Split string into words to prevent awkward mid-word line breaking
   const words = text.split(" ");
 
@@ -52,17 +58,20 @@ export function SplitTextReveal({
       className={`inline-block ${className}`}
     >
       {words.map((word, wordIndex) => (
-        <span key={`word-${wordIndex}`} className="inline-block whitespace-nowrap mr-[0.25em]">
-          {word.split("").map((char, charIndex) => (
-            <motion.span
-              key={`char-${wordIndex}-${charIndex}`}
-              variants={charVariants}
-              className="inline-block"
-            >
-              {char}
-            </motion.span>
-          ))}
-        </span>
+        <React.Fragment key={`word-${wordIndex}`}>
+          <span className="inline-block whitespace-nowrap">
+            {word.split("").map((char, charIndex) => (
+              <motion.span
+                key={`char-${wordIndex}-${charIndex}`}
+                variants={charVariants}
+                className="inline-block"
+              >
+                {char}
+              </motion.span>
+            ))}
+          </span>
+          {wordIndex < words.length - 1 && " "}
+        </React.Fragment>
       ))}
     </motion.span>
   );

@@ -4,6 +4,8 @@ import React from "react";
 import Link from "next/link";
 import { Shield, Lock, Flame, Radio, Cpu, ArrowRight } from "lucide-react";
 import { TactileLink } from "@/components/motion/MotionPrimitives";
+import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { ProseReveal } from "@/components/motion/ProseReveal";
 import { gsap } from "@/lib/gsap";
 import { useEffect, useRef } from "react";
 
@@ -128,21 +130,25 @@ export function BentoGrid() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <span className="font-display font-medium text-xs text-teal-700 uppercase tracking-widest block mb-2">
-              What We Protect
-            </span>
-            <h2 className="font-display font-medium text-3xl md:text-5xl text-slate-900 tracking-tighter">
-              Everything Your Building Needs.
+            <ProseReveal delay={0.05}>
+              <span className="font-display font-medium text-xs text-teal-700 uppercase tracking-widest block mb-2">
+                What We Protect
+              </span>
+            </ProseReveal>
+            <h2 className="m-0 p-0 block">
+              <SplitTextReveal text="Everything Your Building Needs." className="font-display font-medium text-3xl md:text-5xl text-slate-900 tracking-tight" />
             </h2>
           </div>
-          <p className="font-body font-normal text-slate-600 text-sm md:text-base max-w-md leading-relaxed">
-            We handle the essential engineering that keeps your property secure, compliant, and energy-efficient—all managed easily from your smartphone or desktop.
-          </p>
+          <ProseReveal delay={0.2}>
+            <p className="font-body font-normal text-slate-600 text-sm md:text-base max-w-md leading-relaxed">
+              We handle the essential engineering that keeps your property secure, compliant, and energy-efficient—all managed easily from your smartphone or desktop.
+            </p>
+          </ProseReveal>
         </div>
 
         {/* Responsive 12-Column Asymmetric Bento Grid */}
         <div ref={bentoRef} className="grid grid-cols-12 gap-6 auto-rows-[minmax(240px,auto)]">
-          {services.map((sys) => {
+          {services.map((sys, index) => {
             const IconComponent = sys.icon;
             return (
               <TactileLink
@@ -166,12 +172,14 @@ export function BentoGrid() {
 
                 {/* Bottom Row: Typography & Description */}
                 <div className="space-y-3 z-10 mt-auto">
-                  <h3 className={`font-display font-medium text-xl md:text-2xl tracking-tight transition-colors ${sys.titleColor} ${sys.isDark ? "group-hover:text-teal-300" : "group-hover:text-teal-700"}`}>
-                    {sys.title}
+                  <h3 className="m-0 p-0 block">
+                    <SplitTextReveal text={sys.title} delay={0.15 + index * 0.06} charStagger={0.012} className={`font-display font-medium text-xl md:text-2xl tracking-tight transition-colors ${sys.titleColor} ${sys.isDark ? "group-hover:text-teal-300" : "group-hover:text-teal-700"}`} />
                   </h3>
-                  <p className={`font-body font-normal text-xs md:text-sm leading-relaxed max-w-xl ${sys.descColor}`}>
-                    {sys.desc}
-                  </p>
+                  <ProseReveal delay={0.25 + index * 0.06} className="w-full">
+                    <p className={`font-body font-normal text-xs md:text-sm leading-relaxed max-w-xl ${sys.descColor}`}>
+                      {sys.desc}
+                    </p>
+                  </ProseReveal>
                 </div>
               </TactileLink>
             );

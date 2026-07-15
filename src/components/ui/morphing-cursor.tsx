@@ -20,6 +20,7 @@ export function MagneticText({ text = "CREATIVE", hoverText = "EXPLORE", classNa
   const mousePos = useRef({ x: 0, y: 0 })
   const currentPos = useRef({ x: 0, y: 0 })
   const animationFrameRef = useRef<number>()
+  const isHoveredRef = useRef(false)
 
   useEffect(() => {
     const updateSize = () => {
@@ -35,25 +36,33 @@ export function MagneticText({ text = "CREATIVE", hoverText = "EXPLORE", classNa
     return () => window.removeEventListener("resize", updateSize)
   }, [])
 
-  useEffect(() => {
+  const animate = useCallback(() => {
     const lerp = (start: number, end: number, factor: number) => start + (end - start) * factor
 
-    const animate = () => {
-      currentPos.current.x = lerp(currentPos.current.x, mousePos.current.x, 0.15)
-      currentPos.current.y = lerp(currentPos.current.y, mousePos.current.y, 0.15)
+    const dx = Math.abs(mousePos.current.x - currentPos.current.x)
+    const dy = Math.abs(mousePos.current.y - currentPos.current.y)
+    
+    // Stop animating if not hovered and already converged
+    if (!isHoveredRef.current && dx < 0.1 && dy < 0.1) {
+      animationFrameRef.current = undefined
+      return
+    }
 
-      if (circleRef.current) {
-        circleRef.current.style.transform = `translate(${currentPos.current.x}px, ${currentPos.current.y}px) translate(-50%, -50%)`
-      }
+    currentPos.current.x = lerp(currentPos.current.x, mousePos.current.x, 0.15)
+    currentPos.current.y = lerp(currentPos.current.y, mousePos.current.y, 0.15)
 
-      if (innerTextRef.current) {
-        innerTextRef.current.style.transform = `translate(${-currentPos.current.x}px, ${-currentPos.current.y}px)`
-      }
+    if (circleRef.current) {
+      circleRef.current.style.transform = `translate(${currentPos.current.x}px, ${currentPos.current.y}px) translate(-50%, -50%)`
+    }
 
-      animationFrameRef.current = requestAnimationFrame(animate)
+    if (innerTextRef.current) {
+      innerTextRef.current.style.transform = `translate(${-currentPos.current.x}px, ${-currentPos.current.y}px)`
     }
 
     animationFrameRef.current = requestAnimationFrame(animate)
+  }, [])
+
+  useEffect(() => {
     return () => {
       if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current)
     }
@@ -74,11 +83,21 @@ export function MagneticText({ text = "CREATIVE", hoverText = "EXPLORE", classNa
     const x = e.clientX - rect.left
     const y = e.clientY - rect.top
     mousePos.current = { x, y }
-    currentPos.current = { x, y }
+    // Initialize currentPos to mousePos on entry to avoid jumping from (0,0)
+    if (!isHoveredRef.current) {
+       currentPos.current = { x, y }
+    }
+    isHoveredRef.current = true
     setIsHovered(true)
-  }, [])
+    
+    // Trigger animation loop if it's not already running
+    if (!animationFrameRef.current) {
+      animationFrameRef.current = requestAnimationFrame(animate)
+    }
+  }, [animate])
 
   const handleMouseLeave = useCallback(() => {
+    isHoveredRef.current = false
     setIsHovered(false)
   }, [])
 
@@ -91,10 +110,11 @@ export function MagneticText({ text = "CREATIVE", hoverText = "EXPLORE", classNa
       className={cn("relative inline-flex items-center justify-center cursor-none select-none", className)}
     >
       {/* Base text layer - original text */}
-      <span className="text-5xl font-medium tracking-tighter text-brand-slate tracking-wide">{text}</span>
+      <span className="text-5xl font-medium tracking-tighter text-brand-slate">{text}</span>
 
       <div
         ref={circleRef}
+        aria-hidden="true"
         className="absolute top-0 left-0 pointer-events-none rounded-full bg-brand-slate overflow-hidden"
         style={{
           width: isHovered ? 150 : 0,
@@ -114,7 +134,7 @@ export function MagneticText({ text = "CREATIVE", hoverText = "EXPLORE", classNa
             willChange: "transform",
           }}
         >
-          <span className="text-5xl font-medium tracking-tighter text-brand-paper whitespace-nowrap tracking-wide">
+          <span className="text-5xl font-medium tracking-tighter text-brand-paper whitespace-nowrap">
             {hoverText}
           </span>
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { EASING_REVEAL } from "@/lib/physics";
 
 interface ProseRevealProps {
@@ -13,8 +13,14 @@ interface ProseRevealProps {
 export function ProseReveal({
   children,
   className = "",
-  delay = 0.25, // Default 250ms delay so headings reveal first
+  delay = 0.25, // Default 250ms delay creates an intentional overlap with the heading reveal sequence
 }: ProseRevealProps) {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
