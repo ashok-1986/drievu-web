@@ -209,17 +209,26 @@ export interface GliderTabProps {
 }
 
 export function GliderTab({ tabs, activeTab, onChange, className = "", gliderId = "activeTabGlider", columns }: GliderTabProps) {
-  const gridCols = columns || tabs.length;
-  const activeIndex = Math.max(0, tabs.findIndex((tab) => tab.id === activeTab));
+  const gridCols = Math.max(1, columns || tabs.length);
+  const activeIndex = tabs.findIndex((tab) => tab.id === activeTab);
+  // p-1.5 (6px) container padding + gap-1.5 (6px) between tracks
+  const PADDING_PX = 6;
+  const GAP_PX = 6;
+  const trackWidthExpr = `((100% - ${PADDING_PX * 2}px - ${(gridCols - 1) * GAP_PX}px) / ${gridCols})`;
   return (
     <div
-      className={cn("relative grid gap-1.5 p-1.5 bg-brand-mist rounded-xl border border-brand-grey/15", className)}
+      className={cn("relative isolate grid gap-1.5 p-1.5 bg-brand-mist rounded-xl border border-brand-grey/15", className)}
       style={{ gridTemplateColumns: `repeat(${gridCols}, minmax(0, 1fr))` }}
     >
-      <div
-        className="absolute inset-y-0 bg-brand-teal rounded-lg shadow-sm -z-10 transition-[left] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
-        style={{ width: `${100 / gridCols}%`, left: `${activeIndex * (100 / gridCols)}%` }}
-      />
+      {activeIndex !== -1 && (
+        <div
+          className="absolute inset-y-0 z-0 bg-brand-teal rounded-lg shadow-sm transition-[left] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+          style={{
+            width: `calc(${trackWidthExpr})`,
+            left: `calc(${PADDING_PX}px + ${activeIndex} * (${trackWidthExpr} + ${GAP_PX}px))`,
+          }}
+        />
+      )}
       {tabs.map((tab) => (
         <button
           key={tab.id}
@@ -250,13 +259,23 @@ export interface GliderPillProps {
 }
 
 export function GliderPill({ options, activeOption, onChange, className = "", gliderId = "activePillGlider" }: GliderPillProps) {
-  const activeIndex = Math.max(0, options.findIndex((opt) => opt.id === activeOption));
+  const count = Math.max(1, options.length);
+  const activeIndex = options.findIndex((opt) => opt.id === activeOption);
+  // p-1 (4px) container padding + gap-1.5 (6px) between tracks
+  const PADDING_PX = 4;
+  const GAP_PX = 6;
+  const trackWidthExpr = `((100% - ${PADDING_PX * 2}px - ${(count - 1) * GAP_PX}px) / ${count})`;
   return (
-    <div className={`relative flex gap-1.5 p-1 rounded-xl bg-brand-mist border border-brand-grey/15 ${className}`}>
-      <div
-        className="absolute inset-y-0.5 bg-brand-slate rounded-lg shadow-sm -z-10 transition-[left] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
-        style={{ width: `${100 / options.length}%`, left: `${activeIndex * (100 / options.length)}%` }}
-      />
+    <div className={cn("relative isolate flex gap-1.5 p-1 rounded-xl bg-brand-mist border border-brand-grey/15", className)}>
+      {activeIndex !== -1 && (
+        <div
+          className="absolute inset-y-0.5 z-0 bg-brand-slate rounded-lg shadow-sm transition-[left] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+          style={{
+            width: `calc(${trackWidthExpr})`,
+            left: `calc(${PADDING_PX}px + ${activeIndex} * (${trackWidthExpr} + ${GAP_PX}px))`,
+          }}
+        />
+      )}
       {options.map((opt) => (
         <button
           key={opt.id}
