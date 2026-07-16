@@ -220,7 +220,7 @@ export function PortfolioGrid() {
         <Tactile tapScale={0.98}>
           <a
             href="/consultation"
-            className="bg-brand-teal text-white font-display font-medium text-sm px-6 py-4 rounded-xl hover:bg-[#006666] transition-colors shrink-0 flex items-center gap-2 shadow-md cursor-pointer"
+            className="bg-brand-teal text-white font-display font-medium text-sm px-6 py-4 rounded-xl hover:bg-brand-teal-deep transition-colors shrink-0 flex items-center gap-2 shadow-md cursor-pointer"
           >
             <span>Request Tender Pack</span>
             <ArrowRight className="w-4 h-4" />

@@ -96,7 +96,7 @@ export default function TermsOfServicePage() {
             <div className="pt-4 border-t border-brand-grey/20">
               <Link
                 href="/consultation"
-                className="w-full inline-flex items-center justify-center gap-2 bg-brand-teal text-white font-display font-medium text-xs uppercase tracking-wider py-3 px-4 rounded-xl shadow-soft hover:bg-[#006666] transition-all duration-200 active:scale-[0.97]"
+                className="w-full inline-flex items-center justify-center gap-2 bg-brand-teal text-white font-display font-medium text-xs uppercase tracking-wider py-3 px-4 rounded-xl shadow-soft hover:bg-brand-teal-deep transition-all duration-200 active:scale-[0.97]"
               >
                 <span>Book Scoping Review</span>
               </Link>

@@ -110,7 +110,7 @@ export function BentoGrid() {
       href: "/systems/smart-building",
       // Wide Bottom Right Card: Spans 7 cols on desktop
       spanClasses: "col-span-12 md:col-span-6 lg:col-span-7",
-      bgClasses: "bg-teal-950/5 border border-teal-900/15 text-slate-900",
+      bgClasses: "bg-brand-teal-900/5 border border-brand-teal-900/15 text-slate-900",
       iconBg: "bg-brand-teal-deep/10 text-brand-teal-deep border border-brand-teal-deep/20",
       titleColor: "text-slate-900",
       descColor: "text-slate-600",

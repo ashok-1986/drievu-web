@@ -11,13 +11,22 @@
    * silently break every `/NN` opacity utility site-wide — do not revert to hex.
    */
   --color-brand-slate: 31 42 46;         /* #1F2A2E — Deep Slate: Headings, body text, dark canvases */
-  --color-brand-teal: 0 128 128;         /* #008080 — Drievu Teal: Primary brand accent, CTAs, SLAs */
+
+  /* Confirmed brand teal ramp — do not regenerate. 600 is the base/default. */
+  --color-brand-teal-50: 204 223 226;    /* #CCDFE2 */
+  --color-brand-teal-100: 153 191 197;   /* #99BFC5 */
+  --color-brand-teal-300: 103 159 169;   /* #679FA9 */
+  --color-brand-teal-500: 52 127 140;    /* #347F8C */
+  --color-brand-teal-600: 1 95 111;      /* #015F6F — base */
+  --color-brand-teal-900: 1 76 89;       /* #014C59 */
+  --color-brand-teal: var(--color-brand-teal-600);      /* alias: base */
+  --color-brand-teal-deep: var(--color-brand-teal-900); /* alias: hover-darken */
+
   --color-brand-green: 76 175 125;       /* #4CAF7D — Retrofit Green: ESG telemetry, glowing indicator dots */
   --color-brand-grey: 107 122 122;       /* #6B7A7A — Warm Grey: Secondary text, captions, table lines */
   --color-brand-mist: 238 243 242;       /* #EEF3F2 — Mist: Light background tints, table rows, section bands */
   --color-brand-paper: 255 255 255;      /* #FFFFFF — Paper: Base website canvas */
   --color-brand-dark: 20 28 31;          /* #141C1F — Deepest background shade behind directional scrims */
-  --color-brand-teal-deep: 0 102 102;    /* #006666 — Teal hover-darken: CTA hover states */
   --color-brand-grey-light: 166 175 175; /* #A6AFAF — Lightened grey for secondary text on dark (brand-slate) surfaces */
 
   /* --- Semantic Surface Mapping --- */

@@ -14,8 +14,16 @@ const config: Config = {
         // space-separated RGB channels (see globals.css), not hex strings.
         brand: {
           slate: "rgb(var(--color-brand-slate) / <alpha-value>)",
-          teal: "rgb(var(--color-brand-teal) / <alpha-value>)",
-          "teal-deep": "rgb(var(--color-brand-teal-deep) / <alpha-value>)",
+          teal: {
+            DEFAULT: "rgb(var(--color-brand-teal-600) / <alpha-value>)",
+            50: "rgb(var(--color-brand-teal-50) / <alpha-value>)",
+            100: "rgb(var(--color-brand-teal-100) / <alpha-value>)",
+            300: "rgb(var(--color-brand-teal-300) / <alpha-value>)",
+            500: "rgb(var(--color-brand-teal-500) / <alpha-value>)",
+            600: "rgb(var(--color-brand-teal-600) / <alpha-value>)",
+            900: "rgb(var(--color-brand-teal-900) / <alpha-value>)",
+          },
+          "teal-deep": "rgb(var(--color-brand-teal-900) / <alpha-value>)",
           green: "rgb(var(--color-brand-green) / <alpha-value>)",
           grey: "rgb(var(--color-brand-grey) / <alpha-value>)",
           "grey-light": "rgb(var(--color-brand-grey-light) / <alpha-value>)",

@@ -224,7 +224,7 @@ export function CanvasHero() {
             <div className="relative z-20 flex flex-col sm:flex-row items-center justify-start gap-4 pt-4 pointer-events-auto select-none">
               <Link
                 href="/consultation"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-brand-teal hover:bg-[#006666] text-white font-display font-medium text-sm md:text-base tracking-wide border border-white/20 shadow-[0_4px_20px_rgba(0,128,128,0.35)] hover:shadow-[0_6px_24px_rgba(0,128,128,0.5)] transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer group"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-brand-teal hover:bg-brand-teal-deep text-white font-display font-medium text-sm md:text-base tracking-wide border border-white/20 shadow-[0_4px_20px_rgb(var(--color-brand-teal)/0.35)] hover:shadow-[0_6px_24px_rgb(var(--color-brand-teal)/0.5)] transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer group"
               >
                 <span>Book a Scoping Review</span>
                 <ArrowRight className="w-4 h-4 text-white transform group-hover:translate-x-1 transition-transform" />

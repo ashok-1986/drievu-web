@@ -606,7 +606,7 @@ export function ConsultationIntake() {
                   <button
                     type="submit"
                     disabled={isSubmitting || Object.keys(liveErrors).length > 0}
-                    className="bg-brand-teal text-white font-display font-medium text-sm px-8 py-4 rounded-xl hover:bg-[#006666] transition-all duration-200 flex items-center gap-2 shadow-elevated cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="bg-brand-teal text-white font-display font-medium text-sm px-8 py-4 rounded-xl hover:bg-brand-teal-deep transition-all duration-200 flex items-center gap-2 shadow-elevated cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <span>Submitting...</span>
