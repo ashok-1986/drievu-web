@@ -25,11 +25,11 @@ export default function TermsOfServicePage() {
             <ShieldCheck className="w-3.5 h-3.5" /> Procurement Due Diligence Schedule
           </div>
 
-          <h1 className="font-display font-medium text-hero-lg w-full text-center text-white uppercase mb-4">
+          <h1 className="font-display font-medium text-hero w-full text-center text-white uppercase mb-4">
             <SplitTextReveal text="Terms of Service & Scoping Conditions." />
           </h1>
           <ProseReveal>
-            <p className="font-body font-normal text-brand-grey text-base md:text-lg max-w-2xl leading-relaxed">
+            <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl mx-auto block">
               The operational and legal conditions governing use of the Drievu Limited platform, interactive system configurators, and initial engineering scoping engagements.
             </p>
           </ProseReveal>

@@ -126,11 +126,11 @@ export default function SectorsPage() {
               Tailored Engineering Engagement
             </div>
 
-            <h1 className="font-display font-medium text-hero-lg w-full text-center text-white uppercase mb-6">
+            <h1 className="font-display font-medium text-hero w-full text-center text-white uppercase mb-6">
               <SplitTextReveal text="How We Protect Your Sector." />
             </h1>
             <ProseReveal>
-              <p className="font-body font-normal text-brand-paper/90 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed mb-8 drop-shadow">
+              <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl mx-auto block">
                 We do not force a single boxed product onto every building. Whether you specify new developments, manage day-to-day facilities, or oversee public housing, here is how our consulting-to-maintenance discipline solves your exact problems in plain English.
               </p>
             </ProseReveal>

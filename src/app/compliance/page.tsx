@@ -30,7 +30,7 @@ export default function CompliancePage() {
             <SplitTextReveal text="Compliance & Design Standards." />
           </h1>
           <ProseReveal>
-            <p className="font-body font-normal text-brand-grey text-lg md:text-xl max-w-3xl leading-relaxed">
+            <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl mx-auto block">
               We operate with absolute transparency. Below are the statutory regulations, British engineering standards, and cybersecurity frameworks that govern how Drievu designs, installs, and hands over your physical building systems.
             </p>
           </ProseReveal>

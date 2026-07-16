@@ -44,7 +44,6 @@ const config: Config = {
         // which is how several pages silently fell back to the browser default
         // (~1.5) and read as broken, oversized letter-spacing.
         hero: ["clamp(2.75rem, 7vw, 6rem)", { lineHeight: "0.92", letterSpacing: "-0.03em" }],
-        "hero-lg": ["clamp(2.75rem, 7vw, 8.75rem)", { lineHeight: "0.92", letterSpacing: "-0.03em" }],
       },
       fontWeight: {
         // Enforce the 500 ceiling programmatically across standard utility classes

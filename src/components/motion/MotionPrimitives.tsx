@@ -214,7 +214,13 @@ export function GliderTab({ tabs, activeTab, onChange, className = "", gliderId 
   // p-1.5 (6px) container padding + gap-1.5 (6px) between tracks
   const PADDING_PX = 6;
   const GAP_PX = 6;
+  const numRows = Math.ceil(tabs.length / gridCols);
+  const colIndex = activeIndex % gridCols;
+  const rowIndex = Math.floor(activeIndex / gridCols);
+  
   const trackWidthExpr = `((100% - ${PADDING_PX * 2}px - ${(gridCols - 1) * GAP_PX}px) / ${gridCols})`;
+  const trackHeightExpr = `((100% - ${PADDING_PX * 2}px - ${(numRows - 1) * GAP_PX}px) / ${numRows})`;
+
   return (
     <div
       className={cn("relative isolate grid gap-1.5 p-1.5 bg-brand-mist rounded-xl border border-brand-grey/15", className)}
@@ -222,10 +228,15 @@ export function GliderTab({ tabs, activeTab, onChange, className = "", gliderId 
     >
       {activeIndex !== -1 && (
         <div
-          className="absolute inset-y-0 z-0 bg-brand-teal rounded-lg shadow-sm transition-[left] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+          className="absolute inset-y-1.5 z-0 bg-brand-teal rounded-lg shadow-sm transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
           style={{
             width: `calc(${trackWidthExpr})`,
-            left: `calc(${PADDING_PX}px + ${activeIndex} * (${trackWidthExpr} + ${GAP_PX}px))`,
+            left: `calc(${PADDING_PX}px + ${colIndex} * (${trackWidthExpr} + ${GAP_PX}px))`,
+            ...(numRows > 1 && {
+              top: `calc(${PADDING_PX}px + ${rowIndex} * (${trackHeightExpr} + ${GAP_PX}px))`,
+              height: `calc(${trackHeightExpr})`,
+              bottom: "auto"
+            }),
           }}
         />
       )}
