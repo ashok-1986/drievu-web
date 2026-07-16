@@ -29,7 +29,6 @@ export function GlobalNavbar() {
     { name: "HOME", href: "/" },
     { name: "SECTORS", href: "/sectors" },
     { name: "TRACK RECORD", href: "/track-record" },
-    { name: "SYSTEM BUILDER", href: "/system-builder" },
     { name: "COMPLIANCE", href: "/compliance" },
   ];
 
@@ -161,15 +160,6 @@ export function GlobalNavbar() {
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Track Record
-                </TactileLink>
-                <TactileLink
-                  href="/system-builder"
-                  variant={pathname === "/system-builder" ? "primary" : "ghost"}
-                  size="sm"
-                  className={`w-full justify-start text-left ${pathname === "/system-builder" ? "" : "text-white/80 hover:text-white"}`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  System Builder
                 </TactileLink>
                 <TactileLink
                   href="/compliance"

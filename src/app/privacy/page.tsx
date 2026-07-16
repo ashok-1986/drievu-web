@@ -117,7 +117,7 @@ export default function PrivacyPolicyPage() {
                 2. Information We Collect
               </h2>
               <p>
-                When you interact with our website, Interactive System Builder, or book an engineering scoping review, we may collect the following categories of personal and technical data:
+                When you interact with our website or book an engineering scoping review, we may collect the following categories of personal and technical data:
               </p>
               <ul className="list-disc pl-6 space-y-2 text-brand-slate/80">
                 <li>

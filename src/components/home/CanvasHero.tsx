@@ -229,12 +229,6 @@ export function CanvasHero() {
                 <span>Book a Scoping Review</span>
                 <ArrowRight className="w-4 h-4 text-white transform group-hover:translate-x-1 transition-transform" />
               </Link>
-              <Link
-                href="/system-builder"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-white/15 hover:bg-white/25 text-white font-display font-medium text-sm md:text-base tracking-wide border border-white/30 backdrop-blur-md shadow-sm transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer"
-              >
-                Try Interactive Estimator
-              </Link>
             </div>
           </section>
 
