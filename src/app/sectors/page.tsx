@@ -255,7 +255,7 @@ export default function SectorsPage() {
                         alt={`Drievu engineering for ${sec.title}`}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 40vw"
+                        sizes="(max-width: 1024px) 100vw, 40vw"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-brand-slate/20 to-transparent pointer-events-none" />
                     </div>
