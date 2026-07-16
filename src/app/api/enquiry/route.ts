@@ -100,6 +100,7 @@ export async function POST(request: NextRequest) {
 
     const result = enquirySchema.safeParse(body);
     if (!result.success) {
+      console.error("[ENQUIRY] Validation failed:", result.error.flatten());
       return NextResponse.json(
         { ok: false, error: "Some details are invalid. Please check the form and try again." },
         { status: 400 }
