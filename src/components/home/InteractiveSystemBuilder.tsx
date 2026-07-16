@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Shield, HardDrive, Wrench, Check, Copy, ArrowRight, Lock, Battery } from "lucide-react";
 import { TactileLink, GliderTab, GliderPill } from "@/components/motion/MotionPrimitives";
 
-type PropertyType = "commercial_office" | "residential_block" | "industrial_warehouse";
+type PropertyType = "commercial_office" | "residential_block" | "industrial_site" | "public_sector" | "private_estate";
 type Resolution = "3k" | "4k";
 
 export function InteractiveSystemBuilder() {
@@ -38,50 +38,30 @@ export function InteractiveSystemBuilder() {
         ? "32-Channel Dedicated Video Recorder"
         : "64-Channel Commercial Video Recorder";
 
-    const executiveSummary = `DRIEVU PROJECT REQUIREMENT ESTIMATE:
-- Property Type: ${propertyType.replace("_", " ").toUpperCase()}
-- Security Cameras: ${cameraCount}x Weather-Proof Smart Cameras (${resolution.toUpperCase()} Resolution with Human/Vehicle Detection)
-- Video Storage: Stores ${retentionDays} days of clear video on-site (${hddCount}x high-capacity drives, ${totalStorageTb}TB total) without monthly cloud fees
-- Network & Setup: ${switchModel}, neat structured wiring, and professional mobile app configuration
-- Emergency Power: ${includeUps ? "Includes battery backup unit so cameras keep recording during power cuts" : "Standard main power connection"}
-- Door Entry: ${includeAccess ? "Includes keyless intercom entry panels and smart access fobs" : "Not specified"}
-- Design Standard: British Standards (BS EN guidelines) with strict UK GDPR privacy protection`;
-
-    return { requiredTb, totalStorageTb, hddCount, switchModel, nvrModel, executiveSummary };
+    return { requiredTb, totalStorageTb, hddCount, switchModel, nvrModel };
   }, [propertyType, cameraCount, retentionDays, resolution, includeUps, includeAccess]);
 
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(calculations.executiveSummary);
-      setCopied(true);
-      if (copyTimeoutRef.current) {
-        clearTimeout(copyTimeoutRef.current);
-      }
-      copyTimeoutRef.current = setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error("Failed to copy text:", err);
-    }
-  };
-
-  const handleAttachAndProceed = () => {
-    sessionStorage.setItem(
-      "drievu_scoping_blueprint",
-      JSON.stringify({
-        propertyType,
-        cameraCount,
-        retentionDays,
-        resolution,
-        totalStorageTb: calculations.totalStorageTb,
-        summary: calculations.executiveSummary,
-      })
-    );
+  const handleSystemBuilderSubmit = () => {
+    const summaryPayload = {
+      environment: propertyType,
+      cameraCount: cameraCount,
+      storageDays: retentionDays,
+      clarity: resolution,
+      addons: [
+        ...(includeUps ? ["ups"] : []),
+        ...(includeAccess ? ["access"] : [])
+      ]
+    };
+    sessionStorage.setItem("drievu_estimator_summary", JSON.stringify(summaryPayload));
     router.push("/consultation");
   };
 
   const propertyTabs = [
-    { id: "commercial_office", label: "Office / Retail" },
+    { id: "commercial_office", label: "Commercial Office" },
+    { id: "industrial_site", label: "Industrial & Logistics" },
     { id: "residential_block", label: "Residential Block" },
-    { id: "industrial_warehouse", label: "Warehouse / Site" },
+    { id: "public_sector", label: "Public Infrastructure" },
+    { id: "private_estate", label: "Private Residence" },
   ];
 
   const resolutionOptions = [
@@ -261,7 +241,7 @@ export function InteractiveSystemBuilder() {
                     Dedicated On-Site Video Recorder
                   </span>
                   <span className="font-body font-normal text-xs text-brand-grey block mt-1 leading-relaxed">
-                    Stores {retentionDays} days of crisp video safely inside your building ({calculations.hddCount}x high-capacity drives). You own 100% of the footage&mdash;zero cloud subscriptions.
+                    Stores {retentionDays} days of crisp video safely inside your building for your {cameraCount} Weather-Proof Cameras (utilizing an optimized drive array framework).
                   </span>
                 </div>
               </TactileLink>
@@ -305,41 +285,6 @@ export function InteractiveSystemBuilder() {
               </TactileLink>
             </div>
 
-            {/* Copyable Specification Brief */}
-            <div className="bg-brand-slate text-brand-paper p-4 rounded-xl font-mono text-[11px] leading-relaxed mb-8 shadow-inner">
-              <div className="flex justify-between items-center mb-2 pb-2 border-b border-brand-grey/20 text-brand-grey-light">
-                <span>YOUR REQUIREMENT SUMMARY</span>
-                <button
-                  onClick={handleCopy}
-                  className="flex items-center gap-1.5 text-brand-teal hover:text-white transition-colors cursor-pointer active:scale-95"
-                >
-                  <AnimatePresence mode="wait">
-                    {copied ? (
-                      <motion.span
-                        key="check"
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        exit={{ scale: 0.8, opacity: 0 }}
-                        className="flex items-center gap-1 text-brand-green"
-                      >
-                        <Check className="w-3.5 h-3.5" /> Copied!
-                      </motion.span>
-                    ) : (
-                      <motion.span
-                        key="copy"
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        exit={{ scale: 0.8, opacity: 0 }}
-                        className="flex items-center gap-1"
-                      >
-                        <Copy className="w-3.5 h-3.5" /> Copy Details
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-                </button>
-              </div>
-              <p className="line-clamp-4 text-brand-paper/80">{calculations.executiveSummary}</p>
-            </div>
           </div>
 
           {/* PRIMARY CTA: Emil Kowalski Tactile Button Physics */}
@@ -348,7 +293,7 @@ export function InteractiveSystemBuilder() {
             variant="primary"
             size="lg"
             icon={<ArrowRight className="w-4 h-4" />}
-            onClick={handleAttachAndProceed}
+            onClick={handleSystemBuilderSubmit}
             className="w-full flex items-center justify-center gap-2 group"
           >
             <span>Send To Requirement Form</span>

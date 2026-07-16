@@ -127,16 +127,16 @@ export function ConsultationIntake() {
   // intent), so a refresh mid-form never discards entered details or step position.
   useEffect(() => {
     try {
-      const savedSpec = sessionStorage.getItem("drievu_system_builder_spec");
+      const savedSpec = sessionStorage.getItem("drievu_estimator_summary");
       if (savedSpec) {
         const parsed = JSON.parse(savedSpec);
         setFormState((prev) => ({
           ...prev,
-          sector: parsed.propertyType || prev.sector,
+          sector: parsed.environment || prev.sector,
           cameraCount: parsed.cameraCount || prev.cameraCount,
           selectedSystems: [
             "surveillance",
-            ...(parsed.includeAccess ? ["access"] : []),
+            ...(parsed.addons?.includes("access") ? ["access"] : []),
           ],
         }));
       }
@@ -252,7 +252,7 @@ export function ConsultationIntake() {
       setIsSubmitting(false);
       setCurrentStep(4);
       try {
-        sessionStorage.removeItem("drievu_system_builder_spec");
+        sessionStorage.removeItem("drievu_estimator_summary");
         sessionStorage.removeItem(DRAFT_KEY);
       } catch (e) {}
     } catch (err) {
