@@ -35,7 +35,7 @@ const TRIGGER_LABELS: Record<(typeof TRIGGERS)[number], string> = {
 const enquirySchema = z.object({
   propertyType: z.enum(PROPERTY_TYPES),
   buildings: z.number().int().min(1).max(50),
-  postcode: z.string().regex(/^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$/i, "Valid UK postcode required"),
+  postcode: z.string().trim().regex(/^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$/i, "Valid UK postcode required"),
   trigger: z.array(z.enum(TRIGGERS)).min(1),
   name: z.string().min(1, "Name is required"),
   company: z.string().min(1, "Company is required"),
