@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
-import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { ProseReveal } from "@/components/motion/ProseReveal";
 
 export function GlobalFooter() {
@@ -67,8 +67,8 @@ export function GlobalFooter() {
           
           {/* Brand & Canonical Due Diligence (5 Columns) */}
           <div className="md:col-span-5 space-y-4">
-            <Link href="/" className="inline-block font-display font-medium text-2xl tracking-tight text-white">
-              <SplitTextReveal text="DRIEVU" /><span className="text-brand-teal">.</span>
+            <Link href="/" className="inline-flex items-center">
+              <Image src="/logo.png" alt="Drievu Engineering" width={130} height={48} className="h-9 w-auto object-contain" />
             </Link>
             <ProseReveal delay={0.3}>
               <p className="text-brand-grey text-sm leading-relaxed max-w-sm font-body font-normal">

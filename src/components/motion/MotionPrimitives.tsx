@@ -4,7 +4,7 @@ import * as React from "react";
 import { motion, type HTMLMotionProps } from "framer-motion";
 import { gsap } from "@/lib/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SPRING_TACTILE, SPRING_GLIDER, EASING_OUT_EXPO, EASING_REVEAL } from "@/lib/physics";
+import { SPRING_TACTILE, EASING_OUT_EXPO, EASING_REVEAL } from "@/lib/physics";
 import { cn } from "@/lib/utils";
 
 /**
@@ -210,12 +210,15 @@ export interface GliderTabProps {
 
 export function GliderTab({ tabs, activeTab, onChange, className = "", gliderId = "activeTabGlider", columns }: GliderTabProps) {
   const gridCols = columns || tabs.length;
+  const activeIndex = Math.max(0, tabs.findIndex((tab) => tab.id === activeTab));
   return (
-    <div className={`relative grid grid-cols-${gridCols} gap-1.5 p-1.5 bg-brand-mist rounded-xl border border-brand-grey/15 ${className}`}>
-      <motion.div
-        layoutId={gliderId}
-        transition={SPRING_GLIDER}
-        className="absolute inset-0 bg-brand-teal rounded-lg shadow-sm -z-10"
+    <div
+      className={cn("relative grid gap-1.5 p-1.5 bg-brand-mist rounded-xl border border-brand-grey/15", className)}
+      style={{ gridTemplateColumns: `repeat(${gridCols}, minmax(0, 1fr))` }}
+    >
+      <div
+        className="absolute inset-y-0 bg-brand-teal rounded-lg shadow-sm -z-10 transition-[left] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        style={{ width: `${100 / gridCols}%`, left: `${activeIndex * (100 / gridCols)}%` }}
       />
       {tabs.map((tab) => (
         <button
@@ -247,13 +250,12 @@ export interface GliderPillProps {
 }
 
 export function GliderPill({ options, activeOption, onChange, className = "", gliderId = "activePillGlider" }: GliderPillProps) {
+  const activeIndex = Math.max(0, options.findIndex((opt) => opt.id === activeOption));
   return (
     <div className={`relative flex gap-1.5 p-1 rounded-xl bg-brand-mist border border-brand-grey/15 ${className}`}>
-      <motion.div
-        layoutId={gliderId}
-        transition={SPRING_GLIDER}
-        className="absolute inset-y-0.5 bg-brand-slate rounded-lg shadow-sm -z-10"
-        style={{ width: `${100 / options.length}%` }}
+      <div
+        className="absolute inset-y-0.5 bg-brand-slate rounded-lg shadow-sm -z-10 transition-[left] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        style={{ width: `${100 / options.length}%`, left: `${activeIndex * (100 / options.length)}%` }}
       />
       {options.map((opt) => (
         <button
