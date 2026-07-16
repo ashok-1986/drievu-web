@@ -43,7 +43,7 @@ const enquirySchema = z.object({
   email: z.string().email("Valid email required"),
   phone: z.string().min(1, "Phone is required"),
   callTime: z.enum(CALL_TIMES),
-  website: z.string(), // honeypot — must stay empty
+  website: z.string().optional().default(""), // honeypot — must stay empty; client omits this key entirely
 });
 
 type EnquiryData = z.infer<typeof enquirySchema>;
