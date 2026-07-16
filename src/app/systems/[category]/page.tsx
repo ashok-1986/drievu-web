@@ -166,7 +166,7 @@ export default function SystemDetailPage({ params }: { params: { category: strin
             <ShieldCheck className="w-3.5 h-3.5" /> Technical Specification Sheet
           </div>
 
-          <h1 className="font-display font-medium text-[clamp(2.75rem,7vw,8.75rem)] w-full text-center text-white tracking-[-0.03em] mb-6 uppercase">
+          <h1 className="font-display font-medium text-hero-lg w-full text-center text-white mb-6 uppercase">
             <SplitTextReveal text={data.title} />
           </h1>
           <ProseReveal>

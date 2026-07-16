@@ -37,6 +37,15 @@ const config: Config = {
         body: ["var(--font-body)", "ui-sans-serif", "system-ui", "sans-serif"],
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
+      fontSize: {
+        // Display Hero H1: pairs the clamp() size with its line-height/tracking so
+        // every big headline gets tight leading by construction — a bare
+        // text-[clamp(...)] arbitrary value has no default line-height pairing,
+        // which is how several pages silently fell back to the browser default
+        // (~1.5) and read as broken, oversized letter-spacing.
+        hero: ["clamp(2.75rem, 7vw, 6rem)", { lineHeight: "0.92", letterSpacing: "-0.03em" }],
+        "hero-lg": ["clamp(2.75rem, 7vw, 8.75rem)", { lineHeight: "0.92", letterSpacing: "-0.03em" }],
+      },
       fontWeight: {
         // Enforce the 500 ceiling programmatically across standard utility classes
         light: "400",

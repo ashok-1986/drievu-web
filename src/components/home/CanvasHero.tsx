@@ -209,7 +209,7 @@ export function CanvasHero() {
               Independent UK Engineering · London Based
             </div>
 
-            <h1 className="font-display font-medium text-[clamp(2.75rem,7vw,6rem)] w-full leading-[0.92] tracking-[-0.03em] text-white uppercase drop-shadow-md">
+            <h1 className="font-display font-medium text-hero w-full text-white uppercase drop-shadow-md">
               <SplitTextReveal text="Security Systems," />
               <br />
               <SplitTextReveal text="Delivered Properly." className="text-brand-teal" />
@@ -245,7 +245,7 @@ export function CanvasHero() {
               <span>Intelligent Building Automation</span>
             </div>
             
-            <h2 className="font-display font-medium text-[clamp(2.75rem,7vw,6rem)] w-full leading-[0.92] tracking-[-0.03em] text-white uppercase drop-shadow-md">
+            <h2 className="font-display font-medium text-hero w-full text-white uppercase drop-shadow-md">
               <SplitTextReveal text="Invisible By Day." />
               <br />
               <SplitTextReveal text="Vigilant At Dusk." className="text-brand-teal" />
@@ -274,7 +274,7 @@ export function CanvasHero() {
               <span>Active Nighttime Defense</span>
             </div>
 
-            <h2 className="font-display font-medium text-[clamp(2.75rem,7vw,6rem)] w-full leading-[0.92] tracking-[-0.03em] text-white uppercase drop-shadow-md">
+            <h2 className="font-display font-medium text-hero w-full text-white uppercase drop-shadow-md">
               <SplitTextReveal text="Total Protection." />
               <br />
               <SplitTextReveal text="Zero Cloud Fees." className="text-brand-teal" />

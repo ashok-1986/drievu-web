@@ -12,7 +12,7 @@
 
 ## II. Typography Utility Hierarchy (Weight 500 Ceiling)
 Because weights above 500 are banned, implement hierarchy strictly through optical styling:
-* **Display Hero H1:** `font-display font-medium text-[clamp(2.75rem,8vw,8rem)] leading-[0.92] tracking-[-0.04em] text-brand-slate uppercase select-none`
+* **Display Hero H1:** `font-display font-medium text-hero uppercase` (or `text-hero-lg` for full-bleed cinematic heroes needing a larger max size — e.g. Sectors, System pages). Both `text-hero`/`text-hero-lg` are Tailwind theme tokens (`tailwind.config.ts`) that bundle `font-size` + `line-height: 0.92` + `letter-spacing: -0.03em` together — never reintroduce a bare `text-[clamp(...)]` arbitrary value for a page headline, since it has no paired line-height and silently falls back to the browser default (~1.5), which reads as broken oversized spacing. Text color/shadow (`text-white drop-shadow-md` on dark heroes, `text-brand-slate` on light) stays a separate per-page utility.
 * **Section Header H2:** `font-display font-medium text-3xl md:text-5xl leading-[1.05] tracking-[-0.02em] text-brand-slate`
 * **Card Title H3:** `font-display font-medium text-lg md:text-xl text-brand-slate tracking-tight`
 * **Body Regular:** `font-body font-normal text-base text-brand-slate/85 leading-relaxed`

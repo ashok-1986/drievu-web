@@ -26,7 +26,7 @@ export default function CompliancePage() {
             <ShieldCheck className="w-3.5 h-3.5" /> Engineering & Legal Governance
           </div>
 
-          <h1 className="font-display font-medium text-[clamp(2.75rem,7vw,6rem)] w-full leading-[0.92] text-white tracking-[-0.03em] uppercase drop-shadow-md mb-6">
+          <h1 className="font-display font-medium text-hero w-full text-white uppercase drop-shadow-md mb-6">
             <SplitTextReveal text="Compliance & Design Standards." />
           </h1>
           <ProseReveal>

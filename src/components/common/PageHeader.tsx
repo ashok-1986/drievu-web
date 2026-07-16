@@ -48,7 +48,7 @@ export function PageHeader({
           </ProseReveal>
         )}
 
-        <h1 className="font-display font-medium text-[clamp(2.75rem,7vw,6rem)] w-full leading-[0.92] tracking-[-0.03em] text-white uppercase drop-shadow-md">
+        <h1 className="font-display font-medium text-hero w-full text-white uppercase drop-shadow-md">
           {title}
         </h1>
 
