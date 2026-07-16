@@ -1,570 +1,459 @@
 // src/components/consultation/ConsultationIntake.tsx
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Building2, 
-  Shield, 
-  Lock, 
-  Flame, 
-  Radio, 
-  Cpu, 
-  ArrowRight, 
-  ArrowLeft, 
-  CheckCircle2, 
-  FileText, 
-  MapPin, 
+import {
+  Building2,
+  ArrowRight,
+  CheckCircle2,
+  MapPin,
   User,
   Mail,
   Phone,
-  AlertCircle
+  AlertCircle,
 } from "lucide-react";
-import { Tactile, GliderTab, TactileLink } from "@/components/motion/MotionPrimitives";
+import { Tactile } from "@/components/motion/MotionPrimitives";
 import { EASING_OUT_EXPO } from "@/lib/physics";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { ProseReveal } from "@/components/motion/ProseReveal";
-import { z } from "zod";
 
-// --- Client-side validation (mirrors the Zod schema in /api/consultation) ---
 const UK_POSTCODE = /^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$/i;
 const UK_PHONE = /^[\d\s+-]{10,}$/;
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const DRAFT_KEY = "drievu_consultation_draft";
 const REQUEST_TIMEOUT_MS = 15000;
+const FALLBACK_PHONE = "+44 7442 605205";
 
-const DraftSchema = z.object({
-  step: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]).optional(),
-  formState: z.object({
-    sector: z.enum(["residential_block", "commercial_office", "industrial_site", "public_sector", "private_estate"]),
-    buildingCount: z.string(),
-    selectedSystems: z.array(z.string()),
-    cameraCount: z.number(),
-    hasDrawings: z.boolean(),
-    timeline: z.enum(["immediate", "within_3_months", "budgeting_6_months"]),
-    postcode: z.string(),
-    fullName: z.string(),
-    role: z.string(),
-    email: z.string(),
-    phone: z.string(),
-    notes: z.string(),
-  }).partial().optional()
-});
+type PropertyType =
+  | "commercial-office"
+  | "residential-block"
+  | "industrial-logistics"
+  | "public-infrastructure"
+  | "private-residence";
 
-// Human-readable, field-level messages. Server field keys are kept identical so
-// a 400 response's `details` map can be surfaced inline without translation.
-function validateContactStep(s: {
-  fullName: string;
+type TriggerType = "new-install" | "upgrading-existing" | "compliance-requirement";
+type CallTime = "morning" | "afternoon" | "either";
+
+interface FormState {
+  propertyType: PropertyType | "";
+  buildings: number;
+  postcode: string;
+  trigger: TriggerType[];
+  name: string;
+  company: string;
   role: string;
   email: string;
   phone: string;
-  postcode: string;
-  buildingCount: string;
-  selectedSystems: string[];
-}): Record<string, string> {
+  callTime: CallTime | "";
+  website: string; // honeypot — must stay empty
+}
+
+const propertyTypes: { id: PropertyType; label: string; desc: string }[] = [
+  { id: "commercial-office", label: "Commercial Office", desc: "Multi-floor towers & business parks" },
+  { id: "residential-block", label: "Residential Block", desc: "Managed apartments & gated estates" },
+  { id: "industrial-logistics", label: "Industrial & Logistics", desc: "Warehouses, depots & manufacturing" },
+  { id: "public-infrastructure", label: "Public Infrastructure", desc: "Healthcare, education & civic sites" },
+  { id: "private-residence", label: "Private Residence", desc: "High-value independent dwellings" },
+];
+
+const triggerOptions: { id: TriggerType; label: string }[] = [
+  { id: "new-install", label: "New installation" },
+  { id: "upgrading-existing", label: "Upgrading existing system" },
+  { id: "compliance-requirement", label: "Compliance requirement" },
+];
+
+function validateForm(s: FormState): Record<string, string> {
   const e: Record<string, string> = {};
-  if (!s.buildingCount || parseInt(s.buildingCount, 10) < 1) e.buildingCount = "Building count must be at least 1.";
-  if (!s.selectedSystems || s.selectedSystems.length === 0) e.selectedSystems = "Select at least one system.";
-  
-  if (s.fullName.trim().length < 2) e.fullName = "Please enter your full name.";
+  if (!s.propertyType) e.propertyType = "Select a property type.";
+  if (!Number.isFinite(s.buildings) || s.buildings < 1 || s.buildings > 50) {
+    e.buildings = "Enter a number of buildings between 1 and 50.";
+  }
+  if (!UK_POSTCODE.test(s.postcode.trim())) e.postcode = "Enter a valid UK postcode, e.g. SW1A 1AA.";
+  if (s.trigger.length === 0) e.trigger = "Select at least one reason for your enquiry.";
+  if (s.name.trim().length < 2) e.name = "Please enter your full name.";
+  if (s.company.trim().length < 2) e.company = "Please enter your company or organisation name.";
   if (s.role.trim().length < 2) e.role = "Please enter your role or title.";
   if (!EMAIL.test(s.email.trim())) e.email = "Enter a valid work email, e.g. name@company.co.uk.";
-  
-  const phoneDigits = s.phone.replace(/[^\d]/g, '').length;
+  const phoneDigits = s.phone.replace(/[^\d]/g, "").length;
   if (!UK_PHONE.test(s.phone.trim()) || phoneDigits < 10) e.phone = "Enter a valid phone number — at least 10 digits.";
-  
-  if (!UK_POSTCODE.test(s.postcode.trim())) e.postcode = "Enter a valid UK postcode, e.g. SW1A 1AA.";
+  if (!s.callTime) e.callTime = "Choose a preferred time to be called.";
   return e;
 }
 
-function getEarliestErrorStep(errors: Record<string, string>): 1 | 2 | 3 {
-  if (errors.sector || errors.buildingCount) return 1;
-  if (errors.selectedSystems || errors.cameraCount) return 2;
-  return 3;
-}
-
-// Types for our engineering intake state
-type SectorType = "residential_block" | "commercial_office" | "industrial_site" | "public_sector" | "private_estate";
-type TimelineType = "immediate" | "within_3_months" | "budgeting_6_months";
-
-interface IntakeFormState {
-  sector: SectorType;
-  buildingCount: string;
-  selectedSystems: string[];
-  cameraCount: number;
-  hasDrawings: boolean;
-  timeline: TimelineType;
-  postcode: string;
-  fullName: string;
-  role: string;
-  email: string;
-  phone: string;
-  notes: string;
-}
-
 export function ConsultationIntake() {
-  const [currentStep, setCurrentStep] = useState<1 | 2 | 3 | 4>(1);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
-  const [submitError, setSubmitError] = useState<string | null>(null);
-  const [formState, setFormState] = useState<IntakeFormState>({
-    sector: "commercial_office",
-    buildingCount: "1",
-    selectedSystems: ["surveillance", "access"],
-    cameraCount: 16,
-    hasDrawings: false,
-    timeline: "within_3_months",
+  const [formState, setFormState] = useState<FormState>({
+    propertyType: "",
+    buildings: 1,
     postcode: "",
-    fullName: "",
+    trigger: [],
+    name: "",
+    company: "",
     role: "",
     email: "",
     phone: "",
-    notes: "",
+    callTime: "",
+    website: "",
   });
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [submitAttempted, setSubmitAttempted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [formError, setFormError] = useState<{ message: string; showPhoneFallback: boolean } | null>(null);
 
-  // SSR-safe hydration. Order matters: apply the System Builder spec first, then
-  // let a saved in-progress draft override it (the draft is the user's most recent
-  // intent), so a refresh mid-form never discards entered details or step position.
-  useEffect(() => {
-    try {
-      const savedSpec = sessionStorage.getItem("drievu_estimator_summary");
-      if (savedSpec) {
-        const parsed = JSON.parse(savedSpec);
-        setFormState((prev) => ({
-          ...prev,
-          sector: parsed.environment || prev.sector,
-          cameraCount: parsed.cameraCount || prev.cameraCount,
-          selectedSystems: [
-            "surveillance",
-            ...(parsed.addons?.includes("access") ? ["access"] : []),
-          ],
-        }));
-      }
+  const liveErrors = validateForm(formState);
+  const showError = (field: string) => (touched[field] || submitAttempted) && !!liveErrors[field];
 
-      const savedDraft = sessionStorage.getItem(DRAFT_KEY);
-      if (savedDraft) {
-        const draft = JSON.parse(savedDraft);
-        const parsed = DraftSchema.safeParse(draft);
-        if (parsed.success) {
-          if (parsed.data.formState) {
-            setFormState((prev) => ({ ...prev, ...parsed.data.formState as Partial<IntakeFormState> }));
-          }
-          if (parsed.data.step && parsed.data.step !== 4) {
-            setCurrentStep(parsed.data.step as 1 | 2 | 3);
-          }
-        }
-      }
-    } catch (e) {
-      // Silently ignore if session storage is unavailable (private mode, etc.)
-    }
-  }, []);
-
-  // Persist an in-progress draft as the user works. Cleared on successful submit.
-  useEffect(() => {
-    if (currentStep >= 4) return;
-    try {
-      sessionStorage.setItem(
-        DRAFT_KEY,
-        JSON.stringify({ formState, step: currentStep })
-      );
-    } catch (e) {
-      // Storage may be unavailable or full; drafting is best-effort, never blocking.
-    }
-  }, [formState, currentStep]);
-
-  // Update a single field and clear its inline error as the user corrects it.
-  const setField = (field: keyof IntakeFormState, value: string) => {
+  const setField = <K extends keyof FormState>(field: K, value: FormState[K]) => {
     setFormState((prev) => ({ ...prev, [field]: value }));
-    setFieldErrors((prev) => {
-      if (!prev[field as string]) return prev;
-      const next = { ...prev };
-      delete next[field as string];
-      return next;
-    });
   };
 
-  const handleSystemToggle = (systemId: string) => {
+  const markTouched = (field: string) => setTouched((prev) => (prev[field] ? prev : { ...prev, [field]: true }));
+
+  const selectPropertyType = (id: PropertyType) => {
+    setField("propertyType", id);
+    markTouched("propertyType");
+  };
+
+  const toggleTrigger = (id: TriggerType) => {
     setFormState((prev) => {
-      const exists = prev.selectedSystems.includes(systemId);
-      return {
-        ...prev,
-        selectedSystems: exists
-          ? prev.selectedSystems.filter((id) => id !== systemId)
-          : [...prev.selectedSystems, systemId],
-      };
+      const exists = prev.trigger.includes(id);
+      return { ...prev, trigger: exists ? prev.trigger.filter((t) => t !== id) : [...prev.trigger, id] };
     });
+    markTouched("trigger");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (isSubmitting) return; // guard against rapid double-submit
+    setSubmitAttempted(true);
 
-    // Validate on the client first — instant feedback, no wasted round-trip.
-    const errors = validateContactStep(formState);
-    if (Object.keys(errors).length > 0) {
-      setFieldErrors(errors);
-      setSubmitError("Please correct the highlighted fields before submitting.");
-      setCurrentStep(getEarliestErrorStep(errors));
+    // Honeypot tripped — silently drop, no network call, no tell to the bot.
+    if (formState.website.trim().length > 0) return;
+
+    if (Object.keys(liveErrors).length > 0) {
+      setFormError({ message: "Please correct the highlighted fields before submitting.", showPhoneFallback: false });
       return;
     }
 
-    setFieldErrors({});
-    setSubmitError(null);
+    if (isSubmitting) return;
+    setFormError(null);
     setIsSubmitting(true);
 
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
     try {
-      const response = await fetch("/api/consultation", {
+      const response = await fetch("/api/enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formState),
+        body: JSON.stringify({
+          propertyType: formState.propertyType,
+          buildings: formState.buildings,
+          postcode: formState.postcode,
+          trigger: formState.trigger,
+          name: formState.name,
+          company: formState.company,
+          role: formState.role,
+          email: formState.email,
+          phone: formState.phone,
+          callTime: formState.callTime,
+        }),
         signal: controller.signal,
       });
 
-      const payload = await response.json().catch(() => ({} as Record<string, unknown>));
-
       if (!response.ok) {
-        if (response.status === 400 && payload && (payload as any).details) {
-          const details = (payload as any).details as Record<string, string[]>;
-          const mapped: Record<string, string> = {};
-          for (const [key, messages] of Object.entries(details)) {
-            if (Array.isArray(messages) && messages[0]) mapped[key] = messages[0];
-          }
-          setFieldErrors(mapped);
-          setSubmitError("Some details need attention. Please review the highlighted fields.");
-          setCurrentStep(getEarliestErrorStep(mapped));
-        } else if (response.status === 429) {
-          setSubmitError(
-            "You've submitted a few requests already. Please wait a little while and try again — or call us directly if it's urgent."
-          );
+        if (response.status === 429) {
+          setFormError({
+            message: "You've submitted a few requests already. Please wait a little while and try again.",
+            showPhoneFallback: true,
+          });
         } else {
-          setSubmitError(
-            "Something went wrong on our end and your request didn't send. Please try again in a moment."
-          );
+          setFormError({
+            message: "Something went wrong on our end and your request didn't send. Please try again in a moment.",
+            showPhoneFallback: true,
+          });
         }
         setIsSubmitting(false);
         return;
       }
 
-      // Success — clear the carried spec and the working draft.
       setIsSubmitting(false);
-      setCurrentStep(4);
-      try {
-        sessionStorage.removeItem("drievu_estimator_summary");
-        sessionStorage.removeItem(DRAFT_KEY);
-      } catch (e) {}
+      setSubmitted(true);
     } catch (err) {
       setIsSubmitting(false);
       if (err instanceof DOMException && err.name === "AbortError") {
-        setSubmitError(
-          "The request timed out. Please check your connection and try again — your details are still here."
-        );
+        setFormError({
+          message: "The request timed out. Please check your connection and try again — your details are still here.",
+          showPhoneFallback: true,
+        });
       } else {
-        setSubmitError(
-          "We couldn't reach our servers. Check your internet connection and try again — nothing has been lost."
-        );
+        setFormError({
+          message: "We couldn't reach our servers. Check your internet connection and try again — nothing has been lost.",
+          showPhoneFallback: true,
+        });
       }
     } finally {
       clearTimeout(timeout);
     }
   };
 
-  const sectors = [
-    { id: "commercial_office", label: "Commercial Office", desc: "Multi-floor towers & business parks" },
-    { id: "residential_block", label: "Residential Block", desc: "Managed apartments & gated estates" },
-    { id: "industrial_site", label: "Industrial & Logistics", desc: "Warehouses, depots & manufacturing" },
-    { id: "public_sector", label: "Public Infrastructure", desc: "Healthcare, education & civic sites" },
-    { id: "private_estate", label: "Private Residence", desc: "High-value independent dwellings" },
-  ];
-
-  const systems = [
-    { id: "surveillance", label: "Smart CCTV Surveillance", icon: Shield, desc: "4K AI cameras with night vision & zero cloud monthly fees." },
-    { id: "access", label: "Keyless Door Entry", icon: Lock, desc: "Video doorbells & remote access gates managed from your phone." },
-    { id: "fire", label: "Fire & Life Safety", icon: Flame, desc: "Instant smoke & heat sensors compliant with British Safety Standards." },
-    { id: "intercom", label: "Audio & Intercoms", icon: Radio, desc: "Clear two-way communication across entrances and large sites." },
-    { id: "automation", label: "Energy & Comfort Control", icon: Cpu, desc: "Smart automation trimming up to 30% off building energy waste." },
-  ];
-
   return (
     <div className="w-full max-w-4xl mx-auto bg-brand-paper rounded-2xl border border-brand-grey/15 shadow-elevated overflow-hidden">
-      
-      {/* STEP INDICATOR HEADER */}
-      {currentStep < 4 && (
-        <div className="bg-brand-slate text-white p-6 md:p-8 border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-1">
-              Direct Engineering Routing
-            </span>
-            <h1 className="font-display font-medium text-[clamp(1.5rem,3vw,3rem)] w-full text-center text-white tracking-tight">
-              Project Scoping Review
-            </h1>
-          </div>
+      {/* HEADER */}
+      <div className="bg-brand-slate text-white p-6 md:p-8 border-b border-white/10 text-center">
+        <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-1">
+          One Screen. One Submission.
+        </span>
+        <h1 className="font-display font-medium text-[clamp(1.5rem,3vw,3rem)] w-full text-white tracking-tight">
+          Project Scoping Review
+        </h1>
+      </div>
 
-          {/* Progress Pills */}
-          <div className="flex items-center gap-2 font-display font-medium text-xs">
-            <span className={`px-3 py-1.5 rounded-full ${currentStep === 1 ? "bg-brand-teal text-white" : "bg-white/10 text-brand-paper/80"}`}>
-              01 · Sector
-            </span>
-            <span className={`px-3 py-1.5 rounded-full ${currentStep === 2 ? "bg-brand-teal text-white" : "bg-white/10 text-brand-paper/80"}`}>
-              02 · Systems
-            </span>
-            <span className={`px-3 py-1.5 rounded-full ${currentStep === 3 ? "bg-brand-teal text-white" : "bg-white/10 text-brand-paper/80"}`}>
-              03 · Handoff
-            </span>
-          </div>
-        </div>
-      )}
-
-      {/* STEP CONTENT AREA WITH ZERO-JANK ANIMATE PRESENCE */}
       <div className="p-6 md:p-12">
         <AnimatePresence mode="wait">
-          
-          {/* STEP 1: PROPERTY SECTOR & SCALE */}
-          {currentStep === 1 && (
+          {submitted ? (
             <motion.div
-              key="step1"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }}
+              key="success"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, ease: EASING_OUT_EXPO }}
+              className="py-12 text-center max-w-lg mx-auto space-y-4"
+            >
+              <div className="w-16 h-16 bg-brand-green/10 text-brand-green rounded-full flex items-center justify-center mx-auto border border-brand-green/20">
+                <CheckCircle2 className="w-8 h-8" />
+              </div>
+              <p className="font-display font-medium text-xl md:text-2xl text-brand-slate tracking-tight">
+                Received. An engineer will call you within one working day.
+              </p>
+            </motion.div>
+          ) : (
+            <motion.form
+              key="form"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.3, ease: EASING_OUT_EXPO }}
+              onSubmit={handleSubmit}
+              noValidate
               className="space-y-8"
             >
+              {/* PROPERTY TYPE */}
               <div>
                 <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate mb-2">
                   <SplitTextReveal text="What type of property are we protecting?" />
                 </h2>
                 <ProseReveal delay={0.3}>
-                  <p className="font-body font-normal text-sm text-brand-grey">
-                    Select your environment so we can assign the correct British Standard engineering framework.
+                  <p className="font-body font-normal text-sm text-brand-grey mb-4">
+                    Select your environment so we can assign the correct engineering framework.
                   </p>
                 </ProseReveal>
-              </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {sectors.map((sec) => {
-                  const isSelected = formState.sector === sec.id;
-                  return (
-                    <Tactile key={sec.id} tapScale={0.99} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setFormState({ ...formState, sector: sec.id as SectorType }); }}>
-                      <div
-                        onClick={() => setFormState({ ...formState, sector: sec.id as SectorType })}
-                        className={`p-5 rounded-xl border text-left transition-all duration-150 ${
-                          isSelected 
-                            ? "bg-brand-slate text-white border-brand-slate shadow-md" 
-                            : "bg-white text-brand-slate border-brand-grey/20 hover:border-brand-teal/50"
-                        }`}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {propertyTypes.map((pt) => {
+                    const isSelected = formState.propertyType === pt.id;
+                    return (
+                      <Tactile
+                        key={pt.id}
+                        tapScale={0.99}
+                        aria-label={`${pt.label}${isSelected ? " (selected)" : ""}`}
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            selectPropertyType(pt.id);
+                          }
+                        }}
                       >
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="font-display font-medium text-base">{sec.label}</span>
-                          <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${isSelected ? "border-brand-teal bg-brand-teal text-white" : "border-brand-grey/30"}`}>
-                            {isSelected && <CheckCircle2 className="w-3 h-3" />}
-                          </div>
-                        </div>
-                        <p className={`font-body font-normal text-xs ${isSelected ? "text-brand-paper/80" : "text-brand-grey"}`}>
-                          {sec.desc}
-                        </p>
-                      </div>
-                    </Tactile>
-                  );
-                })}
-              </div>
-
-              {/* Building Count Input */}
-              <div className="bg-brand-mist p-5 rounded-xl border border-brand-grey/15">
-                <label className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-3">
-                  Number of Buildings / Blocks
-                </label>
-                <input
-                  type="number"
-                  min="1"
-                  max="50"
-                  value={formState.buildingCount}
-                  onChange={(e) => setFormState({ ...formState, buildingCount: e.target.value })}
-                  className="w-full bg-white font-body text-sm text-brand-slate px-4 py-3 rounded-xl border border-brand-grey/30 focus:outline-none focus:border-brand-teal transition-colors"
-                />
-              </div>
-
-              <div className="pt-4 border-t border-brand-grey/15 flex items-center justify-between">
-                <span className="font-body font-normal text-xs text-brand-grey">
-                  Step 1 of 3 · No obligation or sales pressure
-                </span>
-                <Tactile tapScale={0.98}>
-                  <button
-                    type="button"
-                    onClick={() => setCurrentStep(2)}
-                    className="bg-brand-teal text-white font-display font-medium text-sm px-6 py-3.5 rounded-xl hover:bg-[#006666] transition-colors flex items-center gap-2 shadow-md cursor-pointer"
-                  >
-                    <span>Define Systems</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </Tactile>
-              </div>
-            </motion.div>
-          )}
-
-          {/* STEP 2: SYSTEM BLUEPRINT */}
-          {currentStep === 2 && (
-            <motion.div
-              key="step2"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }}
-              transition={{ duration: 0.3, ease: EASING_OUT_EXPO }}
-              className="space-y-8"
-            >
-              <div>
-                <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate mb-2">
-                  <SplitTextReveal text="Which systems require engineering attention?" />
-                </h2>
-                <ProseReveal delay={0.3}>
-                  <p className="font-body font-normal text-sm text-brand-grey">
-                    We design integrated systems that work seamlessly from one app. Select all that apply.
-                  </p>
-                </ProseReveal>
-              </div>
-
-              <div className="grid grid-cols-1 gap-4">
-                {systems.map((sys) => {
-                  const isSelected = formState.selectedSystems.includes(sys.id);
-                  const IconComp = sys.icon;
-                  return (
-                    <Tactile key={sys.id} tapScale={0.99} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") handleSystemToggle(sys.id); }}>
-                      <div
-                        onClick={() => handleSystemToggle(sys.id)}
-                        className={`p-5 rounded-xl border flex items-start gap-4 transition-all duration-150 ${
-                          isSelected 
-                            ? "bg-brand-slate text-white border-brand-slate shadow-md" 
-                            : "bg-white text-brand-slate border-brand-grey/20 hover:border-brand-teal/50"
-                        }`}
-                      >
-                        <div className={`p-3 rounded-lg mt-0.5 shrink-0 ${isSelected ? "bg-brand-teal text-white" : "bg-brand-mist text-brand-slate"}`}>
-                          <IconComp className="w-5 h-5" />
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center justify-between mb-1">
-                            <span className="font-display font-medium text-base">{sys.label}</span>
-                            <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${isSelected ? "border-brand-teal bg-brand-teal text-white" : "border-brand-grey/30"}`}>
+                        <div
+                          onClick={() => selectPropertyType(pt.id)}
+                          className={`p-5 rounded-xl border text-left transition-all duration-150 cursor-pointer ${
+                            isSelected
+                              ? "bg-brand-slate text-white border-brand-slate shadow-md"
+                              : "bg-white text-brand-slate border-brand-grey/20 hover:border-brand-teal/50"
+                          }`}
+                        >
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="font-display font-medium text-base">{pt.label}</span>
+                            <div
+                              className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                                isSelected ? "border-brand-teal bg-brand-teal text-white" : "border-brand-grey/30"
+                              }`}
+                            >
                               {isSelected && <CheckCircle2 className="w-3 h-3" />}
                             </div>
                           </div>
                           <p className={`font-body font-normal text-xs ${isSelected ? "text-brand-paper/80" : "text-brand-grey"}`}>
-                            {sys.desc}
+                            {pt.desc}
                           </p>
                         </div>
-                      </div>
-                    </Tactile>
-                  );
-                })}
+                      </Tactile>
+                    );
+                  })}
+                </div>
+                {showError("propertyType") && (
+                  <p className="mt-2 font-body font-normal text-xs text-danger-strong">{liveErrors.propertyType}</p>
+                )}
               </div>
 
-              {/* Dynamic Camera Count Slider if CCTV selected */}
-              {formState.selectedSystems.includes("surveillance") && (
-                <div className="bg-brand-mist p-6 rounded-xl border border-brand-grey/15 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="font-display font-medium text-sm text-brand-slate">
-                      Estimated Camera Spots Required
-                    </span>
-                    <span className="font-display font-medium text-base text-brand-teal bg-white px-3 py-1 rounded-md border border-brand-grey/20 shadow-sm">
-                      {formState.cameraCount} Cameras
-                    </span>
-                  </div>
-                  <input
-                    type="range"
-                    min="4"
-                    max="64"
-                    step="4"
-                    value={formState.cameraCount}
-                    onChange={(e) => setFormState({ ...formState, cameraCount: parseInt(e.target.value) })}
-                    className="w-full accent-brand-teal cursor-pointer"
-                  />
-                  <p className="font-body font-normal text-xs text-brand-grey">
-                    Includes night-vision zoning and 30-day on-site local recording without monthly cloud storage fees.
+              {/* BUILDING COUNT */}
+              <div className="bg-brand-mist p-5 rounded-xl border border-brand-grey/15">
+                <label htmlFor="intake-buildings" className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-3">
+                  Number of Buildings / Blocks
+                </label>
+                <input
+                  id="intake-buildings"
+                  type="number"
+                  min={1}
+                  max={50}
+                  required
+                  value={formState.buildings}
+                  onChange={(e) => {
+                    const raw = e.target.value;
+                    const num = raw === "" ? NaN : parseInt(raw, 10);
+                    setField("buildings", Number.isNaN(num) ? 0 : num);
+                  }}
+                  onBlur={() => markTouched("buildings")}
+                  aria-invalid={showError("buildings")}
+                  aria-describedby={showError("buildings") ? "err-buildings" : undefined}
+                  className={`w-full bg-white font-body text-sm text-brand-slate px-4 py-3 rounded-xl border focus:outline-none transition-colors ${
+                    showError("buildings") ? "border-danger focus:border-danger" : "border-brand-grey/30 focus:border-brand-teal"
+                  }`}
+                />
+                {showError("buildings") && (
+                  <p id="err-buildings" className="mt-1.5 font-body font-normal text-xs text-danger-strong">
+                    {liveErrors.buildings}
                   </p>
-                </div>
-              )}
-
-              <div className="pt-4 border-t border-brand-grey/15 flex items-center justify-between">
-                <Tactile tapScale={0.98}>
-                  <button
-                    type="button"
-                    onClick={() => setCurrentStep(1)}
-                    className="bg-white text-brand-slate border border-brand-grey/30 font-display font-medium text-sm px-5 py-3.5 rounded-xl hover:bg-brand-mist transition-colors flex items-center gap-2 cursor-pointer"
-                  >
-                    <ArrowLeft className="w-4 h-4" />
-                    <span>Back</span>
-                  </button>
-                </Tactile>
-
-                <div className="flex flex-col items-end gap-2">
-                  {formState.selectedSystems.length === 0 && (
-                    <span className="font-body font-normal text-xs text-danger-strong">
-                      Select at least one system to continue.
-                    </span>
-                  )}
-                  <Tactile tapScale={0.98}>
-                    <button
-                      type="button"
-                      disabled={formState.selectedSystems.length === 0}
-                      onClick={() => {
-                        if (formState.selectedSystems.length > 0) setCurrentStep(3);
-                      }}
-                      className="bg-brand-teal text-white font-display font-medium text-sm px-6 py-3.5 rounded-xl hover:bg-[#006666] transition-colors flex items-center gap-2 shadow-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      <span>Site Logistics</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </Tactile>
-                </div>
+                )}
               </div>
-            </motion.div>
-          )}
 
-          {/* STEP 3: SITE LOGISTICS & HANDOFF */}
-          {currentStep === 3 && (
-            <motion.form
-              key="step3"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }}
-              transition={{ duration: 0.3, ease: EASING_OUT_EXPO }}
-              onSubmit={handleSubmit}
-              noValidate
-              className="space-y-6"
-            >
+              {/* POSTCODE */}
               <div>
-                <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate mb-2">
-                  <SplitTextReveal text="Where should we send the technical review?" />
-                </h2>
-                <ProseReveal delay={0.3}>
-                  <p className="font-body font-normal text-sm text-brand-grey">
-                    Your details are protected under UK GDPR. You speak directly with principal engineers—never salespeople.
+                <label htmlFor="intake-postcode" className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
+                  Site UK Postcode *
+                </label>
+                <div className="relative">
+                  <MapPin className="w-4 h-4 text-brand-grey absolute left-4 top-4" />
+                  <input
+                    id="intake-postcode"
+                    type="text"
+                    required
+                    placeholder="e.g. SW1A 1AA"
+                    value={formState.postcode}
+                    onChange={(e) => setField("postcode", e.target.value)}
+                    onBlur={() => markTouched("postcode")}
+                    aria-invalid={showError("postcode")}
+                    aria-describedby={showError("postcode") ? "err-postcode" : undefined}
+                    className={`w-full bg-white font-body text-sm text-brand-slate pl-11 pr-4 py-3.5 rounded-xl border focus:outline-none transition-colors uppercase ${
+                      showError("postcode") ? "border-danger focus:border-danger" : "border-brand-grey/30 focus:border-brand-teal"
+                    }`}
+                  />
+                </div>
+                {showError("postcode") && (
+                  <p id="err-postcode" className="mt-1.5 font-body font-normal text-xs text-danger-strong">
+                    {liveErrors.postcode}
                   </p>
-                </ProseReveal>
+                )}
               </div>
 
+              {/* TRIGGER */}
+              <div>
+                <span className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-3">
+                  Reason for Enquiry *
+                </span>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {triggerOptions.map((opt) => {
+                    const isChecked = formState.trigger.includes(opt.id);
+                    return (
+                      <Tactile
+                        key={opt.id}
+                        tapScale={0.99}
+                        aria-label={`${opt.label}${isChecked ? " (selected)" : ""}`}
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            toggleTrigger(opt.id);
+                          }
+                        }}
+                      >
+                        <div
+                          onClick={() => toggleTrigger(opt.id)}
+                          className={`p-4 rounded-xl border flex items-center gap-3 transition-all duration-150 cursor-pointer ${
+                            isChecked
+                              ? "bg-brand-slate text-white border-brand-slate shadow-md"
+                              : "bg-white text-brand-slate border-brand-grey/20 hover:border-brand-teal/50"
+                          }`}
+                        >
+                          <div
+                            className={`w-5 h-5 rounded border flex items-center justify-center shrink-0 ${
+                              isChecked ? "border-brand-teal bg-brand-teal text-white" : "border-brand-grey/40 bg-white"
+                            }`}
+                          >
+                            {isChecked && <CheckCircle2 className="w-3.5 h-3.5" />}
+                          </div>
+                          <span className="font-body font-normal text-sm">{opt.label}</span>
+                        </div>
+                      </Tactile>
+                    );
+                  })}
+                </div>
+                {showError("trigger") && (
+                  <p className="mt-2 font-body font-normal text-xs text-danger-strong">{liveErrors.trigger}</p>
+                )}
+              </div>
+
+              {/* CONTACT DETAILS */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="intake-fullName" className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
+                  <label htmlFor="intake-name" className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
                     Full Name *
                   </label>
                   <div className="relative">
                     <User className="w-4 h-4 text-brand-grey absolute left-4 top-4" />
                     <input
-                      id="intake-fullName"
+                      id="intake-name"
                       type="text"
                       required
                       placeholder="e.g. David Harrison"
-                      value={formState.fullName}
-                      onChange={(e) => setField("fullName", e.target.value)}
-                      aria-invalid={!!fieldErrors.fullName}
-                      aria-describedby={fieldErrors.fullName ? "err-fullName" : undefined}
-                      className={`w-full bg-white font-body text-sm text-brand-slate pl-11 pr-4 py-3.5 rounded-xl border focus:outline-none transition-colors ${fieldErrors.fullName ? "border-danger focus:border-danger" : "border-brand-grey/30 focus:border-brand-teal"}`}
+                      value={formState.name}
+                      onChange={(e) => setField("name", e.target.value)}
+                      onBlur={() => markTouched("name")}
+                      aria-invalid={showError("name")}
+                      aria-describedby={showError("name") ? "err-name" : undefined}
+                      className={`w-full bg-white font-body text-sm text-brand-slate pl-11 pr-4 py-3.5 rounded-xl border focus:outline-none transition-colors ${
+                        showError("name") ? "border-danger focus:border-danger" : "border-brand-grey/30 focus:border-brand-teal"
+                      }`}
                     />
                   </div>
-                  {fieldErrors.fullName && (
-                    <p id="err-fullName" className="mt-1.5 font-body font-normal text-xs text-danger-strong">
-                      {fieldErrors.fullName}
+                  {showError("name") && (
+                    <p id="err-name" className="mt-1.5 font-body font-normal text-xs text-danger-strong">
+                      {liveErrors.name}
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  <label htmlFor="intake-company" className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
+                    Company / Organisation *
+                  </label>
+                  <div className="relative">
+                    <Building2 className="w-4 h-4 text-brand-grey absolute left-4 top-4" />
+                    <input
+                      id="intake-company"
+                      type="text"
+                      required
+                      placeholder="e.g. Harrison Estates Ltd"
+                      value={formState.company}
+                      onChange={(e) => setField("company", e.target.value)}
+                      onBlur={() => markTouched("company")}
+                      aria-invalid={showError("company")}
+                      aria-describedby={showError("company") ? "err-company" : undefined}
+                      className={`w-full bg-white font-body text-sm text-brand-slate pl-11 pr-4 py-3.5 rounded-xl border focus:outline-none transition-colors ${
+                        showError("company") ? "border-danger focus:border-danger" : "border-brand-grey/30 focus:border-brand-teal"
+                      }`}
+                    />
+                  </div>
+                  {showError("company") && (
+                    <p id="err-company" className="mt-1.5 font-body font-normal text-xs text-danger-strong">
+                      {liveErrors.company}
                     </p>
                   )}
                 </div>
@@ -580,13 +469,16 @@ export function ConsultationIntake() {
                     placeholder="e.g. Facilities Director / Architect"
                     value={formState.role}
                     onChange={(e) => setField("role", e.target.value)}
-                    aria-invalid={!!fieldErrors.role}
-                    aria-describedby={fieldErrors.role ? "err-role" : undefined}
-                    className={`w-full bg-white font-body text-sm text-brand-slate px-4 py-3.5 rounded-xl border focus:outline-none transition-colors ${fieldErrors.role ? "border-danger focus:border-danger" : "border-brand-grey/30 focus:border-brand-teal"}`}
+                    onBlur={() => markTouched("role")}
+                    aria-invalid={showError("role")}
+                    aria-describedby={showError("role") ? "err-role" : undefined}
+                    className={`w-full bg-white font-body text-sm text-brand-slate px-4 py-3.5 rounded-xl border focus:outline-none transition-colors ${
+                      showError("role") ? "border-danger focus:border-danger" : "border-brand-grey/30 focus:border-brand-teal"
+                    }`}
                   />
-                  {fieldErrors.role && (
+                  {showError("role") && (
                     <p id="err-role" className="mt-1.5 font-body font-normal text-xs text-danger-strong">
-                      {fieldErrors.role}
+                      {liveErrors.role}
                     </p>
                   )}
                 </div>
@@ -604,14 +496,17 @@ export function ConsultationIntake() {
                       placeholder="david@harrison-estates.co.uk"
                       value={formState.email}
                       onChange={(e) => setField("email", e.target.value)}
-                      aria-invalid={!!fieldErrors.email}
-                      aria-describedby={fieldErrors.email ? "err-email" : undefined}
-                      className={`w-full bg-white font-body text-sm text-brand-slate pl-11 pr-4 py-3.5 rounded-xl border focus:outline-none transition-colors ${fieldErrors.email ? "border-danger focus:border-danger" : "border-brand-grey/30 focus:border-brand-teal"}`}
+                      onBlur={() => markTouched("email")}
+                      aria-invalid={showError("email")}
+                      aria-describedby={showError("email") ? "err-email" : undefined}
+                      className={`w-full bg-white font-body text-sm text-brand-slate pl-11 pr-4 py-3.5 rounded-xl border focus:outline-none transition-colors ${
+                        showError("email") ? "border-danger focus:border-danger" : "border-brand-grey/30 focus:border-brand-teal"
+                      }`}
                     />
                   </div>
-                  {fieldErrors.email && (
+                  {showError("email") && (
                     <p id="err-email" className="mt-1.5 font-body font-normal text-xs text-danger-strong">
-                      {fieldErrors.email}
+                      {liveErrors.email}
                     </p>
                   )}
                 </div>
@@ -629,119 +524,95 @@ export function ConsultationIntake() {
                       placeholder="07700 900077"
                       value={formState.phone}
                       onChange={(e) => setField("phone", e.target.value)}
-                      aria-invalid={!!fieldErrors.phone}
-                      aria-describedby={fieldErrors.phone ? "err-phone" : undefined}
-                      className={`w-full bg-white font-body text-sm text-brand-slate pl-11 pr-4 py-3.5 rounded-xl border focus:outline-none transition-colors ${fieldErrors.phone ? "border-danger focus:border-danger" : "border-brand-grey/30 focus:border-brand-teal"}`}
+                      onBlur={() => markTouched("phone")}
+                      aria-invalid={showError("phone")}
+                      aria-describedby={showError("phone") ? "err-phone" : undefined}
+                      className={`w-full bg-white font-body text-sm text-brand-slate pl-11 pr-4 py-3.5 rounded-xl border focus:outline-none transition-colors ${
+                        showError("phone") ? "border-danger focus:border-danger" : "border-brand-grey/30 focus:border-brand-teal"
+                      }`}
                     />
                   </div>
-                  {fieldErrors.phone && (
+                  {showError("phone") && (
                     <p id="err-phone" className="mt-1.5 font-body font-normal text-xs text-danger-strong">
-                      {fieldErrors.phone}
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
-                <div>
-                  <label htmlFor="intake-postcode" className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
-                    Site UK Postcode *
-                  </label>
-                  <div className="relative">
-                    <MapPin className="w-4 h-4 text-brand-grey absolute left-4 top-4" />
-                    <input
-                      id="intake-postcode"
-                      type="text"
-                      required
-                      placeholder="e.g. SW1A 1AA"
-                      value={formState.postcode}
-                      onChange={(e) => setField("postcode", e.target.value)}
-                      aria-invalid={!!fieldErrors.postcode}
-                      aria-describedby={fieldErrors.postcode ? "err-postcode" : undefined}
-                      className={`w-full bg-white font-body text-sm text-brand-slate pl-11 pr-4 py-3.5 rounded-xl border focus:outline-none transition-colors uppercase ${fieldErrors.postcode ? "border-danger focus:border-danger" : "border-brand-grey/30 focus:border-brand-teal"}`}
-                    />
-                  </div>
-                  {fieldErrors.postcode && (
-                    <p id="err-postcode" className="mt-1.5 font-body font-normal text-xs text-danger-strong">
-                      {fieldErrors.postcode}
+                      {liveErrors.phone}
                     </p>
                   )}
                 </div>
 
                 <div>
-                  <label className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
-                    Target Timeline
+                  <label htmlFor="intake-callTime" className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
+                    Best Time To Call *
                   </label>
                   <select
-                    value={formState.timeline}
-                    onChange={(e) => setFormState({ ...formState, timeline: e.target.value as TimelineType })}
-                    className="w-full bg-white font-body text-sm text-brand-slate px-4 py-3.5 rounded-xl border border-brand-grey/30 focus:outline-none focus:border-brand-teal transition-colors cursor-pointer"
+                    id="intake-callTime"
+                    required
+                    value={formState.callTime}
+                    onChange={(e) => setField("callTime", e.target.value as CallTime)}
+                    onBlur={() => markTouched("callTime")}
+                    aria-invalid={showError("callTime")}
+                    aria-describedby={showError("callTime") ? "err-callTime" : undefined}
+                    className={`w-full bg-white font-body text-sm text-brand-slate px-4 py-3.5 rounded-xl border focus:outline-none transition-colors cursor-pointer ${
+                      showError("callTime") ? "border-danger focus:border-danger" : "border-brand-grey/30 focus:border-brand-teal"
+                    }`}
                   >
-                    <option value="immediate">Immediate / Emergency Review</option>
-                    <option value="within_3_months">Within Next 3 Months</option>
-                    <option value="budgeting_6_months">Planned Budgeting (6+ Months)</option>
+                    <option value="" disabled>Select a time</option>
+                    <option value="morning">Morning</option>
+                    <option value="afternoon">Afternoon</option>
+                    <option value="either">Either</option>
                   </select>
+                  {showError("callTime") && (
+                    <p id="err-callTime" className="mt-1.5 font-body font-normal text-xs text-danger-strong">
+                      {liveErrors.callTime}
+                    </p>
+                  )}
                 </div>
               </div>
 
-              {/* CAD / Drawings Checkbox */}
-              <div 
-                onClick={() => setFormState({ ...formState, hasDrawings: !formState.hasDrawings })}
-                className="p-4 rounded-xl bg-brand-mist border border-brand-grey/15 flex items-center justify-between cursor-pointer hover:border-brand-teal/40 transition-colors"
-              >
-                <div className="flex items-center gap-3">
-                  <FileText className="w-5 h-5 text-brand-teal shrink-0" />
-                  <div>
-                    <span className="font-display font-medium text-sm text-brand-slate block">
-                      I have architectural CAD drawings or floorplans available
-                    </span>
-                    <span className="font-body font-normal text-xs text-brand-grey">
-                      We will provide a secure upload link in our follow-up email.
-                    </span>
-                  </div>
-                </div>
-                <div className={`w-5 h-5 rounded border flex items-center justify-center ${formState.hasDrawings ? "border-brand-teal bg-brand-teal text-white" : "border-brand-grey/40 bg-white"}`}>
-                  {formState.hasDrawings && <CheckCircle2 className="w-3.5 h-3.5" />}
-                </div>
+              {/* HONEYPOT — hidden from real users, catches bots that fill every field */}
+              <div className="absolute -left-[9999px] w-px h-px overflow-hidden" aria-hidden="true">
+                <label htmlFor="intake-website">Leave this field blank</label>
+                <input
+                  id="intake-website"
+                  name="website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={formState.website}
+                  onChange={(e) => setFormState((prev) => ({ ...prev, website: e.target.value }))}
+                />
               </div>
 
-              {/* Submission error surface — announced to assistive tech */}
-              {submitError && (
-                <div
-                  role="alert"
-                  aria-live="assertive"
-                  className="flex items-start gap-3 p-4 rounded-xl bg-danger/5 border border-danger/30"
-                >
+              {/* SUBMISSION ERROR SURFACE — announced to assistive tech */}
+              {formError && (
+                <div role="alert" aria-live="assertive" className="flex items-start gap-3 p-4 rounded-xl bg-danger/5 border border-danger/30">
                   <AlertCircle className="w-5 h-5 text-danger shrink-0 mt-0.5" aria-hidden="true" />
-                  <p className="font-body font-normal text-sm text-danger-strong leading-relaxed">
-                    {submitError}
-                  </p>
+                  <div className="space-y-1">
+                    <p className="font-body font-normal text-sm text-danger-strong leading-relaxed">{formError.message}</p>
+                    {formError.showPhoneFallback && (
+                      <p className="font-body font-normal text-xs text-brand-grey">
+                        Prefer to talk now? Call us directly on{" "}
+                        <a href={`tel:${FALLBACK_PHONE.replace(/\s/g, "")}`} className="text-brand-teal underline hover:text-brand-slate font-mono">
+                          {FALLBACK_PHONE}
+                        </a>
+                        .
+                      </p>
+                    )}
+                  </div>
                 </div>
               )}
 
-              <div className="pt-4 border-t border-brand-grey/15 flex items-center justify-between">
-                <Tactile tapScale={0.98}>
-                  <button
-                    type="button"
-                    onClick={() => setCurrentStep(2)}
-                    className="bg-white text-brand-slate border border-brand-grey/30 font-display font-medium text-sm px-5 py-3.5 rounded-xl hover:bg-brand-mist transition-colors flex items-center gap-2 cursor-pointer"
-                  >
-                    <ArrowLeft className="w-4 h-4" />
-                    <span>Back</span>
-                  </button>
-                </Tactile>
-
+              <div className="pt-4 border-t border-brand-grey/15 flex justify-end">
                 <Tactile tapScale={0.98}>
                   <button
                     type="submit"
-                    disabled={isSubmitting}
-                    className="bg-brand-teal text-white font-display font-medium text-sm px-8 py-4 rounded-xl hover:bg-[#006666] transition-all duration-200 flex items-center gap-2 shadow-elevated cursor-pointer disabled:opacity-50"
+                    disabled={isSubmitting || Object.keys(liveErrors).length > 0}
+                    className="bg-brand-teal text-white font-display font-medium text-sm px-8 py-4 rounded-xl hover:bg-[#006666] transition-all duration-200 flex items-center gap-2 shadow-elevated cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
-                      <span>Encrypting & Routing...</span>
+                      <span>Submitting...</span>
                     ) : (
                       <>
-                        <span>Submit For Principal Review</span>
+                        <span>Request Scoping Review</span>
                         <ArrowRight className="w-4 h-4" />
                       </>
                     )}
@@ -750,58 +621,6 @@ export function ConsultationIntake() {
               </div>
             </motion.form>
           )}
-
-          {/* STEP 4: SUCCESS CONFIRMATION VIEW */}
-          {currentStep === 4 && (
-            <motion.div
-              key="step4"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, ease: EASING_OUT_EXPO }}
-              className="py-12 text-center max-w-lg mx-auto space-y-6"
-            >
-              <div className="w-16 h-16 bg-brand-green/10 text-brand-green rounded-full flex items-center justify-center mx-auto border border-brand-green/20">
-                <CheckCircle2 className="w-8 h-8" />
-              </div>
-
-              <div className="space-y-2">
-                <span className="font-display font-medium text-xs text-brand-green uppercase tracking-widest block">
-                  Transmission Confirmed
-                </span>
-                <h2 className="font-display font-medium text-2xl md:text-3xl text-brand-slate tracking-tight">
-                  <SplitTextReveal text="Your Scoping Blueprint is with our Principal Engineers." />
-                </h2>
-                <ProseReveal delay={0.3}>
-                  <p className="font-body font-normal text-sm text-brand-grey leading-relaxed">
-                    Thank you, {formState.fullName}. We have routed your property specifications for the <strong className="font-medium text-brand-slate uppercase">{formState.sector.replace("_", " ")}</strong> sector in <strong className="font-medium text-brand-slate">{formState.postcode}</strong> directly to our technical desk.
-                  </p>
-                </ProseReveal>
-              </div>
-
-              <div className="bg-brand-mist p-6 rounded-xl border border-brand-grey/15 text-left space-y-2">
-                <span className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block">
-                  What happens next?
-                </span>
-                <p className="font-body font-normal text-xs text-brand-grey leading-relaxed">
-                  1. A principal systems architect will review your system selections within 4 working hours.<br />
-                  2. You will receive an email with preliminary hardware recommendations and SLA terms.<br />
-                  3. If drawings were indicated, a secure cloud upload link will be included.
-                </p>
-              </div>
-
-              <div className="pt-4">
-                <Tactile tapScale={0.98}>
-                  <a
-                    href="/"
-                    className="inline-block bg-brand-slate text-white font-display font-medium text-sm px-8 py-4 rounded-xl hover:bg-[#2A383E] transition-colors shadow-md"
-                  >
-                    Return to Homepage
-                  </a>
-                </Tactile>
-              </div>
-            </motion.div>
-          )}
-
         </AnimatePresence>
       </div>
     </div>
