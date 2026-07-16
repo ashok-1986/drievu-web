@@ -55,9 +55,9 @@ export default function CompliancePage() {
                 <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-1">
                   Electronic Security Design
                 </span>
-                <h3 className="font-display font-medium text-xl md:text-2xl text-brand-slate ">
+                <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate ">
                   British Standards (BS EN) Adherence
-                </h3>
+                </h2>
               </div>
               <p className="font-body font-normal text-brand-slate/85 text-sm md:text-base ">
                 We do not install ad-hoc hardware. Our systems are designed with reference to applicable, scope-specific standards—such as <span className="font-mono text-xs bg-brand-mist px-1.5 py-0.5 rounded border border-brand-grey/20">BS EN 50131</span> for intrusion systems and <span className="font-mono text-xs bg-brand-mist px-1.5 py-0.5 rounded border border-brand-grey/20">BS EN 62676</span> for video surveillance systems—where relevant to the project brief.
@@ -78,9 +78,9 @@ export default function CompliancePage() {
                 <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-1">
                   Hardware Cybersecurity
                 </span>
-                <h3 className="font-display font-medium text-xl md:text-2xl text-brand-slate ">
+                <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate ">
                   PSTI Act Supply Chain Compliance
-                </h3>
+                </h2>
               </div>
               <p className="font-body font-normal text-brand-slate/85 text-sm md:text-base ">
                 In alignment with the UK Product Security and Telecommunications Infrastructure (PSTI) Act, where applicable, Drievu sources internet-connected devices (such as IP cameras and NVRs) from manufacturers, importers, or distributors that provide relevant product-specific Statements of Compliance.
@@ -112,9 +112,9 @@ export default function CompliancePage() {
                 <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-1">
                   Privacy & Data Governance
                 </span>
-                <h3 className="font-display font-medium text-xl md:text-2xl text-brand-slate ">
+                <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate ">
                   UK GDPR Deployment Discipline
-                </h3>
+                </h2>
               </div>
               <p className="font-body font-normal text-brand-slate/85 text-sm md:text-base ">
                 Video surveillance and access control systems inherently process personal data. Drievu engineers your physical network with documented, risk-based controls to support you—the Data Controller—in meeting your UK GDPR responsibilities.
@@ -135,9 +135,9 @@ export default function CompliancePage() {
                 <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-1">
                   Project Closure Standard
                 </span>
-                <h3 className="font-display font-medium text-xl md:text-2xl text-brand-slate ">
+                <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate ">
                   The Documented Handover pack
-                </h3>
+                </h2>
               </div>
               <p className="font-body font-normal text-brand-slate/85 text-sm md:text-base ">
                 Our internal compliance law is simple: <em className="text-brand-slate font-medium">If it isn't documented, it isn't done.</em> 

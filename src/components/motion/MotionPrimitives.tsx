@@ -228,7 +228,7 @@ export function GliderTab({ tabs, activeTab, onChange, className = "", gliderId 
     >
       {activeIndex !== -1 && (
         <div
-          className="absolute inset-y-1.5 z-0 bg-brand-teal rounded-lg shadow-sm transition-[left,width] duration-250 ease-[cubic-bezier(0.16,1,0.3,1)]"
+          className="absolute inset-y-1.5 z-0 bg-brand-teal rounded-lg shadow-sm transition-[left,width,top,height] duration-[250ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
           style={{
             width: `calc(${trackWidthExpr})`,
             left: `calc(${PADDING_PX}px + ${colIndex} * (${trackWidthExpr} + ${GAP_PX}px))`,
