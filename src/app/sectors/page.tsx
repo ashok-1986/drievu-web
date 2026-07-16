@@ -59,6 +59,7 @@ export default function SectorsPage() {
       solution: "We work with you during the early planning stage. We map out hidden wiring routes, specify flush-mounted cameras and glass intercom panels, and ensure every piece of technology blends invisibly into your design without sacrificing safety.",
       proofTitle: "Verified Leadership Track Record",
       proofDesc: "Our executive team engineered seamless, high-end building systems across luxury residential towers like Altair and landmark commercial developments like GIFT City.",
+      image: "/images/system-surveillance.jpg",
       imagePrompt: "Architectural close-up of a minimalist white flush-mounted camera on a clean concrete gallery ceiling, zero visible wires, interior design focus --ar 16:9 --style raw",
     },
     {
@@ -70,6 +71,7 @@ export default function SectorsPage() {
       solution: "We specify accurately and install strictly to your construction schedule. You receive reliable, right-sized equipment without fluff, finished with a complete, structured handover document pack so you can close your project immediately.",
       proofTitle: "Live UK Delivery Discipline",
       proofDesc: "At our Staines Road commercial estate installation in London, we delivered a 31-camera network and video storage system on schedule with zero tenant disruption and full insurance documentation.",
+      image: "/images/hero-property-dusk.jpg",
       imagePrompt: "Wide architectural shot of a newly completed luxury commercial building exterior at dusk, clean glass facades, professional landscaping, zero clutter --ar 16:9 --style raw",
     },
     {
@@ -81,6 +83,7 @@ export default function SectorsPage() {
       solution: "We bring order to operational chaos. We provide SLA-backed annual maintenance contracts with a guaranteed response within one working day. We tidy up your existing setups and give you a single, simple app to manage cameras and doors easily.",
       proofTitle: "Infrastructure-Grade Reliability",
       proofDesc: "Our leadership team spent over two decades managing mission-critical security and communication systems for major airports, metros, and stadiums where failure is not an option.",
+      image: "/images/system-automation.jpg",
       imagePrompt: "Clean, brightly lit facilities management office with a modern computer monitor showing a clear, organized building security layout, neat desk --ar 16:9 --style raw",
     },
     {
@@ -92,6 +95,7 @@ export default function SectorsPage() {
       solution: "We specify durable, energy-efficient hardware engineered to British safety guidelines. Every system builds in automatic privacy protection for residents, zero recurring cloud storage fees, and full audit documentation for your compliance records.",
       proofTitle: "Public Due-Diligence Ready",
       proofDesc: "Drievu Limited is a UK-registered company (Reg No. 15479482) operating with self-hosted digital systems and transparent, documented processes designed to pass rigorous procurement audits.",
+      image: "/images/system-access.jpg",
       imagePrompt: "Exterior of a modern, well-maintained UK brick residential apartment block on a bright day, neat communal entrance with a secure video doorbell panel --ar 16:9 --style raw",
     },
   ];
@@ -243,18 +247,17 @@ export default function SectorsPage() {
                     </div>
                   </div>
 
-                  {/* Technical Asset Placeholder */}
+                  {/* Sector Image */}
                   <div className={`lg:col-span-5 ${isEven ? "lg:col-start-1" : ""}`}>
-                    <div className="w-full h-[380px] md:h-[440px] bg-brand-slate/10 rounded-2xl relative overflow-hidden border border-brand-grey/20 shadow-soft flex items-center justify-center">
-                      <div className="absolute inset-0 bg-gradient-to-t from-brand-slate/40 via-transparent to-transparent z-10" />
-                      <div className="text-center font-mono text-xs text-brand-grey p-8 max-w-sm relative z-20">
-                        <span className="font-medium text-brand-slate block text-sm mb-2">
-                          [Sector Asset: {sec.title}]
-                        </span>
-                        <span className="opacity-80 block  text-[11px]">
-                          Antigravity Prompt: {sec.imagePrompt}
-                        </span>
-                      </div>
+                    <div className="w-full h-[380px] md:h-[440px] bg-brand-slate/10 rounded-2xl relative overflow-hidden border border-brand-grey/20 shadow-soft">
+                      <Image
+                        src={sec.image}
+                        alt={`Drievu engineering for ${sec.title}`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 40vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-brand-slate/20 to-transparent pointer-events-none" />
                     </div>
                   </div>
 
