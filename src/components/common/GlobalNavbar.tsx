@@ -22,7 +22,7 @@ export function GlobalNavbar() {
   }, []);
 
   // Use a consistent glassmorphism style across all pages
-  const baseHeader = "fixed top-0 left-0 w-full z-[100] transition-all duration-300 bg-brand-slate/80 backdrop-blur-md border-b border-white/10 shadow-soft";
+  const baseHeader = "fixed top-0 left-0 w-full z-[100] transition-[height,background-color,backdrop-filter] duration-250 bg-brand-slate/80 backdrop-blur-md border-b border-white/10 shadow-soft";
   const headerClass = `${baseHeader} ${isScrolled ? "h-[60px]" : "h-[80px]"}`;
 
   const navLinks = [
@@ -46,7 +46,7 @@ export function GlobalNavbar() {
           <nav className="hidden lg:flex items-center gap-2">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
-              const baseClass = "relative px-3.5 py-2 rounded-lg font-display font-medium text-sm transition-all duration-150";
+              const baseClass = "relative px-3.5 py-2 rounded-lg font-display font-medium text-sm transition-colors duration-150";
               const textStyle = isActive ? "text-white" : "text-white/80";
               const linkClass = isActive
                 ? `${baseClass} ${textStyle} bg-white/10`
@@ -73,7 +73,7 @@ export function GlobalNavbar() {
               size="sm"
               icon={<ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" />}
               iconPosition="right"
-              className="shadow-soft hover:bg-brand-teal-deep hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97] group cursor-pointer"
+              className="shadow-soft hover:bg-brand-teal-deep hover:-translate-y-0.5 transition duration-200 active:scale-[0.97] group cursor-pointer"
             >
               <span>BOOK SCOPING REVIEW</span>
             </TactileLink>
@@ -82,7 +82,7 @@ export function GlobalNavbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors active:scale-[0.95]"
+            className="lg:hidden min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-lg text-white hover:bg-white/10 transition-colors active:scale-[0.95]"
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileMenuOpen}
           >
@@ -125,7 +125,7 @@ export function GlobalNavbar() {
                 </Link>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-2 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors active:scale-[0.95]"
+                  className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors active:scale-[0.95]"
                   aria-label="Close menu"
                 >
                   <X className="w-6 h-6" />

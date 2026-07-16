@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
             <SplitTextReveal text="Privacy Policy & Data Governance." />
           </h1>
           <ProseReveal>
-            <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl mx-auto block">
+            <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg  prose-text-shadow max-w-2xl mx-auto block">
               How Drievu Limited processes website lead data, client engineering specifications, and adheres to the UK General Data Protection Regulation (UK GDPR) across surveillance deployments.
             </p>
           </ProseReveal>
@@ -49,10 +49,10 @@ export default function PrivacyPolicyPage() {
               <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-2">
                 Data Controller
               </span>
-              <h3 className="font-display font-medium text-lg text-brand-slate tracking-tight">
+              <h3 className="font-display font-medium text-lg text-brand-slate ">
                 Drievu Limited
               </h3>
-              <p className="font-body font-normal text-xs text-brand-grey mt-2 leading-relaxed">
+              <p className="font-body font-normal text-xs text-brand-grey mt-2 ">
                 We are registered in England and Wales under Company Registration No. 15479482 and act as the Data Controller for contact data collected on this website.
               </p>
             </div>
@@ -62,7 +62,7 @@ export default function PrivacyPolicyPage() {
                 <MapPin className="w-4 h-4 text-brand-teal shrink-0 mt-0.5" />
                 <div>
                   <span className="font-display font-medium block text-brand-slate">Registered Office</span>
-                  <span className="text-brand-grey leading-relaxed block mt-0.5">
+                  <span className="text-brand-grey  block mt-0.5">
                     Apartment 3, Minotaur House, 3 Thunderer Walk, London SE18 6LH
                   </span>
                 </div>
@@ -88,7 +88,7 @@ export default function PrivacyPolicyPage() {
             <div className="pt-4 border-t border-brand-grey/20">
               <Link
                 href="/consultation"
-                className="w-full inline-flex items-center justify-center gap-2 bg-brand-teal text-white font-display font-medium text-xs uppercase tracking-wider py-3 px-4 rounded-xl shadow-soft hover:bg-brand-teal-deep transition-all duration-200 active:scale-[0.97]"
+                className="w-full inline-flex items-center justify-center gap-2 bg-brand-teal text-white font-display font-medium text-xs uppercase tracking-wider py-3 px-4 rounded-xl shadow-soft hover:bg-brand-teal-deep transition-colors duration-200 active:scale-[0.97]"
               >
                 <span>Book Scoping Review</span>
               </Link>
@@ -96,11 +96,11 @@ export default function PrivacyPolicyPage() {
           </div>
 
           {/* RIGHT COLUMN: Legal Terms & Surveillance Protocols (8 Columns) */}
-          <div className="lg:col-span-8 space-y-10 font-body font-normal text-sm md:text-base text-brand-slate/85 leading-relaxed">
+          <div className="lg:col-span-8 space-y-10 font-body font-normal text-sm md:text-base text-brand-slate/85 ">
             
             {/* Section 1 */}
             <div className="space-y-4">
-              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate tracking-tight border-b border-brand-grey/20 pb-3">
+              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate  border-b border-brand-grey/20 pb-3">
                 1. Introduction & Scope
               </h2>
               <p>
@@ -113,7 +113,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Section 2 */}
             <div className="space-y-4">
-              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate tracking-tight border-b border-brand-grey/20 pb-3">
+              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate  border-b border-brand-grey/20 pb-3">
                 2. Information We Collect
               </h2>
               <p>
@@ -134,7 +134,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Section 3 */}
             <div className="space-y-4">
-              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate tracking-tight border-b border-brand-grey/20 pb-3">
+              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate  border-b border-brand-grey/20 pb-3">
                 3. How We Use Your Information
               </h2>
               <p>
@@ -157,21 +157,21 @@ export default function PrivacyPolicyPage() {
             <div className="bg-brand-mist p-6 rounded-2xl border border-brand-grey/20 space-y-4">
               <div className="flex items-center gap-2">
                 <Lock className="w-5 h-5 text-brand-teal" />
-                <h3 className="font-display font-medium text-lg text-brand-slate tracking-tight">
+                <h3 className="font-display font-medium text-lg text-brand-slate ">
                   4. CCTV & Surveillance Data Governance
                 </h3>
               </div>
-              <p className="text-xs md:text-sm leading-relaxed text-brand-slate/85">
+              <p className="text-xs md:text-sm  text-brand-slate/85">
                 CCTV, video intercoms, and access control systems inherently process personal data (video footage and access logs). Drievu Limited designs and installs systems specified to UK GDPR requirements—incorporating appropriate privacy masking, encrypted credentials, and secure on-site NVR storage.
               </p>
-              <p className="text-xs md:text-sm leading-relaxed text-brand-slate/85">
+              <p className="text-xs md:text-sm  text-brand-slate/85">
                 <strong>Important Governance Note:</strong> Upon completion of commissioning and documented handover, the client (Property Manager, Managing Agent, or Building Owner) becomes the statutory <em>Data Controller</em> for all operational CCTV footage and access logs captured on their premises. Every Drievu handover pack includes structured data-processing guidance and retention recommendations to assist controllers in maintaining continuous legal compliance.
               </p>
             </div>
 
             {/* Section 5 */}
             <div className="space-y-4">
-              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate tracking-tight border-b border-brand-grey/20 pb-3">
+              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate  border-b border-brand-grey/20 pb-3">
                 5. Data Security & Retention
               </h2>
               <p>
@@ -184,7 +184,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Section 6 */}
             <div className="space-y-4">
-              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate tracking-tight border-b border-brand-grey/20 pb-3">
+              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate  border-b border-brand-grey/20 pb-3">
                 6. Your Statutory Rights
               </h2>
               <p>
@@ -203,7 +203,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Section 7 */}
             <div className="space-y-4 pt-4 border-t border-brand-grey/20">
-              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate tracking-tight">
+              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate ">
                 7. Supervisory Authority
               </h2>
               <p className="text-sm">

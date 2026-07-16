@@ -67,7 +67,7 @@ export default function SectorsPage() {
       tagline: "On-time installations that never delay your building handover.",
       icon: Shield,
       problem: "Subcontractors routinely over-specify expensive gear to inflate their invoices, show up late, and leave you with incomplete paperwork that delays your ability to sell, let, or hand over the property.",
-      solution: "We price transparently and install strictly to your construction schedule. You receive reliable, right-sized equipment without fluff, finished with a complete, structured handover document pack so you can close your project immediately.",
+      solution: "We specify accurately and install strictly to your construction schedule. You receive reliable, right-sized equipment without fluff, finished with a complete, structured handover document pack so you can close your project immediately.",
       proofTitle: "Live UK Delivery Discipline",
       proofDesc: "At our Staines Road commercial estate installation in London, we delivered a 31-camera network and video storage system on schedule with zero tenant disruption and full insurance documentation.",
       imagePrompt: "Wide architectural shot of a newly completed luxury commercial building exterior at dusk, clean glass facades, professional landscaping, zero clutter --ar 16:9 --style raw",
@@ -130,7 +130,7 @@ export default function SectorsPage() {
               <SplitTextReveal text="How We Protect Your Sector." />
             </h1>
             <ProseReveal>
-              <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl mx-auto block">
+              <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg  prose-text-shadow max-w-2xl mx-auto block">
                 We do not force a single boxed product onto every building. Whether you specify new developments, manage day-to-day facilities, or oversee public housing, here is how our consulting-to-maintenance discipline solves your exact problems in plain English.
               </p>
             </ProseReveal>
@@ -138,7 +138,7 @@ export default function SectorsPage() {
         </div>
 
         {/* Due Diligence Notice */}
-        <div className="absolute bottom-6 right-6 max-w-xs md:max-w-sm p-3.5 rounded-2xl bg-brand-slate/80 backdrop-blur-md border border-white/15 text-brand-paper/85 font-mono text-[11px] leading-relaxed text-left z-20 shadow-elevated pointer-events-auto">
+        <div className="absolute bottom-6 right-6 max-w-xs md:max-w-sm p-3.5 rounded-2xl bg-brand-slate/80 backdrop-blur-md border border-white/15 text-brand-paper/85 font-mono text-[11px]  text-left z-20 shadow-elevated pointer-events-auto">
           PROCUREMENT DUE DILIGENCE: National-infrastructure track records referenced below were delivered by members of Drievu&rsquo;s leadership team over the past two decades in prior executive roles. Drievu Limited was incorporated in the UK in 2024 (Company No. 15479482).
         </div>
       </section>
@@ -159,7 +159,7 @@ export default function SectorsPage() {
                   className={
                     isActive
                       ? "min-h-[44px] min-w-[44px] inline-flex items-center justify-center px-5 py-2.5 rounded-full font-display font-medium text-xs text-white bg-brand-teal border border-brand-teal shadow-md cursor-pointer shrink-0"
-                      : "min-h-[44px] min-w-[44px] inline-flex items-center justify-center px-5 py-2.5 rounded-full font-display font-medium text-xs text-brand-slate bg-white/80 border border-brand-grey/15 hover:border-brand-teal transition-all cursor-pointer shadow-sm shrink-0"
+                      : "min-h-[44px] min-w-[44px] inline-flex items-center justify-center px-5 py-2.5 rounded-full font-display font-medium text-xs text-brand-slate bg-white/80 border border-brand-grey/15 hover:border-brand-teal transition-colors cursor-pointer shadow-sm shrink-0"
                   }
                 >
                   {tab.label}
@@ -191,7 +191,7 @@ export default function SectorsPage() {
                         <IconComp className="w-3.5 h-3.5 text-brand-teal" />
                         <span>Sector Profile 0{idx + 1}</span>
                       </div>
-                      <h2 className="font-display font-medium text-3xl md:text-5xl text-brand-slate tracking-tight mb-3">
+                      <h2 className="font-display font-medium text-3xl md:text-5xl text-brand-slate  mb-3">
                         {sec.title}
                       </h2>
                       <p className="font-display font-medium text-lg text-brand-teal">
@@ -205,7 +205,7 @@ export default function SectorsPage() {
                         <span className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block">
                           The Common Problem
                         </span>
-                        <p className="font-body font-normal text-sm text-brand-grey leading-relaxed">
+                        <p className="font-body font-normal text-sm text-brand-grey ">
                           {sec.problem}
                         </p>
                       </div>
@@ -214,7 +214,7 @@ export default function SectorsPage() {
                         <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-wider block flex items-center gap-1.5">
                           <CheckCircle2 className="w-3.5 h-3.5" /> How Drievu Solves It
                         </span>
-                        <p className="font-body font-normal text-sm text-brand-slate/85 leading-relaxed">
+                        <p className="font-body font-normal text-sm text-brand-slate/85 ">
                           {sec.solution}
                         </p>
                       </div>
@@ -225,7 +225,7 @@ export default function SectorsPage() {
                       <span className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block">
                         Proof Point: {sec.proofTitle}
                       </span>
-                      <p className="font-body font-normal text-xs md:text-sm text-brand-grey leading-relaxed">
+                      <p className="font-body font-normal text-xs md:text-sm text-brand-grey ">
                         {sec.proofDesc}
                       </p>
                     </div>
@@ -251,7 +251,7 @@ export default function SectorsPage() {
                         <span className="font-medium text-brand-slate block text-sm mb-2">
                           [Sector Asset: {sec.title}]
                         </span>
-                        <span className="opacity-80 block leading-relaxed text-[11px]">
+                        <span className="opacity-80 block  text-[11px]">
                           Antigravity Prompt: {sec.imagePrompt}
                         </span>
                       </div>
@@ -271,17 +271,17 @@ export default function SectorsPage() {
           <span className="font-display font-medium text-xs text-brand-paper/80 uppercase tracking-widest block mb-3">
             No Sales Pressure &middot; Honest Engineering
           </span>
-          <h2 className="font-display font-medium text-3xl md:text-5xl tracking-tight mb-6">
+          <h2 className="font-display font-medium text-3xl md:text-5xl  mb-6">
             <SplitTextReveal text="Ready To Discuss Your Sector's Needs?" />
           </h2>
-          <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg mb-8 leading-relaxed">
+          <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg mb-8 ">
             Submit your site details or unit counts today. An engineering principal will review your requirements and respond within one working day to arrange your structured scoping review.
           </p>
           <TactileLink
             href="/consultation"
             variant="secondary"
             size="lg"
-            className="shadow-elevated hover:bg-brand-mist hover:-translate-y-0.5 transition-all duration-200"
+            className="shadow-elevated hover:bg-brand-mist hover:-translate-y-0.5 transition duration-200"
           >
             Start Your Requirement Form
           </TactileLink>

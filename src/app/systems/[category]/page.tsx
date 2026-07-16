@@ -170,7 +170,7 @@ export default function SystemDetailPage({ params }: { params: { category: strin
             <SplitTextReveal text={data.title} />
           </h1>
           <ProseReveal>
-            <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl mx-auto block">
+            <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg  prose-text-shadow max-w-2xl mx-auto block">
               {data.headline}
             </p>
           </ProseReveal>
@@ -185,7 +185,7 @@ export default function SystemDetailPage({ params }: { params: { category: strin
           <div className="w-full h-80 bg-brand-slate/10 rounded-2xl relative overflow-hidden flex items-center justify-center border border-brand-grey/20 shadow-soft">
             <div className="text-center font-mono text-xs text-brand-slate/80 p-6 max-w-xl">
               <span className="font-medium block text-sm mb-2 text-brand-slate">[Technical Asset: {data.title}]</span>
-              <span className="opacity-75 block leading-relaxed">Asset pending final approval.</span>
+              <span className="opacity-75 block ">Asset pending final approval.</span>
             </div>
           </div>
         </div>
@@ -199,17 +199,17 @@ export default function SystemDetailPage({ params }: { params: { category: strin
       <section className="py-20 px-6 max-w-[1200px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
-            <h2 className="font-display font-medium text-2xl md:text-4xl text-brand-slate tracking-tight">
+            <h2 className="font-display font-medium text-3xl md:text-5xl text-brand-slate ">
               Engineering Architecture
             </h2>
-            <p className="font-body font-normal text-brand-slate/85 text-base leading-relaxed">
+            <p className="font-body font-normal text-brand-slate/85 text-base ">
               {data.description}
             </p>
             <div className="bg-brand-mist p-6 rounded-2xl border border-brand-grey/20 space-y-3 shadow-soft">
               <span className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-brand-teal" /> Procurement Compliance Standards
               </span>
-              <p className="font-body font-normal text-xs text-brand-grey leading-relaxed">
+              <p className="font-body font-normal text-xs text-brand-grey ">
                 All systems specified on this schedule adhere strictly to British Standards (BS EN guidelines) and incorporate privacy-masking features to satisfy UK GDPR digital evidence requirements. We specify energy-efficient equipment sized to actual site risk rather than inflating invoice values.
               </p>
             </div>
@@ -219,7 +219,7 @@ export default function SystemDetailPage({ params }: { params: { category: strin
             {data.specs.map((s) => (
               <div 
                 key={s.label} 
-                className="bg-brand-paper p-6 rounded-2xl border border-brand-grey/20 shadow-soft hover:border-brand-teal transition-all duration-200"
+                className="bg-brand-paper p-6 rounded-2xl border border-brand-grey/20 shadow-soft hover:border-brand-teal transition-colors duration-200"
               >
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-2">
                   <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest">
@@ -230,7 +230,7 @@ export default function SystemDetailPage({ params }: { params: { category: strin
                   </span>
                 </div>
                 {s.def && (
-                  <p className="font-body font-normal text-xs text-brand-grey leading-relaxed pt-2 border-t border-brand-grey/10">
+                  <p className="font-body font-normal text-xs text-brand-grey  pt-2 border-t border-brand-grey/10">
                     <span className="font-medium text-brand-slate/90">Engineering Definition:</span> {s.def}
                   </p>
                 )}
@@ -250,9 +250,9 @@ export default function SystemDetailPage({ params }: { params: { category: strin
             <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-2">
               Hardware Schedule
             </span>
-            <h3 className="font-display font-medium text-2xl md:text-4xl text-brand-slate tracking-tight">
+            <h2 className="font-display font-medium text-3xl md:text-5xl text-brand-slate ">
               Current Deployed Hardware Range.
-            </h3>
+            </h2>
           </div>
           <p className="font-body text-xs text-brand-grey max-w-sm">
             Range discipline: we specify quality-verified equipment from established manufacturers, backed by documented handover packs.
@@ -272,7 +272,7 @@ export default function SystemDetailPage({ params }: { params: { category: strin
               {data.hardwareTable.map((row) => (
                 <tr key={row.sku} className="hover:bg-brand-mist/40 transition-colors">
                   <td className="p-5 font-mono font-medium text-brand-slate align-top">{row.sku}</td>
-                  <td className="p-5 text-xs text-brand-grey leading-relaxed align-top">{row.spec}</td>
+                  <td className="p-5 text-xs text-brand-grey  align-top">{row.spec}</td>
                   <td className="p-5 text-xs text-brand-slate/80 align-top">{row.use}</td>
                 </tr>
               ))}
@@ -290,15 +290,15 @@ export default function SystemDetailPage({ params }: { params: { category: strin
           <span className="font-display font-medium text-xs text-brand-paper/80 uppercase tracking-widest block mb-3">
             M&E Tender Integration
           </span>
-          <h3 className="font-display font-medium text-3xl md:text-4xl tracking-tight mb-4">
+          <h2 className="font-display font-medium text-3xl md:text-5xl mb-4">
             <SplitTextReveal text="Specify This System For Your Project." />
-          </h3>
-          <p className="font-body font-normal text-brand-paper/90 text-sm md:text-base mb-8 leading-relaxed">
+          </h2>
+          <p className="font-body font-normal text-brand-paper/90 text-sm md:text-base mb-8 ">
             Ready to integrate these specifications into your mechanical and electrical tender? Submit your floor plans and channel counts to our engineering team for a structured quote without sales pressure.
           </p>
           <Link
             href="/consultation"
-            className="inline-flex items-center gap-2 bg-white text-brand-slate font-display font-medium text-base px-8 py-4 rounded-xl shadow-elevated hover:bg-brand-mist hover:-translate-y-0.5 transition-all duration-200 active:scale-[0.97] cursor-pointer group"
+            className="inline-flex items-center gap-2 bg-white text-brand-slate font-display font-medium text-base px-8 py-4 rounded-xl shadow-elevated hover:bg-brand-mist hover:-translate-y-0.5 transition duration-200 active:scale-[0.97] cursor-pointer group"
           >
             <span>Proceed To Requirement Form</span>
             <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />

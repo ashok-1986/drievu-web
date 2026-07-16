@@ -71,7 +71,7 @@ export function GlobalFooter() {
               <Image src="/logo.png" alt="Drievu Engineering" width={130} height={48} className="h-9 w-auto object-contain" />
             </Link>
             <ProseReveal delay={0.3}>
-              <p className="text-brand-grey text-sm leading-relaxed max-w-sm font-body font-normal">
+              <p className="text-brand-grey text-sm  max-w-sm font-body font-normal">
                 Security, life safety, and smart building systems. Designed, installed, and maintained with consultancy discipline. We commit to outcomes, not just equipment lists.
               </p>
             </ProseReveal>
@@ -87,11 +87,11 @@ export function GlobalFooter() {
               Core Capabilities
             </span>
             <ul className="space-y-2.5 text-sm text-brand-grey font-body font-normal">
-              <li><Link href="/systems/surveillance" className="hover:text-brand-teal transition-colors">Smart Cameras & CCTV</Link></li>
-              <li><Link href="/systems/access" className="hover:text-brand-teal transition-colors">Keyless Door Entry</Link></li>
-              <li><Link href="/systems/fire" className="hover:text-brand-teal transition-colors">Fire & Safety Alarms</Link></li>
-              <li><Link href="/systems/communication" className="hover:text-brand-teal transition-colors">Intercoms & Sound</Link></li>
-              <li><Link href="/systems/smart-building" className="hover:text-brand-teal transition-colors">Energy & Comfort Control</Link></li>
+              <li><Link href="/systems/surveillance" className="hover:text-brand-teal transition-colors inline-block py-1.5">Smart Cameras & CCTV</Link></li>
+              <li><Link href="/systems/access" className="hover:text-brand-teal transition-colors inline-block py-1.5">Keyless Door Entry</Link></li>
+              <li><Link href="/systems/fire" className="hover:text-brand-teal transition-colors inline-block py-1.5">Fire & Safety Alarms</Link></li>
+              <li><Link href="/systems/communication" className="hover:text-brand-teal transition-colors inline-block py-1.5">Intercoms & Sound</Link></li>
+              <li><Link href="/systems/smart-building" className="hover:text-brand-teal transition-colors inline-block py-1.5">Energy & Comfort Control</Link></li>
             </ul>
           </div>
 
@@ -101,10 +101,10 @@ export function GlobalFooter() {
               Governance
             </span>
             <ul className="space-y-2.5 text-sm text-brand-grey font-body font-normal">
-              <li><Link href="/compliance" className="hover:text-brand-teal transition-colors">UK GDPR Standards</Link></li>
-              <li><Link href="/privacy" className="hover:text-brand-teal transition-colors">Privacy Policy</Link></li>
-              <li><Link href="/terms" className="hover:text-brand-teal transition-colors">Terms of Service</Link></li>
-              <li><Link href="/track-record" className="hover:text-brand-teal transition-colors">Verified Portfolio</Link></li>
+              <li><Link href="/compliance" className="hover:text-brand-teal transition-colors inline-block py-1.5">UK GDPR Standards</Link></li>
+              <li><Link href="/privacy" className="hover:text-brand-teal transition-colors inline-block py-1.5">Privacy Policy</Link></li>
+              <li><Link href="/terms" className="hover:text-brand-teal transition-colors inline-block py-1.5">Terms of Service</Link></li>
+              <li><Link href="/track-record" className="hover:text-brand-teal transition-colors inline-block py-1.5">Verified Portfolio</Link></li>
             </ul>
           </div>
 
@@ -119,7 +119,7 @@ export function GlobalFooter() {
               <div className="pt-3">
                 <Link
                   href="/consultation"
-                  className="inline-flex items-center gap-1 font-display font-medium text-xs text-brand-teal border border-brand-teal/40 px-3.5 py-2 rounded-xl hover:bg-brand-teal hover:text-white transition-all duration-200 active:scale-[0.97]"
+                  className="inline-flex items-center justify-center gap-1 min-h-[44px] min-w-[44px] font-display font-medium text-xs text-brand-teal border border-brand-teal/40 px-4 py-2 rounded-xl hover:bg-brand-teal hover:text-white transition-colors duration-200 active:scale-[0.97]"
                 >
                   <span>Book Scoping</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />

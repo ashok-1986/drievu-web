@@ -128,11 +128,11 @@ export function BentoGrid() {
             <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block">
               What We Protect
             </span>
-            <h2 className="font-display font-medium text-3xl md:text-5xl text-brand-slate tracking-tight">
+            <h2 className="font-display font-medium text-3xl md:text-5xl text-brand-slate ">
               Everything Your Building Needs.
             </h2>
           </div>
-          <p className="font-body font-normal text-base text-brand-grey max-w-md leading-relaxed">
+          <p className="font-body font-normal text-base text-brand-grey max-w-md ">
             We handle the essential engineering that keeps your property secure, compliant, and energy-efficient—all managed easily from your smartphone or desktop.
           </p>
         </div>
@@ -147,14 +147,14 @@ export function BentoGrid() {
                 href={sys.href}
                 variant="ghost"
                 data-bento-card
-                className={`group relative ${sys.spanClasses} rounded-3xl p-6 md:p-8 lg:p-8 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-xl active:scale-[0.97] flex flex-col justify-between overflow-hidden ${sys.bgClasses}`}
+                className={`group relative ${sys.spanClasses} rounded-3xl p-6 md:p-8 lg:p-8 transition duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-xl active:scale-[0.97] flex flex-col justify-between overflow-hidden ${sys.bgClasses}`}
               >
                 {/* Top Row: Icon Badge & Arrow Indicator */}
                 <div className="flex items-start justify-between gap-4 z-10 mb-8">
                   <div className={`w-12 h-12 lg:w-14 lg:h-14 rounded-xl flex items-center justify-center text-brand-slate mb-4 lg:mb-6 ${sys.iconBg}`}>
                     <IconComponent className="w-6 h-6 lg:w-7 lg:h-7" />
                   </div>
-                  <div className={`w-8 h-8 lg:w-10 lg:h-10 rounded-full flex items-center justify-center transition-all duration-300 transform group-hover:translate-x-1 ${sys.isDark ? "bg-white/10 text-white group-hover:bg-brand-teal" : "bg-slate-200/60 text-slate-700 group-hover:bg-brand-teal-deep group-hover:text-white"}`}>
+                  <div className={`w-8 h-8 lg:w-10 lg:h-10 rounded-full flex items-center justify-center transition-[background-color,color,transform] duration-250 transform group-hover:translate-x-1 ${sys.isDark ? "bg-white/10 text-white group-hover:bg-brand-teal" : "bg-slate-200/60 text-slate-700 group-hover:bg-brand-teal-deep group-hover:text-white"}`}>
                     <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5" />
                   </div>
                 </div>
@@ -162,10 +162,10 @@ export function BentoGrid() {
                 {/* Bottom Row: Typography & Description */}
                 <div className="space-y-3 z-10 mt-auto">
                   <h3 className="m-0 p-0 block">
-                    <SplitTextReveal text={sys.title} delay={0.15 + index * 0.06} charStagger={0.012} className={`font-display font-medium text-xl md:text-2xl tracking-tight transition-colors ${sys.titleColor} ${sys.isDark ? "group-hover:text-brand-teal" : "group-hover:text-brand-teal-deep"}`} />
+                    <SplitTextReveal text={sys.title} delay={0.15 + index * 0.06} charStagger={0.012} className={`font-display font-medium text-xl md:text-2xl  transition-colors ${sys.titleColor} ${sys.isDark ? "group-hover:text-brand-teal" : "group-hover:text-brand-teal-deep"}`} />
                   </h3>
                   <ProseReveal delay={0.25 + index * 0.06} className="w-full">
-                    <p className={`font-body font-normal text-xs md:text-sm leading-relaxed max-w-xl ${sys.descColor}`}>
+                    <p className={`font-body font-normal text-xs md:text-sm  max-w-xl ${sys.descColor}`}>
                       {sys.desc}
                     </p>
                   </ProseReveal>

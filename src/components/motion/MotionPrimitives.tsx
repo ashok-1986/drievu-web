@@ -41,7 +41,7 @@ export function TactileButton({
   "aria-label": ariaLabel,
   ...dataProps
 }: TactileButtonProps) {
-  const baseStyles = "relative inline-flex items-center justify-center font-display font-medium rounded-full tracking-wide transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-brand-paper";
+  const baseStyles = "relative inline-flex items-center justify-center font-display font-medium rounded-full tracking-wide transition duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-brand-paper";
 
   const variantStyles = {
     primary: "bg-brand-teal text-white border border-white/20 shadow-[0_4px_20px_rgb(var(--color-brand-teal)/0.35)] hover:shadow-[0_6px_24px_rgb(var(--color-brand-teal)/0.5)] hover:bg-brand-teal-deep",
@@ -114,7 +114,7 @@ export function TactileLink({
   "aria-label": ariaLabel,
   ...dataProps
 }: TactileLinkProps) {
-  const baseStyles = "relative inline-flex items-center justify-center font-display font-medium rounded-full tracking-wide transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-brand-paper";
+  const baseStyles = "relative inline-flex items-center justify-center font-display font-medium rounded-full tracking-wide transition duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-brand-paper";
 
   const variantStyles = {
     primary: "bg-brand-teal text-white border border-white/20 shadow-[0_4px_20px_rgb(var(--color-brand-teal)/0.35)] hover:shadow-[0_6px_24px_rgb(var(--color-brand-teal)/0.5)] hover:bg-brand-teal-deep",
@@ -228,7 +228,7 @@ export function GliderTab({ tabs, activeTab, onChange, className = "", gliderId 
     >
       {activeIndex !== -1 && (
         <div
-          className="absolute inset-y-1.5 z-0 bg-brand-teal rounded-lg shadow-sm transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+          className="absolute inset-y-1.5 z-0 bg-brand-teal rounded-lg shadow-sm transition-[left,width] duration-250 ease-[cubic-bezier(0.16,1,0.3,1)]"
           style={{
             width: `calc(${trackWidthExpr})`,
             left: `calc(${PADDING_PX}px + ${colIndex} * (${trackWidthExpr} + ${GAP_PX}px))`,
@@ -280,7 +280,7 @@ export function GliderPill({ options, activeOption, onChange, className = "", gl
     <div className={cn("relative isolate flex gap-1.5 p-1 rounded-xl bg-brand-mist border border-brand-grey/15", className)}>
       {activeIndex !== -1 && (
         <div
-          className="absolute inset-y-0.5 z-0 bg-brand-slate rounded-lg shadow-sm transition-[left] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+          className="absolute inset-y-0.5 z-0 bg-brand-slate rounded-lg shadow-sm transition-[left] duration-250 ease-[cubic-bezier(0.16,1,0.3,1)]"
           style={{
             width: `calc(${trackWidthExpr})`,
             left: `calc(${PADDING_PX}px + ${activeIndex} * (${trackWidthExpr} + ${GAP_PX}px))`,
@@ -333,7 +333,7 @@ function AccordionItem({ item, defaultOpen }: { item: AccordionItem; defaultOpen
   const [isOpen, setIsOpen] = React.useState(defaultOpen || false);
 
   return (
-    <div className="rounded-2xl border border-brand-grey/20 bg-white overflow-hidden transition-all duration-200">
+    <div className="rounded-2xl border border-brand-grey/20 bg-white overflow-hidden transition-colors duration-200">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between gap-4 p-5 text-left active:scale-[0.995] cursor-pointer transition-transform"
@@ -360,7 +360,7 @@ function AccordionItem({ item, defaultOpen }: { item: AccordionItem; defaultOpen
         className="overflow-hidden"
       >
         <div className="px-5 pb-5 border-t border-brand-grey/10">
-          <p className="font-body font-normal text-sm text-brand-grey leading-relaxed">
+          <p className="font-body font-normal text-sm text-brand-grey ">
             {item.answer}
           </p>
         </div>

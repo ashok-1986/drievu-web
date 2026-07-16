@@ -24,7 +24,7 @@ export default function ConsultationPage() {
             Start Your Engineering Scoping.
           </h1>
 
-          <p className="font-body font-normal text-brand-grey text-base md:text-lg leading-relaxed">
+          <p className="font-body font-normal text-brand-grey text-base md:text-lg ">
             Whether you are planning a new residential development or upgrading legacy systems across a commercial tower, provide your initial parameters below for a structured technical review.
           </p>
         </div>

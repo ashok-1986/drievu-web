@@ -6,6 +6,9 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   theme: {
     extend: {
       colors: {
@@ -46,12 +49,22 @@ const config: Config = {
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       fontSize: {
+        xs: ['0.75rem', { lineHeight: '1.6', letterSpacing: '0' }],
+        sm: ['0.875rem', { lineHeight: '1.6', letterSpacing: '0' }],
+        base: ['1rem', { lineHeight: '1.6', letterSpacing: '0' }],
+        lg: ['1.125rem', { lineHeight: '1.5', letterSpacing: '-0.015em' }],
+        xl: ['1.25rem', { lineHeight: '1.4', letterSpacing: '-0.015em' }],
+        '2xl': ['1.5rem', { lineHeight: '1.3', letterSpacing: '-0.025em' }],
+        '3xl': ['1.875rem', { lineHeight: '1.2', letterSpacing: '-0.025em' }],
+        '4xl': ['2.25rem', { lineHeight: '1.1', letterSpacing: '-0.035em' }],
+        '5xl': ['3rem', { lineHeight: '1.05', letterSpacing: '-0.035em' }],
+        '6xl': ['3.75rem', { lineHeight: '1', letterSpacing: '-0.04em' }],
         // Display Hero H1: pairs the clamp() size with its line-height/tracking so
         // every big headline gets tight leading by construction — a bare
         // text-[clamp(...)] arbitrary value has no default line-height pairing,
         // which is how several pages silently fell back to the browser default
         // (~1.5) and read as broken, oversized letter-spacing.
-        hero: ["clamp(2.75rem, 7vw, 6rem)", { lineHeight: "0.92", letterSpacing: "-0.03em" }],
+        hero: ["clamp(2.75rem, 7vw, 6rem)", { lineHeight: "0.92", letterSpacing: "-0.04em" }],
       },
       fontWeight: {
         // Enforce the 500 ceiling programmatically across standard utility classes

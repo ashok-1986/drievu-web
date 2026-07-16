@@ -105,9 +105,9 @@ export function PortfolioGrid() {
       {/* FILTER CONTROLS */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-brand-grey/20">
         <div className="space-y-1">
-          <h3 className="font-display font-medium text-2xl md:text-3xl text-brand-slate tracking-tight">
+          <h2 className="font-display font-medium text-3xl md:text-5xl text-brand-slate ">
             Proven Engineering Heritage.
-          </h3>
+          </h2>
           <p className="font-body font-normal text-xs md:text-sm text-brand-grey">
             Filter our leadership team’s historical delivery record by property environment.
           </p>
@@ -121,7 +121,7 @@ export function PortfolioGrid() {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 aria-pressed={isActive}
-                className={`shrink-0 min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-full px-5 py-2.5 border font-display font-medium text-xs uppercase tracking-wider whitespace-nowrap transition-all duration-200 active:scale-[0.97] shadow-sm ${
+                className={`shrink-0 min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-full px-5 py-2.5 border font-display font-medium text-xs uppercase tracking-wider whitespace-nowrap transition-colors duration-200 active:scale-[0.97] shadow-sm ${
                   isActive
                     ? "bg-brand-teal text-white border-brand-teal"
                     : "border-brand-grey/20 bg-brand-paper hover:bg-brand-mist text-brand-slate"
@@ -149,7 +149,7 @@ export function PortfolioGrid() {
                 transition={{ duration: 0.35, ease: EASING_OUT_EXPO, delay: idx * 0.05 }}
               >
                 <Tactile hoverLift={-4} tapScale={0.99} className="h-full">
-                  <div className="h-full p-8 rounded-3xl bg-white border border-brand-grey/15 shadow-sm hover:border-brand-teal/40 hover:shadow-md transition-all flex flex-col justify-between space-y-6 group">
+                  <div className="h-full p-8 rounded-3xl bg-white border border-brand-grey/15 shadow-sm hover:border-brand-teal/40 hover:shadow-md transition-[border-color,box-shadow] duration-200 flex flex-col justify-between space-y-6 group">
                     
                     {/* Top Row: Sector Badge & Icon */}
                     <div className="space-y-4">
@@ -166,7 +166,7 @@ export function PortfolioGrid() {
                         <span className="font-body font-normal text-xs text-brand-grey uppercase tracking-wider block">
                           {project.location}
                         </span>
-                        <h3 className="font-display font-medium text-xl text-brand-slate tracking-tight group-hover:text-brand-teal transition-colors">
+                        <h3 className="font-display font-medium text-xl md:text-2xl text-brand-slate  group-hover:text-brand-teal transition-colors">
                           {project.title}
                         </h3>
                       </div>
@@ -184,7 +184,7 @@ export function PortfolioGrid() {
 
                     {/* Bottom Row: Plain English Outcome */}
                     <div className="space-y-4 mt-auto">
-                      <p className="font-body font-normal text-xs text-brand-grey leading-relaxed">
+                      <p className="font-body font-normal text-xs text-brand-grey ">
                         {project.outcome}
                       </p>
 
@@ -210,10 +210,10 @@ export function PortfolioGrid() {
           <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block">
             Procurement Due Diligence
           </span>
-          <h4 className="font-display font-medium text-lg md:text-xl text-white tracking-tight">
+          <h4 className="font-display font-medium text-lg md:text-xl text-white ">
             Need references or formal tender qualification documents?
           </h4>
-          <p className="font-body font-normal text-xs md:text-sm text-brand-paper/80 leading-relaxed">
+          <p className="font-body font-normal text-xs md:text-sm text-brand-paper/80 ">
             Historical track records referenced above were delivered by members of Drievu’s executive leadership team over two decades in prior executive roles. We supply full technical qualification packs for public sector and commercial tenders.
           </p>
         </div>

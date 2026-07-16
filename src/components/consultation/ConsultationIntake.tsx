@@ -203,7 +203,7 @@ export function ConsultationIntake() {
         <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-1">
           One Screen. One Submission.
         </span>
-        <h1 className="font-display font-medium text-[clamp(1.5rem,3vw,3rem)] w-full text-white tracking-tight">
+        <h1 className="font-display font-medium text-[clamp(1.5rem,3vw,3rem)] w-full text-white ">
           Project Scoping Review
         </h1>
       </div>
@@ -221,7 +221,7 @@ export function ConsultationIntake() {
               <div className="w-16 h-16 bg-brand-green/10 text-brand-green rounded-full flex items-center justify-center mx-auto border border-brand-green/20">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
-              <p className="font-display font-medium text-xl md:text-2xl text-brand-slate tracking-tight">
+              <p className="font-display font-medium text-xl md:text-2xl text-brand-slate ">
                 Received. An engineer will call you within one working day.
               </p>
             </motion.div>
@@ -264,7 +264,7 @@ export function ConsultationIntake() {
                       >
                         <div
                           onClick={() => selectPropertyType(pt.id)}
-                          className={`p-5 rounded-xl border text-left transition-all duration-150 cursor-pointer ${
+                          className={`p-5 rounded-xl border text-left transition-colors duration-150 cursor-pointer ${
                             isSelected
                               ? "bg-brand-slate text-white border-brand-slate shadow-md"
                               : "bg-white text-brand-slate border-brand-grey/20 hover:border-brand-teal/50"
@@ -376,7 +376,7 @@ export function ConsultationIntake() {
                       >
                         <div
                           onClick={() => toggleTrigger(opt.id)}
-                          className={`p-4 rounded-xl border flex items-center gap-3 transition-all duration-150 cursor-pointer ${
+                          className={`p-4 rounded-xl border flex items-center gap-3 transition-colors duration-150 cursor-pointer ${
                             isChecked
                               ? "bg-brand-slate text-white border-brand-slate shadow-md"
                               : "bg-white text-brand-slate border-brand-grey/20 hover:border-brand-teal/50"
@@ -587,7 +587,7 @@ export function ConsultationIntake() {
                 <div role="alert" aria-live="assertive" className="flex items-start gap-3 p-4 rounded-xl bg-danger/5 border border-danger/30">
                   <AlertCircle className="w-5 h-5 text-danger shrink-0 mt-0.5" aria-hidden="true" />
                   <div className="space-y-1">
-                    <p className="font-body font-normal text-sm text-danger-strong leading-relaxed">{formError.message}</p>
+                    <p className="font-body font-normal text-sm text-danger-strong ">{formError.message}</p>
                     {formError.showPhoneFallback && (
                       <p className="font-body font-normal text-xs text-brand-grey">
                         Prefer to talk now? Call us directly on{" "}
@@ -606,7 +606,7 @@ export function ConsultationIntake() {
                   <button
                     type="submit"
                     disabled={isSubmitting || Object.keys(liveErrors).length > 0}
-                    className="bg-brand-teal text-white font-display font-medium text-sm px-8 py-4 rounded-xl hover:bg-brand-teal-deep transition-all duration-200 flex items-center gap-2 shadow-elevated cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="bg-brand-teal text-white font-display font-medium text-sm px-8 py-4 rounded-xl hover:bg-brand-teal-deep transition-colors duration-200 flex items-center gap-2 shadow-elevated cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <span>Submitting...</span>

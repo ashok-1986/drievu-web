@@ -29,7 +29,7 @@ export default function TermsOfServicePage() {
             <SplitTextReveal text="Terms of Service & Scoping Conditions." />
           </h1>
           <ProseReveal>
-            <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl mx-auto block">
+            <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg  prose-text-shadow max-w-2xl mx-auto block">
               The operational and legal conditions governing use of the Drievu Limited platform, interactive system configurators, and initial engineering scoping engagements.
             </p>
           </ProseReveal>
@@ -49,10 +49,10 @@ export default function TermsOfServicePage() {
               <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-2">
                 Corporate Entity
               </span>
-              <h3 className="font-display font-medium text-lg text-brand-slate tracking-tight">
+              <h3 className="font-display font-medium text-lg text-brand-slate ">
                 Drievu Limited
               </h3>
-              <p className="font-body font-normal text-xs text-brand-grey mt-2 leading-relaxed">
+              <p className="font-body font-normal text-xs text-brand-grey mt-2 ">
                 Registered in England and Wales under Companies House Registration No. 15479482. Operating as an intelligence-led security and smart building systems consultancy.
               </p>
             </div>
@@ -62,7 +62,7 @@ export default function TermsOfServicePage() {
                 <MapPin className="w-4 h-4 text-brand-teal shrink-0 mt-0.5" />
                 <div>
                   <span className="font-display font-medium block text-brand-slate">Registered Office</span>
-                  <span className="text-brand-grey leading-relaxed block mt-0.5">
+                  <span className="text-brand-grey  block mt-0.5">
                     Apartment 3, Minotaur House, 3 Thunderer Walk, London SE18 6LH
                   </span>
                 </div>
@@ -96,7 +96,7 @@ export default function TermsOfServicePage() {
             <div className="pt-4 border-t border-brand-grey/20">
               <Link
                 href="/consultation"
-                className="w-full inline-flex items-center justify-center gap-2 bg-brand-teal text-white font-display font-medium text-xs uppercase tracking-wider py-3 px-4 rounded-xl shadow-soft hover:bg-brand-teal-deep transition-all duration-200 active:scale-[0.97]"
+                className="w-full inline-flex items-center justify-center gap-2 bg-brand-teal text-white font-display font-medium text-xs uppercase tracking-wider py-3 px-4 rounded-xl shadow-soft hover:bg-brand-teal-deep transition-colors duration-200 active:scale-[0.97]"
               >
                 <span>Book Scoping Review</span>
               </Link>
@@ -104,11 +104,11 @@ export default function TermsOfServicePage() {
           </div>
 
           {/* RIGHT COLUMN: Operational & Legal Conditions (8 Columns) */}
-          <div className="lg:col-span-8 space-y-10 font-body font-normal text-sm md:text-base text-brand-slate/85 leading-relaxed">
+          <div className="lg:col-span-8 space-y-10 font-body font-normal text-sm md:text-base text-brand-slate/85 ">
             
             {/* Section 1 */}
             <div className="space-y-4">
-              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate tracking-tight border-b border-brand-grey/20 pb-3">
+              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate  border-b border-brand-grey/20 pb-3">
                 1. General Application & Scope
               </h2>
               <p>
@@ -121,7 +121,7 @@ export default function TermsOfServicePage() {
 
             {/* Section 2: Operational Commitments */}
             <div className="space-y-4">
-              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate tracking-tight border-b border-brand-grey/20 pb-3">
+              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate  border-b border-brand-grey/20 pb-3">
                 2. Scoping Reviews & Response Commitments
               </h2>
               <p>
@@ -131,7 +131,7 @@ export default function TermsOfServicePage() {
                 <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-brand-teal" /> Our Operational Commitment
                 </span>
-                <p className="font-body font-normal text-xs md:text-sm text-brand-slate leading-relaxed">
+                <p className="font-body font-normal text-xs md:text-sm text-brand-slate ">
                   We commit to responding to all formal scoping review requests within <strong>one working day</strong>. We do not advertise unverified emergency mobilization SLAs. Physical site surveys, technical audits, and formal design presentations are scheduled collaboratively with an engineering principal following your initial consultation.
                 </p>
               </div>
@@ -139,7 +139,7 @@ export default function TermsOfServicePage() {
 
             {/* Section 3 */}
             <div className="space-y-4">
-              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate tracking-tight border-b border-brand-grey/20 pb-3">
+              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate  border-b border-brand-grey/20 pb-3">
                 3. System Design, Supply & Installation Standards
               </h2>
               <p>
@@ -159,31 +159,31 @@ export default function TermsOfServicePage() {
             <div className="bg-brand-mist p-6 rounded-2xl border border-brand-grey/20 space-y-4">
               <div className="flex items-center gap-2">
                 <FileText className="w-5 h-5 text-brand-teal" />
-                <h3 className="font-display font-medium text-lg text-brand-slate tracking-tight">
+                <h3 className="font-display font-medium text-lg text-brand-slate ">
                   4. Documented Handover Guarantee
                 </h3>
               </div>
-              <p className="text-xs md:text-sm leading-relaxed text-brand-slate/85">
+              <p className="text-xs md:text-sm  text-brand-slate/85">
                 We close the delivery gap inherent in the property management sector. We operate under the strict organizational standard: <em>&quot;If it isn’t documented, it isn’t done&quot;</em>.
               </p>
-              <p className="text-xs md:text-sm leading-relaxed text-brand-slate/85">
+              <p className="text-xs md:text-sm  text-brand-slate/85">
                 Every completed Drievu installation project closes with a structured, verifiable handover pack containing: as-installed device schedules, network and IP topology documentation, administrative credential records, end-user training verification, and data-processing guidance to support your ongoing UK GDPR compliance.
               </p>
             </div>
 
             {/* Section 5 */}
             <div className="space-y-4">
-              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate tracking-tight border-b border-brand-grey/20 pb-3">
+              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate  border-b border-brand-grey/20 pb-3">
                 5. Annual Maintenance Contracts (AMC)
               </h2>
               <p>
-                Systems are only as reliable as their ongoing maintenance. Long-term operational support, scheduled preventive maintenance visits, emergency call-out SLAs, and firmware management are provided exclusively under formal Annual Maintenance Contracts (AMC) across our Essential, Professional, and Commercial tiers. The specific response commitments governing active installations are defined within each client&apos;s individual AMC agreement.
+                Systems are only as reliable as their ongoing maintenance. Long-term operational support, scheduled preventive maintenance visits, emergency call-out SLAs, and firmware management are provided exclusively under formal Annual Maintenance Contracts (AMC). The specific response commitments governing active installations are defined within each client&apos;s individual AMC agreement.
               </p>
             </div>
 
             {/* Section 6 */}
             <div className="space-y-4">
-              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate tracking-tight border-b border-brand-grey/20 pb-3">
+              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate  border-b border-brand-grey/20 pb-3">
                 6. Intellectual Property & Website Content
               </h2>
               <p>
@@ -193,7 +193,7 @@ export default function TermsOfServicePage() {
 
             {/* Section 7 */}
             <div className="space-y-4">
-              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate tracking-tight border-b border-brand-grey/20 pb-3">
+              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate  border-b border-brand-grey/20 pb-3">
                 7. Limitation of Liability & Governing Law
               </h2>
               <p>
@@ -206,7 +206,7 @@ export default function TermsOfServicePage() {
 
             {/* Section 8 */}
             <div className="space-y-4 pt-4 border-t border-brand-grey/20">
-              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate tracking-tight">
+              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate ">
                 8. Contacting Our Legal & Engineering Team
               </h2>
               <p className="text-sm">

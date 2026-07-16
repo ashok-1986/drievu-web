@@ -216,7 +216,7 @@ export function CanvasHero() {
             </h1>
 
             <ProseReveal delay={0.3}>
-              <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl mx-auto block">
+              <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg  prose-text-shadow max-w-2xl mx-auto block">
                 Most properties buy good hardware but end up with poor results—late installations, messy wiring, and systems nobody maintains. We design, install, and look after your security from start to finish.
               </p>
             </ProseReveal>
@@ -224,7 +224,7 @@ export function CanvasHero() {
             <div className="relative z-20 flex flex-col sm:flex-row items-center justify-start gap-4 pt-4 pointer-events-auto select-none">
               <Link
                 href="/consultation"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-brand-teal hover:bg-brand-teal-deep text-white font-display font-medium text-sm md:text-base tracking-wide border border-white/20 shadow-[0_4px_20px_rgb(var(--color-brand-teal)/0.35)] hover:shadow-[0_6px_24px_rgb(var(--color-brand-teal)/0.5)] transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer group"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-brand-teal hover:bg-brand-teal-deep text-white font-display font-medium text-sm md:text-base tracking-wide border border-white/20 shadow-[0_4px_20px_rgb(var(--color-brand-teal)/0.35)] hover:shadow-[0_6px_24px_rgb(var(--color-brand-teal)/0.5)] transition duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer group"
               >
                 <span>Book a Scoping Review</span>
                 <ArrowRight className="w-4 h-4 text-white transform group-hover:translate-x-1 transition-transform" />
@@ -246,7 +246,7 @@ export function CanvasHero() {
             </h2>
             
             <ProseReveal delay={0.3}>
-              <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl mx-auto block">
+              <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg  prose-text-shadow max-w-2xl mx-auto block">
                 As ambient UK daylight fades, our integrated control systems autonomously adapt your property. Exterior perimeter lighting softly illuminates without blinding neighbors, while smart surveillance cameras silently shift into high-contrast night vision modes.
               </p>
             </ProseReveal>
@@ -275,7 +275,7 @@ export function CanvasHero() {
             </h2>
 
             <ProseReveal delay={0.3}>
-              <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl mx-auto block">
+              <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg  prose-text-shadow max-w-2xl mx-auto block">
                 While your building sleeps, dedicated on-site video recorders capture crystal-clear 4K footage across every critical entry point. Your sensitive security data stays safely inside your property under strict UK GDPR privacy standards—never hosted on external cloud servers.
               </p>
             </ProseReveal>
@@ -286,7 +286,7 @@ export function CanvasHero() {
               </span>
               <Link 
                 href="/compliance#sla" 
-                className="inline-flex items-center gap-1 text-brand-teal hover:text-white transition-colors duration-150 active:scale-[0.98] group cursor-pointer"
+                className="inline-flex items-center gap-1 text-brand-teal hover:text-white transition-colors duration-150 active:scale-[0.98] group cursor-pointer py-2"
               >
                 <span className="underline underline-offset-4">View SLA Guarantee</span>
                 <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" />

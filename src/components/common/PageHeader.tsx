@@ -54,7 +54,7 @@ export function PageHeader({
 
         <ProseReveal delay={0.2}>
           {/* FIX: Swapped out dark text class for high-contrast white over the dark background */}
-          <p className="font-body font-normal text-white/90 text-base md:text-lg leading-relaxed prose-text-shadow max-w-2xl block">
+          <p className="font-body font-normal text-white/90 text-base md:text-lg  prose-text-shadow max-w-2xl block">
             {description}
           </p>
         </ProseReveal>
