@@ -15,6 +15,20 @@ const TRIGGERS = ["new-install", "upgrading-existing", "compliance-requirement"]
 
 const CALL_TIMES = ["morning", "afternoon", "either"] as const;
 
+const PROPERTY_TYPE_LABELS: Record<(typeof PROPERTY_TYPES)[number], string> = {
+  "commercial-office": "Commercial Office",
+  "residential-block": "Residential Block",
+  "industrial-logistics": "Industrial & Logistics",
+  "public-infrastructure": "Public Infrastructure",
+  "private-residence": "Private Residence",
+};
+
+const TRIGGER_LABELS: Record<(typeof TRIGGERS)[number], string> = {
+  "new-install": "New installation",
+  "upgrading-existing": "Upgrading existing system",
+  "compliance-requirement": "Compliance requirement",
+};
+
 // Server-side contract for the single-screen consultation form. Never trust
 // the client payload — re-validate every field here regardless of what the
 // browser already checked.
@@ -56,15 +70,15 @@ function checkRateLimit(ip: string): boolean {
 
 function buildEmailBody(data: EnquiryData): string {
   return [
-    `Property type: ${data.propertyType}`,
-    `Buildings: ${data.buildings}`,
-    `Postcode: ${data.postcode}`,
-    `Reason for enquiry: ${data.trigger.join(", ")}`,
     `Name: ${data.name}`,
     `Company: ${data.company}`,
     `Role: ${data.role}`,
-    `Email: ${data.email}`,
     `Phone: ${data.phone}`,
+    `Email: ${data.email}`,
+    `Postcode: ${data.postcode}`,
+    `Property type: ${PROPERTY_TYPE_LABELS[data.propertyType]}`,
+    `Buildings: ${data.buildings}`,
+    `Reason for enquiry: ${data.trigger.map((t) => TRIGGER_LABELS[t]).join(", ")}`,
     `Preferred call time: ${data.callTime}`,
   ].join("\n");
 }
