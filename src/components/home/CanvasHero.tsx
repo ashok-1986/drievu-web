@@ -276,13 +276,13 @@ export function CanvasHero() {
 
             <ProseReveal delay={0.3}>
               <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg  prose-text-shadow max-w-2xl mx-auto block">
-                Everything runs on clean, structured cabling with a centralized amplification and control rack. Your lighting, climate, media, and security systems guarantee instant response times, zero monthly cloud subscriptions, and absolute privacy.
+                Everything runs on clean, structured cabling with a centralized amplification and control rack. Your lighting, climate, media, and security systems are locally managed, providing fast response times and privacy-by-design configuration options.
               </p>
             </ProseReveal>
 
             <div className="pt-2 flex items-center gap-6 font-display font-medium text-xs drop-shadow-md">
               <span className="flex items-center gap-1.5 text-brand-paper/90 px-3.5 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10">
-                <ShieldCheck className="w-3.5 h-3.5 text-brand-teal shrink-0" /> 100% UK GDPR Privacy
+                <ShieldCheck className="w-3.5 h-3.5 text-brand-teal shrink-0" /> Privacy-by-Design Options
               </span>
               <Link 
                 href="/compliance#sla" 

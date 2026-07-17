@@ -60,7 +60,7 @@ export default function CompliancePage() {
                 </h2>
               </div>
               <p className="font-body font-normal text-brand-slate/85 text-sm md:text-base ">
-                We do not install ad-hoc hardware. Our systems are designed with reference to applicable, scope-specific standards—such as <span className="font-mono text-xs bg-brand-mist px-1.5 py-0.5 rounded border border-brand-grey/20">BS EN 50131</span> for perimeter security and <span className="font-mono text-xs bg-brand-mist px-1.5 py-0.5 rounded border border-brand-grey/20">BS EN 62676</span> for video systems—where relevant to the project brief, alongside KNX and DALI-2 open architecture protocols for lighting and climate.
+                We do not install ad-hoc hardware. Our systems are designed with reference to applicable, scope-specific standards—such as <span className="font-mono text-xs bg-brand-mist px-1.5 py-0.5 rounded border border-brand-grey/20">BS EN 50131</span> for perimeter security and <span className="font-mono text-xs bg-brand-mist px-1.5 py-0.5 rounded border border-brand-grey/20">BS EN 62676</span> for video systems—where relevant to the project brief, alongside DALI-2 open architecture protocols for lighting control and KNX for climate and HVAC control.
               </p>
               <p className="font-body font-normal text-brand-slate/85 text-sm md:text-base ">
                 By referencing these established architectural methodologies, we support the robust operational, environmental, and mechanical thresholds typically required for architect review and M&E consultant evaluation.
@@ -117,7 +117,7 @@ export default function CompliancePage() {
                 </h2>
               </div>
               <p className="font-body font-normal text-brand-slate/85 text-sm md:text-base ">
-                Video surveillance, access control, and smart home occupancy sensors inherently process personal data. Drievu engineers your physical network with documented, risk-based controls to support you—the Data Controller—in meeting your UK GDPR responsibilities.
+                Video surveillance and access control inherently process personal data, and smart home occupancy data may constitute personal data when linked to an identified or identifiable person. Drievu engineers your physical network with documented, risk-based controls to support UK GDPR compliance, subject to a per-project assessment to determine Data Controller and Data Processor roles based on who determines the processing purposes and means.
               </p>
               <p className="font-body font-normal text-brand-slate/85 text-sm md:text-base ">
                 Our designs incorporate physical network isolation, configurable privacy-masking features, and support for Data Protection Impact Assessments (DPIAs). We define secure credential storage, access, and rotation controls—ensuring data collection, retention, and processing remain aligned with your specific organizational policies.

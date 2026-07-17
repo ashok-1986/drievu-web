@@ -123,7 +123,7 @@ export default function SectorsPage() {
             </h1>
             <ProseReveal>
               <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg  prose-text-shadow max-w-2xl mx-auto block">
-                We do not force a single boxed product onto every building. Whether you specify new developments, manage day-to-day facilities, or oversee public housing, here is how our consulting-to-maintenance discipline solves your exact problems in plain English.
+                We do not force a single boxed product onto every building. Whether you are a private homeowner, an architect designing a space, or a residential developer managing a new build, here is how our engineering discipline solves your exact problems in plain English.
               </p>
             </ProseReveal>
           </div>

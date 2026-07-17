@@ -38,7 +38,7 @@ const technicalSpecifications: Record<string, SystemCategoryData> = {
       { label: "Motorized Shading", val: "PoE Window Blinds & Curtain Tracks", def: "Automated window shading that adjusts to precise solar positions to prevent room overheating." },
       { label: "Control Interfaces", val: "Flush-Mounted Keypads & Mobile Integration", def: "Laser-engraved architectural wall plates that trigger complex multi-room lighting scenes with a single button press." },
       { label: "Emergency Lighting", val: "DALI Monitored LED Escape Lighting", def: "Self-testing backup battery lights that automatically illuminate egress corridors during a mains power failure." },
-      { label: "Cable Infrastructure", val: "One High-Speed Cable for Power and Data", def: "Structured cabling that carries both network data and electrical power, eliminating redundant high-voltage wiring runs." },
+      { label: "Cable Infrastructure", val: "One High-Speed Cable for Power and Data", def: "Structured cabling that delivers both network data and power to compatible low-voltage devices, while leaving required mains and DALI-2 control circuits to the electrical design." },
     ],
     hardwareTable: [
       { sku: "DALI-2 Dimming Actuator", spec: "Multi-channel LED dimming controller with precise 1-100% fade curves", use: "Main architectural lighting circuits & LED strip drivers" },
@@ -93,13 +93,13 @@ const technicalSpecifications: Record<string, SystemCategoryData> = {
   security: {
     title: "Perimeter & Access Security",
     headline: "High-Definition Video Surveillance & Keyless Entry Engineered to BS EN Standards.",
-    description: "We deploy IP PoE (Power over Ethernet) camera architectures and encrypted proximity reader networks to protect your perimeter. Our systems provide 4K ultra-high-definition resolution with smart human classification to eliminate false alarms, storing 30 days of continuous footage locally with zero recurring cloud storage fees.",
+    description: "We deploy IP PoE (Power over Ethernet) camera architectures and encrypted proximity reader networks to protect your perimeter. Our systems provide 4K ultra-high-definition resolution with smart human classification to reduce false alerts, storing 30 days of continuous footage locally to support privacy-focused deployments with zero recurring cloud storage fees.",
     imagePrompt: "Technical close up of 4K PTZ camera lens with infrared night vision array, industrial lighting --ar 16:9 --style raw",
     specs: [
       { label: "Video Resolution", val: "4K (3840×2160) Ultra HD IP PoE Cameras", def: "High-pixel density sensors utilizing one high-speed cable for power and data, enabling digital zoom identification." },
-      { label: "Intelligent Analytics", val: "Human/Vehicle Target Classification Algorithms", def: "Edge-based AI processing that filters out rain, shadows, and animals to guarantee zero false alarm notifications." },
+      { label: "Intelligent Analytics", val: "Human/Vehicle Target Classification Algorithms", def: "Edge-based AI processing that filters out rain, shadows, and animals to reduce false alert notifications." },
       { label: "Night Vision", val: "EXIR 2.0 Infrared & Dual-Light Color Night Vision up to 40m", def: "Advanced emitter technology providing even infrared illumination without center-screen overexposure." },
-      { label: "Local Data Storage", val: "Weather-Proof Cameras With Dedicated On-Site Video Recorders", def: "Dedicated on-site video recorders providing 30 days of storage, ensuring 100% UK GDPR privacy compliance." },
+      { label: "Local Data Storage", val: "Weather-Proof Cameras With Dedicated On-Site Video Recorders", def: "Dedicated on-site video recorders providing 30 days of storage, supporting privacy-focused deployments." },
       { label: "Entry Authentication", val: "Encrypted Proximity FOBs & Touchless BLE", def: "Multi-factor authentication supporting RFID smart cards and touchless smartphone Bluetooth Low Energy unlocking." },
       { label: "Intercom Gateways", val: "Flush-Mounted IP Video Door Entry Panels", def: "Power-over-Ethernet visitor intercoms that route gate calls directly to your smartphone or interior touchscreens." },
     ],

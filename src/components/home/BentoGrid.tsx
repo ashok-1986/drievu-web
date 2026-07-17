@@ -91,7 +91,7 @@ export function BentoGrid() {
     {
       id: "security",
       title: "Perimeter & Access Security",
-      desc: "Weather-proof outdoor cameras, flush-mounted video intercoms, and keyless gate entry. 30 days of continuous local video storage with zero monthly cloud subscriptions and 100% privacy.",
+      desc: "Weather-proof outdoor cameras, flush-mounted video intercoms, and keyless gate entry. 30 days of continuous local video storage with zero monthly cloud subscriptions and configurable privacy controls.",
       icon: Shield,
       href: "/systems/security",
       // Bottom Right: 7 cols

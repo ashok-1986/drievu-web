@@ -50,7 +50,7 @@ export function PortfolioGrid() {
       sectorLabel: "Public Infrastructure",
       location: "Regional UK Transit Grid",
       scale: "1,200+ Networked Cameras & High-Speed Cabling",
-      outcome: "Engineered high-density video surveillance adhering strictly to British safety standards. Configured zero-latency local control rooms with automated failover recording and zero cloud storage fees.",
+      outcome: "Engineered high-density video surveillance adhering strictly to British safety standards. Configured local control rooms with a tested sub-250ms end-to-end latency, automated failover recording, and zero cloud storage fees.",
       icon: Train,
     },
     {
