@@ -53,17 +53,17 @@ export default function CompliancePage() {
             <div className="space-y-4">
               <div>
                 <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-1">
-                  Electronic Security Design
+                  Smart Home & Automation Design
                 </span>
                 <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate ">
                   British Standards (BS EN) Adherence
                 </h2>
               </div>
               <p className="font-body font-normal text-brand-slate/85 text-sm md:text-base ">
-                We do not install ad-hoc hardware. Our systems are designed with reference to applicable, scope-specific standards—such as <span className="font-mono text-xs bg-brand-mist px-1.5 py-0.5 rounded border border-brand-grey/20">BS EN 50131</span> for intrusion systems and <span className="font-mono text-xs bg-brand-mist px-1.5 py-0.5 rounded border border-brand-grey/20">BS EN 62676</span> for video surveillance systems—where relevant to the project brief.
+                We do not install ad-hoc hardware. Our systems are designed with reference to applicable, scope-specific standards—such as <span className="font-mono text-xs bg-brand-mist px-1.5 py-0.5 rounded border border-brand-grey/20">BS EN 50131</span> for perimeter security and <span className="font-mono text-xs bg-brand-mist px-1.5 py-0.5 rounded border border-brand-grey/20">BS EN 62676</span> for video systems—where relevant to the project brief, alongside KNX and DALI-2 open architecture protocols for lighting and climate.
               </p>
               <p className="font-body font-normal text-brand-slate/85 text-sm md:text-base ">
-                By referencing these established architectural methodologies, we support the robust operational, environmental, and mechanical thresholds typically required for insurer review and M&E consultant evaluation.
+                By referencing these established architectural methodologies, we support the robust operational, environmental, and mechanical thresholds typically required for architect review and M&E consultant evaluation.
               </p>
             </div>
           </div>
@@ -117,7 +117,7 @@ export default function CompliancePage() {
                 </h2>
               </div>
               <p className="font-body font-normal text-brand-slate/85 text-sm md:text-base ">
-                Video surveillance and access control systems inherently process personal data. Drievu engineers your physical network with documented, risk-based controls to support you—the Data Controller—in meeting your UK GDPR responsibilities.
+                Video surveillance, access control, and smart home occupancy sensors inherently process personal data. Drievu engineers your physical network with documented, risk-based controls to support you—the Data Controller—in meeting your UK GDPR responsibilities.
               </p>
               <p className="font-body font-normal text-brand-slate/85 text-sm md:text-base ">
                 Our designs incorporate physical network isolation, configurable privacy-masking features, and support for Data Protection Impact Assessments (DPIAs). We define secure credential storage, access, and rotation controls—ensuring data collection, retention, and processing remain aligned with your specific organizational policies.

@@ -49,8 +49,8 @@ export function PortfolioGrid() {
       sectorId: "infrastructure",
       sectorLabel: "Public Infrastructure",
       location: "Regional UK Transit Grid",
-      scale: "1,200+ Networked CCTV Nodes & Fiber Backbones",
-      outcome: "Engineered high-density video surveillance adhering strictly to British Standard BS EN 62676. Configured zero-latency local control rooms with automated failover recording and zero cloud storage fees.",
+      scale: "1,200+ Networked Cameras & High-Speed Cabling",
+      outcome: "Engineered high-density video surveillance adhering strictly to British safety standards. Configured zero-latency local control rooms with automated failover recording and zero cloud storage fees.",
       icon: Train,
     },
     {
@@ -70,7 +70,7 @@ export function PortfolioGrid() {
       sectorLabel: "Residential Block",
       location: "Central London",
       scale: "64 Weather-Proof Cameras & Video Intercoms",
-      outcome: "Upgraded legacy analogue wiring to modern high-definition IP surveillance without altering exterior heritage masonry. Residents gained secure smartphone gate entry and crystal-clear visitor verification.",
+      outcome: "Upgraded legacy analogue wiring to modern high-definition video surveillance without altering exterior heritage masonry. Residents gained secure smartphone gate entry and crystal-clear visitor verification.",
       icon: Home,
     },
     {

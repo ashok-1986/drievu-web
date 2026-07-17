@@ -27,109 +27,88 @@ interface SystemCategoryData {
 }
 
 const technicalSpecifications: Record<string, SystemCategoryData> = {
-  surveillance: {
-    title: "Surveillance & CCTV Systems",
-    headline: "High-Definition Video Surveillance Engineered to BS EN 62676 Standards.",
-    description: "Our surveillance installations utilize IP PoE (Power over Ethernet—transmitting data and electrical power over a single network cable) architecture, delivering 3K and 4K ultra-high-definition resolution with smart human and vehicle target classification to eliminate false alarms. All footage is retained locally on high-speed surveillance hard drives with zero recurring cloud storage fees.",
+  lighting: {
+    title: "Intelligent Lighting & Shading",
+    headline: "Architectural Lighting Control Engineered to Open Protocols.",
+    description: "Our intelligent lighting installations utilize KNX and DALI-2 protocols (Digital Addressable Lighting Interface), replacing messy switch banks with flush-mounted keypads. We integrate motorized shading and daylight harvesting algorithms to automatically balance natural and artificial lux levels.",
+    imagePrompt: "Close-up of a minimalist flush-mounted smart lighting keypad on a textured white gallery wall --ar 16:9 --style raw",
+    specs: [
+      { label: "Lighting Protocols", val: "Architectural Lighting Control", def: "Vendor-neutral communication standards allowing lighting fixtures from different manufacturers to operate as one unified system." },
+      { label: "Daylight Harvesting", val: "Automated Lux Sensor Dimming", def: "Intelligent lighting automation that dims artificial lights when natural sunlight is present, reducing energy consumption." },
+      { label: "Motorized Shading", val: "PoE Window Blinds & Curtain Tracks", def: "Automated window shading that adjusts to precise solar positions to prevent room overheating." },
+      { label: "Control Interfaces", val: "Flush-Mounted Keypads & Mobile Integration", def: "Laser-engraved architectural wall plates that trigger complex multi-room lighting scenes with a single button press." },
+      { label: "Emergency Lighting", val: "DALI Monitored LED Escape Lighting", def: "Self-testing backup battery lights that automatically illuminate egress corridors during a mains power failure." },
+      { label: "Cable Infrastructure", val: "One High-Speed Cable for Power and Data", def: "Structured cabling that carries both network data and electrical power, eliminating redundant high-voltage wiring runs." },
+    ],
+    hardwareTable: [
+      { sku: "DALI-2 Dimming Actuator", spec: "Multi-channel LED dimming controller with precise 1-100% fade curves", use: "Main architectural lighting circuits & LED strip drivers" },
+      { sku: "KNX Keypad Controller", spec: "6-button laser engraved flush wall switch with integrated temperature sensor", use: "Room-level manual override & scene selection" },
+      { sku: "PoE Roller Blind Motor", spec: "Ultra-quiet tubular motor powered directly via Ethernet switch", use: "Automated window shading in living spaces & boardrooms" },
+      { sku: "Lux/Presence Sensor", spec: "360-degree ceiling mounted motion and ambient light sensor", use: "Corridors, bathrooms & daylight harvesting zones" },
+      { sku: "Central Lighting Gateway", spec: "DIN-rail mounted logic controller linking DALI, KNX, and mobile apps", use: "Main electrical distribution board integration" },
+    ]
+  },
+  climate: {
+    title: "Climate & Energy Control",
+    headline: "Automated Climate Control That Knows When You Arrive.",
+    description: "We design intelligent heating and cooling infrastructure that slashes wasted energy without manual tweaking. By integrating HVAC systems, underfloor heating manifolds, and real-time solar/battery power monitoring into a single logic controller, we eliminate conflicting thermostats and guarantee optimum environmental comfort.",
+    imagePrompt: "Sleek glass touch screen building automation controller on a clean Mist white wall showing real time temperature numbers --ar 16:9 --style raw",
+    specs: [
+      { label: "HVAC Integration", val: "Automated Climate Control", def: "Industrial data protocols that allow the smart home processor to directly command air conditioning units and boilers." },
+      { label: "Occupancy Logic", val: "Geofencing & Motion-Based Setbacks", def: "Automated climate control that drops temperature set-points in empty rooms and pre-heats when your smartphone enters a defined geographic radius." },
+      { label: "Underfloor Heating", val: "Smart Manifold Valve Actuators", def: "Precise motorized valves that control hot water flow to individual room zones, preventing temperature overshoot." },
+      { label: "Energy Sub-Metering", val: "Real-Time Electrical Monitoring", def: "Non-invasive current transformers that clamp around electrical circuits to log precise kilowatt-hour energy consumption." },
+      { label: "Air Quality", val: "CO2 & VOC (Volatile Organic Compound) Sensors", def: "Environmental sensors that automatically trigger fresh air ventilation systems when indoor air quality drops." },
+      { label: "System Interlock", val: "Window/Door Contact Intervention", def: "Logic rules that automatically shut off air conditioning in a room if a window is left open for more than 60 seconds." },
+    ],
+    hardwareTable: [
+      { sku: "HVAC Protocol Gateway", spec: "BACnet to KNX translation module for VRF/VRV air conditioning systems", use: "Direct digital control of Daikin/Mitsubishi AC units" },
+      { sku: "Smart Heating Manifold", spec: "8-zone underfloor heating controller with 24V thermal actuators", use: "Precise hydronic radiant floor heating management" },
+      { sku: "Energy Monitoring Module", spec: "Multi-channel electrical sub-metering unit with cloud data export", use: "Tracking solar generation vs property consumption" },
+      { sku: "Invisible Temp Sensor", spec: "Flush-mounted plaster-in temperature probe (zero visible footprint)", use: "Accurate room temperature reading without wall clutter" },
+      { sku: "Air Quality Monitor", spec: "Combined CO2, Humidity, and VOC sensor module", use: "Automated mechanical ventilation and heat recovery (MVHR)" },
+    ]
+  },
+  media: {
+    title: "Concealed Sound & Media",
+    headline: "Whole-Home Synchronized Audio Engineered for Acoustic Excellence.",
+    description: "Our media division engineers high-fidelity acoustic environments without the visual clutter of traditional AV equipment. Utilizing centralized audio matrices and architectural plaster-in speakers, we deliver perfectly synchronized, uncompressed audio streaming driven by a centralized amplification rack.",
+    imagePrompt: "Clean white architectural ceiling with a completely flush invisible speaker grille, warm ambient lighting --ar 16:9 --style raw",
+    specs: [
+      { label: "Audio Distribution", val: "Whole-Home Synchronized Audio", def: "Centralized digital signal processors that perfectly synchronize music playback across multiple rooms without latency." },
+      { label: "Architectural Speakers", val: "Plaster-In Invisible & Micro-Aperture Drivers", def: "High-performance loudspeakers that are skimmed over with plaster, rendering them completely invisible to the eye." },
+      { label: "Video Distribution", val: "4K/8K Video over IP (AVoIP) Transceivers", def: "Encoding uncompressed ultra-high-definition HDMI video onto standard network cables for distribution to any screen in the property." },
+      { label: "Acoustic Engineering", val: "Room Correction Calibration", def: "Advanced software measurement that digitally compensates for room reflections and standing waves to ensure perfect audio fidelity." },
+      { label: "Network Backbone", val: "Enterprise-Grade Layer 3 Managed Switches", def: "High-capacity network hardware required to handle the massive data throughput of uncompressed multi-room video streaming." },
+      { label: "User Interface", val: "Unified Smart Remote & Application Control", def: "A single remote control that powers on the TV, selects the Apple TV, routes the audio, and dims the lights simultaneously." },
+    ],
+    hardwareTable: [
+      { sku: "DSP Matrix Amplifier", spec: "8-zone / 16-channel digital amplifier with built-in streaming endpoints", use: "Centralized power and routing for whole-home audio" },
+      { sku: "Invisible Plaster-In Speaker", spec: "Vibrational panel speaker designed to be skimmed with 2mm of plaster", use: "High-end living rooms & minimalist dining areas" },
+      { sku: "Video over IP Encoder", spec: "4K60 4:4:4 AV-over-IP transmitter with ultra-low latency (<1 frame)", use: "Centralizing media players in the rack" },
+      { sku: "Managed AV Switch", spec: "48-port Gigabit PoE+ switch configured for multicast video", use: "The core data backbone for all media distribution" },
+      { sku: "Unified Smart Remote", spec: "Wi-Fi enabled touchscreen remote with hard buttons for tactile control", use: "Replacing multiple cluttered remotes in cinema rooms" },
+    ]
+  },
+  security: {
+    title: "Perimeter & Access Security",
+    headline: "High-Definition Video Surveillance & Keyless Entry Engineered to BS EN Standards.",
+    description: "We deploy IP PoE (Power over Ethernet) camera architectures and encrypted proximity reader networks to protect your perimeter. Our systems provide 4K ultra-high-definition resolution with smart human classification to eliminate false alarms, storing 30 days of continuous footage locally with zero recurring cloud storage fees.",
     imagePrompt: "Technical close up of 4K PTZ camera lens with infrared night vision array, industrial lighting --ar 16:9 --style raw",
     specs: [
-      { label: "Video Resolution", val: "3K (3072×1728) / 4K (3840×2160) Ultra HD", def: "High-pixel density sensors enabling digital zoom identification of license plates and facial features." },
+      { label: "Video Resolution", val: "4K (3840×2160) Ultra HD IP PoE Cameras", def: "High-pixel density sensors utilizing one high-speed cable for power and data, enabling digital zoom identification." },
+      { label: "Intelligent Analytics", val: "Human/Vehicle Target Classification Algorithms", def: "Edge-based AI processing that filters out rain, shadows, and animals to guarantee zero false alarm notifications." },
       { label: "Night Vision", val: "EXIR 2.0 Infrared & Dual-Light Color Night Vision up to 40m", def: "Advanced emitter technology providing even infrared illumination without center-screen overexposure." },
-      { label: "Weather Protection", val: "IP67 Waterproof & Dustproof Ingress Protection Rating", def: "International standard certifying complete protection against dust ingress and water immersion up to 1 meter." },
-      { label: "Vandal Resistance", val: "IK10 Vandal-Proof Mini-Dome Options for Low Ceilings", def: "The highest international mechanical impact rating, protecting camera housings against 20 joules of direct kinetic impact." },
-      { label: "Video Compression", val: "H.265+ Dynamic Bitrate Encoding (35% to 50% Storage Reduction)", def: "Intelligent predictive codec that compresses static background footage while retaining maximum detail on moving subjects." },
-      { label: "Network Protocols", val: "ONVIF Profile S/G/T Protocol-Neutral Open Architecture", def: "Open industry standard guaranteeing seamless interoperability with third-party video management software and network recorders." },
+      { label: "Local Data Storage", val: "Weather-Proof Cameras With Dedicated On-Site Video Recorders", def: "Dedicated on-site video recorders providing 30 days of storage, ensuring 100% UK GDPR privacy compliance." },
+      { label: "Entry Authentication", val: "Encrypted Proximity FOBs & Touchless BLE", def: "Multi-factor authentication supporting RFID smart cards and touchless smartphone Bluetooth Low Energy unlocking." },
+      { label: "Intercom Gateways", val: "Flush-Mounted IP Video Door Entry Panels", def: "Power-over-Ethernet visitor intercoms that route gate calls directly to your smartphone or interior touchscreens." },
     ],
     hardwareTable: [
-      { sku: "IP PoE Dome Camera", spec: "3K outdoor PoE dome, EXIR 2.0 night vision, built-in microphone, IP67 waterproof", use: "General communal & perimeter monitoring" },
-      { sku: "IP PoE PTZ Speed Dome", spec: "4K mini pan-tilt, 345° pan / 80° tilt, auto-tracking lite, two-way audio", use: "Large car parks, industrial yards, active perimeters" },
-      { sku: "64-Channel Commercial NVR", spec: "4K 64-channel recorder, 32MP decoding, 8x SATA HDD bays (up to 112TB capacity)", use: "Centralized multi-camera recording & local control room monitoring" },
-      { sku: "24TB Surveillance HDD", spec: "24TB high-speed hard drive optimized for 24/7 continuous NVR read/write cycles", use: "Extended footage retention (30 to 90 days compliant storage)" },
-      { sku: "24-Port Gigabit PoE Switch", spec: "24-port Fast Ethernet PoE switch, 370W power budget, metal rack-mount chassis", use: "Dedicated network backbone & centralized device power distribution" },
-    ]
-  },
-  access: {
-    title: "Access Control & Entry",
-    headline: "IP Door Entry & Credential Management Engineered to BS EN 60839 Standards.",
-    description: "We deploy multi-flat IP door entry panels and encrypted proximity reader networks that seamlessly integrate with video intercoms. Systems provide immutable audit trails for commercial facilities and managed residential blocks while maintaining strict fail-safe fire evacuation override protocols.",
-    imagePrompt: "Close-up of a flush-mounted brushed black glass IP door entry panel with glowing illuminated keypad, architectural entrance --ar 16:9 --style raw",
-    specs: [
-      { label: "Entry Authentication", val: "Encrypted Proximity FOBs, Mobile Bluetooth Credentials & PIN Keypads", def: "Multi-factor authentication supporting RFID smart cards and touchless smartphone BLE (Bluetooth Low Energy) unlocking." },
-      { label: "Communal Panels", val: "Multi-Flat IP Video Door Entry Panels with HD Camera & Two-Way Audio", def: "Power-over-Ethernet visitor intercoms with wide-angle camera lenses and noise-canceling microphones." },
-      { label: "Locking Hardware", val: "Monitored Magnetic Locks (Maglocks), Electric Strikes & Request-to-Exit Buttons", def: "High-holding force electromagnetic locks paired with mechanical egress sensors to verify door physical status." },
-      { label: "Remote Connectivity", val: "GSM Intercom Gateways for Remote Access Control Without Wired Cabling", def: "Cellular 4G communication modules that route gate intercom calls directly to mobile handsets or reception desks." },
-      { label: "Fire Safety Integration", val: "Automated Fail-Safe Drop-Out Relay Integration with Building Fire Alarms", def: "Life-safety electrical interlock that automatically cuts power to magnetic locks upon fire alarm activation to ensure unimpeded emergency egress." },
-      { label: "Audit & Compliance", val: "Time-Stamped Event Logging with UK GDPR Compliant Credential Storage", def: "Encrypted local event logs recording exact entry timestamps without storing unencrypted biometric or personal resident data." },
-    ],
-    hardwareTable: [
-      { sku: "Multi-Flat IP Entry Panel", spec: "Communal IP video intercom with wide-angle camera, RFID reader & illuminated keypad", use: "Main residential block & commercial building entrance doors" },
-      { sku: "Video Door Phone System", spec: "7-inch indoor touchscreen monitor with instant door unlock & two-way talkback", use: "Individual residential apartments & concierge reception desks" },
-      { sku: "Proximity / Mobile Reader", spec: "IP65 weather-resistant multi-technology reader supporting RFID card and smartphone BLE access", use: "Internal office doors, stairwells & restricted server rooms" },
-      { sku: "Monitored Maglock & Strike", spec: "1200lb holding force magnetic locks and heavy-duty fail-secure mechanical strikes", use: "High-security perimeter doors & fire escape routes" },
-      { sku: "GSM Gate Intercom", spec: "Cellular 4G/GSM intercom unit with SIM dial-to-open and PIN code functionality", use: "Remote perimeter gates & temporary construction phase access" },
-    ]
-  },
-  fire: {
-    title: "Fire, Gas & Life Safety",
-    headline: "Life Safety & Early Warning Detection Engineered to British Standards.",
-    description: "Our life safety division engineers addressable fire alarm networks, industrial gas leak detection units, and standalone smoke/heat alarms. Systems are designed with consultative discipline to ensure early detection, swift voice evacuation, and full insurance compliance without over-specification.",
-    imagePrompt: "Immaculate commercial plant room wall showing a sleek addressable fire alarm control panel with glowing green status indicators --ar 16:9 --style raw",
-    specs: [
-      { label: "Design Standards", val: "Systems Specified to British Standards (BS 5839 / BS EN 54 Guidelines)", def: "The rigorous code of practice governing the design, installation, commissioning, and maintenance of fire detection and fire alarm systems in buildings." },
-      { label: "Fire Detection Architecture", val: "Addressable Commercial Fire Alarm Panels & Optical Smoke/Heat Sensors", def: "Intelligent loop wiring where each detector possesses a unique digital address, identifying the exact room or zone of an incident immediately." },
-      { label: "Hazardous Gas Monitoring", val: "Commercial Kitchen & Plant Room Gas Leak Detection Units with Shut-Off Relays", def: "Industrial catalytic sensors that detect methane and LPG leaks, automatically triggering solenoid valves to shut off main gas supplies." },
-      { label: "Carbon Monoxide Safety", val: "Hardwired CO Detectors Interlinked for Managed Residential Compliance", def: "Electro-chemical sensing units continuously monitoring for toxic carbon monoxide, wired into shared residential alarm loops." },
-      { label: "Emergency Illumination", val: "3-Hour Non-Maintained & Maintained LED Emergency Exit Lighting", def: "Backup battery-powered escape lighting that automatically illuminates egress corridors and stairwells during a mains power failure." },
-      { label: "Evacuation Systems", val: "Integrated Voice Evacuation & Public Address (PA-VA) Alarm Broadcast", def: "Automated spoken emergency messaging proven to evacuate complex commercial buildings up to 35% faster than traditional alarm sirens." },
-    ],
-    hardwareTable: [
-      { sku: "Addressable Fire Panel", spec: "Multi-loop addressable fire detection panel with touchscreen zone mapping & event log", use: "Commercial offices, retail complexes & industrial facilities" },
-      { sku: "Standalone Smoke & Heat Alarm", spec: "Optical smoke and rate-of-rise heat detectors with RF/wired interlink capability", use: "Managed residential blocks & HMO tenant safety compliance" },
-      { sku: "Gas Leak Detection Unit", spec: "Industrial methane/LPG gas sensing unit with automated solenoid valve shut-off relay", use: "Commercial kitchens, boiler houses & mechanical plant rooms" },
-      { sku: "Commercial CO Detector", spec: "Electro-chemical carbon monoxide sensor with relay output and audible alarm sounder", use: "Rented residential properties & enclosed parking garages" },
-      { sku: "Emergency & Exit Lighting", spec: "Flush-mounted LED emergency downlights and illuminated exit legend signage", use: "Communal stairwells, corridors & designated fire escape routes" },
-    ]
-  },
-  communication: {
-    title: "Communication & Audio",
-    headline: "Public Address & Intercom Infrastructure Engineered for High-Clarity Speech.",
-    description: "We supply and integrate commercial public address (PA) systems, two-way talkback intercoms, and audio-visual infrastructure. Designed for demanding acoustic environments like transport hubs, warehouses, and commercial offices, ensuring crystal-clear communication and emergency broadcasting.",
-    imagePrompt: "Modern minimalist wall-mounted acoustic speaker and stainless steel talkback intercom inside an industrial warehouse corridor --ar 16:9 --style raw",
-    specs: [
-      { label: "Public Address (PA)", val: "Multi-Zone 100V Line Audio Distribution & High-Efficiency Ceiling/Horn Speakers", def: "High-voltage audio transmission system allowing dozens of loudspeakers to be connected over long cable runs with minimal signal loss." },
-      { label: "Voice Evacuation (PA-VA)", val: "BS EN 54-16 Compliant Emergency Voice Evacuation Broadcast Controllers", def: "Certified life-safety audio matrices with monitored speaker lines and backup amplifier failover for emergency broadcasting." },
-      { label: "Two-Way Talkback", val: "Industrial Hands-Free Intercom Stations with Background Noise Cancellation", def: "Heavy-duty communication points utilizing active acoustic echo cancellation to enable clear speech in noisy industrial settings." },
-      { label: "Audio-Visual (AV)", val: "Commercial Meeting Room & Control Room AV Distribution Networks", def: "Structured HDMI over Ethernet and wireless presentation switching engineered for corporate boardrooms and security operations centers." },
-      { label: "Acoustic Engineering", val: "Speech Intelligibility Optimization (STI) for High-Reverberation Spaces", def: "Acoustic modeling and speaker placement designed to achieve a Speech Transmission Index exceeding 0.50 in echo-heavy environments." },
-      { label: "System Integration", val: "SIP / VoIP PBX Telephone Network & Security Management Software Integration", def: "Session Initiation Protocol integration allowing security intercoms to be answered directly from standard corporate desk phones or mobile devices." },
-    ],
-    hardwareTable: [
-      { sku: "Voice Evacuation / PA-VA System", spec: "Multi-zone digital audio matrix controller with emergency firefighter override microphone", use: "Large commercial buildings, factories & transport hubs" },
-      { sku: "Two-Way Talkback Intercom", spec: "IP65 weather-resistant industrial intercom station with heavy-duty call button & mic", use: "Industrial loading bays, security gates & mechanical plant rooms" },
-      { sku: "100V Line Ceiling Speaker", spec: "6-watt flush-mounted architectural ceiling speaker with steel fire dome enclosure", use: "Commercial office open-plan areas & reception lobbies" },
-      { sku: "Control Room Monitor (22–55\")", spec: "Commercial grade 24/7 continuous operation LED display screens with HDMI/VGA inputs", use: "Concierge desks, security offices & AV control rooms" },
-      { sku: "GSM Gate Intercom", spec: "Cellular audio intercom with wireless call routing directly to mobile handsets", use: "Remote entrance gates without hardwired network cabling" },
-    ]
-  },
-  "smart-building": {
-    title: "Smart Building Automation",
-    headline: "Energy-Efficient Building Intelligence Engineered for Open-Protocol Automation.",
-    description: "We design smart building systems that eliminate operational chaos and reduce energy consumption. Utilizing DIN-rail automation controllers, DALI-2 lighting relays, and CT-clamp energy monitoring, we provide facilities managers with granular visibility over building performance and ESG reporting.",
-    imagePrompt: "Sleek glass touch screen building automation controller on a clean Mist white wall showing real time energy graph numbers --ar 16:9 --style raw",
-    specs: [
-      { label: "Automation Protocols", val: "Open-Protocol Architecture Supporting KNX, DALI-2 & Modbus Infrastructure", def: "Vendor-neutral communication standards allowing lighting, HVAC, and energy meters from different manufacturers to operate as one unified system." },
-      { label: "Smart Lighting Control", val: "Occupancy Sensing, Daylight Harvesting & Automated Dimming Schedules", def: "Intelligent lighting automation that dims artificial lights when natural sunlight is present and powers off zones when rooms are unoccupied." },
-      { label: "Energy Monitoring", val: "Real-Time DIN-Rail & CT-Clamp Electrical Sub-Metering for ESG Reporting", def: "Non-invasive current transformers that clamp around electrical circuits to log precise kilowatt-hour energy consumption across individual building zones." },
-      { label: "Leak Prevention", val: "Point & Cable Water Leak Detection Sensors with Automated Main Valve Shut-Off", def: "Conductive polymer sensing cables installed under raised floors or pipework that trigger motorized brass valves to cut water supply instantly upon detecting moisture." },
-      { label: "HVAC Optimization", val: "Smart Temperature Relays and Automated Climate Scheduling", def: "Programmable thermostats and relay modules that prevent heating and cooling systems from operating simultaneously or out of business hours." },
-      { label: "Central Management", val: "Single Mobile & Desktop Interface for Property-Wide Automation Control", def: "Unified dashboard providing facilities managers with remote visibility, scheduling, and alert management across all building technical services." },
-    ],
-    hardwareTable: [
-      { sku: "Smart Lighting Controller", spec: "DALI-2 / KNX multi-channel lighting control gateway with automated scheduling", use: "Commercial offices, communal residential corridors & car parks" },
-      { sku: "Smart Relay & Automation Module", spec: "DIN-rail mounted multi-purpose relay module for heavy electrical load switching", use: "Plant rooms, heating controls & architectural lighting circuits" },
-      { sku: "Energy Monitoring (CT-Clamp)", spec: "Multi-channel electrical sub-metering unit with cloud ESG reporting data export", use: "Housing association blocks & commercial tenant energy billing" },
-      { sku: "Water Leak Detection Sensor", spec: "Conductive polymer sensing cable and point sensor with audible alarm relay", use: "High-value residential risers, server rooms & mechanical plant areas" },
-      { sku: "1–3 kVA UPS Unit", spec: "Online double-conversion uninterruptible power supply with SNMP network monitoring card", use: "Keeping automation controllers & surveillance NVRs active during power cuts" },
+      { sku: "4K IP PoE Turret Camera", spec: "8MP outdoor PoE turret, EXIR 2.0 night vision, IP67 waterproof", use: "General perimeter monitoring & driveway surveillance" },
+      { sku: "Multi-Flat IP Entry Panel", spec: "IP video intercom with wide-angle camera & illuminated keypad", use: "Main entry gates & pedestrian access doors" },
+      { sku: "32-Channel NVR", spec: "4K 32-channel recorder with 16TB surveillance-grade hard drives", use: "Centralized local video recording (zero cloud fees)" },
+      { sku: "Monitored Maglock", spec: "1200lb holding force magnetic lock with mechanical egress sensor", use: "High-security automated vehicle & pedestrian gates" },
+      { sku: "Proximity / Mobile Reader", spec: "IP65 weather-resistant reader supporting encrypted RFID and smartphone BLE", use: "Keyless entry for side doors and outbuildings" },
     ]
   }
 };

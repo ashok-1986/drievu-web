@@ -206,18 +206,18 @@ export function CanvasHero() {
           <section ref={chapter1Ref} className="absolute inset-x-6 md:inset-x-12 max-w-2xl flex flex-col gap-4 pointer-events-auto transition-opacity duration-150 will-change-opacity">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10 text-white text-xs font-display font-medium uppercase tracking-widest w-fit drop-shadow-md">
               <span className="w-2 h-2 rounded-full bg-brand-teal" />
-              Independent UK Engineering · London Based
+              Infrastructure-Grade Engineering · London Based
             </div>
 
             <h1 className="font-display font-medium text-hero w-full text-white uppercase drop-shadow-md">
-              <SplitTextReveal text="Security Systems," />
+              <SplitTextReveal text="Smart Homes," />
               <br />
-              <SplitTextReveal text="Delivered Properly." className="text-brand-teal" />
+              <SplitTextReveal text="Engineered Like Infrastructure." className="text-brand-teal" />
             </h1>
 
             <ProseReveal delay={0.3}>
               <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg  prose-text-shadow max-w-2xl mx-auto block">
-                Most properties buy good hardware but end up with poor results—late installations, messy wiring, and systems nobody maintains. We design, install, and look after your security from start to finish.
+                Most installers are either glorified electricians hanging off-the-shelf Wi-Fi gadgets or boutiques charging astronomical fees. We engineer lighting, climate, security, and audio directly into the fabric of your building.
               </p>
             </ProseReveal>
 
@@ -236,27 +236,27 @@ export function CanvasHero() {
           <section ref={chapter2Ref} inert={true} aria-hidden="true" className="absolute inset-x-6 md:inset-x-12 max-w-2xl flex flex-col gap-4 pointer-events-none opacity-0 transition-opacity duration-150 will-change-opacity">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10 text-white text-xs font-display font-medium uppercase tracking-widest w-fit drop-shadow-md">
               <Cpu className="w-3.5 h-3.5 text-brand-teal" />
-              <span>Intelligent Building Automation</span>
+              <span>Architectural Permanence</span>
             </div>
             
             <h2 className="font-display font-medium text-hero w-full text-white uppercase drop-shadow-md">
               <SplitTextReveal text="Invisible By Day." />
               <br />
-              <SplitTextReveal text="Vigilant At Dusk." className="text-brand-teal" />
+              <SplitTextReveal text="Unified Simplicity." className="text-brand-teal" />
             </h2>
             
             <ProseReveal delay={0.3}>
               <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg  prose-text-shadow max-w-2xl mx-auto block">
-                As ambient UK daylight fades, our integrated control systems autonomously adapt your property. Exterior perimeter lighting softly illuminates without blinding neighbors, while smart surveillance cameras silently shift into high-contrast night vision modes.
+                Modern homeowners are drowning in six different apps to adjust heating, check cameras, and dim lights. We build smart homes that work like infrastructure—invisible, hardwired, and controlled from a single screen.
               </p>
             </ProseReveal>
 
             <div className="pt-2 flex flex-wrap items-center gap-3 font-display font-medium text-xs drop-shadow-md">
               <span className="px-3 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10 text-brand-paper/90">
-                01 · Autonomous Lux Sensors
+                01 · No App Fatigue
               </span>
               <span className="px-3 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10 text-brand-paper/90">
-                02 · Zero False Alarms
+                02 · Zero Aesthetic Clutter
               </span>
             </div>
           </section>
@@ -265,24 +265,24 @@ export function CanvasHero() {
           <section ref={chapter3Ref} inert={true} aria-hidden="true" className="absolute inset-x-6 md:inset-x-12 max-w-2xl flex flex-col gap-4 pointer-events-none opacity-0 transition-opacity duration-150 will-change-opacity">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10 text-white text-xs font-display font-medium uppercase tracking-widest w-fit drop-shadow-md">
               <HardDrive className="w-3.5 h-3.5 text-brand-teal" />
-              <span>Active Nighttime Defense</span>
+              <span>Centralized Processing</span>
             </div>
 
             <h2 className="font-display font-medium text-hero w-full text-white uppercase drop-shadow-md">
-              <SplitTextReveal text="Total Protection." />
+              <SplitTextReveal text="Total Control." />
               <br />
               <SplitTextReveal text="Zero Cloud Fees." className="text-brand-teal" />
             </h2>
 
             <ProseReveal delay={0.3}>
               <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg  prose-text-shadow max-w-2xl mx-auto block">
-                While your building sleeps, dedicated on-site video recorders capture crystal-clear 4K footage across every critical entry point. Your sensitive security data stays safely inside your property under strict UK GDPR privacy standards—never hosted on external cloud servers.
+                Everything runs on clean, structured cabling with a centralized amplification and control rack. Your lighting, climate, media, and security systems guarantee instant response times, zero monthly cloud subscriptions, and absolute privacy.
               </p>
             </ProseReveal>
 
             <div className="pt-2 flex items-center gap-6 font-display font-medium text-xs drop-shadow-md">
               <span className="flex items-center gap-1.5 text-brand-paper/90 px-3.5 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10">
-                <ShieldCheck className="w-3.5 h-3.5 text-brand-teal shrink-0" /> British Standards Compliant
+                <ShieldCheck className="w-3.5 h-3.5 text-brand-teal shrink-0" /> 100% UK GDPR Privacy
               </span>
               <Link 
                 href="/compliance#sla" 

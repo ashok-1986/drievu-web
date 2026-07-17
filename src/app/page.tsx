@@ -66,9 +66,9 @@ export default function HomePage() {
               </TactileLink>
 
               <TactileLink href="/track-record" variant="ghost" className="bg-brand-mist p-8 rounded-2xl border border-brand-grey/15 flex flex-col justify-center text-center sm:text-left hover:border-brand-teal/40 transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97]">
-                <span className="font-display font-medium text-5xl text-brand-teal mb-2 block">5</span>
-                <span className="font-display font-medium text-sm text-brand-slate block mb-1">Core Pillars</span>
-                <span className="font-body font-normal text-xs text-brand-grey">CCTV, Access, Fire, Audio, Automation.</span>
+                <span className="font-display font-medium text-5xl text-brand-teal mb-2 block">4</span>
+                <span className="font-display font-medium text-sm text-brand-slate block mb-1">Core Disciplines</span>
+                <span className="font-body font-normal text-xs text-brand-grey">Lighting, Climate, Media, & Security.</span>
               </TactileLink>
             </div>
           </div>
@@ -116,7 +116,7 @@ export default function HomePage() {
           </h2>
           <ProseReveal delay={0.3}>
             <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg mb-8 ">
-              Whether you manage a residential block, a commercial office, or an industrial facility, get an honest engineering assessment and a clear quote without sales pressure.
+              Whether you are a homeowner seeking unified simplicity, an architect requiring invisible integration, or a residential developer needing a single accountability partner—get an honest engineering assessment without the sales pressure.
             </p>
           </ProseReveal>
           <TactileLink

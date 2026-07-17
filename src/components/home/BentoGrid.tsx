@@ -47,13 +47,13 @@ export function BentoGrid() {
 
   const services = [
     {
-      id: "surveillance",
-      title: "Smart Cameras & Surveillance",
-      desc: "Weather-proof 4K cameras that spot intruders instantly and record crystal-clear footage locally. Enjoy 30 days of continuous security without paying monthly cloud storage fees, fully compliant with UK GDPR privacy rules.",
-      icon: Shield,
-      href: "/systems/surveillance",
-      // Large Hero Feature: Spans 8 cols, 2 rows on desktop
-      spanClasses: "col-span-12 md:col-span-12 lg:col-span-8 lg:row-span-2",
+      id: "lighting",
+      title: "Intelligent Lighting & Shading",
+      desc: "Automated architectural lighting scenes and motorized window blinds. Flush-mounted wall keypads replace banks of messy light switches, wired directly to a central distribution board.",
+      icon: Cpu,
+      href: "/systems/lighting",
+      // Large Top Left: 7 cols
+      spanClasses: "col-span-12 lg:col-span-7",
       bgClasses: "bg-gradient-to-br from-brand-slate to-brand-slate/90 text-brand-paper",
       iconBg: "bg-brand-teal/20 text-brand-teal border border-brand-teal/30",
       titleColor: "text-brand-paper",
@@ -61,13 +61,13 @@ export function BentoGrid() {
       isDark: true,
     },
     {
-      id: "access",
-      title: "Keyless Door Entry",
-      desc: "Manage main gates and secure doors directly from your smartphone. See who is ringing and let staff or deliveries in without cutting physical keys.",
-      icon: Lock,
-      href: "/systems/access",
-      // Medium Top Right Card: Spans 4 cols on desktop
-      spanClasses: "col-span-12 md:col-span-6 lg:col-span-4",
+      id: "climate",
+      title: "Climate & Energy Control",
+      desc: "Room-by-room temperature scheduling and real-time solar monitoring. Heats and cools automatically based on occupancy, slashing wasted energy without manual tweaking.",
+      icon: Flame,
+      href: "/systems/climate",
+      // Top Right: 5 cols
+      spanClasses: "col-span-12 lg:col-span-5",
       bgClasses: "bg-brand-teal-500/5 border border-brand-teal-500/15 text-brand-slate",
       iconBg: "bg-brand-teal-500/10 text-brand-teal-500 border border-brand-teal-500/20",
       titleColor: "text-brand-slate",
@@ -75,27 +75,13 @@ export function BentoGrid() {
       isDark: false,
     },
     {
-      id: "fire",
-      title: "Fire & Life Safety",
-      desc: "Instant warning sensors for smoke, heat, and water leaks. Engineered strictly to British Safety Standards to protect occupants and property before damage occurs.",
-      icon: Flame,
-      href: "/systems/fire",
-      // Medium Middle Right Card: Spans 4 cols on desktop
-      spanClasses: "col-span-12 md:col-span-6 lg:col-span-4",
-      bgClasses: "bg-brand-teal-300/5 border border-brand-teal-300/15 text-brand-slate",
-      iconBg: "bg-brand-teal-300/10 text-brand-teal-600 border border-brand-teal-300/20",
-      titleColor: "text-brand-slate",
-      descColor: "text-brand-grey",
-      isDark: false,
-    },
-    {
-      id: "communication",
-      title: "Intercoms & Sound",
-      desc: "Clear two-way audio communication and public announcement speakers designed for residential gates, reception desks, and logistics yards.",
+      id: "media",
+      title: "Concealed Sound & Media",
+      desc: "High-fidelity architectural ceiling speakers and invisible living room cinema audio. Zero bulky black speakers or trailing cords—clean acoustic engineering driven by a centralized rack.",
       icon: Radio,
-      href: "/systems/communication",
-      // Medium Bottom Left Card: Spans 5 cols on desktop
-      spanClasses: "col-span-12 md:col-span-6 lg:col-span-5",
+      href: "/systems/media",
+      // Bottom Left: 5 cols
+      spanClasses: "col-span-12 lg:col-span-5",
       bgClasses: "bg-brand-teal-600/5 border border-brand-teal-600/15 text-brand-slate",
       iconBg: "bg-brand-teal-600/10 text-brand-teal-600 border border-brand-teal-600/20",
       titleColor: "text-brand-slate",
@@ -103,13 +89,13 @@ export function BentoGrid() {
       isDark: false,
     },
     {
-      id: "automation",
-      title: "Energy & Comfort Control",
-      desc: "Intelligent building sensors that quietly turn off heating and lighting in empty zones, trimming up to 30% off your monthly energy waste automatically.",
-      icon: Cpu,
-      href: "/systems/smart-building",
-      // Wide Bottom Right Card: Spans 7 cols on desktop
-      spanClasses: "col-span-12 md:col-span-6 lg:col-span-7",
+      id: "security",
+      title: "Perimeter & Access Security",
+      desc: "Weather-proof outdoor cameras, flush-mounted video intercoms, and keyless gate entry. 30 days of continuous local video storage with zero monthly cloud subscriptions and 100% privacy.",
+      icon: Shield,
+      href: "/systems/security",
+      // Bottom Right: 7 cols
+      spanClasses: "col-span-12 lg:col-span-7",
       bgClasses: "bg-brand-teal-900/5 border border-brand-teal-900/15 text-brand-slate",
       iconBg: "bg-brand-teal-deep/10 text-brand-teal-deep border border-brand-teal-deep/20",
       titleColor: "text-brand-slate",
@@ -126,14 +112,14 @@ export function BentoGrid() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-2 max-w-xl">
             <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block">
-              What We Protect
+              The 4-Pillar Taxonomy
             </span>
             <h2 className="font-display font-medium text-3xl md:text-5xl text-brand-slate ">
               Everything Your Building Needs.
             </h2>
           </div>
           <p className="font-body font-normal text-base text-brand-grey max-w-md ">
-            We handle the essential engineering that keeps your property secure, compliant, and energy-efficient—all managed easily from your smartphone or desktop.
+            We package the smart home offering into four distinct engineering disciplines. Everything runs on clean, structured cabling with centralized processing—guaranteeing instant response times.
           </p>
         </div>
 

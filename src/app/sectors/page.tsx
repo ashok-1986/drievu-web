@@ -3,18 +3,18 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowRight, CheckCircle2, Shield, Building2, Wrench, FileText } from "lucide-react";
+import { ArrowRight, CheckCircle2, Home, PenTool, HardHat } from "lucide-react";
 import { ScrollReveal, TactileLink } from "@/components/motion/MotionPrimitives";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { ProseReveal } from "@/components/motion/ProseReveal";
 
 export default function SectorsPage() {
-  const [activeSection, setActiveSection] = useState<string>("architects");
+  const [activeSection, setActiveSection] = useState<string>("homeowners");
 
   // Scroll Spy: Automatically updates active tab as buyer scrolls down
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["architects", "developers", "facilities", "public-sector"];
+      const sections = ["homeowners", "architects", "developers"];
       const scrollPosition = window.scrollY + 250;
 
       for (const sectionId of sections) {
@@ -51,51 +51,39 @@ export default function SectorsPage() {
   // 12th-Grade Plain English Sector Dictionary (Zero technical jargon)
   const sectorsData = [
     {
+      id: "homeowners",
+      title: "Private Homeowners",
+      tagline: "A smart home so simple anyone can use it.",
+      icon: Home,
+      problem: "You want luxury and convenience, but you are terrified of complicated technology that fails when guests come over. Traditional smart home kits clog your Wi-Fi and rely on glitchy cloud servers.",
+      solution: "One tap on your smartphone or a single wall keypad sets the mood, secures the perimeter, and manages your climate. We build systems that work like infrastructure—invisible, hardwired, and strictly private.",
+      proofTitle: "National-Infrastructure Rigor",
+      proofDesc: "Our executive team brings the same engineering discipline used in luxury residential towers and landmark commercial developments directly to your private residence.",
+      image: "/images/hero-property-dusk.jpg",
+      imagePrompt: "Wide architectural shot of a newly completed luxury commercial building exterior at dusk, clean glass facades, professional landscaping, zero clutter --ar 16:9 --style raw",
+    },
+    {
       id: "architects",
-      title: "Architects & Specifiers",
-      tagline: "Clean design without last-minute wiring clutter.",
-      icon: Building2,
-      problem: "You design beautiful, clean spaces, but traditional security installers often ruin the aesthetic with bulky boxes, ugly surface-mounted cables, and hardware that clashes with your finishes.",
-      solution: "We work with you during the early planning stage. We map out hidden wiring routes, specify flush-mounted cameras and glass intercom panels, and ensure every piece of technology blends invisibly into your design without sacrificing safety.",
-      proofTitle: "Verified Leadership Track Record",
-      proofDesc: "Our executive team engineered seamless, high-end building systems across luxury residential towers like Altair and landmark commercial developments like GIFT City.",
+      title: "Architects & Interior Designers",
+      tagline: "We engineer invisible technology.",
+      icon: PenTool,
+      problem: "Tech contractors routinely ruin clean visual lines with ugly thermostats, bulky plastic sensors, and messy ceiling cutouts that clash with your carefully specified finishes.",
+      solution: "We provide CAD-ready electrical schematics, flush-mounted architectural sensors, and centralized wiring racks that keep living spaces completely unburdened by hardware. We ensure every piece of technology blends invisibly into your design.",
+      proofTitle: "Architectural Integration",
+      proofDesc: "We work with you during the early planning stage to map out hidden wiring routes and specify equipment that respects your aesthetic vision.",
       image: "/images/system-surveillance.jpg",
       imagePrompt: "Architectural close-up of a minimalist white flush-mounted camera on a clean concrete gallery ceiling, zero visible wires, interior design focus --ar 16:9 --style raw",
     },
     {
       id: "developers",
-      title: "Property Developers",
-      tagline: "On-time installations that never delay your building handover.",
-      icon: Shield,
-      problem: "Subcontractors routinely over-specify expensive gear to inflate their invoices, show up late, and leave you with incomplete paperwork that delays your ability to sell, let, or hand over the property.",
-      solution: "We specify accurately and install strictly to your construction schedule. You receive reliable, right-sized equipment without fluff, finished with a complete, structured handover document pack so you can close your project immediately.",
+      title: "Residential Developers & Builders",
+      tagline: "A single accountability partner for all low-voltage building systems.",
+      icon: HardHat,
+      problem: "You deal with delays, blown budgets, and constant finger-pointing between electricians, heating engineers, and alarm installers on site.",
+      solution: "We deliver complete handover packs, documented compliance certificates, and structured cabling that increases gross development value. We specify accurately and install strictly to your construction schedule.",
       proofTitle: "Live UK Delivery Discipline",
-      proofDesc: "At our Staines Road commercial estate installation in London, we delivered a 31-camera network and video storage system on schedule with zero tenant disruption and full insurance documentation.",
-      image: "/images/hero-property-dusk.jpg",
-      imagePrompt: "Wide architectural shot of a newly completed luxury commercial building exterior at dusk, clean glass facades, professional landscaping, zero clutter --ar 16:9 --style raw",
-    },
-    {
-      id: "facilities",
-      title: "Facilities Managers",
-      tagline: "Reliable systems that work every day, backed by fast support.",
-      icon: Wrench,
-      problem: "You inherit systems with messy wiring, zero documentation, and constant false alarms. When something breaks, the original installer is nowhere to be found, leaving your building exposed.",
-      solution: "We bring order to operational chaos. We provide SLA-backed annual maintenance contracts with a guaranteed response within one working day. We tidy up your existing setups and give you a single, simple app to manage cameras and doors easily.",
-      proofTitle: "Infrastructure-Grade Reliability",
-      proofDesc: "Our leadership team spent over two decades managing mission-critical security and communication systems for major airports, metros, and stadiums where failure is not an option.",
+      proofDesc: "At our Staines Road commercial estate installation in London, we delivered a 31-camera network and video storage system on schedule with zero tenant disruption.",
       image: "/images/system-automation.jpg",
-      imagePrompt: "Clean, brightly lit facilities management office with a modern computer monitor showing a clear, organized building security layout, neat desk --ar 16:9 --style raw",
-    },
-    {
-      id: "public-sector",
-      title: "Housing Associations & Public Sector",
-      tagline: "British safety standards with strict tenant privacy protection.",
-      icon: FileText,
-      problem: "You need to protect residents and communal properties while staying strictly within public budgets and complying with complex UK data privacy and building safety laws.",
-      solution: "We specify durable, energy-efficient hardware engineered to British safety guidelines. Every system builds in automatic privacy protection for residents, zero recurring cloud storage fees, and full audit documentation for your compliance records.",
-      proofTitle: "Public Due-Diligence Ready",
-      proofDesc: "Drievu Limited is a UK-registered company (Reg No. 15479482) operating with self-hosted digital systems and transparent, documented processes designed to pass rigorous procurement audits.",
-      image: "/images/system-access.jpg",
       imagePrompt: "Exterior of a modern, well-maintained UK brick residential apartment block on a bright day, neat communal entrance with a secure video doorbell panel --ar 16:9 --style raw",
     },
   ];
