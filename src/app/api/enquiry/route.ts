@@ -2,6 +2,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
+import { createZohoLead } from "@/lib/zoho";
 
 const PROPERTY_TYPES = [
   "commercial-office",
@@ -124,7 +125,9 @@ export async function POST(request: NextRequest) {
     }
 
     const resend = new Resend(process.env.RESEND_API_KEY);
-    const { error } = await resend.emails.send({
+    
+    // Execute Resend and Zoho concurrently
+    const emailPromise = resend.emails.send({
       from: process.env.RESEND_FROM,
       to: process.env.RESEND_TO,
       replyTo: data.email,
@@ -132,8 +135,20 @@ export async function POST(request: NextRequest) {
       text: buildEmailBody(data),
     });
 
-    if (error) {
-      console.error("[ENQUIRY] Resend send failed:", error);
+    const zohoPromise = createZohoLead(data);
+
+    const [emailResult] = await Promise.allSettled([emailPromise, zohoPromise]);
+
+    // Resend's send method resolves to { data, error } or rejects on network issues
+    let resendError = null;
+    if (emailResult.status === "rejected") {
+      resendError = emailResult.reason;
+    } else if (emailResult.value.error) {
+      resendError = emailResult.value.error;
+    }
+
+    if (resendError) {
+      console.error("[ENQUIRY] Resend send failed:", resendError);
       return NextResponse.json(
         { ok: false, error: "We couldn't send your enquiry. Please try again or call us directly." },
         { status: 502 }
