@@ -1,4 +1,4 @@
-// src/app/consultation/page.tsx
+﻿// src/app/consultation/page.tsx
 import React from "react";
 import { ConsultationIntake } from "@/components/consultation/ConsultationIntake";
 import { ShieldCheck, Lock, CheckCircle2 } from "lucide-react";
@@ -15,12 +15,12 @@ export default function ConsultationPage() {
         
         {/* PAGE HEADER */}
         <div className="text-center max-w-2xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-brand-grey/20 text-brand-slate text-xs font-display font-medium uppercase tracking-widest shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-brand-grey/20 text-brand-slate text-xs font-display font-normal uppercase tracking-widest shadow-sm">
             <span className="w-2 h-2 rounded-full bg-brand-teal" />
             Zero Sales Pressure · Direct Principal Access
           </div>
 
-          <h1 className="font-display font-medium text-hero w-full text-center text-brand-slate uppercase">
+          <h1 className="font-display font-normal text-hero w-full text-center text-brand-slate">
             Start Your Engineering Scoping.
           </h1>
 

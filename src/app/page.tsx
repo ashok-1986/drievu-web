@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { ArrowRight, Shield, Lock, Flame, Radio, Cpu } from "lucide-react";
@@ -34,7 +34,7 @@ export default function HomePage() {
         <section className="py-24 px-6 max-w-[1200px] mx-auto w-full relative z-30">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-5 space-y-6">
-              <h2 className="font-display font-medium text-3xl md:text-5xl text-brand-slate ">
+              <h2 className="font-display font-normal text-3xl md:text-5xl text-brand-slate ">
                 <SplitTextReveal text="Delivered at Major Scale." />
               </h2>
               <ProseReveal delay={0.3}>
@@ -54,20 +54,20 @@ export default function HomePage() {
 
             <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-6">
               <TactileLink href="/track-record" variant="ghost" className="bg-brand-mist p-8 rounded-2xl border border-brand-grey/15 flex flex-col justify-center text-center sm:text-left hover:border-brand-teal/40 transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97]">
-                <span className="font-display font-medium text-5xl text-brand-slate mb-2 block">18+</span>
-                <span className="font-display font-medium text-sm text-brand-slate block mb-1">Landmark Projects</span>
+                <span className="font-display font-normal text-5xl text-brand-slate mb-2 block">18+</span>
+                <span className="font-display font-normal text-sm text-brand-slate block mb-1">Landmark Projects</span>
                 <span className="font-body font-normal text-xs text-brand-grey">Stadiums, metros, airports & infrastructure.</span>
               </TactileLink>
               
               <TactileLink href="/track-record" variant="ghost" className="bg-brand-mist p-8 rounded-2xl border border-brand-grey/15 flex flex-col justify-center text-center sm:text-left hover:border-brand-teal/40 transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97]">
-                <span className="font-display font-medium text-5xl text-brand-slate mb-2 block">20+</span>
-                <span className="font-display font-medium text-sm text-brand-slate block mb-1">Years Track Record</span>
+                <span className="font-display font-normal text-5xl text-brand-slate mb-2 block">20+</span>
+                <span className="font-display font-normal text-sm text-brand-slate block mb-1">Years Track Record</span>
                 <span className="font-body font-normal text-xs text-brand-grey">Executive engineering leadership.</span>
               </TactileLink>
 
               <TactileLink href="/track-record" variant="ghost" className="bg-brand-mist p-8 rounded-2xl border border-brand-grey/15 flex flex-col justify-center text-center sm:text-left hover:border-brand-teal/40 transition-colors duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97]">
-                <span className="font-display font-medium text-5xl text-brand-teal mb-2 block">4</span>
-                <span className="font-display font-medium text-sm text-brand-slate block mb-1">Core Disciplines</span>
+                <span className="font-display font-normal text-5xl text-brand-teal mb-2 block">4</span>
+                <span className="font-display font-normal text-sm text-brand-slate block mb-1">Core Disciplines</span>
                 <span className="font-body font-normal text-xs text-brand-grey">Lighting, Climate, Media, & Security.</span>
               </TactileLink>
             </div>
@@ -79,7 +79,7 @@ export default function HomePage() {
       <section className="bg-brand-slate text-brand-paper py-24 px-6 relative z-30 overflow-hidden">
         <div className="max-w-[1200px] mx-auto relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-20">
-            <h2 className="font-display font-medium text-3xl md:text-5xl text-white  mb-4">
+            <h2 className="font-display font-normal text-3xl md:text-5xl text-white  mb-4">
               <SplitTextReveal text="How We Deliver Without Stress." />
             </h2>
             <ProseReveal delay={0.3}>
@@ -93,10 +93,10 @@ export default function HomePage() {
             {workProcess.map((step, index) => (
               <ScrollReveal key={step.name} delay={index * 0.08} direction="up">
                 <TactileLink href="/consultation" variant="ghost" className="flex flex-col items-start lg:items-center lg:text-center group bg-transparent hover:bg-white/5 rounded-2xl p-4">
-                  <div className="w-14 h-14 rounded-full bg-brand-slate border-2 border-brand-teal text-white font-display font-medium text-base flex items-center justify-center mb-6">
+                  <div className="w-14 h-14 rounded-full bg-brand-slate border-2 border-brand-teal text-white font-display font-normal text-base flex items-center justify-center mb-6">
                     {step.step}
                   </div>
-                  <h3 className="font-display font-medium text-lg text-white mb-2">
+                  <h3 className="font-display font-normal text-lg text-white mb-2">
                     {step.name}
                   </h3>
                   <p className="font-body font-normal text-xs text-brand-paper/70 ">
@@ -111,7 +111,7 @@ export default function HomePage() {
 
       <section className="bg-brand-teal text-white py-20 px-6 text-center relative z-30">
         <div className="max-w-3xl mx-auto">
-          <h2 className="font-display font-medium text-3xl md:text-5xl  mb-6">
+          <h2 className="font-display font-normal text-3xl md:text-5xl  mb-6">
             <SplitTextReveal text="Let's Talk About Your Building." />
           </h2>
           <ProseReveal delay={0.3}>

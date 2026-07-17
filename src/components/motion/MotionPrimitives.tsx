@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import * as React from "react";
 import { motion, type HTMLMotionProps } from "framer-motion";
@@ -41,7 +41,7 @@ export function TactileButton({
   "aria-label": ariaLabel,
   ...dataProps
 }: TactileButtonProps) {
-  const baseStyles = "relative inline-flex items-center justify-center font-display font-medium rounded-full tracking-wide transition duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-brand-paper";
+  const baseStyles = "relative inline-flex items-center justify-center font-display font-normal rounded-full tracking-wide transition duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-brand-paper";
 
   const variantStyles = {
     primary: "bg-brand-teal text-white border border-white/20 shadow-[0_4px_20px_rgb(var(--color-brand-teal)/0.35)] hover:shadow-[0_6px_24px_rgb(var(--color-brand-teal)/0.5)] hover:bg-brand-teal-deep",
@@ -114,7 +114,7 @@ export function TactileLink({
   "aria-label": ariaLabel,
   ...dataProps
 }: TactileLinkProps) {
-  const baseStyles = "relative inline-flex items-center justify-center font-display font-medium rounded-full tracking-wide transition duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-brand-paper";
+  const baseStyles = "relative inline-flex items-center justify-center font-display font-normal rounded-full tracking-wide transition duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-brand-paper";
 
   const variantStyles = {
     primary: "bg-brand-teal text-white border border-white/20 shadow-[0_4px_20px_rgb(var(--color-brand-teal)/0.35)] hover:shadow-[0_6px_24px_rgb(var(--color-brand-teal)/0.5)] hover:bg-brand-teal-deep",
@@ -244,7 +244,7 @@ export function GliderTab({ tabs, activeTab, onChange, className = "", gliderId 
         <button
           key={tab.id}
           onClick={() => onChange(tab.id)}
-          className={`relative z-10 px-3 py-3.5 rounded-lg font-display font-medium text-xs text-center transition-colors duration-150 active:scale-[0.97] cursor-pointer ${
+          className={`relative z-10 px-3 py-3.5 rounded-lg font-display font-normal text-xs text-center transition-colors duration-150 active:scale-[0.97] cursor-pointer ${
             activeTab === tab.id ? "text-white" : "text-brand-slate hover:text-brand-teal"
           }`}
           aria-current={activeTab === tab.id ? "true" : "false"}
@@ -291,7 +291,7 @@ export function GliderPill({ options, activeOption, onChange, className = "", gl
         <button
           key={opt.id}
           onClick={() => onChange(opt.id)}
-          className={`relative z-10 flex-1 py-3.5 rounded-lg font-display font-medium text-xs transition-colors active:scale-[0.97] cursor-pointer ${
+          className={`relative z-10 flex-1 py-3.5 rounded-lg font-display font-normal text-xs transition-colors active:scale-[0.97] cursor-pointer ${
             activeOption === opt.id ? "text-white" : "text-brand-slate hover:text-brand-teal"
           }`}
         >
@@ -339,7 +339,7 @@ function AccordionItem({ item, defaultOpen }: { item: AccordionItem; defaultOpen
         className="w-full flex items-center justify-between gap-4 p-5 text-left active:scale-[0.995] cursor-pointer transition-transform"
         aria-expanded={isOpen}
       >
-        <span className="font-display font-medium text-sm text-brand-slate pr-8">
+        <span className="font-display font-normal text-sm text-brand-slate pr-8">
           {item.question}
         </span>
         <motion.div

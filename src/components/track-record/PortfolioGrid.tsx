@@ -1,4 +1,4 @@
-// src/components/track-record/PortfolioGrid.tsx
+﻿// src/components/track-record/PortfolioGrid.tsx
 "use client";
 
 import React, { useState } from "react";
@@ -105,7 +105,7 @@ export function PortfolioGrid() {
       {/* FILTER CONTROLS */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-brand-grey/20">
         <div className="space-y-1">
-          <h2 className="font-display font-medium text-3xl md:text-5xl text-brand-slate ">
+          <h2 className="font-display font-normal text-3xl md:text-5xl text-brand-slate ">
             Proven Engineering Heritage.
           </h2>
           <p className="font-body font-normal text-xs md:text-sm text-brand-grey">
@@ -121,7 +121,7 @@ export function PortfolioGrid() {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 aria-pressed={isActive}
-                className={`shrink-0 min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-full px-5 py-2.5 border font-display font-medium text-xs uppercase tracking-wider whitespace-nowrap transition-colors duration-200 active:scale-[0.97] shadow-sm ${
+                className={`shrink-0 min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-full px-5 py-2.5 border font-display font-normal text-xs uppercase tracking-wider whitespace-nowrap transition-colors duration-200 active:scale-[0.97] shadow-sm ${
                   isActive
                     ? "bg-brand-teal text-white border-brand-teal"
                     : "border-brand-grey/20 bg-brand-paper hover:bg-brand-mist text-brand-slate"
@@ -154,7 +154,7 @@ export function PortfolioGrid() {
                     {/* Top Row: Sector Badge & Icon */}
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <span className="font-display font-medium text-[11px] uppercase tracking-wider text-brand-teal bg-brand-mist px-3 py-1 rounded-full border border-brand-grey/10">
+                        <span className="font-display font-normal text-[11px] uppercase tracking-wider text-brand-teal bg-brand-mist px-3 py-1 rounded-full border border-brand-grey/10">
                           {project.sectorLabel}
                         </span>
                         <div className="w-10 h-10 rounded-2xl bg-brand-mist text-brand-slate flex items-center justify-center shrink-0 group-hover:bg-brand-teal group-hover:text-white transition-colors">
@@ -166,7 +166,7 @@ export function PortfolioGrid() {
                         <span className="font-body font-normal text-xs text-brand-grey uppercase tracking-wider block">
                           {project.location}
                         </span>
-                        <h3 className="font-display font-medium text-xl md:text-2xl text-brand-slate  group-hover:text-brand-teal transition-colors">
+                        <h3 className="font-display font-normal text-xl md:text-2xl text-brand-slate  group-hover:text-brand-teal transition-colors">
                           {project.title}
                         </h3>
                       </div>
@@ -177,7 +177,7 @@ export function PortfolioGrid() {
                       <span className="font-body font-normal text-[11px] text-brand-grey uppercase tracking-wider block">
                         Hardware & System Scope
                       </span>
-                      <span className="font-display font-medium text-xs md:text-sm text-brand-slate block mt-0.5">
+                      <span className="font-display font-normal text-xs md:text-sm text-brand-slate block mt-0.5">
                         {project.scale}
                       </span>
                     </div>
@@ -188,7 +188,7 @@ export function PortfolioGrid() {
                         {project.outcome}
                       </p>
 
-                      <div className="pt-2 flex items-center justify-between text-brand-teal font-display font-medium text-xs">
+                      <div className="pt-2 flex items-center justify-between text-brand-teal font-display font-normal text-xs">
                         <span>BS EN Compliant Delivery</span>
                         <span className="text-brand-grey/80">
                           Scoping Details Verified
@@ -207,10 +207,10 @@ export function PortfolioGrid() {
       {/* BOTTOM DUE DILIGENCE ASSURANCE CARD */}
       <div className="p-8 rounded-3xl bg-brand-slate text-white border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-6 shadow-elevated">
         <div className="space-y-1 max-w-xl">
-          <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block">
+          <span className="font-display font-normal text-xs text-brand-teal uppercase tracking-widest block">
             Procurement Due Diligence
           </span>
-          <h4 className="font-display font-medium text-lg md:text-xl text-white ">
+          <h4 className="font-display font-normal text-lg md:text-xl text-white ">
             Need references or formal tender qualification documents?
           </h4>
           <p className="font-body font-normal text-xs md:text-sm text-brand-paper/80 ">
@@ -220,7 +220,7 @@ export function PortfolioGrid() {
         <Tactile tapScale={0.98}>
           <a
             href="/consultation"
-            className="bg-brand-teal text-white font-display font-medium text-sm px-6 py-4 rounded-xl hover:bg-brand-teal-deep transition-colors shrink-0 flex items-center gap-2 shadow-md cursor-pointer"
+            className="bg-brand-teal text-white font-display font-normal text-sm px-6 py-4 rounded-xl hover:bg-brand-teal-deep transition-colors shrink-0 flex items-center gap-2 shadow-md cursor-pointer"
           >
             <span>Request Tender Pack</span>
             <ArrowRight className="w-4 h-4" />

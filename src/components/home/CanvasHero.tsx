@@ -204,12 +204,12 @@ export function CanvasHero() {
           
           {/* CHAPTER 1 (0–100vh): Morning Aesthetics & Planning */}
           <section ref={chapter1Ref} className="absolute inset-x-6 md:inset-x-12 max-w-2xl flex flex-col gap-4 pointer-events-auto transition-opacity duration-150 will-change-opacity">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10 text-white text-xs font-display font-medium uppercase tracking-widest w-fit drop-shadow-md">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10 text-white text-xs font-display font-normal uppercase tracking-widest w-fit drop-shadow-md">
               <span className="w-2 h-2 rounded-full bg-brand-teal" />
               Infrastructure-Grade Engineering · London Based
             </div>
 
-            <h1 className="font-display font-medium text-hero w-full text-white uppercase drop-shadow-md">
+            <h1 className="font-display font-normal text-hero w-full text-white drop-shadow-md">
               <SplitTextReveal text="Smart Homes," />
               <br />
               <SplitTextReveal text="Engineered Like Infrastructure." className="text-brand-teal" />
@@ -224,7 +224,7 @@ export function CanvasHero() {
             <div className="relative z-20 flex flex-col sm:flex-row items-center justify-start gap-4 pt-4 pointer-events-auto select-none">
               <Link
                 href="/consultation"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-brand-teal hover:bg-brand-teal-deep text-white font-display font-medium text-sm md:text-base tracking-wide border border-white/20 shadow-[0_4px_20px_rgb(var(--color-brand-teal)/0.35)] hover:shadow-[0_6px_24px_rgb(var(--color-brand-teal)/0.5)] transition duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer group"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-brand-teal hover:bg-brand-teal-deep text-white font-display font-normal text-sm md:text-base tracking-wide border border-white/20 shadow-[0_4px_20px_rgb(var(--color-brand-teal)/0.35)] hover:shadow-[0_6px_24px_rgb(var(--color-brand-teal)/0.5)] transition duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] cursor-pointer group"
               >
                 <span>Book a Scoping Review</span>
                 <ArrowRight className="w-4 h-4 text-white transform group-hover:translate-x-1 transition-transform" />
@@ -234,12 +234,12 @@ export function CanvasHero() {
 
           {/* CHAPTER 2 (100–200vh): Twilight Automation & Smart Triggers */}
           <section ref={chapter2Ref} inert={true} aria-hidden="true" className="absolute inset-x-6 md:inset-x-12 max-w-2xl flex flex-col gap-4 pointer-events-none opacity-0 transition-opacity duration-150 will-change-opacity">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10 text-white text-xs font-display font-medium uppercase tracking-widest w-fit drop-shadow-md">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10 text-white text-xs font-display font-normal uppercase tracking-widest w-fit drop-shadow-md">
               <Cpu className="w-3.5 h-3.5 text-brand-teal" />
               <span>Architectural Permanence</span>
             </div>
             
-            <h2 className="font-display font-medium text-hero w-full text-white uppercase drop-shadow-md">
+            <h2 className="font-display font-normal text-hero w-full text-white drop-shadow-md">
               <SplitTextReveal text="Invisible By Day." />
               <br />
               <SplitTextReveal text="Unified Simplicity." className="text-brand-teal" />
@@ -251,7 +251,7 @@ export function CanvasHero() {
               </p>
             </ProseReveal>
 
-            <div className="pt-2 flex flex-wrap items-center gap-3 font-display font-medium text-xs drop-shadow-md">
+            <div className="pt-2 flex flex-wrap items-center gap-3 font-display font-normal text-xs drop-shadow-md">
               <span className="px-3 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10 text-brand-paper/90">
                 01 · No App Fatigue
               </span>
@@ -263,12 +263,12 @@ export function CanvasHero() {
 
           {/* CHAPTER 3 (200–300vh): Active Night Defense & Local Storage */}
           <section ref={chapter3Ref} inert={true} aria-hidden="true" className="absolute inset-x-6 md:inset-x-12 max-w-2xl flex flex-col gap-4 pointer-events-none opacity-0 transition-opacity duration-150 will-change-opacity">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10 text-white text-xs font-display font-medium uppercase tracking-widest w-fit drop-shadow-md">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10 text-white text-xs font-display font-normal uppercase tracking-widest w-fit drop-shadow-md">
               <HardDrive className="w-3.5 h-3.5 text-brand-teal" />
               <span>Centralized Processing</span>
             </div>
 
-            <h2 className="font-display font-medium text-hero w-full text-white uppercase drop-shadow-md">
+            <h2 className="font-display font-normal text-hero w-full text-white drop-shadow-md">
               <SplitTextReveal text="Total Control." />
               <br />
               <SplitTextReveal text="Zero Cloud Fees." className="text-brand-teal" />
@@ -280,7 +280,7 @@ export function CanvasHero() {
               </p>
             </ProseReveal>
 
-            <div className="pt-2 flex items-center gap-6 font-display font-medium text-xs drop-shadow-md">
+            <div className="pt-2 flex items-center gap-6 font-display font-normal text-xs drop-shadow-md">
               <span className="flex items-center gap-1.5 text-brand-paper/90 px-3.5 py-1.5 rounded-full bg-brand-slate/80 backdrop-blur-md border border-white/10">
                 <ShieldCheck className="w-3.5 h-3.5 text-brand-teal shrink-0" /> Privacy-by-Design Options
               </span>

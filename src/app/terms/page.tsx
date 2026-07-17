@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { ArrowLeft, ShieldCheck, FileText, MapPin, Phone, Mail, Building2, CheckCircle2 } from "lucide-react";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { ProseReveal } from "@/components/motion/ProseReveal";
@@ -10,22 +10,22 @@ export default function TermsOfServicePage() {
     <div className="w-full pt-28 md:pt-36 pb-24 bg-brand-paper min-h-screen">
       {/* 
         * LEGAL HEADER SECTION
-        * Strict Weight-500 Ceiling: Uses font-medium with optical tracking [-0.02em].
+        * Strict Weight-500 Ceiling: Uses font-normal with optical tracking [-0.02em].
         */}
       <section className="bg-brand-slate text-brand-paper py-16 md:py-20 px-6 border-b border-brand-grey/20">
         <div className="max-w-[1000px] mx-auto">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-xs font-display font-medium text-brand-teal uppercase tracking-wider mb-6 hover:underline"
+            className="inline-flex items-center gap-2 text-xs font-display font-normal text-brand-teal uppercase tracking-wider mb-6 hover:underline"
           >
             <ArrowLeft className="w-3.5 h-3.5" /> Return to Front of House
           </Link>
 
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-teal/20 text-brand-teal text-xs font-display font-medium uppercase tracking-widest mb-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-teal/20 text-brand-teal text-xs font-display font-normal uppercase tracking-widest mb-6">
             <ShieldCheck className="w-3.5 h-3.5" /> Procurement Due Diligence Schedule
           </div>
 
-          <h1 className="font-display font-medium text-hero w-full text-center text-white uppercase mb-4">
+          <h1 className="font-display font-normal text-hero w-full text-center text-white mb-4">
             <SplitTextReveal text="Terms of Service & Scoping Conditions." />
           </h1>
           <ProseReveal>
@@ -46,10 +46,10 @@ export default function TermsOfServicePage() {
           {/* LEFT SIDEBAR: Canonical Identity & Direct Access (4 Columns) */}
           <div className="lg:col-span-4 bg-brand-mist p-8 rounded-2xl border border-brand-grey/20 space-y-6 lg:sticky lg:top-28 shadow-soft">
             <div>
-              <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-2">
+              <span className="font-display font-normal text-xs text-brand-teal uppercase tracking-widest block mb-2">
                 Corporate Entity
               </span>
-              <h3 className="font-display font-medium text-lg text-brand-slate ">
+              <h3 className="font-display font-normal text-lg text-brand-slate ">
                 Drievu Limited
               </h3>
               <p className="font-body font-normal text-xs text-brand-grey mt-2 ">
@@ -61,7 +61,7 @@ export default function TermsOfServicePage() {
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-brand-teal shrink-0 mt-0.5" />
                 <div>
-                  <span className="font-display font-medium block text-brand-slate">Registered Office</span>
+                  <span className="font-display font-normal block text-brand-slate">Registered Office</span>
                   <span className="text-brand-grey  block mt-0.5">
                     Apartment 3, Minotaur House, 3 Thunderer Walk, London SE18 6LH
                   </span>
@@ -71,7 +71,7 @@ export default function TermsOfServicePage() {
               <div className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-brand-teal shrink-0" />
                 <div>
-                  <span className="font-display font-medium block text-brand-slate">Direct Engineering Line</span>
+                  <span className="font-display font-normal block text-brand-slate">Direct Engineering Line</span>
                   <span className="text-brand-grey font-mono block mt-0.5">+44 7442 605205</span>
                 </div>
               </div>
@@ -79,7 +79,7 @@ export default function TermsOfServicePage() {
               <div className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-brand-teal shrink-0" />
                 <div>
-                  <span className="font-display font-medium block text-brand-slate">Monitored Corporate Email</span>
+                  <span className="font-display font-normal block text-brand-slate">Monitored Corporate Email</span>
                   <span className="text-brand-grey font-mono block mt-0.5">enquiries@drievu.com</span>
                 </div>
               </div>
@@ -87,7 +87,7 @@ export default function TermsOfServicePage() {
               <div className="flex items-center gap-3">
                 <Building2 className="w-4 h-4 text-brand-teal shrink-0" />
                 <div>
-                  <span className="font-display font-medium block text-brand-slate">Statutory Jurisdiction</span>
+                  <span className="font-display font-normal block text-brand-slate">Statutory Jurisdiction</span>
                   <span className="text-brand-grey block mt-0.5">England & Wales</span>
                 </div>
               </div>
@@ -96,7 +96,7 @@ export default function TermsOfServicePage() {
             <div className="pt-4 border-t border-brand-grey/20">
               <Link
                 href="/consultation"
-                className="w-full inline-flex items-center justify-center gap-2 bg-brand-teal text-white font-display font-medium text-xs uppercase tracking-wider py-3 px-4 rounded-xl shadow-soft hover:bg-brand-teal-deep transition-colors duration-200 active:scale-[0.97]"
+                className="w-full inline-flex items-center justify-center gap-2 bg-brand-teal text-white font-display font-normal text-xs uppercase tracking-wider py-3 px-4 rounded-xl shadow-soft hover:bg-brand-teal-deep transition-colors duration-200 active:scale-[0.97]"
               >
                 <span>Book Scoping Review</span>
               </Link>
@@ -108,7 +108,7 @@ export default function TermsOfServicePage() {
             
             {/* Section 1 */}
             <div className="space-y-4">
-              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate  border-b border-brand-grey/20 pb-3">
+              <h2 className="font-display font-normal text-xl md:text-2xl text-brand-slate  border-b border-brand-grey/20 pb-3">
                 1. General Application & Scope
               </h2>
               <p>
@@ -121,14 +121,14 @@ export default function TermsOfServicePage() {
 
             {/* Section 2: Operational Commitments */}
             <div className="space-y-4">
-              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate  border-b border-brand-grey/20 pb-3">
+              <h2 className="font-display font-normal text-xl md:text-2xl text-brand-slate  border-b border-brand-grey/20 pb-3">
                 2. Scoping Reviews & Response Commitments
               </h2>
               <p>
                 We operate with consultative engineering discipline. Every project begins with independent advice on system architecture, site risk, and budget before any hardware specification is formally quoted.
               </p>
               <div className="bg-brand-mist p-5 rounded-xl border border-brand-grey/20 space-y-2">
-                <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block flex items-center gap-2">
+                <span className="font-display font-normal text-xs text-brand-teal uppercase tracking-widest block flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-brand-teal" /> Our Operational Commitment
                 </span>
                 <p className="font-body font-normal text-xs md:text-sm text-brand-slate ">
@@ -139,7 +139,7 @@ export default function TermsOfServicePage() {
 
             {/* Section 3 */}
             <div className="space-y-4">
-              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate  border-b border-brand-grey/20 pb-3">
+              <h2 className="font-display font-normal text-xl md:text-2xl text-brand-slate  border-b border-brand-grey/20 pb-3">
                 3. System Design, Supply & Installation Standards
               </h2>
               <p>
@@ -147,10 +147,10 @@ export default function TermsOfServicePage() {
               </p>
               <ul className="list-disc pl-6 space-y-2 text-brand-slate/80">
                 <li>
-                  <strong className="font-medium text-brand-slate">Quality-Verified Supply Chain:</strong> We specify quality-verified equipment from established manufacturers (such as IP PoE surveillance, addressable fire panels, and DIN-rail automation modules), engineered to withstand UK operating environments.
+                  <strong className="font-normal text-brand-slate">Quality-Verified Supply Chain:</strong> We specify quality-verified equipment from established manufacturers (such as IP PoE surveillance, addressable fire panels, and DIN-rail automation modules), engineered to withstand UK operating environments.
                 </li>
                 <li>
-                  <strong className="font-medium text-brand-slate">British Standards Compliance:</strong> Systems are designed and specified to relevant British Standards, including BS EN guidelines (such as BS EN 50131 and BS EN 62676 for electronic security and surveillance).
+                  <strong className="font-normal text-brand-slate">British Standards Compliance:</strong> Systems are designed and specified to relevant British Standards, including BS EN guidelines (such as BS EN 50131 and BS EN 62676 for electronic security and surveillance).
                 </li>
               </ul>
             </div>
@@ -159,7 +159,7 @@ export default function TermsOfServicePage() {
             <div className="bg-brand-mist p-6 rounded-2xl border border-brand-grey/20 space-y-4">
               <div className="flex items-center gap-2">
                 <FileText className="w-5 h-5 text-brand-teal" />
-                <h3 className="font-display font-medium text-lg text-brand-slate ">
+                <h3 className="font-display font-normal text-lg text-brand-slate ">
                   4. Documented Handover Guarantee
                 </h3>
               </div>
@@ -173,7 +173,7 @@ export default function TermsOfServicePage() {
 
             {/* Section 5 */}
             <div className="space-y-4">
-              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate  border-b border-brand-grey/20 pb-3">
+              <h2 className="font-display font-normal text-xl md:text-2xl text-brand-slate  border-b border-brand-grey/20 pb-3">
                 5. Annual Maintenance Contracts (AMC)
               </h2>
               <p>
@@ -183,7 +183,7 @@ export default function TermsOfServicePage() {
 
             {/* Section 6 */}
             <div className="space-y-4">
-              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate  border-b border-brand-grey/20 pb-3">
+              <h2 className="font-display font-normal text-xl md:text-2xl text-brand-slate  border-b border-brand-grey/20 pb-3">
                 6. Intellectual Property & Website Content
               </h2>
               <p>
@@ -193,7 +193,7 @@ export default function TermsOfServicePage() {
 
             {/* Section 7 */}
             <div className="space-y-4">
-              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate  border-b border-brand-grey/20 pb-3">
+              <h2 className="font-display font-normal text-xl md:text-2xl text-brand-slate  border-b border-brand-grey/20 pb-3">
                 7. Limitation of Liability & Governing Law
               </h2>
               <p>
@@ -206,7 +206,7 @@ export default function TermsOfServicePage() {
 
             {/* Section 8 */}
             <div className="space-y-4 pt-4 border-t border-brand-grey/20">
-              <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate ">
+              <h2 className="font-display font-normal text-xl md:text-2xl text-brand-slate ">
                 8. Contacting Our Legal & Engineering Team
               </h2>
               <p className="text-sm">

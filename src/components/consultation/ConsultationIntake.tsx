@@ -1,4 +1,4 @@
-// src/components/consultation/ConsultationIntake.tsx
+﻿// src/components/consultation/ConsultationIntake.tsx
 "use client";
 
 import React, { useState } from "react";
@@ -200,10 +200,10 @@ export function ConsultationIntake() {
     <div className="w-full max-w-4xl mx-auto bg-brand-paper rounded-2xl border border-brand-grey/15 shadow-elevated overflow-hidden">
       {/* HEADER */}
       <div className="bg-brand-slate text-white p-6 md:p-8 border-b border-white/10 text-center">
-        <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-1">
+        <span className="font-display font-normal text-xs text-brand-teal uppercase tracking-widest block mb-1">
           One Screen. One Submission.
         </span>
-        <h1 className="font-display font-medium text-[clamp(1.5rem,3vw,3rem)] w-full text-white ">
+        <h1 className="font-display font-normal text-[clamp(1.5rem,3vw,3rem)] w-full text-white ">
           Project Scoping Review
         </h1>
       </div>
@@ -221,7 +221,7 @@ export function ConsultationIntake() {
               <div className="w-16 h-16 bg-brand-green/10 text-brand-green rounded-full flex items-center justify-center mx-auto border border-brand-green/20">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
-              <p className="font-display font-medium text-xl md:text-2xl text-brand-slate ">
+              <p className="font-display font-normal text-xl md:text-2xl text-brand-slate ">
                 Received. An engineer will call you within one working day.
               </p>
             </motion.div>
@@ -237,7 +237,7 @@ export function ConsultationIntake() {
             >
               {/* PROPERTY TYPE */}
               <div>
-                <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate mb-2">
+                <h2 className="font-display font-normal text-xl md:text-2xl text-brand-slate mb-2">
                   <SplitTextReveal text="What type of property are we protecting?" />
                 </h2>
                 <ProseReveal delay={0.3}>
@@ -271,7 +271,7 @@ export function ConsultationIntake() {
                           }`}
                         >
                           <div className="flex items-center justify-between mb-2">
-                            <span className="font-display font-medium text-base">{pt.label}</span>
+                            <span className="font-display font-normal text-base">{pt.label}</span>
                             <div
                               className={`w-4 h-4 rounded-full border flex items-center justify-center ${
                                 isSelected ? "border-brand-teal bg-brand-teal text-white" : "border-brand-grey/30"
@@ -295,7 +295,7 @@ export function ConsultationIntake() {
 
               {/* BUILDING COUNT */}
               <div className="bg-brand-mist p-5 rounded-xl border border-brand-grey/15">
-                <label htmlFor="intake-buildings" className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-3">
+                <label htmlFor="intake-buildings" className="font-display font-normal text-xs text-brand-slate uppercase tracking-wider block mb-3">
                   Number of Buildings / Blocks
                 </label>
                 <input
@@ -326,7 +326,7 @@ export function ConsultationIntake() {
 
               {/* POSTCODE */}
               <div>
-                <label htmlFor="intake-postcode" className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
+                <label htmlFor="intake-postcode" className="font-display font-normal text-xs text-brand-slate uppercase tracking-wider block mb-2">
                   Site UK Postcode *
                 </label>
                 <div className="relative">
@@ -355,7 +355,7 @@ export function ConsultationIntake() {
 
               {/* TRIGGER */}
               <div>
-                <span className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-3">
+                <span className="font-display font-normal text-xs text-brand-slate uppercase tracking-wider block mb-3">
                   Reason for Enquiry *
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -403,7 +403,7 @@ export function ConsultationIntake() {
               {/* CONTACT DETAILS */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="intake-name" className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
+                  <label htmlFor="intake-name" className="font-display font-normal text-xs text-brand-slate uppercase tracking-wider block mb-2">
                     Full Name *
                   </label>
                   <div className="relative">
@@ -431,7 +431,7 @@ export function ConsultationIntake() {
                 </div>
 
                 <div>
-                  <label htmlFor="intake-company" className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
+                  <label htmlFor="intake-company" className="font-display font-normal text-xs text-brand-slate uppercase tracking-wider block mb-2">
                     Company / Organisation *
                   </label>
                   <div className="relative">
@@ -459,7 +459,7 @@ export function ConsultationIntake() {
                 </div>
 
                 <div>
-                  <label htmlFor="intake-role" className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
+                  <label htmlFor="intake-role" className="font-display font-normal text-xs text-brand-slate uppercase tracking-wider block mb-2">
                     Your Role / Title *
                   </label>
                   <input
@@ -484,7 +484,7 @@ export function ConsultationIntake() {
                 </div>
 
                 <div>
-                  <label htmlFor="intake-email" className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
+                  <label htmlFor="intake-email" className="font-display font-normal text-xs text-brand-slate uppercase tracking-wider block mb-2">
                     Work Email *
                   </label>
                   <div className="relative">
@@ -512,7 +512,7 @@ export function ConsultationIntake() {
                 </div>
 
                 <div>
-                  <label htmlFor="intake-phone" className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
+                  <label htmlFor="intake-phone" className="font-display font-normal text-xs text-brand-slate uppercase tracking-wider block mb-2">
                     Direct Phone / Mobile *
                   </label>
                   <div className="relative">
@@ -540,7 +540,7 @@ export function ConsultationIntake() {
                 </div>
 
                 <div>
-                  <label htmlFor="intake-callTime" className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block mb-2">
+                  <label htmlFor="intake-callTime" className="font-display font-normal text-xs text-brand-slate uppercase tracking-wider block mb-2">
                     Best Time To Call *
                   </label>
                   <select
@@ -606,7 +606,7 @@ export function ConsultationIntake() {
                   <button
                     type="submit"
                     disabled={isSubmitting || Object.keys(liveErrors).length > 0}
-                    className="bg-brand-teal text-white font-display font-medium text-sm px-8 py-4 rounded-xl hover:bg-brand-teal-deep transition-colors duration-200 flex items-center gap-2 shadow-elevated cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="bg-brand-teal text-white font-display font-normal text-sm px-8 py-4 rounded-xl hover:bg-brand-teal-deep transition-colors duration-200 flex items-center gap-2 shadow-elevated cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <span>Submitting...</span>

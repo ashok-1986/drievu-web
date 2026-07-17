@@ -130,22 +130,22 @@ export default function SystemDetailPage({ params }: { params: { category: strin
     <div className="w-full pt-28 md:pt-36 pb-24 bg-brand-paper min-h-screen select-none">
       {/* 
         * TECHNICAL HERO SECTION
-        * Strict Weight-500 Ceiling: Uses font-medium with optical tracking [-0.03em].
+        * Strict Weight-500 Ceiling: Uses font-normal with optical tracking [-0.03em].
         */}
       <section className="bg-brand-slate text-brand-paper py-16 md:py-24 px-6 border-b border-brand-grey/20">
         <div className="max-w-[1200px] mx-auto">
           <Link 
             href="/" 
-            className="inline-flex items-center gap-2 text-xs font-display font-medium text-brand-teal uppercase tracking-wider mb-8 hover:underline cursor-pointer"
+            className="inline-flex items-center gap-2 text-xs font-display font-normal text-brand-teal uppercase tracking-wider mb-8 hover:underline cursor-pointer"
           >
             <ArrowLeft className="w-3.5 h-3.5" /> Return to Front of House
           </Link>
           
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-teal/20 text-brand-teal text-xs font-display font-medium uppercase tracking-widest mb-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-teal/20 text-brand-teal text-xs font-display font-normal uppercase tracking-widest mb-6">
             <ShieldCheck className="w-3.5 h-3.5" /> Technical Specification Sheet
           </div>
 
-          <h1 className="font-display font-medium text-hero w-full text-center text-white mb-6 uppercase">
+          <h1 className="font-display font-normal text-hero w-full text-center text-white mb-6">
             <SplitTextReveal text={data.title} />
           </h1>
           <ProseReveal>
@@ -163,7 +163,7 @@ export default function SystemDetailPage({ params }: { params: { category: strin
         <div className="max-w-[1200px] mx-auto">
           <div className="w-full h-80 bg-brand-slate/10 rounded-2xl relative overflow-hidden flex items-center justify-center border border-brand-grey/20 shadow-soft">
             <div className="text-center font-mono text-xs text-brand-slate/80 p-6 max-w-xl">
-              <span className="font-medium block text-sm mb-2 text-brand-slate">[Technical Asset: {data.title}]</span>
+              <span className="font-normal block text-sm mb-2 text-brand-slate">[Technical Asset: {data.title}]</span>
               <span className="opacity-75 block ">Asset pending final approval.</span>
             </div>
           </div>
@@ -178,14 +178,14 @@ export default function SystemDetailPage({ params }: { params: { category: strin
       <section className="py-20 px-6 max-w-[1200px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
-            <h2 className="font-display font-medium text-3xl md:text-5xl text-brand-slate ">
+            <h2 className="font-display font-normal text-3xl md:text-5xl text-brand-slate ">
               Engineering Architecture
             </h2>
             <p className="font-body font-normal text-brand-slate/85 text-base ">
               {data.description}
             </p>
             <div className="bg-brand-mist p-6 rounded-2xl border border-brand-grey/20 space-y-3 shadow-soft">
-              <span className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block flex items-center gap-2">
+              <span className="font-display font-normal text-xs text-brand-slate uppercase tracking-wider block flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-brand-teal" /> Procurement Compliance Standards
               </span>
               <p className="font-body font-normal text-xs text-brand-grey ">
@@ -201,16 +201,16 @@ export default function SystemDetailPage({ params }: { params: { category: strin
                 className="bg-brand-paper p-6 rounded-2xl border border-brand-grey/20 shadow-soft hover:border-brand-teal transition-colors duration-200"
               >
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-2">
-                  <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest">
+                  <span className="font-display font-normal text-xs text-brand-teal uppercase tracking-widest">
                     {s.label}
                   </span>
-                  <span className="font-mono text-xs font-medium text-brand-slate">
+                  <span className="font-mono text-xs font-normal text-brand-slate">
                     {s.val}
                   </span>
                 </div>
                 {s.def && (
                   <p className="font-body font-normal text-xs text-brand-grey  pt-2 border-t border-brand-grey/10">
-                    <span className="font-medium text-brand-slate/90">Engineering Definition:</span> {s.def}
+                    <span className="font-normal text-brand-slate/90">Engineering Definition:</span> {s.def}
                   </p>
                 )}
               </div>
@@ -226,10 +226,10 @@ export default function SystemDetailPage({ params }: { params: { category: strin
       <section className="py-16 px-6 max-w-[1200px] mx-auto border-t border-brand-grey/15">
         <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-2">
+            <span className="font-display font-normal text-xs text-brand-teal uppercase tracking-widest block mb-2">
               Hardware Schedule
             </span>
-            <h2 className="font-display font-medium text-3xl md:text-5xl text-brand-slate ">
+            <h2 className="font-display font-normal text-3xl md:text-5xl text-brand-slate ">
               Current Deployed Hardware Range.
             </h2>
           </div>
@@ -241,7 +241,7 @@ export default function SystemDetailPage({ params }: { params: { category: strin
         <div className="overflow-x-auto border border-brand-grey/20 rounded-2xl bg-brand-paper shadow-soft">
           <table className="w-full text-left border-collapse min-w-[650px]">
             <thead>
-              <tr className="bg-brand-mist border-b border-brand-grey/20 font-display font-medium text-xs text-brand-slate uppercase tracking-wider">
+              <tr className="bg-brand-mist border-b border-brand-grey/20 font-display font-normal text-xs text-brand-slate uppercase tracking-wider">
                 <th className="p-5 w-1/4">Component SKU</th>
                 <th className="p-5 w-1/2">Technical Specification</th>
                 <th className="p-5 w-1/4">Typical Deployment Use</th>
@@ -250,7 +250,7 @@ export default function SystemDetailPage({ params }: { params: { category: strin
             <tbody className="divide-y divide-brand-grey/15 font-body text-sm text-brand-slate/85">
               {data.hardwareTable.map((row) => (
                 <tr key={row.sku} className="hover:bg-brand-mist/40 transition-colors">
-                  <td className="p-5 font-mono font-medium text-brand-slate align-top">{row.sku}</td>
+                  <td className="p-5 font-mono font-normal text-brand-slate align-top">{row.sku}</td>
                   <td className="p-5 text-xs text-brand-grey  align-top">{row.spec}</td>
                   <td className="p-5 text-xs text-brand-slate/80 align-top">{row.use}</td>
                 </tr>
@@ -266,10 +266,10 @@ export default function SystemDetailPage({ params }: { params: { category: strin
         */}
       <section className="mt-16 bg-brand-teal text-white py-16 px-6 text-center rounded-2xl max-w-[1200px] mx-auto shadow-elevated">
         <div className="max-w-2xl mx-auto">
-          <span className="font-display font-medium text-xs text-brand-paper/80 uppercase tracking-widest block mb-3">
+          <span className="font-display font-normal text-xs text-brand-paper/80 uppercase tracking-widest block mb-3">
             M&E Tender Integration
           </span>
-          <h2 className="font-display font-medium text-3xl md:text-5xl mb-4">
+          <h2 className="font-display font-normal text-3xl md:text-5xl mb-4">
             <SplitTextReveal text="Specify This System For Your Project." />
           </h2>
           <p className="font-body font-normal text-brand-paper/90 text-sm md:text-base mb-8 ">
@@ -277,7 +277,7 @@ export default function SystemDetailPage({ params }: { params: { category: strin
           </p>
           <Link
             href="/consultation"
-            className="inline-flex items-center gap-2 bg-white text-brand-slate font-display font-medium text-base px-8 py-4 rounded-xl shadow-elevated hover:bg-brand-mist hover:-translate-y-0.5 transition duration-200 active:scale-[0.97] cursor-pointer group"
+            className="inline-flex items-center gap-2 bg-white text-brand-slate font-display font-normal text-base px-8 py-4 rounded-xl shadow-elevated hover:bg-brand-mist hover:-translate-y-0.5 transition duration-200 active:scale-[0.97] cursor-pointer group"
           >
             <span>Proceed To Requirement Form</span>
             <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />

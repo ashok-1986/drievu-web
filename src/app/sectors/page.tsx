@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
@@ -113,12 +113,12 @@ export default function SectorsPage() {
         {/* Hero Content Overlay */}
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <div className="max-w-[1200px] mx-auto px-6 text-center">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-teal/20 text-brand-teal text-xs font-display font-medium uppercase tracking-widest mb-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-teal/20 text-brand-teal text-xs font-display font-normal uppercase tracking-widest mb-6">
               <span className="w-2 h-2 rounded-full bg-brand-teal animate-pulse" />
               Tailored Engineering Engagement
             </div>
 
-            <h1 className="font-display font-medium text-hero w-full text-center text-white uppercase mb-6">
+            <h1 className="font-display font-normal text-hero w-full text-center text-white mb-6">
               <SplitTextReveal text="How We Protect Your Sector." />
             </h1>
             <ProseReveal>
@@ -139,7 +139,7 @@ export default function SectorsPage() {
       <section className="bg-brand-mist/90 py-4 px-6 border-b border-brand-grey/15 sticky top-[60px] z-40 backdrop-blur-md shadow-soft">
         <div className="max-w-[1200px] mx-auto">
           <div className="w-full max-w-full flex flex-row items-center justify-start md:justify-center gap-2 overflow-x-auto no-scrollbar py-4 touch-pan-x overscroll-x-contain select-none">
-            <span className="font-display font-medium text-xs text-brand-grey uppercase tracking-widest mx-3 hidden sm:inline shrink-0 whitespace-nowrap">
+            <span className="font-display font-normal text-xs text-brand-grey uppercase tracking-widest mx-3 hidden sm:inline shrink-0 whitespace-nowrap">
               Jump To:
             </span>
             {sectorTabs.map((tab) => {
@@ -150,8 +150,8 @@ export default function SectorsPage() {
                   onClick={() => scrollToSection(tab.id)}
                   className={
                     isActive
-                      ? "min-h-[44px] min-w-[44px] inline-flex items-center justify-center px-5 py-2.5 rounded-full font-display font-medium text-xs text-white bg-brand-teal border border-brand-teal shadow-md cursor-pointer shrink-0"
-                      : "min-h-[44px] min-w-[44px] inline-flex items-center justify-center px-5 py-2.5 rounded-full font-display font-medium text-xs text-brand-slate bg-white/80 border border-brand-grey/15 hover:border-brand-teal transition-colors cursor-pointer shadow-sm shrink-0"
+                      ? "min-h-[44px] min-w-[44px] inline-flex items-center justify-center px-5 py-2.5 rounded-full font-display font-normal text-xs text-white bg-brand-teal border border-brand-teal shadow-md cursor-pointer shrink-0"
+                      : "min-h-[44px] min-w-[44px] inline-flex items-center justify-center px-5 py-2.5 rounded-full font-display font-normal text-xs text-brand-slate bg-white/80 border border-brand-grey/15 hover:border-brand-teal transition-colors cursor-pointer shadow-sm shrink-0"
                   }
                 >
                   {tab.label}
@@ -179,14 +179,14 @@ export default function SectorsPage() {
                   {/* Text & Value Proposition */}
                   <div className={`lg:col-span-7 space-y-8 ${isEven ? "lg:col-start-6" : ""}`}>
                     <div>
-                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-brand-mist border border-brand-grey/20 text-brand-slate text-xs font-display font-medium uppercase tracking-widest mb-4">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-brand-mist border border-brand-grey/20 text-brand-slate text-xs font-display font-normal uppercase tracking-widest mb-4">
                         <IconComp className="w-3.5 h-3.5 text-brand-teal" />
                         <span>Sector Profile 0{idx + 1}</span>
                       </div>
-                      <h2 className="font-display font-medium text-3xl md:text-5xl text-brand-slate  mb-3">
+                      <h2 className="font-display font-normal text-3xl md:text-5xl text-brand-slate  mb-3">
                         {sec.title}
                       </h2>
-                      <p className="font-display font-medium text-lg text-brand-teal">
+                      <p className="font-display font-normal text-lg text-brand-teal">
                         {sec.tagline}
                       </p>
                     </div>
@@ -194,7 +194,7 @@ export default function SectorsPage() {
                     {/* Problem vs Solution Boxes */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
                       <div className="bg-brand-mist p-6 rounded-2xl border border-brand-grey/20 space-y-2">
-                        <span className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block">
+                        <span className="font-display font-normal text-xs text-brand-slate uppercase tracking-wider block">
                           The Common Problem
                         </span>
                         <p className="font-body font-normal text-sm text-brand-grey ">
@@ -203,7 +203,7 @@ export default function SectorsPage() {
                       </div>
 
                       <div className="bg-white p-6 rounded-2xl border border-brand-teal/40 shadow-soft space-y-2">
-                        <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-wider block flex items-center gap-1.5">
+                        <span className="font-display font-normal text-xs text-brand-teal uppercase tracking-wider block flex items-center gap-1.5">
                           <CheckCircle2 className="w-3.5 h-3.5" /> How Drievu Solves It
                         </span>
                         <p className="font-body font-normal text-sm text-brand-slate/85 ">
@@ -214,7 +214,7 @@ export default function SectorsPage() {
 
                     {/* Proof Point */}
                     <div className="border-l-2 border-brand-slate pl-5 py-1 space-y-1">
-                      <span className="font-display font-medium text-xs text-brand-slate uppercase tracking-wider block">
+                      <span className="font-display font-normal text-xs text-brand-slate uppercase tracking-wider block">
                         Proof Point: {sec.proofTitle}
                       </span>
                       <p className="font-body font-normal text-xs md:text-sm text-brand-grey ">
@@ -259,10 +259,10 @@ export default function SectorsPage() {
       {/* FINAL UNIVERSAL CONVERSION BANNER */}
       <section className="mt-12 bg-brand-teal text-white py-20 px-6 text-center">
         <div className="max-w-3xl mx-auto">
-          <span className="font-display font-medium text-xs text-brand-paper/80 uppercase tracking-widest block mb-3">
+          <span className="font-display font-normal text-xs text-brand-paper/80 uppercase tracking-widest block mb-3">
             No Sales Pressure &middot; Honest Engineering
           </span>
-          <h2 className="font-display font-medium text-3xl md:text-5xl  mb-6">
+          <h2 className="font-display font-normal text-3xl md:text-5xl  mb-6">
             <SplitTextReveal text="Ready To Discuss Your Sector's Needs?" />
           </h2>
           <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg mb-8 ">

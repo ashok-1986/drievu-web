@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import type React from "react"
 import { useRef, useState, useCallback, useEffect } from "react"
@@ -110,7 +110,7 @@ export function MagneticText({ text = "CREATIVE", hoverText = "EXPLORE", classNa
       className={cn("relative inline-flex items-center justify-center cursor-none select-none", className)}
     >
       {/* Base text layer - original text */}
-      <span className="text-5xl font-medium  text-brand-slate">{text}</span>
+      <span className="text-5xl font-normal  text-brand-slate">{text}</span>
 
       <div
         ref={circleRef}
@@ -134,7 +134,7 @@ export function MagneticText({ text = "CREATIVE", hoverText = "EXPLORE", classNa
             willChange: "transform",
           }}
         >
-          <span className="text-5xl font-medium  text-brand-paper whitespace-nowrap">
+          <span className="text-5xl font-normal  text-brand-paper whitespace-nowrap">
             {hoverText}
           </span>
         </div>

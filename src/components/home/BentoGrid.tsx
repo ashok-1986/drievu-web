@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import Link from "next/link";
@@ -111,10 +111,10 @@ export function BentoGrid() {
         {/* Header Section */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-2 max-w-xl">
-            <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block">
+            <span className="font-display font-normal text-xs text-brand-teal uppercase tracking-widest block">
               The 4-Pillar Taxonomy
             </span>
-            <h2 className="font-display font-medium text-3xl md:text-5xl text-brand-slate ">
+            <h2 className="font-display font-normal text-3xl md:text-5xl text-brand-slate ">
               Everything Your Building Needs.
             </h2>
           </div>
@@ -148,7 +148,7 @@ export function BentoGrid() {
                 {/* Bottom Row: Typography & Description */}
                 <div className="space-y-3 z-10 mt-auto">
                   <h3 className="m-0 p-0 block">
-                    <SplitTextReveal text={sys.title} delay={0.15 + index * 0.06} charStagger={0.012} className={`font-display font-medium text-xl md:text-2xl  transition-colors ${sys.titleColor} ${sys.isDark ? "group-hover:text-brand-teal" : "group-hover:text-brand-teal-deep"}`} />
+                    <SplitTextReveal text={sys.title} delay={0.15 + index * 0.06} charStagger={0.012} className={`font-display font-normal text-xl md:text-2xl  transition-colors ${sys.titleColor} ${sys.isDark ? "group-hover:text-brand-teal" : "group-hover:text-brand-teal-deep"}`} />
                   </h3>
                   <ProseReveal delay={0.25 + index * 0.06} className="w-full">
                     <p className={`font-body font-normal text-xs md:text-sm  max-w-xl ${sys.descColor}`}>
@@ -169,7 +169,7 @@ export function BentoGrid() {
             href="/consultation"
             variant="ghost"
             size="sm"
-            className="text-brand-teal-deep hover:underline flex items-center gap-1 font-medium"
+            className="text-brand-teal-deep hover:underline flex items-center gap-1 font-normal"
           >
             <span>Book a Scoping Review</span>
             <ArrowRight className="w-3.5 h-3.5" />

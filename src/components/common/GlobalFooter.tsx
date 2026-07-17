@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -36,27 +36,27 @@ export function GlobalFooter() {
         {/* 
           * KOMMA-KOMMA LIVE OPS TELEMETRY BAR
           * Connects real-time London UTC time with BS EN compliance flags.
-          * Capped strictly at font-medium (500) or font-normal (400).
+          * Capped strictly at font-normal (500) or font-normal (400).
           */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pb-12 mb-12 border-b border-brand-grey/20 font-body text-xs text-brand-grey uppercase tracking-widest">
           <div>
             <span className="block text-brand-paper/60 mb-1">HQ Location</span>
-            <span className="text-brand-paper font-mono font-medium">LONDON SE18 · UK</span>
+            <span className="text-brand-paper font-mono font-normal">LONDON SE18 · UK</span>
           </div>
           <div>
             <span className="block text-brand-paper/60 mb-1">System Telemetry</span>
-            <span className="text-brand-green font-mono font-medium flex items-center gap-1.5">
+            <span className="text-brand-green font-mono font-normal flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-brand-green animate-pulse" />
               ALL SYSTEMS NOMINAL
             </span>
           </div>
           <div>
             <span className="block text-brand-paper/60 mb-1">Design Engineering</span>
-            <span className="text-brand-paper font-mono font-medium">BS EN 50131 / BS 8418</span>
+            <span className="text-brand-paper font-mono font-normal">BS EN 50131 / BS 8418</span>
           </div>
           <div>
             <span className="block text-brand-paper/60 mb-1">London Time (UTC)</span>
-            <span className="text-brand-paper font-mono font-medium">
+            <span className="text-brand-paper font-mono font-normal">
               {isMounted ? currentTime : "SYNCING TELEMETRY..."}
             </span>
           </div>
@@ -76,14 +76,14 @@ export function GlobalFooter() {
               </p>
             </ProseReveal>
             <div className="text-xs text-brand-grey/80 space-y-1 font-mono pt-2 border-t border-brand-grey/15 max-w-xs">
-              <p className="text-white font-medium">Company Registration No: 15479482</p>
+              <p className="text-white font-normal">Company Registration No: 15479482</p>
               <p>Apartment 3, Minotaur House, 3 Thunderer Walk, London SE18 6LH</p>
             </div>
           </div>
 
           {/* Core Systems Navigation (3 Columns) */}
           <div className="md:col-span-3 space-y-3">
-            <span className="font-display font-medium text-xs text-white uppercase tracking-widest block mb-4">
+            <span className="font-display font-normal text-xs text-white uppercase tracking-widest block mb-4">
               Core Capabilities
             </span>
             <ul className="space-y-2.5 text-sm text-brand-grey font-body font-normal">
@@ -97,7 +97,7 @@ export function GlobalFooter() {
 
           {/* Governance & Due Diligence (2 Columns) */}
           <div className="md:col-span-2 space-y-3">
-            <span className="font-display font-medium text-xs text-white uppercase tracking-widest block mb-4">
+            <span className="font-display font-normal text-xs text-white uppercase tracking-widest block mb-4">
               Governance
             </span>
             <ul className="space-y-2.5 text-sm text-brand-grey font-body font-normal">
@@ -110,16 +110,16 @@ export function GlobalFooter() {
 
           {/* Direct Access & Conversion (2 Columns) */}
           <div className="md:col-span-2 space-y-3">
-            <span className="font-display font-medium text-xs text-white uppercase tracking-widest block mb-4">
+            <span className="font-display font-normal text-xs text-white uppercase tracking-widest block mb-4">
               Direct Contact
             </span>
             <div className="text-sm text-brand-grey space-y-2 font-body font-normal">
-              <p className="font-mono text-white font-medium">+44 7442 605205</p>
+              <p className="font-mono text-white font-normal">+44 7442 605205</p>
               <p className="text-xs font-mono break-all">enquiries@drievu.com</p>
               <div className="pt-3">
                 <Link
                   href="/consultation"
-                  className="inline-flex items-center justify-center gap-1 min-h-[44px] min-w-[44px] font-display font-medium text-xs text-brand-teal border border-brand-teal/40 px-4 py-2 rounded-xl hover:bg-brand-teal hover:text-white transition-colors duration-200 active:scale-[0.97]"
+                  className="inline-flex items-center justify-center gap-1 min-h-[44px] min-w-[44px] font-display font-normal text-xs text-brand-teal border border-brand-teal/40 px-4 py-2 rounded-xl hover:bg-brand-teal hover:text-white transition-colors duration-200 active:scale-[0.97]"
                 >
                   <span>Book Scoping</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />

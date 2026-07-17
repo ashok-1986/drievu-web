@@ -41,14 +41,14 @@ export function PageHeader({
       <div className="relative z-20 max-w-[1200px] w-full mx-auto space-y-6 flex flex-col items-start pointer-events-auto select-none">
         {badgeText && (
           <ProseReveal delay={0.05}>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white text-xs font-display font-medium uppercase tracking-widest shadow-sm">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white text-xs font-display font-normal uppercase tracking-widest shadow-sm">
               <span className="w-2 h-2 rounded-full bg-brand-green" />
               {badgeText}
             </div>
           </ProseReveal>
         )}
 
-        <h1 className="font-display font-medium text-hero w-full text-white uppercase drop-shadow-md">
+        <h1 className="font-display font-normal text-hero w-full text-white drop-shadow-md">
           {title}
         </h1>
 

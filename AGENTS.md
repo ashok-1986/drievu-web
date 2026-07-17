@@ -54,7 +54,7 @@ src/
 ## Governance Rules (Non-Negotiable)
 
 ### 1. Font-Weight Ceiling
-- **Maximum: `font-medium` (500)** — Never use `font-semibold` (600), `font-bold` (700), `font-extrabold` (800), `font-black` (900)
+- **Maximum: `font-normal` (400)** — Never use `font-medium` (500), `font-semibold` (600), `font-bold` (700), `font-extrabold` (800), `font-black` (900)
 - Visual hierarchy achieved via: size scaling (`clamp()`), letter-spacing (`tracking-tight` / `tracking-widest`), color contrast, layout
 
 ### 2. Two-Layer Language Rule
@@ -139,7 +139,7 @@ EASING_REVEAL   = [0.25, 0.1, 0.25, 1]
 | **Spacing** | Micro (12/16/24), Meso (32/48/64), Macro (80/112/144) |
 | **Radius** | `sm` 8px, `md` 12px, `lg` 16px, `xl` 24px, `2xl` 32px |
 | **Typography** | `font-display` (Hanken Grotesk), `font-body` (IBM Plex Sans), `font-mono` (IBM Plex Mono) |
-| **Weights** | `normal` (400), `medium` (500) — **ceiling enforced** |
+| **Weights** | `normal` (400) — **ceiling enforced** |
 | **Tracking** | `tightest` (-0.04em) → `widest` (0.1em) |
 
 ---

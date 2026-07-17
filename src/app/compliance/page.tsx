@@ -1,4 +1,4 @@
-// src/app/compliance/page.tsx
+﻿// src/app/compliance/page.tsx
 "use client";
 
 import Link from "next/link";
@@ -12,22 +12,22 @@ export default function CompliancePage() {
     <div className="w-full bg-brand-paper min-h-screen">
       {/* 
         * HERO HEADER SECTION
-        * Strict Weight-500 Ceiling: Uses font-medium with optical tracking [-0.03em].
+        * Strict Weight-500 Ceiling: Uses font-normal with optical tracking [-0.03em].
         */}
       <section className="bg-brand-slate text-brand-paper pt-28 md:pt-36 pb-16 md:pb-24 px-6 border-b border-brand-grey/20">
         <div className="max-w-[1000px] mx-auto">
           <Link
             href="/"
-            className="flex items-center gap-2 text-xs font-display font-medium text-brand-teal uppercase tracking-wider mb-8 hover:underline cursor-pointer w-fit"
+            className="flex items-center gap-2 text-xs font-display font-normal text-brand-teal uppercase tracking-wider mb-8 hover:underline cursor-pointer w-fit"
           >
             <ArrowLeft className="w-3.5 h-3.5" /> Return to Front of House
           </Link>
 
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-teal/20 text-brand-teal text-xs font-display font-medium uppercase tracking-widest mb-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-teal/20 text-brand-teal text-xs font-display font-normal uppercase tracking-widest mb-6">
             <ShieldCheck className="w-3.5 h-3.5" /> Engineering & Legal Governance
           </div>
 
-          <h1 className="font-display font-medium text-hero w-full text-white uppercase drop-shadow-md mb-6">
+          <h1 className="font-display font-normal text-hero w-full text-white drop-shadow-md mb-6">
             <SplitTextReveal text="Compliance & Design Standards." />
           </h1>
           <ProseReveal>
@@ -52,10 +52,10 @@ export default function CompliancePage() {
             </div>
             <div className="space-y-4">
               <div>
-                <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-1">
+                <span className="font-display font-normal text-xs text-brand-teal uppercase tracking-widest block mb-1">
                   Smart Home & Automation Design
                 </span>
-                <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate ">
+                <h2 className="font-display font-normal text-xl md:text-2xl text-brand-slate ">
                   British Standards (BS EN) Adherence
                 </h2>
               </div>
@@ -75,10 +75,10 @@ export default function CompliancePage() {
             </div>
             <div className="space-y-4">
               <div>
-                <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-1">
+                <span className="font-display font-normal text-xs text-brand-teal uppercase tracking-widest block mb-1">
                   Hardware Cybersecurity
                 </span>
-                <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate ">
+                <h2 className="font-display font-normal text-xl md:text-2xl text-brand-slate ">
                   PSTI Act Supply Chain Compliance
                 </h2>
               </div>
@@ -109,10 +109,10 @@ export default function CompliancePage() {
             </div>
             <div className="space-y-4">
               <div>
-                <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-1">
+                <span className="font-display font-normal text-xs text-brand-teal uppercase tracking-widest block mb-1">
                   Privacy & Data Governance
                 </span>
-                <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate ">
+                <h2 className="font-display font-normal text-xl md:text-2xl text-brand-slate ">
                   UK GDPR Deployment Discipline
                 </h2>
               </div>
@@ -132,15 +132,15 @@ export default function CompliancePage() {
             </div>
             <div className="space-y-4">
               <div>
-                <span className="font-display font-medium text-xs text-brand-teal uppercase tracking-widest block mb-1">
+                <span className="font-display font-normal text-xs text-brand-teal uppercase tracking-widest block mb-1">
                   Project Closure Standard
                 </span>
-                <h2 className="font-display font-medium text-xl md:text-2xl text-brand-slate ">
+                <h2 className="font-display font-normal text-xl md:text-2xl text-brand-slate ">
                   The Documented Handover pack
                 </h2>
               </div>
               <p className="font-body font-normal text-brand-slate/85 text-sm md:text-base ">
-                Our internal compliance law is simple: <em className="text-brand-slate font-medium">If it isn't documented, it isn't done.</em> 
+                Our internal compliance law is simple: <em className="text-brand-slate font-normal">If it isn't documented, it isn't done.</em> 
               </p>
               <p className="font-body font-normal text-brand-slate/85 text-sm md:text-base ">
                 Every Drievu deployment concludes with a structured handover pack. This mandatory file includes your as-installed equipment schedules, logical network topology maps, an administrator account inventory, user training sign-offs, and UK GDPR data-processing guidance.
@@ -160,10 +160,10 @@ export default function CompliancePage() {
         */}
       <section className="mt-12 bg-brand-teal text-white py-20 px-6 text-center">
         <div className="max-w-3xl mx-auto">
-          <span className="font-display font-medium text-xs text-brand-paper/80 uppercase tracking-widest block mb-3">
+          <span className="font-display font-normal text-xs text-brand-paper/80 uppercase tracking-widest block mb-3">
             Pass Your Procurement Audit
           </span>
-          <h2 className="font-display font-medium text-3xl md:text-5xl  mb-6">
+          <h2 className="font-display font-normal text-3xl md:text-5xl  mb-6">
             <SplitTextReveal text="Require a Compliant System Design?" />
           </h2>
           <p className="font-body font-normal text-brand-paper/90 text-base md:text-lg mb-8 ">
@@ -171,7 +171,7 @@ export default function CompliancePage() {
           </p>
           <Link
             href="/consultation"
-            className="inline-block bg-white text-brand-slate font-display font-medium text-base px-8 py-4 rounded-xl shadow-elevated hover:bg-brand-mist hover:-translate-y-0.5 transition duration-200 active:scale-[0.97] cursor-pointer"
+            className="inline-block bg-white text-brand-slate font-display font-normal text-base px-8 py-4 rounded-xl shadow-elevated hover:bg-brand-mist hover:-translate-y-0.5 transition duration-200 active:scale-[0.97] cursor-pointer"
           >
             Start Your Requirement Form
           </Link>
