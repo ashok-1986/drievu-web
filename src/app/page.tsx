@@ -24,7 +24,7 @@ export default function HomePage() {
       <CanvasHero />
 
       {/* Hero-to-Bento Transition Gradient */}
-      <div className="w-full h-24 md:h-36 bg-gradient-to-b from-brand-slate via-brand-slate/60 to-stone-50 pointer-events-none select-none" />
+      <div className="w-full h-24 md:h-36 bg-gradient-to-b from-brand-slate via-brand-slate/60 to-brand-paper pointer-events-none select-none" />
 
       {/* 2. CORE CAPABILITIES — BENTO GRID */}
       <BentoGrid />

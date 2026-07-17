@@ -54,10 +54,10 @@ export function BentoGrid() {
       href: "/systems/surveillance",
       // Large Hero Feature: Spans 8 cols, 2 rows on desktop
       spanClasses: "col-span-12 md:col-span-12 lg:col-span-8 lg:row-span-2",
-      bgClasses: "bg-gradient-to-br from-slate-900 to-slate-800 text-white",
+      bgClasses: "bg-gradient-to-br from-brand-slate to-brand-slate/90 text-brand-paper",
       iconBg: "bg-brand-teal/20 text-brand-teal border border-brand-teal/30",
-      titleColor: "text-white",
-      descColor: "text-slate-300",
+      titleColor: "text-brand-paper",
+      descColor: "text-brand-mist",
       isDark: true,
     },
     {
@@ -68,10 +68,10 @@ export function BentoGrid() {
       href: "/systems/access",
       // Medium Top Right Card: Spans 4 cols on desktop
       spanClasses: "col-span-12 md:col-span-6 lg:col-span-4",
-      bgClasses: "bg-emerald-950/5 border border-emerald-900/15 text-slate-900",
-      iconBg: "bg-emerald-600/10 text-emerald-700 border border-emerald-600/20",
-      titleColor: "text-slate-900",
-      descColor: "text-slate-600",
+      bgClasses: "bg-brand-teal-500/5 border border-brand-teal-500/15 text-brand-slate",
+      iconBg: "bg-brand-teal-500/10 text-brand-teal-500 border border-brand-teal-500/20",
+      titleColor: "text-brand-slate",
+      descColor: "text-brand-grey",
       isDark: false,
     },
     {
@@ -82,10 +82,10 @@ export function BentoGrid() {
       href: "/systems/fire",
       // Medium Middle Right Card: Spans 4 cols on desktop
       spanClasses: "col-span-12 md:col-span-6 lg:col-span-4",
-      bgClasses: "bg-amber-950/5 border border-amber-900/15 text-slate-900",
-      iconBg: "bg-amber-600/10 text-amber-700 border border-amber-600/20",
-      titleColor: "text-slate-900",
-      descColor: "text-slate-600",
+      bgClasses: "bg-brand-teal-300/5 border border-brand-teal-300/15 text-brand-slate",
+      iconBg: "bg-brand-teal-300/10 text-brand-teal-600 border border-brand-teal-300/20",
+      titleColor: "text-brand-slate",
+      descColor: "text-brand-grey",
       isDark: false,
     },
     {
@@ -96,10 +96,10 @@ export function BentoGrid() {
       href: "/systems/communication",
       // Medium Bottom Left Card: Spans 5 cols on desktop
       spanClasses: "col-span-12 md:col-span-6 lg:col-span-5",
-      bgClasses: "bg-indigo-950/5 border border-indigo-900/15 text-slate-900",
-      iconBg: "bg-indigo-600/10 text-indigo-700 border border-indigo-600/20",
-      titleColor: "text-slate-900",
-      descColor: "text-slate-600",
+      bgClasses: "bg-brand-teal-600/5 border border-brand-teal-600/15 text-brand-slate",
+      iconBg: "bg-brand-teal-600/10 text-brand-teal-600 border border-brand-teal-600/20",
+      titleColor: "text-brand-slate",
+      descColor: "text-brand-grey",
       isDark: false,
     },
     {
@@ -110,10 +110,10 @@ export function BentoGrid() {
       href: "/systems/smart-building",
       // Wide Bottom Right Card: Spans 7 cols on desktop
       spanClasses: "col-span-12 md:col-span-6 lg:col-span-7",
-      bgClasses: "bg-brand-teal-900/5 border border-brand-teal-900/15 text-slate-900",
+      bgClasses: "bg-brand-teal-900/5 border border-brand-teal-900/15 text-brand-slate",
       iconBg: "bg-brand-teal-deep/10 text-brand-teal-deep border border-brand-teal-deep/20",
-      titleColor: "text-slate-900",
-      descColor: "text-slate-600",
+      titleColor: "text-brand-slate",
+      descColor: "text-brand-grey",
       isDark: false,
     },
   ];
@@ -154,7 +154,7 @@ export function BentoGrid() {
                   <div className={`w-12 h-12 lg:w-14 lg:h-14 rounded-xl flex items-center justify-center text-brand-slate mb-4 lg:mb-6 ${sys.iconBg}`}>
                     <IconComponent className="w-6 h-6 lg:w-7 lg:h-7" />
                   </div>
-                  <div className={`w-8 h-8 lg:w-10 lg:h-10 rounded-full flex items-center justify-center transition-[background-color,color,transform] duration-250 transform group-hover:translate-x-1 ${sys.isDark ? "bg-white/10 text-white group-hover:bg-brand-teal" : "bg-slate-200/60 text-slate-700 group-hover:bg-brand-teal-deep group-hover:text-white"}`}>
+                  <div className={`w-8 h-8 lg:w-10 lg:h-10 rounded-full flex items-center justify-center transition-[background-color,color,transform] duration-250 transform group-hover:translate-x-1 ${sys.isDark ? "bg-white/10 text-white group-hover:bg-brand-teal" : "bg-brand-mist/60 text-brand-slate/80 group-hover:bg-brand-teal-deep group-hover:text-white"}`}>
                     <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5" />
                   </div>
                 </div>
@@ -176,7 +176,7 @@ export function BentoGrid() {
         </div>
 
         {/* Bottom Handoff Assurance */}
-        <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-slate-200/80 font-body text-xs text-slate-500">
+        <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-brand-mist/80 font-body text-xs text-brand-grey">
           <span>British Standards Compliant Engineering</span>
           <span>Zero Sales Fluff · Direct Principal Consultation</span>
           <TactileLink
