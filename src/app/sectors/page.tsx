@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
@@ -59,7 +59,7 @@ export default function SectorsPage() {
       solution: "One tap on your smartphone or a single wall keypad sets the mood, secures the perimeter, and manages your climate. We build systems that work like infrastructure—invisible, hardwired, and strictly private.",
       proofTitle: "National-Infrastructure Rigor",
       proofDesc: "Our executive team brings the same engineering discipline used in luxury residential towers and landmark commercial developments directly to your private residence.",
-      image: "/images/hero-property-dusk.jpg",
+      image: "/images/hero-property-dusk.png",
       imagePrompt: "Wide architectural shot of a newly completed luxury commercial building exterior at dusk, clean glass facades, professional landscaping, zero clutter --ar 16:9 --style raw",
     },
     {
@@ -71,7 +71,7 @@ export default function SectorsPage() {
       solution: "We provide CAD-ready electrical schematics, flush-mounted architectural sensors, and centralized wiring racks that keep living spaces completely unburdened by hardware. We ensure every piece of technology blends invisibly into your design.",
       proofTitle: "Architectural Integration",
       proofDesc: "We work with you during the early planning stage to map out hidden wiring routes and specify equipment that respects your aesthetic vision.",
-      image: "/images/system-surveillance.jpg",
+      image: "/images/system-surveillance.png",
       imagePrompt: "Architectural close-up of a minimalist white flush-mounted camera on a clean concrete gallery ceiling, zero visible wires, interior design focus --ar 16:9 --style raw",
     },
     {
@@ -83,7 +83,7 @@ export default function SectorsPage() {
       solution: "We deliver complete handover packs, documented compliance certificates, and structured cabling that increases gross development value. We specify accurately and install strictly to your construction schedule.",
       proofTitle: "Live UK Delivery Discipline",
       proofDesc: "At our Staines Road commercial estate installation in London, we delivered a 31-camera network and video storage system on schedule with zero tenant disruption.",
-      image: "/images/system-automation.jpg",
+      image: "/images/system-automation.png",
       imagePrompt: "Exterior of a modern, well-maintained UK brick residential apartment block on a bright day, neat communal entrance with a secure video doorbell panel --ar 16:9 --style raw",
     },
   ];
